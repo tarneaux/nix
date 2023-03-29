@@ -56,8 +56,6 @@ in {
 
   services.openssh.enable = true;
 
-  system.copySystemConfiguration = true;
-
   system.stateVersion = "22.11";
 
 }
