@@ -7,6 +7,7 @@
   home.homeDirectory = "/home/max";
   home.packages = with pkgs; [
     htop
+    rsync
   ];
 
   home.stateVersion = "22.11";
