@@ -25,6 +25,8 @@ in {
     keyMap = "fr";
   };
 
+  security.sudo.wheelNeedsPassword = false; 
+
   users.users.${main-user} = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
