@@ -21,7 +21,7 @@
   in {
     nixosConfigurations = {
       server = import ./server {
-        inherit pkgs lib;
+        inherit system pkgs lib home-manager;
       };
     };
   };
