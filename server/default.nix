@@ -1,17 +1,20 @@
-{ config, pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
-  # Home Manager needs a bit of information about you and the
-  # paths it should manage.
-  home.username = "max";
-  home.homeDirectory = "/home/max";
-  home.packages = with pkgs; [
-    htop
-    rsync
-  ];
-
-  home.stateVersion = "22.11";
-
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
+  server-test = let
+    username = "max";
+  in lib.nixosSystem {
+    inherit system;
+    SpecialArgs = { inherit username };
+    modules = [
+      ./configuration.nix
+      home-manager.nixosModules.home-manager {
+        home-manager.useGlobalPkgs = true;
+        home-manager.useUserPackages = true;
+        home-manager.users.${username} = {
+          imports = [ ./server ];
+        };
+      }
+    ];
+  };
 }

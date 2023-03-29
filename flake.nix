@@ -20,20 +20,8 @@
     lib = nixpkgs.lib;
   in {
     nixosConfigurations = {
-      server-test = let
-        main-user-name = "max";
-      in lib.nixosSystem {
-        inherit system;
-        modules = [
-        ./configuration.nix
-        home-manager.nixosModules.home-manager {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.${main-user-name} = {
-            imports = [ ./server ];
-          };
-        }
-      ];
+      server = import ./nixos/configuration.nix {
+        inherit pkgs lib;
       };
     };
   };

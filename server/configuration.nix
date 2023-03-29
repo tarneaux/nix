@@ -2,11 +2,9 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, username, ... }:
 
-let
-  main-user = "max";
-in {
+{
   imports =
     [
       ./hardware-configuration.nix
@@ -27,7 +25,7 @@ in {
 
   security.sudo.wheelNeedsPassword = false; 
 
-  users.users.${main-user} = {
+  users.users.${username} = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
