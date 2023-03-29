@@ -4,7 +4,7 @@ let
   username = "max";
 in lib.nixosSystem {
   inherit system;
-  SpecialArgs = { inherit username };
+  SpecialArgs = { inherit username; };
   modules = [
     ./configuration.nix
     home-manager.nixosModules.home-manager {

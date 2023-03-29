@@ -20,7 +20,7 @@
     lib = nixpkgs.lib;
   in {
     nixosConfigurations = {
-      server = import ./nixos/configuration.nix {
+      server = import ./server {
         inherit pkgs lib;
       };
     };
