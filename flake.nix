@@ -13,6 +13,7 @@
       # if you want absolutely proprietary packages
       # config.allowUnfree = true;
     };
+    lib = nixpkgs.lib;
   in {
     nixosConfigurations = {
       server-test = lib.nixosSystem {
