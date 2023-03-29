@@ -25,15 +25,15 @@
       in lib.nixosSystem {
         inherit system;
         modules = [
-	  ./configuration.nix
-	  home-manager.nixosModules.home-manager {
-	    home-manager.useGlobalPkgs = true;
-	    home-manager.useUserPackages = true;
-	    home-manager.users.${main-user-name} = {
-	      imports = [ ./server-test-home.nix ];
-	    };
-	  }
-	];
+        ./configuration.nix
+        home-manager.nixosModules.home-manager {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.${main-user-name} = {
+            imports = [ ./server ];
+          };
+        }
+      ];
       };
     };
   };
