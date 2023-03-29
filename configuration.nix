@@ -42,6 +42,7 @@ in {
   environment.systemPackages = with pkgs; [
     neovim
     wget
+    gnumake
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
