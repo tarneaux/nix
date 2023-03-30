@@ -12,7 +12,7 @@ in lib.nixosSystem {
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
       home-manager.users.${username} = {
-        imports = [ ./home-manager.nix ];
+        imports = [ ../all/home-manager ];
       };
     }
   ];
