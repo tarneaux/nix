@@ -8,12 +8,12 @@
   imports =
     [
       ./${host}/hardware-configuration.nix
+      ./${host}/configuration.nix
     ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.hostName = "nixos";
   networking.networkmanager.enable = true;
 
   time.timeZone = "Europe/Paris";
@@ -54,8 +54,6 @@
     enable = true;
     enableSSHSupport = true;
   };
-
-  services.openssh.enable = true;
 
   system.stateVersion = "22.11";
 

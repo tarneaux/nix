@@ -1,6 +1,6 @@
 install:
-	sudo nixos-rebuild switch --flake .#server
+	sudo nixos-rebuild switch --flake .
 
 remote:
-	rsync -aAXv --delete . nix-server:~/dotfiles > /dev/null
-	ssh nix-server "cd ~/dotfiles && sudo nixos-rebuild switch --flake ."
+	rsync -aAXv --delete --exclude .git . nix-server:~/dotfiles > /dev/null
+	ssh nix-server "cd ~/dotfiles && make install"
