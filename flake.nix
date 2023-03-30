@@ -18,10 +18,11 @@
       # config.allowUnfree = true;
     };
     lib = nixpkgs.lib;
+    configuration = import ./configuration.nix;
   in {
     nixosConfigurations = {
       server = import ./hosts/server {
-        inherit system pkgs lib home-manager;
+        inherit system pkgs lib home-manager configuration;
       };
     };
   };
