@@ -2,10 +2,10 @@
 
 let
   username = "user";
-  host = "server";
+  hostname = "server";
 in lib.nixosSystem {
   inherit system;
-  specialArgs = { inherit username host; };
+  specialArgs = { inherit username hostname; };
   modules = [
     configuration
     home-manager.nixosModules.home-manager {
