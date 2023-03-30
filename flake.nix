@@ -18,7 +18,7 @@
       # config.allowUnfree = true;
     };
     lib = nixpkgs.lib;
-    configuration = import ./configuration.nix;
+    configuration = import ./hosts/all/configuration.nix;
   in {
     nixosConfigurations = {
       server = import ./hosts/server {
