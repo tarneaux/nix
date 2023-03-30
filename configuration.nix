@@ -40,9 +40,9 @@
   environment.shells = with pkgs; [ zsh ];
 
   environment.systemPackages = with pkgs; [
-    neovim
-    wget
-    gnumake
+    # Make and rsync are required for these configs to work.
+    gnumake # Install without having to type nixos-rebuild switch...
+    rsync # for copying files to the system, if it is remote. Makes some things easier.
   ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
