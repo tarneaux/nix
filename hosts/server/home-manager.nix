@@ -5,9 +5,7 @@
   # paths it should manage.
   home.username = "user";
   home.homeDirectory = "/home/user";
-  home.packages = with pkgs; [
-    rsync
-  ];
+  home.packages = with pkgs; [];
 
   home.stateVersion = "22.11";
 
