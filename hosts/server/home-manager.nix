@@ -3,11 +3,11 @@
 {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
-  home.username = "user";
-  home.homeDirectory = "/home/user";
-  home.packages = with pkgs; [];
-
-  home.stateVersion = "22.11";
+  home = {
+    username = "user";
+    homeDirectory = "/home/user";
+    stateVersion = "22.11";
+  };
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
