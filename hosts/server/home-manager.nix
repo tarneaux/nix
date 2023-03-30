@@ -1,5 +1,5 @@
 { config, pkgs, username, ... }:
 
 {
-  pkgs.htop.enable = true;
+  programs.htop.enable = true;
 }

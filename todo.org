@@ -1,6 +1,1 @@
-* Inherit the userame
-#+BEGIN_SRC nix
-SpecialArgs = { inherit user };
-#+END_SRC
-
-* Possible to have multiple configured machines and usernames and switch between them
+configuration/config ambiguous

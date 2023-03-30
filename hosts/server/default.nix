@@ -3,7 +3,7 @@
 let
   username = "user";
   hostname = "server";
-in lib.nixosSystem {
+in lib.nixosSystem rec {
   inherit system;
   specialArgs = { inherit username hostname; };
   modules = [
@@ -11,8 +11,9 @@ in lib.nixosSystem {
     home-manager.nixosModules.home-manager {
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
-      home-manager.users.${username} = {
-        imports = [ ../all/home-manager ];
+      home-manager.users.${username} = import ../all/home-manager {
+        inherit pkgs hostname username;
+        config = configuration;
       };
     }
   ];

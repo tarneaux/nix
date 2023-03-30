@@ -1,9 +1,12 @@
-{ config, pkgs, hostname, ... }:
+{ config, pkgs, hostname, username, ... }:
 
 {
+  imports = [
+    ../../${hostname}/home-manager.nix
+  ];
   home = {
-    username = "user";
-    homeDirectory = "/home/user";
+    username = username;
+    homeDirectory = "/home/${username}";
     stateVersion = "22.11";
   };
 
