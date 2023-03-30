@@ -7,8 +7,8 @@
 {
   imports =
     [
-      ./${host}/hardware-configuration.nix
-      ./${host}/configuration.nix
+      ./hosts/${host}/hardware-configuration.nix
+      ./hosts/${host}/configuration.nix
     ];
 
   boot.loader.systemd-boot.enable = true;

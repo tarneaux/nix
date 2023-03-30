@@ -20,7 +20,7 @@
     lib = nixpkgs.lib;
   in {
     nixosConfigurations = {
-      server = import ./server {
+      server = import ./hosts/server {
         inherit system pkgs lib home-manager;
       };
     };
