@@ -1,4 +1,4 @@
-{ lib, home-manager, ... }:
+{ pkgs, lib, home-manager, ... }:
 
 let
   username = "user";
@@ -11,7 +11,7 @@ in lib.nixosSystem {
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
       home-manager.users.${username} = import ../all/home-manager {
-        inherit hostname username;
+        inherit pkgs hostname username;
       };
     }
   ];

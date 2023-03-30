@@ -14,14 +14,14 @@
     system = "x86_64-linux";
     pkgs = import nixpkgs {
       inherit system;
-      # if you want absolutely proprietary packages
-      # config.allowUnfree = true;
+      # Set this to true if you want absolutely proprietary packages
+      config.allowUnfree = false;
     };
     lib = nixpkgs.lib;
   in {
     nixosConfigurations = {
       server = import ./hosts/server {
-        inherit system pkgs lib home-manager;
+        inherit pkgs lib home-manager;
       };
     };
   };

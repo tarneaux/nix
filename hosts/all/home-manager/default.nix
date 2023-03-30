@@ -1,4 +1,4 @@
-{ hostname, username, ... }:
+{ pkgs, hostname, username, ... }:
 
 {
   imports = [
@@ -15,19 +15,40 @@
     userName = "server";
     userEmail = "server@renn.es";
     aliases = {
-      ga = "git add";
-      gap = "git add --patch";
-      gc = "git commit";
-      gcm = "git commit -m";
-      gca = "git commit -a";
-      gcam = "git commit -am";
-      gp = "git push";
-      gs = "git status";
-      gl = "git log --decorate --oneline --graph";
-      gd = "git diff";
-      gb = "git branch";
-      gco = "git checkout";
+      a = "add";
+      ap = "add --patch";
+      c = "commit";
+      cm = "commit -m";
+      ca = "commit -a";
+      cam = "commit -am";
+      p = "push";
+      s = "status";
+      l = "log --decorate --oneline --graph";
+      d = "diff";
+      b = "branch";
+      co = "checkout";
     };
+  };
+
+  programs.zsh = {
+    enable = true;
+    enableAutosuggestions = true;
+    enableCompletion = true;
+    enableSyntaxHighlighting = true;
+    dotDir = ".config/zsh";
+    history = {
+      extended = true;
+      ignoreDups = true;
+      share = true;
+    };
+  };
+
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+    plugins = with pkgs.vimPlugins; [
+      gruvbox
+    ];
   };
 
   programs.home-manager.enable = true;
