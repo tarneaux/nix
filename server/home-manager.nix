@@ -1,10 +1,10 @@
-{ config, pkgs, ... }:
+{ config, pkgs, user, ... }:
 
 {
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
-  home.username = "max";
-  home.homeDirectory = "/home/max";
+  home.username = "user";
+  home.homeDirectory = "/home/user";
   home.packages = with pkgs; [
     htop
     rsync

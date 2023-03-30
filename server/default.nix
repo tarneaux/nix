@@ -1,10 +1,11 @@
 { system, pkgs, lib, home-manager, ... }:
 
 let
-  username = "max";
+  username = "user";
+  host = "server";
 in lib.nixosSystem {
   inherit system;
-  specialArgs = { inherit username; };
+  specialArgs = { inherit username host; };
   modules = [
     ../configuration.nix
     home-manager.nixosModules.home-manager {

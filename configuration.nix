@@ -2,12 +2,12 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, username, ... }:
+{ config, pkgs, username, host, ... }:
 
 {
   imports =
     [
-      ./hardware-configuration.nix
+      ./${host}/hardware-configuration.nix
     ];
 
   boot.loader.systemd-boot.enable = true;
