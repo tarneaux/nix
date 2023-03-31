@@ -8,26 +8,18 @@
     format = lib.concatStrings [
       "$username"
       "$hosname"
-      "$shlvl"
       "$directory"
       "$git_branch"
       "$git_commit"
       "$git_state"
       "$git_status"
-      "$nodejs"
-      "$ruby"
       "$cmd_duration"
-      "$line_break"
       "$jobs"
-      "$status"
       "$character"
     ];
     character = {
       success_symbol = "[λ](bold green)";
       error_symbol = "[λ](bold red)";
-    };
-    line_break = {
-      disabled = true;
     };
     git_status = {
       conflicted = "!";
@@ -45,7 +37,7 @@
       symbol = "שׂ ";
     };
     cmd_duration = {
-      format = "[⏱ $duration](bold yellow) ";
+      format = "[$duration](bold yellow) ";
     };
   };
 }
