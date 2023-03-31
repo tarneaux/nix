@@ -83,6 +83,12 @@
       ";
       type = "lua";
     }
+    # Autopairs = automatically close brackets, quotes, etc.
+    {
+      plugin = nvim-autopairs;
+      config = "require('nvim-autopairs').setup{}";
+      type = "lua";
+    }
   ];
   extraPackages = with pkgs; [
     pyright nodePackages.bash-language-server rnix-lsp # LSP servers
