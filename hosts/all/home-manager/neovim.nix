@@ -109,6 +109,10 @@
       ";
       type = "viml";
     }
+    # Vim-commentary = comment/uncomment lines with shortcut "gcc" (and others)
+    {
+      plugin = vim-commentary;
+    }
   ];
   extraPackages = with pkgs; [
     pyright nodePackages.bash-language-server rnix-lsp # LSP servers
