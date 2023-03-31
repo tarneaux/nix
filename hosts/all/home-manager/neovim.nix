@@ -89,7 +89,7 @@
       config = "require('nvim-autopairs').setup{}";
       type = "lua";
     }
-    # Copilot = absolutely proprietary, but very useful
+    # Copilot = absolutely proprietary, but very useful AI-assisted code completion
     copilot-vim
   ];
   extraPackages = with pkgs; [
