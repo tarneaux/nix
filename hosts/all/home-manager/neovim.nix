@@ -15,7 +15,7 @@
   vim.opt.swapfile = false -- Disable those annoying swap files
   vim.opt.clipboard = 'unnamedplus' -- Copy to system clipboard
   vim.opt.undofile = true -- Enable undo history
-  vim.opt.undodir = '~/.local/share/nvim-undodir' -- Set undo history directory
+  vim.opt.undodir = vim.fn.expand('~/.local/share/nvim-undodir') -- Set undo history directory
   vim.opt.scrolloff = 1 -- Keep 1 line above and below the cursor
   vim.opt.autoread = true -- Reload file if it changes on disk
 
