@@ -47,7 +47,9 @@
     enable = true;
     defaultEditor = true;
     plugins = with pkgs.vimPlugins; [
-      gruvbox
+      { plugin = gruvbox;
+        config = "colorscheme gruvbox";
+      }
     ];
   };
 
