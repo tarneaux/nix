@@ -25,7 +25,8 @@
     # NvimTree = file explorer
     {
       plugin = nvim-tree-lua;
-      config = "lua require('nvim-tree').setup{}";
+      config = "require('nvim-tree').setup{}";
+      type = "lua";
     }
     # UndoTree = undo history and easy navigation
     {
@@ -33,8 +34,19 @@
     }
     # Treesitter = syntax highlighting
     {
-      plugin = nvim-treesitter.withPlugins(p: with p; [ lua python nix ]);
-      config = "lua require('nvim-treesitter.configs').setup{languages = {'nix', 'lua', 'python'}}";
+      plugin = nvim-treesitter;
+      config = "require('nvim-treesitter.configs').setup{
+        languages = {'nix', 'lua', 'python'},
+        modules = {
+          highlight = {
+            enable = true,
+          },
+          indent = {
+            enable = true,
+          },
+        }
+      }";
+      type = "lua";
     }
     # Auto mkdir = automatically create directories when saving a file
     {
