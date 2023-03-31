@@ -18,13 +18,8 @@
   vim.opt.undodir = vim.fn.expand('~/.local/share/nvim-undodir') -- Set undo history directory
   vim.opt.scrolloff = 1 -- Keep 1 line above and below the cursor
   vim.opt.autoread = true -- Reload file if it changes on disk
-
-  -- Disable background color for sign column
-  vim.cmd.highlight('SignColumn', 'guibg=NONE')
-  -- same for gitgutter signs
-  vim.cmd.highlight('GitGutterAdd', 'guibg=NONE')
-  vim.cmd.highlight('GitGutterChange', 'guibg=NONE')
-  vim.cmd.highlight('GitGutterDelete', 'guibg=NONE')
+  vim.cmd.highlight('SignColumn', 'guibg=NONE') -- Disable background color for sign column
+  vim.opt.termguicolors = true -- Enable 24-bit colors
   ";
   plugins = with pkgs.vimPlugins; [
     # Gruvbox colorscheme
@@ -77,9 +72,9 @@
     {
       plugin = nvim-lspconfig;
       config = "
-      require('lspconfig').pyright.setup{}
-      require('lspconfig').bashls.setup{}
-      require('lspconfig').rnix.setup{}
+        require('lspconfig').pyright.setup{}
+        require('lspconfig').bashls.setup{}
+        require('lspconfig').rnix.setup{}
       ";
       type = "lua";
     }
@@ -102,6 +97,16 @@
       plugin = trouble-nvim;
       config = "require('trouble').setup{}";
       type = "lua";
+    }
+    # GitGutter = show git diff in the gutter
+    {
+      plugin = vim-gitgutter;
+      config = "
+        hi GitGutterAdd guibg=NONE
+        hi GitGutterChange guibg=NONE
+        hi GitGutterDelete guibg=NONE
+      ";
+      type = "viml";
     }
   ];
   extraPackages = with pkgs; [
