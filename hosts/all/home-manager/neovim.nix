@@ -91,6 +91,12 @@
     }
     # Copilot = absolutely proprietary, but very useful AI-assisted code completion
     copilot-vim
+    # Guess indent = automatically guess the indentation width of a file (duh)
+    {
+      plugin = guess-indent-nvim;
+      config = "require('guess-indent').setup{}";
+      type = "lua";
+    }
   ];
   extraPackages = with pkgs; [
     pyright nodePackages.bash-language-server rnix-lsp # LSP servers
