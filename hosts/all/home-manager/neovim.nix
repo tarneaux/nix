@@ -89,8 +89,11 @@
       config = "require('nvim-autopairs').setup{}";
       type = "lua";
     }
+    # Copilot = absolutely proprietary, but very useful
+    copilot-vim
   ];
   extraPackages = with pkgs; [
     pyright nodePackages.bash-language-server rnix-lsp # LSP servers
+    nodejs # Needed for copilot
   ];
 }
