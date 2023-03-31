@@ -11,7 +11,7 @@ in lib.nixosSystem {
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
       home-manager.users.${username} = import ../all/home-manager {
-        inherit pkgs hostname username;
+        inherit pkgs hostname username lib;
       };
     }
   ];

@@ -1,4 +1,4 @@
-{ pkgs, hostname, username, ... }:
+{ pkgs, hostname, username, lib, ... }:
 
 {
   imports = [
@@ -14,4 +14,5 @@
   programs.git = import ./git.nix { inherit pkgs; };
   programs.zsh = import ./zsh.nix { inherit pkgs; };
   programs.neovim = import ./neovim.nix { inherit pkgs; };
+  programs.starship = import ./starship.nix { inherit pkgs lib; };
 }
