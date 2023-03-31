@@ -21,6 +21,7 @@
   vim.cmd.highlight('SignColumn', 'guibg=NONE') -- Disable background color for sign column
   vim.opt.termguicolors = true -- Enable 24-bit colors
   ";
+  extraConfig = "autocmd VimLeave * set guicursor=a:ver25-blinkon0"; # Prevent block cursor from staying after quitting
   plugins = with pkgs.vimPlugins; [
     # Gruvbox colorscheme
     {
