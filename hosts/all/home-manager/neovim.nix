@@ -97,6 +97,12 @@
       config = "require('guess-indent').setup{}";
       type = "lua";
     }
+    # Trouble = show LSP diagnostics in a floating window
+    {
+      plugin = trouble-nvim;
+      config = "require('trouble').setup{}";
+      type = "lua";
+    }
   ];
   extraPackages = with pkgs; [
     pyright nodePackages.bash-language-server rnix-lsp # LSP servers
