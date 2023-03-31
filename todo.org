@@ -1,1 +1,1 @@
-configuration/config ambiguous
+* treesitter config isn't working for now
