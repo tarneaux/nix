@@ -14,7 +14,15 @@
     # Lualine = statusline
     {
       plugin = lualine-nvim;
-      config = "lua require('lualine').setup{}";
+      config = "require('lualine').setup{
+        options = {
+          theme = 'auto',
+          icons_enabled = true,
+          component_separators = {left='', right=''},
+          section_separators = {left='', right=''},
+        }
+      }";
+      type = "lua";
     }
     # NvimTree = file explorer
     {
@@ -24,6 +32,15 @@
     # UndoTree = undo history and easy navigation
     {
       plugin = undotree;
+    }
+    # Treesitter = syntax highlighting
+    {
+      plugin = nvim-treesitter.withPlugins(p: with p; [ lua python nix ]);
+      config = "lua require('nvim-treesitter.configs').setup{languages = {'nix', 'lua', 'python'}}";
+    }
+    # Auto mkdir = automatically create directories when saving a file
+    {
+      plugin = vim-automkdir;
     }
   ];
 }
