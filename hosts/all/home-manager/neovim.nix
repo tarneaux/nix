@@ -46,9 +46,7 @@
       type = "lua";
     }
     # UndoTree = undo history and easy navigation
-    {
-      plugin = undotree;
-    }
+    undotree
     # Treesitter = syntax highlighting
     {
       plugin = nvim-treesitter;
