@@ -72,7 +72,8 @@
     {
       plugin = nvim-cmp;
       config = ''
-        capabilities = require('cmp_nvim_lsp').default_capabilities
+        local capabilities = vim.lsp.protocol.make_client_capabilities()
+        capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
         local cmp = require'cmp'
         cmp.setup {
@@ -87,12 +88,10 @@
               },
               ['<Tab>'] = cmp.mapping(function(fallback)
                 local copilot_keys = vim.fn['copilot#Accept']()
-                if copilot_keys ~= "" and type(copilot_keys) == 'string' then
-                  vim.api.nvim_feedkeys(copilot_keys, 'i', true)
-                elseif cmp.visible() then
+                if cmp.visible() then
                   cmp.select_next_item()
-                elseif luasnip.expand_or_jumpable() then
-                  luasnip.expand_or_jump()
+                elseif copilot_keys ~= "" and type(copilot_keys) == 'string' then
+                  vim.api.nvim_feedkeys(copilot_keys, 'i', true)
                 else
                   fallback()
                 end
@@ -103,8 +102,6 @@
               ['<S-Tab>'] = cmp.mapping(function(fallback)
                 if cmp.visible() then
                   cmp.select_prev_item()
-                elseif luasnip.jumpable(-1) then
-                  luasnip.jump(-1)
                 else
                   fallback()
                 end
@@ -112,7 +109,6 @@
             }),
             sources = {
               { name = 'nvim_lsp' },
-              { name = 'luasnip' },
             },
           }
         }
@@ -143,7 +139,13 @@
       type = "lua";
     }
     # Copilot = absolutely proprietary, but very useful AI-assisted code completion
-    copilot-vim
+    {
+      plugin = copilot-vim;
+      config = ''vim.g.copilot_no_tab_map = true
+      vim.g.copilot_assume_mapped = true
+      vim.g.copilot_tab_feedback = ""'';
+      type = "lua";
+    }
     # Guess indent = automatically guess the indentation width of a file (duh)
     {
       plugin = guess-indent-nvim;
