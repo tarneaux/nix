@@ -66,9 +66,7 @@
       type = "lua";
     }
     # Auto mkdir = automatically create directories when saving a file
-    {
-      plugin = vim-automkdir;
-    }
+    vim-automkdir
     # LSP = language server protocol. Used for autocompletion, go to definition, etc.
     {
       plugin = nvim-lspconfig;
@@ -122,10 +120,10 @@
         local alpha = require'alpha'
         local dashboard = require'alpha.themes.dashboard'
         dashboard.section.buttons.val = {
-            dashboard.button( "e", "  New file" , ":ene <BAR> startinsert <CR>"),
-            dashboard.button( "spc f f", "  Find file" , ":Telescope find_files<CR>"),
-            dashboard.button( "spc f r", "  Recently used files" , ":Telescope oldfiles<CR>"),
-            dashboard.button( "q", "  Quit NVIM" , ":qa<CR>"),
+            dashboard.button( "e", " New file" , ":ene <BAR> startinsert <CR>"),
+            dashboard.button( "spc f f", " Find file" , ":Telescope find_files<CR>"),
+            dashboard.button( "spc f g", "󰍉 Find text" , ":Telescope live_grep<CR>"),
+            dashboard.button( "q", " Quit NVIM" , ":qa<CR>"),
         }
         local handle = io.popen('fortune calvin -s')
         local fortune = handle:read("*a")
@@ -140,6 +138,54 @@
       '';
       type = "lua";
     }
+    # which-key = show keybindings in a floating window
+    {
+      plugin = which-key-nvim;
+      config = ''
+        require('which-key').register({
+            ["<space>"] = {
+                f = {
+                    name = "Find",
+                    f = { "<cmd>Telescope find_files<cr>", "Files" },
+                    g = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
+                    b = { "<cmd>Telescope buffers<cr>", "Buffers" },
+                    h = { "<cmd>Telescope find_files hidden=true<cr>", "Hidden files" }
+                },
+                g = {
+                    name = "Git",
+                    c = { "<cmd>Git commit<cr>", "Commit" },
+                    a = { "<cmd>Git add " .. vim.fn.expand('%:p') .. "<cr>", "Stage current file" },
+                    A = { "<cmd>Git add --patch " .. vim.fn.expand('%:p') .. "<cr>", "Stage current file selectively" },
+                    u = { "<cmd>Git restore --staged " .. vim.fn.expand('%:p') .. "<cr>", "Unstage current file" },
+                    p = { "<cmd>Git push<cr>", "Push" },
+                    s = { "<cmd>Git status<cr>", "Status" },
+                    d = { "<cmd>Git diff<cr>", "Diff" },
+                    r = { "<cmd>Git restore ".. vim.fn.expand('%:p') .."<cr>", "Restore current file" },
+                    R = { "<cmd>Git restore --patch ".. vim.fn.expand('%:p') .."<cr>", "Restore current file selectively" },
+                },
+                b = {
+                    name = "Buffers",
+                    b = { "<cmd>Telescope buffers<cr>", "Buffers" },
+                    d = { "<cmd>bd<cr>", "Delete" },
+                    c = { "<cmd>enew<cr>", "Close" },
+                    p = { "<cmd>bp<cr>", "Previous" },
+                    n = { "<cmd>bn<cr>", "Next" }
+                },
+                o = { "<cmd>NvimTreeToggle<cr>", "Open nvimtree" },
+                i = { "<cmd>NvimTreeFocus<cr>", "Focus nvimtree" },
+                q = { "<cmd>q<cr>", "Quit" },
+                w = { "<cmd>w<cr>", "Write" },
+                r = { "<cmd>Telescope repo list<cr>", "Registers" },
+                t = { "<cmd>TroubleToggle<cr>", "Show errors" },
+            }
+        })
+      '';
+      type = "lua";
+    }
+    # Telescope = fuzzy finder
+    telescope-nvim
+    # Fugitive = git integration
+    fugitive
   ];
   extraPackages = with pkgs; [
     pyright nodePackages.bash-language-server rnix-lsp # LSP servers
