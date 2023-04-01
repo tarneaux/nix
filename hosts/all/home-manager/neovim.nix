@@ -65,13 +65,74 @@
     }
     # Auto mkdir = automatically create directories when saving a file
     vim-automkdir
+    # supertab = tab completion with multiple sources
+    supertab
+    # nvim-cmp: autocompletion
+    cmp-nvim-lsp
+    {
+      plugin = nvim-cmp;
+      config = ''
+        capabilities = require('cmp_nvim_lsp').default_capabilities
+
+        local cmp = require'cmp'
+        cmp.setup {
+          cmp.setup {
+            mapping = cmp.mapping.preset.insert({
+              ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+              ['<C-f>'] = cmp.mapping.scroll_docs(4),
+              ['<C-Space>'] = cmp.mapping.complete(),
+              ['<CR>'] = cmp.mapping.confirm {
+                behavior = cmp.ConfirmBehavior.Replace,
+                select = true,
+              },
+              ['<Tab>'] = cmp.mapping(function(fallback)
+                local copilot_keys = vim.fn['copilot#Accept']()
+                if copilot_keys ~= "" and type(copilot_keys) == 'string' then
+                  vim.api.nvim_feedkeys(copilot_keys, 'i', true)
+                elseif cmp.visible() then
+                  cmp.select_next_item()
+                elseif luasnip.expand_or_jumpable() then
+                  luasnip.expand_or_jump()
+                else
+                  fallback()
+                end
+              end, {
+                'i',
+                's',
+              }),
+              ['<S-Tab>'] = cmp.mapping(function(fallback)
+                if cmp.visible() then
+                  cmp.select_prev_item()
+                elseif luasnip.jumpable(-1) then
+                  luasnip.jump(-1)
+                else
+                  fallback()
+                end
+              end, { 'i', 's' }),
+            }),
+            sources = {
+              { name = 'nvim_lsp' },
+              { name = 'luasnip' },
+            },
+          }
+        }
+      '';
+      type = "lua";
+    }
     # LSP = language server protocol. Used for autocompletion, go to definition, etc.
     {
       plugin = nvim-lspconfig;
       config = "
-        require('lspconfig').pyright.setup{}
-        require('lspconfig').bashls.setup{}
-        require('lspconfig').rnix.setup{}
+        vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
+          vim.lsp.diagnostic.on_publish_diagnostics, {
+            update_in_insert = true,
+          }
+        )
+
+        local servers = {'pyright', 'bashls', 'rnix'}
+        for _, lsp in ipairs(servers) do
+          require'lspconfig'[lsp].setup{}
+        end
       ";
       type = "lua";
     }
