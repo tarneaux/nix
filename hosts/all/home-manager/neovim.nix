@@ -131,6 +131,7 @@
       vim.g.copilot_tab_feedback = ""'';
       type = "lua";
     }
+    vim-nix
     # Guess indent = automatically guess the indentation width of a file (duh)
     {
       plugin = guess-indent-nvim;
