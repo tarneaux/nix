@@ -65,8 +65,6 @@
     }
     # Auto mkdir = automatically create directories when saving a file
     vim-automkdir
-    # supertab = tab completion with multiple sources
-    supertab
     # nvim-cmp: autocompletion
     cmp-nvim-lsp
     {
@@ -77,40 +75,28 @@
 
         local cmp = require'cmp'
         cmp.setup {
-          cmp.setup {
-            mapping = cmp.mapping.preset.insert({
-              ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-              ['<C-f>'] = cmp.mapping.scroll_docs(4),
-              ['<C-Space>'] = cmp.mapping.complete(),
-              ['<CR>'] = cmp.mapping.confirm {
-                behavior = cmp.ConfirmBehavior.Replace,
-                select = true,
-              },
-              ['<Tab>'] = cmp.mapping(function(fallback)
-                local copilot_keys = vim.fn['copilot#Accept']()
+          mapping = {
+            ["<C-p>"] = cmp.mapping.select_prev_item(),
+            ["<C-n>"] = cmp.mapping.select_next_item(),
+            ["<C-Space>"] = cmp.mapping.complete(),
+            ["<C-e>"] = cmp.mapping.close(),
+            ["<CR>"] = cmp.mapping.confirm({ select = true }),
+            ["<Tab>"] = function(fallback)
                 if cmp.visible() then
-                  cmp.select_next_item()
-                elseif copilot_keys ~= "" and type(copilot_keys) == 'string' then
-                  vim.api.nvim_feedkeys(copilot_keys, 'i', true)
+                    cmp.select_next_item()
                 else
-                  fallback()
+                    local copilot_keys = vim.fn['copilot#Accept']()
+                    if copilot_keys ~= "" then
+                        vim.api.nvim_feedkeys(copilot_keys, "n", true)
+                    else
+                        fallback()
+                    end
                 end
-              end, {
-                'i',
-                's',
-              }),
-              ['<S-Tab>'] = cmp.mapping(function(fallback)
-                if cmp.visible() then
-                  cmp.select_prev_item()
-                else
-                  fallback()
-                end
-              end, { 'i', 's' }),
-            }),
-            sources = {
-              { name = 'nvim_lsp' },
-            },
-          }
+            end,
+          },
+          sources = {
+            { name = 'nvim_lsp' },
+          },
         }
       '';
       type = "lua";
