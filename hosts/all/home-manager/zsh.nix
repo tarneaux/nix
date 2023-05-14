@@ -6,6 +6,7 @@
   enableCompletion = true;
   enableSyntaxHighlighting = true;
   dotDir = ".config/zsh";
+  defaultKeymap = "emacs"; # I don't like vi mode in my shell
   history = {
     extended = true;
     ignoreDups = true;
