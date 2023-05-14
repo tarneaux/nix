@@ -6,20 +6,29 @@
   viAlias = true;
   vimAlias = true;
   extraLuaConfig = "
-  vim.opt.rnu = true -- Show line numbers
-  vim.opt.signcolumn = 'number' -- Show line numbers in the sign column
-  vim.opt.shiftwidth = 4 -- Indentation width
-  vim.opt.expandtab = true -- Use spaces instead of tabs
-  vim.opt.smarttab = true -- Use smart tabbing
-  vim.opt.linebreak = true -- Wrap long lines
-  vim.opt.swapfile = false -- Disable those annoying swap files
-  vim.opt.clipboard = 'unnamedplus' -- Copy to system clipboard
-  vim.opt.undofile = true -- Enable undo history
-  vim.opt.undodir = vim.fn.expand('~/.local/share/nvim-undodir') -- Set undo history directory
-  vim.opt.scrolloff = 1 -- Keep 1 line above and below the cursor
-  vim.opt.autoread = true -- Reload file if it changes on disk
-  vim.cmd.highlight('SignColumn', 'guibg=NONE') -- Disable background color for sign column
-  vim.opt.termguicolors = true -- Enable 24-bit colors
+  -- Enable relative line numbers
+  vim.opt.number = true
+  vim.opt.relativenumber = true
+  -- Show gutter in line numbers
+  vim.opt.signcolumn = 'number'
+  -- Disable those annoying swap files
+  vim.opt.swapfile = false
+  -- Store undo history between sessions
+  vim.opt.undofile = true
+  vim.opt.undodir = vim.fn.stdpath('cache') .. '/undo'
+  -- Set tab width to 4 spaces
+  vim.opt.tabstop = 4
+  vim.opt.shiftwidth = 4
+  vim.opt.softtabstop = 4
+  -- Enable mouse support just in case I turn into a normie (magic!)
+  vim.opt.mouse = 'a'
+  -- Enable system clipboard support
+  vim.opt.clipboard = 'unnamedplus'
+  -- Word wrap
+  vim.opt.wrap = true
+  vim.opt.linebreak = true
+  -- Bind S to replace every occurence (normal mode)
+  vim.cmd [[map S :%s//g<Left><Left>]]
   ";
   extraConfig = "autocmd VimLeave * set guicursor=a:ver25-blinkon0"; # Prevent block cursor from staying after quitting
   plugins = with pkgs.vimPlugins; [
@@ -42,7 +51,14 @@
     # NvimTree = file explorer
     {
       plugin = nvim-tree-lua;
-      config = "require('nvim-tree').setup{}";
+      config = "
+        require('nvim-tree').setup{}
+        vim.g.loaded_netrw = 1
+        vim.g.loaded_netrwPlugin = 1
+        require('which-key').register({
+          ['<space>e'] = { ':NvimTreeToggle<cr>', 'Open/close NvimTree' },
+        })
+      ";
       type = "lua";
     }
     # UndoTree = undo history and easy navigation
@@ -141,7 +157,12 @@
     # Trouble = show LSP diagnostics in a floating window
     {
       plugin = trouble-nvim;
-      config = "require('trouble').setup{}";
+      config = "
+      require('trouble').setup{}
+      require('which-key').register({
+          ['<space>t'] = { ':TroubleToggle<cr>', 'Open/close Trouble' },
+      })
+      ";
       type = "lua";
     }
     # GitGutter = show git diff in the gutter
@@ -155,84 +176,46 @@
       type = "viml";
     }
     # Vim-commentary = comment/uncomment lines with shortcut "gcc" (and others)
-    {
-      plugin = vim-commentary;
-    }
-    # Alpha-nvim = dashboard
-    {
-      plugin = alpha-nvim;
-      config = ''
-        require'alpha'.setup(require'alpha.themes.dashboard'.config)
-
-        local alpha = require'alpha'
-        local dashboard = require'alpha.themes.dashboard'
-        dashboard.section.buttons.val = {
-            dashboard.button( "e", " New file" , ":ene <BAR> startinsert <CR>"),
-            dashboard.button( "spc f f", " Find file" , ":Telescope find_files<CR>"),
-            dashboard.button( "spc f g", "󰍉 Find text" , ":Telescope live_grep<CR>"),
-            dashboard.button( "q", " Quit NVIM" , ":qa<CR>"),
-        }
-        local handle = io.popen('fortune calvin -s')
-        local fortune = handle:read("*a")
-        handle:close()
-        dashboard.section.header.val = fortune
-
-        dashboard.config.opts.noautocmd = true
-
-        vim.cmd[[autocmd User AlphaReady echo 'ready']]
-
-        alpha.setup(dashboard.config)
-      '';
-      type = "lua";
-    }
-    # which-key = show keybindings in a floating window
-    {
-      plugin = which-key-nvim;
-      config = ''
-        require('which-key').register({
-            ["<space>"] = {
-                f = {
-                    name = "Find",
-                    f = { "<cmd>Telescope find_files<cr>", "Files" },
-                    g = { "<cmd>Telescope live_grep<cr>", "Live Grep" },
-                    b = { "<cmd>Telescope buffers<cr>", "Buffers" },
-                    h = { "<cmd>Telescope find_files hidden=true<cr>", "Hidden files" }
-                },
-                g = {
-                    name = "Git",
-                    c = { "<cmd>Git commit<cr>", "Commit" },
-                    a = { "<cmd>Git add " .. vim.fn.expand('%:p') .. "<cr>", "Stage current file" },
-                    A = { "<cmd>Git add --patch " .. vim.fn.expand('%:p') .. "<cr>", "Stage current file selectively" },
-                    u = { "<cmd>Git restore --staged " .. vim.fn.expand('%:p') .. "<cr>", "Unstage current file" },
-                    p = { "<cmd>Git push<cr>", "Push" },
-                    s = { "<cmd>Git status<cr>", "Status" },
-                    d = { "<cmd>Git diff<cr>", "Diff" },
-                    r = { "<cmd>Git restore ".. vim.fn.expand('%:p') .."<cr>", "Restore current file" },
-                    R = { "<cmd>Git restore --patch ".. vim.fn.expand('%:p') .."<cr>", "Restore current file selectively" },
-                },
-                b = {
-                    name = "Buffers",
-                    b = { "<cmd>Telescope buffers<cr>", "Buffers" },
-                    d = { "<cmd>bd<cr>", "Delete" },
-                    c = { "<cmd>enew<cr>", "Close" },
-                    p = { "<cmd>bp<cr>", "Previous" },
-                    n = { "<cmd>bn<cr>", "Next" }
-                },
-                o = { "<cmd>NvimTreeToggle<cr>", "Open nvimtree" },
-                i = { "<cmd>NvimTreeFocus<cr>", "Focus nvimtree" },
-                q = { "<cmd>q<cr>", "Quit" },
-                w = { "<cmd>w<cr>", "Write" },
-                r = { "<cmd>Telescope repo list<cr>", "Registers" },
-                t = { "<cmd>TroubleToggle<cr>", "Show errors" },
-            }
-        })
-      '';
-      type = "lua";
-    }
+    vim-commentary
+    # which-key = show keybindings in a floating window. Used in many other plugins for hotkey help
+    which-key-nvim
     # Telescope = fuzzy finder
-    telescope-nvim
+    {
+      plugin = telescope-nvim;
+      config = "
+      require('which-key').register({
+        ['<space>f'] = {
+          name = 'Find',
+          f = {'<cmd>Telescope find_files<cr>', 'Find files'},
+          g = {'<cmd>Telescope live_grep<cr>', 'Find in files'},
+          b = {'<cmd>Telescope buffers<cr>', 'Find buffers'},
+          h = {'<cmd>Telescope help_tags<cr>', 'Find help'},
+        }
+      })
+      ";
+      type = "lua";
+    }
     # Fugitive = git integration
-    fugitive
+    {
+      plugin = fugitive;
+      config = "
+      require('which-key').register({
+        ['<space>g'] = {
+          name = 'git',
+          c = { '<cmd>Git commit<cr>', 'Commit' },
+          a = { '<cmd>Git add ' .. vim.fn.expand('%:p') .. '<cr>', 'Stage current file' },
+          A = { '<cmd>Git add --patch ' .. vim.fn.expand('%:p') .. '<cr>', 'Stage current file selectively' },
+          u = { '<cmd>Git restore --staged ' .. vim.fn.expand('%:p') .. '<cr>', 'Unstage current file' },
+          p = { '<cmd>Git push<cr>', 'Push' },
+          s = { '<cmd>Git status<cr>', 'Status' },
+          d = { '<cmd>Git diff<cr>', 'Diff' },
+          r = { '<cmd>Git restore '.. vim.fn.expand('%:p') ..'<cr>', 'Restore current file' },
+          R = { '<cmd>Git restore --patch '.. vim.fn.expand('%:p') ..'<cr>', 'Restore current file selectively' },
+        }
+      })
+      ";
+      type = "lua";
+    }
   ];
   extraPackages = with pkgs; [
     pyright nodePackages.bash-language-server rnix-lsp # LSP servers
