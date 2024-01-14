@@ -71,42 +71,136 @@
     auto-optimise-store = true;
   };
 
-  # FIXME: Add the rest of your current configuration
+  #  _  _  _ _/|._    __/__  __/_ _  /_ _  __
+  # /_ /_// // //_/ _\ / /_|/ / _\  / //_'//_'
+  #             _/
 
-  # TODO: Set your hostname
-  networking.hostName = "your-hostname";
+  networking = {
+    hostName = "framy";
+    networkmanager.enable = true;
+  };
 
-  # TODO: This is just an example, be sure to use whatever bootloader you prefer
-  boot.loader.systemd-boot.enable = true;
-
-  # TODO: Configure your system-wide user settings (groups, etc), add more users as needed.
-  users.users = {
-    # FIXME: Replace with your username
-    your-username = {
-      # TODO: You can set an initial password for your user.
-      # If you do, you can skip setting a root password by passing '--no-root-passwd' to nixos-install.
-      # Be sure to change it (using passwd) after rebooting!
-      initialPassword = "correcthorsebatterystaple";
-      isNormalUser = true;
-      openssh.authorizedKeys.keys = [
-        # TODO: Add your SSH public key(s) here, if you plan on using SSH to connect
-      ];
-      # TODO: Be sure to add any other groups you need (such as networkmanager, audio, docker, etc)
-      extraGroups = ["wheel"];
+  # Use the systemd-boot EFI boot loader.
+  boot = {
+    loader.systemd-boot.enable = true;
+    kernelPackages = pkgs.linuxPackages_latest;
+    supportedFilesystems = [ "btrfs" ];
+    loader.efi = {
+      canTouchEfiVariables = true;
+      efiSysMountPoint = "/boot/";
     };
   };
 
-  # This setups a SSH server. Very important if you're setting up a headless system.
-  # Feel free to remove if you don't need it.
-  services.openssh = {
+  hardware.enableAllFirmware = true;
+
+  # Set your time zone.
+  time.timeZone = "Europe/Paris";
+
+  i18n.defaultLocale = "en_US.UTF-8";
+
+  console = {
+    # font = "FantasqueSansM Nerd Font";
+    keyMap = "fr";
+    # useXkbConfig = true; # use xkb.options in tty.
+  };
+
+  # Enable the X11 windowing system.
+  services = {
+    xserver = {
+      enable = true;
+      displayManager = {
+        lightdm.enable = true;
+        defaultSession = "none+awesome";
+      };
+      windowManager.awesome = {
+        enable = true;
+        luaModules = with pkgs.luaPackages; [
+          # lain
+        ];
+      };
+      libinput.enable = true;
+      layout = "fr";
+    };
+    upower.enable = true;
+    fprintd.enable = true;
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+    };
+  };
+
+  security = {
+    rtkit.enable = true;
+  };
+
+  sound.enable = true;
+
+  hardware.bluetooth = {
     enable = true;
-    settings = {
-      # Forbid root login through SSH.
-      PermitRootLogin = "no";
-      # Use keys only. Remove if you want to SSH using password (not recommended)
-      PasswordAuthentication = false;
+    powerOnBoot = true;
+  };
+
+  programs = {
+    zsh.enable = true;
+  };
+
+  environment.systemPackages = with pkgs; [
+    neovim
+    wget
+    git
+    trash-cli
+    fd
+    gcc
+    ripgrep
+    killall
+    gnupg
+    tmux
+    zoxide
+    exa # TODO: Why can't we install eza?
+    bat
+    fzf
+  ];
+
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+  users = {
+    defaultUserShell = pkgs.zsh;
+    users.tarneo = {
+      isNormalUser = true;
+      extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+      packages = with pkgs; [
+        (unison.override { enableX11 = false; })
+        aerc
+        alacritty
+        bitwarden
+        bitwarden-cli
+        blueberry
+        digikam
+        dmenu
+        i3lock
+        imagemagick
+        libnotify
+        mpd
+        mpd-mpris
+        ncmpcpp
+        nodejs-slim
+        pavucontrol
+        playerctl
+        qutebrowser
+        signal-desktop
+        stow
+        xclip
+        xorg.xinput
+        xorg.xmodmap
+      ];
     };
   };
+
+  fonts.fonts = with pkgs; [
+    # fantasque-sans-mono
+    (nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+  ];
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.05";
