@@ -185,15 +185,22 @@
         mpd
         mpd-mpris
         ncmpcpp
+        nodePackages.bash-language-server
         nodejs-slim
         pavucontrol
         playerctl
-        unstable.qutebrowser
+        pyright
         signal-desktop
         stow
+        texlab # language server for LaTeX (=> md)
+        unstable.qutebrowser
+        unstable.rustup
+        unstable.vscode-langservers-extracted
+        vscode-extensions.sumneko.lua
         xclip
         xorg.xinput
         xorg.xmodmap
+        yaml-language-server
       ];
     };
   };
