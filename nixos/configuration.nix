@@ -160,6 +160,7 @@
     trash-cli
     unstable.eza
     wget
+    wireguard-tools
     zoxide
   ];
 
