@@ -84,7 +84,7 @@
   boot = {
     loader.systemd-boot.enable = true;
     kernelPackages = pkgs.linuxPackages_latest;
-    supportedFilesystems = [ "btrfs" ];
+    supportedFilesystems = ["btrfs"];
     loader.efi = {
       canTouchEfiVariables = true;
       efiSysMountPoint = "/boot/";
@@ -158,7 +158,7 @@
     gnupg
     tmux
     zoxide
-    exa # TODO: Why can't we install eza?
+    eza # TODO: Why can't we install eza?
     bat
     fzf
   ];
@@ -168,9 +168,9 @@
     defaultUserShell = pkgs.zsh;
     users.tarneo = {
       isNormalUser = true;
-      extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+      extraGroups = ["wheel"]; # Enable ‘sudo’ for the user.
       packages = with pkgs; [
-        (unison.override { enableX11 = false; })
+        (unison.override {enableX11 = false;})
         aerc
         alacritty
         bitwarden
@@ -199,7 +199,7 @@
 
   fonts.fonts = with pkgs; [
     # fantasque-sans-mono
-    (nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+    (nerdfonts.override {fonts = ["FantasqueSansMono"];})
   ];
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
