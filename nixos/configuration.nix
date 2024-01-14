@@ -188,7 +188,7 @@
         nodejs-slim
         pavucontrol
         playerctl
-        qutebrowser
+        unstable.qutebrowser
         signal-desktop
         stow
         xclip
