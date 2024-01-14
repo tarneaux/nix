@@ -147,20 +147,20 @@
   };
 
   environment.systemPackages = with pkgs; [
-    neovim
-    wget
-    git
-    trash-cli
-    fd
-    gcc
-    ripgrep
-    killall
-    gnupg
-    tmux
-    zoxide
-    eza # TODO: Why can't we install eza?
     bat
+    fd
     fzf
+    gcc
+    git
+    gnupg
+    killall
+    neovim
+    ripgrep
+    tmux
+    trash-cli
+    unstable.eza
+    wget
+    zoxide
   ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
