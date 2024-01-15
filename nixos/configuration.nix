@@ -184,11 +184,12 @@
         bitwarden
         bitwarden-cli
         blueberry
+        brightnessctl
         digikam
         dmenu
-        i3lock
         imagemagick
         libnotify
+        lightlocker
         mpd
         mpd-mpris
         ncmpcpp
