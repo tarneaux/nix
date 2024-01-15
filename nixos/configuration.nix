@@ -140,6 +140,11 @@
 
   security = {
     rtkit.enable = true;
+    pam.services.i3lock = {
+      # i3lock doesn't support fprintd.
+      # Make sure it is disabled, otherwise it will hang.
+      fprintAuth = false;
+    };
   };
 
   sound.enable = true;
@@ -187,9 +192,9 @@
         brightnessctl
         digikam
         dmenu
+        i3lock
         imagemagick
         libnotify
-        lightlocker
         mpd
         mpd-mpris
         ncmpcpp
@@ -208,6 +213,7 @@
         xclip
         xorg.xinput
         xorg.xmodmap
+        xss-lock
         yaml-language-server
       ];
     };
