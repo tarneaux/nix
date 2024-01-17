@@ -18,12 +18,20 @@ in {
     shellAliases = {
       # Use eza for listing files
       ls = "${pkgs.unstable.eza}/bin/eza --icons --group-directories-first";
-      tree = "${pkgs.unstable.eza}/bin/eza --icons --group-directories-first -lT";
     };
 
     zsh-abbr = {
       enable = true;
       abbreviations = {
+        # Shorter commands
+        l = "ls";
+        ll = "ls -l";
+        la = "ls -a";
+        lla = "ls -la";
+        lt = "ls --tree";
+        tree = "ls --tree";
+        t = "trash";
+
         # Confirm file operations
         rm = "rm -i";
         cp = "cp -i";
@@ -92,5 +100,6 @@ in {
   };
   home.packages = [
     (zcript "__zprompt_git_info" (builtins.readFile ./config/git-segment.zsh))
+    pkgs.trash-cli
   ];
 }
