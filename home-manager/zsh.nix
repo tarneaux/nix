@@ -32,7 +32,7 @@ in {
         tree = "ls --tree";
         t = "trash";
         tr = "trash-restore";
-        ns = "nix-shell --cmd 'SHELL=zsh zsh' -p";
+        ns = "nix-shell --command 'SHELL=zsh zsh' -p";
 
         # Confirm file operations
         rm = "rm -i";
