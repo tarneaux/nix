@@ -20,6 +20,7 @@
     ./zsh.nix
     ./qutebrowser.nix
     ./git.nix
+    ./tmux.nix
   ];
 
   nixpkgs = {
