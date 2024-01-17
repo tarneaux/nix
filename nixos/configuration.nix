@@ -131,12 +131,9 @@
     };
   };
 
-  # When closing lid, suspend in case we reopen the lid quickly and hibernate
-  # after one minute (in practice a bit more than one minute).
   services.logind = {
-    lidSwitch = "suspend-then-hibernate";
+    lidSwitch = "hibernate";
   };
-  systemd.sleep.extraConfig = "HibernateDelaySec=1m";
 
   security = {
     rtkit.enable = true;
