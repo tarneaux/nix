@@ -31,6 +31,7 @@ in {
         lt = "ls --tree";
         tree = "ls --tree";
         t = "trash";
+        tr = "trash-restore";
 
         # Confirm file operations
         rm = "rm -i";
@@ -46,6 +47,10 @@ in {
         gpu = "git push -u origin main";
         gl = "git log --decorate --oneline --graph";
         gd = "git diff";
+        gr = "git restore";
+        grs = "git restore --staged";
+        gco = "git checkout";
+        gb = "git branch";
 
         # Nixos-specific
         or = "sudo nixos-rebuild switch --flake ~nix"; # Os Rebuild
