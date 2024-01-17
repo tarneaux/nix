@@ -33,6 +33,8 @@ in {
         t = "trash";
         tr = "trash-restore";
         ns = "nix-shell --command 'SHELL=zsh zsh' -p";
+        nsn = "nix-shell --command 'SHELL=zsh zsh' -p nodejs";
+        nsp = "nix-shell --command 'SHELL=zsh zsh' -p python3";
 
         # Confirm file operations
         rm = "rm -i";
