@@ -192,11 +192,13 @@
         i3lock
         imagemagick
         libnotify
+        maim
         mpd
         mpd-mpris
         ncmpcpp
         nodePackages.bash-language-server
         nodejs-slim
+        nsxiv
         pavucontrol
         playerctl
         pyright
