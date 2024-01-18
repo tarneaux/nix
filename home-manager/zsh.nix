@@ -56,7 +56,7 @@ in {
         gb = "git branch";
 
         # Nixos-specific
-        or = "sudo nixos-rebuild switch --flake ~nix"; # Os Rebuild
+        nr = "sudo nixos-rebuild switch --flake ~nix"; # Nix Rebuild
         hr = "home-manager switch --flake ~nix"; # Home-manager Rebuild
       };
     };
