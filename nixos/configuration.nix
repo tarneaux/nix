@@ -201,6 +201,7 @@
         nsxiv
         pavucontrol
         playerctl
+        pamixer
         pyright
         signal-desktop
         stow
