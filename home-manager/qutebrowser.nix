@@ -22,7 +22,8 @@
     searchEngines = {
       "DEFAULT" = "https://searx.renn.es/search?q={}";
       "aw" = "https://wiki.archlinux.org/?search={}";
-      "nix" = "https://search.nixos.org/options?channel=unstable&query={}";
+      "no" = "https://search.nixos.org/options?channel=unstable&query={}";
+      "np" = "https://nixos.org/nixos/packages.html?channel=unstable&query={}";
       "yt" = "https://iv.renn.es/results?search_query={}";
       "w" = "https://en.wikipedia.org/wiki/Special:Search?search={}";
       "wf" = "https://fr.wikipedia.org/wiki/Special:Search?search={}";
