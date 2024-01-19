@@ -21,6 +21,7 @@
     ./qutebrowser.nix
     ./git.nix
     ./tmux.nix
+    ./nvim.nix
   ];
 
   nixpkgs = {
