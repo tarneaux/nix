@@ -156,7 +156,7 @@
           require('which-key').setup {}
         '';
       }
-      {plugin = vimPlugins.vim-rooter;}
+      vimPlugins.vim-rooter
       {
         plugin = vimPlugins.gitsigns-nvim;
         type = "lua";
@@ -173,8 +173,8 @@
           }
         '';
       }
-      {plugin = vimPlugins.cmp-nvim-lsp;}
-      {plugin = vimPlugins.cmp_luasnip;}
+      vimPlugins.cmp-nvim-lsp
+      vimPlugins.cmp_luasnip
       {
         plugin = vimPlugins.nvim-cmp;
         type = "lua";
@@ -224,7 +224,7 @@
           })
         '';
       }
-      {plugin = vimPlugins.friendly-snippets;}
+      vimPlugins.friendly-snippets
       {
         plugin = vimPlugins.luasnip;
         type = "lua";
