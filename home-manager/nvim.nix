@@ -233,6 +233,13 @@
         '';
       }
       vimPlugins.vim-commentary
+      {
+        plugin = vimPlugins.rust-vim;
+        type = "lua";
+        config = ''
+          vim.g.rustfmt_autosave = 1
+        '';
+      }
     ];
     extraLuaConfig = ''
       -- Leader = space
