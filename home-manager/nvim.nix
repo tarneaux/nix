@@ -232,6 +232,7 @@
           require('luasnip/loaders/from_vscode').load()
         '';
       }
+      vimPlugins.vim-commentary
     ];
     extraLuaConfig = ''
       -- Leader = space
