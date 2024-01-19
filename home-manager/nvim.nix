@@ -36,12 +36,20 @@
         plugin = vimPlugins.nvim-treesitter.withAllGrammars;
         type = "lua";
         config = ''
+          require('orgmode').setup_ts_grammar()
+          require('nvim-treesitter.configs').setup {
+            highlight = {
+              enable = true,
+              autotag = {
+                enable = true,
+              },
+            },
+          }
+
           -- Enable folding using treesitter
           vim.opt.foldmethod = 'expr'
           vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
           vim.opt.foldlevel = 99
-
-          require('orgmode').setup_ts_grammar()
         '';
       }
       {
@@ -59,6 +67,12 @@
             org_archive_location = "~/org/archive.org::/",
             org_blank_before_new_entry = {heading = false, plain_list_item = false},
           }
+          vim.api.nvim_create_autocmd("Filetype", {
+              pattern = "org",
+              callback = function ()
+                  vim.opt.conceallevel = 3
+              end
+          })
         '';
       }
       {
