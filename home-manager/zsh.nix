@@ -23,25 +23,24 @@ in {
     zsh-abbr = {
       enable = true;
       abbreviations = {
-        # Shorter commands
+        # Ls
         l = "ls";
         ll = "ls -l";
         la = "ls -a";
         lla = "ls -la";
         lt = "ls --tree";
         tree = "ls --tree";
+
+        # Trash
         t = "trash";
         tr = "trash-restore";
-        ns = "nix-shell --command 'SHELL=zsh zsh' -p";
-        nsn = "nix-shell --command 'SHELL=zsh zsh' -p nodejs";
-        nsp = "nix-shell --command 'SHELL=zsh zsh' -p python3";
 
-        # Confirm file operations
+        # File operations
         rm = "rm -i";
         cp = "cp -i";
         mv = "mv -i";
 
-        # Shorter Git commands
+        # Git
         g = "git";
         gs = "git status";
         ga = "git add";
@@ -55,9 +54,12 @@ in {
         gco = "git checkout";
         gb = "git branch";
 
-        # Nixos-specific
+        # Nixos
         nr = "sudo nixos-rebuild switch --flake ~nix"; # Nix Rebuild
         hr = "home-manager switch --flake ~nix"; # Home-manager Rebuild
+        ns = "nix-shell --command 'SHELL=zsh zsh' -p";
+        nsn = "nix-shell --command 'SHELL=zsh zsh' -p nodejs";
+        nsp = "nix-shell --command 'SHELL=zsh zsh' -p python3";
       };
     };
 
