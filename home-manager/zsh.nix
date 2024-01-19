@@ -54,6 +54,13 @@ in {
         gco = "git checkout";
         gb = "git branch";
 
+        # Tmux
+        tm = "tmux";
+        tma = "tmux attach -t";
+        tml = "tmux ls";
+        tmk = "tmux kill-session -t";
+        tmn = "tmux new-session -s";
+
         # Nixos
         nr = "sudo nixos-rebuild switch --flake ~nix"; # Nix Rebuild
         hr = "home-manager switch --flake ~nix"; # Home-manager Rebuild
