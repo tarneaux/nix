@@ -53,8 +53,8 @@
 
   # TODO: Set your username
   home = {
-    username = "tarneo";
-    homeDirectory = "/home/tarneo";
+    username = "risitas";
+    homeDirectory = "/home/risitas";
   };
 
   # Enable home-manager
