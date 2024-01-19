@@ -219,6 +219,8 @@
     };
   };
 
+  nix.settings.trusted-users = ["tarneo"];
+
   fonts.packages = with pkgs; [
     # fantasque-sans-mono
     (nerdfonts.override {fonts = ["FantasqueSansMono"];})
