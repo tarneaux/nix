@@ -12,7 +12,7 @@
     userEmail = "tarneo@tarneo.fr";
     signing = {
       key = null; # Let GPG decide
-      signByDefault = true;
+      signByDefault = home.username == "tarneo";
     };
     extraConfig = {
       credential.helper = "store";
