@@ -66,7 +66,10 @@
     homeConfigurations = {
       "tarneo@framy" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-        extraSpecialArgs = {inherit inputs outputs;};
+        extraSpecialArgs = {
+          inherit inputs outputs;
+          username = "tarneo";
+        };
         modules = [
           # > Our main home-manager configuration file <
           ./home-manager/tarneo.nix
@@ -74,7 +77,10 @@
       };
       "risitas@issou" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-        extraSpecialArgs = {inherit inputs outputs;};
+        extraSpecialArgs = {
+          inherit inputs outputs;
+          username = "risitas";
+        };
         modules = [
           ./home-manager/risitas.nix
         ];

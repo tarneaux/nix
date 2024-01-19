@@ -4,6 +4,7 @@
   lib,
   config,
   pkgs,
+  username,
   ...
 }: {
   programs.git = {
@@ -12,7 +13,7 @@
     userEmail = "tarneo@tarneo.fr";
     signing = {
       key = null; # Let GPG decide
-      signByDefault = home.username == "tarneo";
+      signByDefault = username == "tarneo";
     };
     extraConfig = {
       credential.helper = "store";

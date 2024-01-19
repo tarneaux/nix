@@ -22,6 +22,7 @@
     ./git.nix
     ./tmux.nix
     ./nvim.nix
+    ./user.nix
   ];
 
   nixpkgs = {
@@ -49,12 +50,6 @@
       # Workaround for https://github.com/nix-community/home-manager/issues/2942
       allowUnfreePredicate = _: true;
     };
-  };
-
-  # TODO: Set your username
-  home = {
-    username = "tarneo";
-    homeDirectory = "/home/tarneo";
   };
 
   # Enable home-manager

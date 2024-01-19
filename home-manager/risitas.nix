@@ -18,10 +18,10 @@
 
     # You can also split up your configuration and import pieces of it here:
     ./zsh.nix
-    ./qutebrowser.nix
     ./git.nix
     ./tmux.nix
     ./nvim.nix
+    ./user.nix
   ];
 
   nixpkgs = {
@@ -49,12 +49,6 @@
       # Workaround for https://github.com/nix-community/home-manager/issues/2942
       allowUnfreePredicate = _: true;
     };
-  };
-
-  # TODO: Set your username
-  home = {
-    username = "risitas";
-    homeDirectory = "/home/risitas";
   };
 
   # Enable home-manager
