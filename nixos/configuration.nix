@@ -219,7 +219,7 @@
     };
   };
 
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     # fantasque-sans-mono
     (nerdfonts.override {fonts = ["FantasqueSansMono"];})
   ];
