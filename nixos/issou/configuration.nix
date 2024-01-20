@@ -101,6 +101,7 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIODfULxIav+b+6T/A8f9L+2VKag0+X8dY2Kx92gBxbeu tarneo@framy"
     ];
     packages = with pkgs; [
+      node
     ];
     shell = pkgs.zsh;
   };
