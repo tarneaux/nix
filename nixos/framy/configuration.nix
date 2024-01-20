@@ -210,6 +210,7 @@
         unstable.rustup
         unstable.vscode-langservers-extracted
         vscode-extensions.sumneko.lua
+        w3m # For aerc
         xclip
         xorg.xinput
         xorg.xmodmap
