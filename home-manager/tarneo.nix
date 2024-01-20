@@ -24,6 +24,7 @@
     ./nvim.nix
     ./user.nix
     ./alacritty.nix
+    ./autorandr.nix
   ];
 
   nixpkgs = {
