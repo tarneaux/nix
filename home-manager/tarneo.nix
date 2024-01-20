@@ -23,6 +23,7 @@
     ./tmux.nix
     ./nvim.nix
     ./user.nix
+    ./alacritty.nix
   ];
 
   nixpkgs = {
