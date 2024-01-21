@@ -193,15 +193,16 @@
         imagemagick
         libnotify
         maim
+        mpc-cli
         mpd
         mpd-mpris
         ncmpcpp
         nodePackages.bash-language-server
         nodejs-slim
         nsxiv
+        pamixer
         pavucontrol
         playerctl
-        pamixer
         pyright
         signal-desktop
         stow
