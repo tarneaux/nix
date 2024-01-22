@@ -18,6 +18,10 @@ in {
     shellAliases = {
       # Use eza for listing files
       ls = "${pkgs.unstable.eza}/bin/eza --icons --group-directories-first";
+
+      # Use less as man & bat pagers
+      man = "man -P 'less -RF --jump-target=.5'";
+      bat = "bat --pager 'less -RF --jump-target=.5'";
     };
 
     zsh-abbr = {
