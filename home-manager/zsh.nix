@@ -69,6 +69,7 @@ in {
         nr = "sudo nixos-rebuild switch --flake ~nix"; # Nix Rebuild
         hr = "home-manager switch --flake ~nix"; # Home-manager Rebuild
         ns = "nix-shell --command 'SHELL=zsh zsh' -p";
+        nd = "nix develop -c 'zsh'";
         nsn = "nix-shell --command 'SHELL=zsh zsh' -p nodejs";
         nsp = "nix-shell --command 'SHELL=zsh zsh' -p python3";
       };
