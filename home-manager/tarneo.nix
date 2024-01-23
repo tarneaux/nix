@@ -25,6 +25,7 @@
     ./user.nix
     ./alacritty.nix
     ./autorandr.nix
+    ./zathura.nix
   ];
 
   nixpkgs = {
