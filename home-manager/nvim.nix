@@ -109,9 +109,17 @@
           local lspconfig = require('lspconfig')
           local servers = {"clangd", "rust_analyzer", "pyright", "bashls", "html", "jsonls", "astro", "rust_analyzer", "lua_ls", "hls", "eslint", "ansiblels", "yamlls"}
 
+          cap = require('cmp_nvim_lsp').default_capabilities()
+
+          -- The following is needed for nvim-ufo (folding) to work
+          cap.textDocument.foldingRange = {
+            dynamicRegistration = false,
+            lineFoldingOnly = true
+          }
+
           for _, lsp in ipairs(servers) do
             lspconfig[lsp].setup {
-              capabilities = require('cmp_nvim_lsp').default_capabilities()
+              capabilities = cap,
             }
           end
 
@@ -241,6 +249,16 @@
         '';
       }
       vimPlugins.vim-table-mode
+      {
+        # nvim-ufo allows folding with highlighting (as opposed to standard
+        # folding which removes the highlighting from the remaining line)
+        plugin = vimPlugins.nvim-ufo;
+        type = "lua";
+        config = ''
+          vim.opt.foldenable = true
+          require('ufo').setup()
+        '';
+      }
     ];
     extraLuaConfig = ''
       -- Leader = space
