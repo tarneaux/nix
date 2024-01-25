@@ -240,6 +240,7 @@
           vim.g.rustfmt_autosave = 1
         '';
       }
+      vimPlugins.vim-table-mode
     ];
     extraLuaConfig = ''
       -- Leader = space
