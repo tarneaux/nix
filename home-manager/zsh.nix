@@ -102,6 +102,8 @@ in {
     initExtra = ''
       zstyle ":completion:*" menu select
 
+      _comp_options+=(globdots) # Include hidden files in filename completion
+
       # Re-set cursor after each command
       __reset-cursor() {printf '\033[5 q'}
       add-zsh-hook precmd "__reset-cursor"
