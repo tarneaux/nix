@@ -259,6 +259,7 @@
           require('ufo').setup()
         '';
       }
+      vimPlugins.vim-wakatime
       {
         plugin = vimPlugins.telescope-nvim;
         type = "lua";
