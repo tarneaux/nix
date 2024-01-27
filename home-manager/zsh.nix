@@ -72,6 +72,9 @@ in {
         nd = "nix develop -c 'zsh'";
         nsn = "nix-shell --command 'SHELL=zsh zsh' -p nodejs";
         nsp = "nix-shell --command 'SHELL=zsh zsh' -p python3";
+
+        # Misc
+        passgen = "tr -dc A-Za-z0-9 < /dev/urandom | head -c 64; echo";
       };
     };
 
