@@ -196,7 +196,6 @@
         libnotify
         maim
         mpc-cli
-        ncmpcpp
         nodePackages.bash-language-server
         nodejs-slim
         nsxiv
