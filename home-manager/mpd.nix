@@ -19,4 +19,5 @@
       enable = true; # for playerctl integration
     };
   };
+  programs.ncmpcpp.enable = true;
 }
