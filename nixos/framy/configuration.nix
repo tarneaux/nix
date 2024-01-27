@@ -202,6 +202,7 @@
         nodePackages.bash-language-server
         nodejs-slim
         nsxiv
+        ollama
         pamixer
         pavucontrol
         playerctl
