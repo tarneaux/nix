@@ -190,6 +190,7 @@
         brightnessctl
         digikam
         dmenu
+        element-desktop
         i3lock
         imagemagick
         libnotify
