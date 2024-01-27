@@ -27,6 +27,7 @@
     ./autorandr.nix
     ./zathura.nix
     ./mpv.nix
+    ./mpd.nix
   ];
 
   nixpkgs = {
