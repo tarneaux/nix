@@ -108,6 +108,7 @@
 
   environment.systemPackages = with pkgs; [
     neovim
+    htop
   ];
 
   # Enable the OpenSSH daemon.

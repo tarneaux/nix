@@ -163,6 +163,7 @@
     gcc
     git
     gnupg
+    htop
     killall
     neovim
     ripgrep
