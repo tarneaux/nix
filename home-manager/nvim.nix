@@ -259,6 +259,40 @@
           require('ufo').setup()
         '';
       }
+      {
+        plugin = vimPlugins.telescope-nvim;
+        type = "lua";
+        config = ''
+          local telescope = require('telescope')
+          telescope.setup {
+            defaults = {
+              mappings = {
+                i = {
+                  ["<esc>"] = require('telescope.actions').close,
+                },
+              },
+            },
+          }
+          require('which-key').register({
+              ["<leader>t"] = {
+                  name = "Telescope",
+                  f = { "<cmd>Telescope find_files<cr>", "Find files" },
+                  g = { "<cmd>Telescope live_grep<cr>", "Live grep" },
+                  b = { "<cmd>Telescope buffers<cr>", "Buffers" },
+                  h = { "<cmd>Telescope help_tags<cr>", "Help tags" },
+                  s = { "<cmd>Telescope git_status<cr>", "Git status" },
+                  c = { "<cmd>Telescope git_commits<cr>", "Git commits" },
+                  C = { "<cmd>Telescope git_bcommits<cr>", "Git buffer commits" },
+                  r = { "<cmd>Telescope registers<cr>", "Registers" },
+                  m = { "<cmd>Telescope marks<cr>", "Marks" },
+                  e = { "<cmd>Telescope symbols<cr>", "Symbols" },
+              }
+          })
+        '';
+      }
+      vimPlugins.telescope-symbols-nvim
+      vimPlugins.vim-devicons
+      vimPlugins.nvim-web-devicons
     ];
     extraLuaConfig = ''
       -- Leader = space
