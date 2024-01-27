@@ -129,4 +129,5 @@ in {
     (zcript "__zprompt_git_info" (builtins.readFile ./config/git-segment.zsh))
     pkgs.trash-cli
   ];
+  programs.zoxide.enable = true;
 }
