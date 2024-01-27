@@ -129,6 +129,7 @@
       alsa.support32Bit = true;
       pulse.enable = true;
     };
+    tlp.enable = true; # Battery saving
   };
 
   services.logind = {
