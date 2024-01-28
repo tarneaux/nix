@@ -203,10 +203,8 @@
         pamixer
         pavucontrol
         playerctl
-        pyright
         signal-desktop
         stow
-        texlab # language server for LaTeX (=> md)
         unstable.qutebrowser
         unstable.rustup
         unstable.vscode-langservers-extracted
@@ -216,7 +214,6 @@
         xorg.xinput
         xorg.xmodmap
         xss-lock
-        yaml-language-server
       ];
     };
   };

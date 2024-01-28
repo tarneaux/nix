@@ -459,4 +459,18 @@
       set_tab_width_for_ft("scss", 2)
     '';
   };
+  # LSP packages
+  home.packages = with pkgs; [
+    arduino-language-server
+    texlab
+    pyright
+    nodePackages.bash-language-server
+    nodePackages.vscode-html-languageserver-bin
+    nodePackages.vscode-json-languageserver-bin
+    lua-language-server
+    haskell-language-server
+    ansible-language-server
+    yaml-language-server
+    nil
+  ];
 }
