@@ -99,6 +99,7 @@ in {
       # directory name.
       g = "$HOME/git";
       nix = "$HOME/git/nix";
+      s = "$HOME/.sync";
     };
     initExtra = ''
       zstyle ":completion:*" menu select
@@ -128,6 +129,7 @@ in {
   };
   home.packages = [
     (zcript "__zprompt_git_info" (builtins.readFile ./config/git-segment.zsh))
+    # (zcript "ntmux" (builtins.readFile ./config/ntmux.zsh))
     pkgs.trash-cli
   ];
   programs.zoxide.enable = true;
