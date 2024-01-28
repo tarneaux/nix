@@ -107,7 +107,7 @@
         type = "lua";
         config = ''
           local lspconfig = require('lspconfig')
-          local servers = {"clangd", "rust_analyzer", "pyright", "bashls", "html", "jsonls", "astro", "rust_analyzer", "lua_ls", "hls", "eslint", "ansiblels", "yamlls"}
+          local servers = {"clangd", "rust_analyzer", "pyright", "bashls", "html", "jsonls", "rust_analyzer", "lua_ls", "hls", "eslint", "ansiblels", "yamlls", "nil_ls"}
 
           cap = require('cmp_nvim_lsp').default_capabilities()
 
