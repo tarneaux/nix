@@ -183,7 +183,6 @@
       packages = with pkgs; [
         (unison.override {enableX11 = false;})
         aerc
-        alacritty
         bitwarden
         bitwarden-cli
         blueberry
