@@ -12,6 +12,9 @@
     # Home manager
     home-manager.url = "github:nix-community/home-manager/release-23.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Wallpaper repo
+    wallpapers.url = "github:tarneaux/wallpapers-small";
   };
 
   outputs = {
