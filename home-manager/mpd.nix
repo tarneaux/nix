@@ -1,12 +1,4 @@
-{
-  inputs,
-  outputs,
-  lib,
-  config,
-  pkgs,
-  username,
-  ...
-}: {
+{config, ...}: {
   services = {
     mpd = let
       musicDirectory = "${config.home.homeDirectory}/Music";

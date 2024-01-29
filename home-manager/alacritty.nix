@@ -1,12 +1,4 @@
-{
-  inputs,
-  outputs,
-  lib,
-  config,
-  pkgs,
-  username,
-  ...
-}: {
+{...}: {
   programs.alacritty = {
     enable = true;
     settings = {

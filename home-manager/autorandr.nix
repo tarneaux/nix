@@ -1,12 +1,4 @@
-{
-  inputs,
-  outputs,
-  lib,
-  config,
-  pkgs,
-  username,
-  ...
-}: let
+{...}: let
   postswitch-hook = builtins.readFile ./config/autorandr-postswitch.sh;
 in {
   programs.autorandr = {

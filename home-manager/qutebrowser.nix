@@ -1,11 +1,4 @@
-{
-  inputs,
-  outputs,
-  lib,
-  config,
-  pkgs,
-  ...
-}: {
+{config, ...}: {
   programs.qutebrowser = {
     enable = true;
     keyBindings = {

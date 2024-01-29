@@ -1,10 +1,6 @@
 {
   inputs,
-  outputs,
-  lib,
-  config,
   pkgs,
-  username,
   ...
 }: {
   home.file = {
