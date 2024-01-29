@@ -17,6 +17,7 @@
     };
     extraConfig = {
       credential.helper = "store";
+      init.defaultBranch = "main";
     };
   };
 }
