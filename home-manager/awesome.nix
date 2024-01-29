@@ -7,7 +7,7 @@
     ".config/awesome" = {
       source = ./config/awesome;
       onChange = ''
-        ${pkgs.awesome}/bin/awesome-client "awesome.restart()"
+        ${pkgs.procps}/bin/pgrep awesome | xargs kill -HUP
       '';
     };
     "./.config/wallpapers" = {
