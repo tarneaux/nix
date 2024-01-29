@@ -1,4 +1,4 @@
-{config, ...}: {
+{...}: {
   programs.qutebrowser = {
     enable = true;
     keyBindings = {
@@ -30,21 +30,18 @@
       content.pdfjs = true;
     };
     extraConfig = ''
-      # Create default dynamic.py if it doesn't exist
-      import os
-      file_path = "${config.xdg.configHome}/qutebrowser/dynamic.py"
-      if not os.path.exists(file_path):
-        import shutil
-        shutil.copyfile(
-          file_path + ".example",
-          file_path
-        )
-      # Read font size & zoom from ~/.config/qutebrowser/dynamic.py
-      config.source('dynamic.py')
       ${builtins.readFile ./config/qutebrowser-gruvbox.py}
+
+      import subprocess
+      res = subprocess.check_output(['sh', '-c', 'xrandr | grep primary | grep -oE "[0-9]+x[0-9]+"']).strip()
+      if res == b'2560x1080':
+          c.zoom.default = '70%'
+          c.fonts.default_size = '8pt'
+      else:
+          c.zoom.default = '120%'
+          c.fonts.default_size = '14pt'
     '';
   };
-  home.file.".config/qutebrowser/dynamic.py.example".source = ./config/qutebrowser-dynamic.py.example;
   home.packages = [
     #pkgs.pdfjs
   ];

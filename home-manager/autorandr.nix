@@ -1,5 +1,17 @@
 {...}: let
-  postswitch-hook = builtins.readFile ./config/autorandr-postswitch.sh;
+  postswitch-hook = ''
+    #!/usr/bin/env bash
+    echo "Running autorandr postswitch hook"
+
+    # If the profile changed since last time, run the profile hook
+    if [[ "$AUTORANDR_CURRENT_PROFILE" != "$(cat /tmp/autorandr-current-profile)" ]]; then
+      echo "Profile changed, restarting awesomewm and qutebrowser"
+      pgrep awesome | xargs kill -s HUP
+      pgrep -q qutebrowser && qutebrowser :config-source
+    fi
+
+    echo "$AUTORANDR_CURRENT_PROFILE" > /tmp/autorandr-current-profile
+  '';
 in {
   programs.autorandr = {
     enable = true;

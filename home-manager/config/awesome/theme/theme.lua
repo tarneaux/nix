@@ -31,15 +31,28 @@ theme.bg_accent = theme.color0
 theme.fg_accent = theme.color11
 theme.fg_inactive = theme.color14
 
--- ADD THE GAAAAP
-theme.useless_gap = 10
+-- Set variables depending on primary screen (because I use a huge but low-DPI
+-- external monitor and have a small high-DPI laptop screen).
+local screen_geometry = screen.primary.geometry
+local screen_is_internal = screen_geometry.width == 2256 and screen_geometry.height == 1504
+
+local font_size
+if screen_is_internal then
+    theme.useless_gap = 10
+    theme.bar_height = 30
+    font_size = 14
+else
+    theme.useless_gap = 5
+    theme.bar_height = 18
+    font_size = 8
+end
+
+theme.font = "FantasqueSansM Nerd Font " .. font_size
+
 theme.gap_single_client = true
 
 theme.bar_bg = theme.background
 theme.bar_fg = theme.foreground
-
-theme.font          = "FantasqueSansM Nerd Font 14"
-theme.bar_height    = 30
 
 theme.bg_normal     = theme.background
 theme.bg_focus      = theme.background
