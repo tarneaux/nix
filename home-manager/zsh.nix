@@ -129,7 +129,7 @@ in {
   };
   home.packages = [
     (zcript "__zprompt_git_info" (builtins.readFile ./config/git-segment.zsh))
-    # (zcript "ntmux" (builtins.readFile ./config/ntmux.zsh))
+    (zcript "ntmux" (builtins.readFile ./config/ntmux.zsh))
     pkgs.trash-cli
   ];
   programs.zoxide.enable = true;
