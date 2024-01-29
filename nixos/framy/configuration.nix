@@ -202,6 +202,7 @@
         pamixer
         pavucontrol
         playerctl
+        podman
         signal-desktop
         stow
         unstable.qutebrowser
