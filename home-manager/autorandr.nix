@@ -5,7 +5,7 @@
     if [[ "$AUTORANDR_CURRENT_PROFILE" != "$(cat /tmp/autorandr-current-profile)" ]]; then
       echo "Profile changed, restarting awesomewm and qutebrowser"
       pgrep awesome | xargs kill -s HUP
-      pgrep -q qutebrowser && qutebrowser :config-source
+      pgrep qutebrowser && qutebrowser :config-source
     fi
 
     echo "$AUTORANDR_CURRENT_PROFILE" > /tmp/autorandr-current-profile
