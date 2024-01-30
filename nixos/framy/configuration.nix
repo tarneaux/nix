@@ -195,8 +195,6 @@
         libnotify
         maim
         mpc-cli
-        nodePackages.bash-language-server
-        nodejs-slim
         nsxiv
         ollama
         pamixer
