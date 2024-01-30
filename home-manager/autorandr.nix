@@ -1,8 +1,6 @@
 {...}: let
   postswitch-hook = ''
     #!/usr/bin/env bash
-    echo "Running autorandr postswitch hook"
-
     # If the profile changed since last time, run the profile hook
     if [[ "$AUTORANDR_CURRENT_PROFILE" != "$(cat /tmp/autorandr-current-profile)" ]]; then
       echo "Profile changed, restarting awesomewm and qutebrowser"
