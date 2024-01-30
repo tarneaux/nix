@@ -68,9 +68,10 @@ in {
         tmn = "tmux new-session -s";
 
         # Nixos
-        nr = "sudo nixos-rebuild switch --flake ~nix"; # Nix Rebuild
-        hr = "home-manager switch --flake ~nix"; # Home-manager Rebuild
+        or = "sudo nixos-rebuild switch --flake ~nix";
+        hr = "home-manager switch --flake ~nix";
         ns = "nix shell";
+        nr = "nix run";
         nd = "nix develop -c 'zsh'";
         nsn = "nix shell nixpkgs#nodejs";
         nrn = "nix run nixpkgs#nodejs";
