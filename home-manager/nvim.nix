@@ -92,6 +92,7 @@
                 {desc = "Toggle copilot"}
               )
             end
+            copilot_node_command = '${pkgs.nodejs-slim}/bin/node',
           }
         '';
       }
