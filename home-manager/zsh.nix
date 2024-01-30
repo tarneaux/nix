@@ -1,8 +1,13 @@
 {
   config,
   pkgs,
+  username,
   ...
 }: let
+  dockerlike =
+    if username == "risitas"
+    then "docker"
+    else "podman";
   zcript = name: script: pkgs.writeScriptBin name ("#!${pkgs.zsh}/bin/zsh\n\n" + script);
 in {
   programs.zsh = {
@@ -77,6 +82,19 @@ in {
         # VPN
         vu = "sudo wg-quick up vpn";
         vd = "sudo wg-quick down vpn";
+
+        # Docker (or podman)
+        d = dockerlike;
+        docker = dockerlike;
+        # In the following, \\\\t resolves to \\t in the abbr, which resolves to
+        # \t in the shell, which resolves to a tab in the output.
+        # This prevents from adding an actual tab in the prompt when using the
+        # abbr.
+        dp = "${dockerlike} ps -a --format 'table {{.Names}}\\\\t{{.Status}}'";
+        dcu = "${dockerlike} compose up -d";
+        dcd = "${dockerlike} compose down";
+        dcr = "${dockerlike} compose restart";
+        dcl = "${dockerlike} compose logs -f";
       };
     };
 
