@@ -104,16 +104,10 @@
               ["org"] = false,
               ["mail"] = false,
             },
-            init = function ()
-              vim.keymap.set(
-                "n",
-                "<leader>c",
-                [[ :silent Copilot! toggle<cr> ]],
-                {desc = "Toggle copilot"}
-              )
-            end
             copilot_node_command = '${pkgs.nodejs-slim}/bin/node',
           }
+          -- Using vim.keymap.set doesn't work here for some reason.
+          vim.cmd [[ nnoremap <leader>c <cmd>silent Copilot! toggle<cr> ]]
         '';
       }
       {
