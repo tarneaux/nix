@@ -203,6 +203,7 @@
         pavucontrol
         playerctl
         podman
+        podman-compose
         signal-desktop
         stow
         unstable.qutebrowser
