@@ -73,7 +73,9 @@ in {
         ns = "nix shell";
         nd = "nix develop -c 'zsh'";
         nsn = "nix shell nixpkgs#nodejs";
+        nrn = "nix run nixpkgs#nodejs";
         nsp = "nix shell nixpkgs#python3";
+        nrp = "nix run nixpkgs#python3";
 
         # Misc
         passgen = "tr -dc A-Za-z0-9 < /dev/urandom | head -c 64; echo";
