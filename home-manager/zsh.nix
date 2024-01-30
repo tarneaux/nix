@@ -73,6 +73,10 @@ in {
         # Misc
         passgen = "tr -dc A-Za-z0-9 < /dev/urandom | head -c 64; echo";
         s = "maim -su | xclip -selection clipboard -t image/png";
+
+        # VPN
+        vu = "sudo wg-quick up vpn";
+        vd = "sudo wg-quick down vpn";
       };
     };
 
