@@ -22,6 +22,7 @@
     ./mpv.nix
     ./mpd.nix
     ./awesome.nix
+    ./common.nix
   ];
 
   nixpkgs = {

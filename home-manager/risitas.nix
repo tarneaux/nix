@@ -15,6 +15,7 @@
     ./tmux.nix
     ./nvim.nix
     ./user.nix
+    ./common.nix
   ];
 
   nixpkgs = {
