@@ -445,25 +445,15 @@
       })
 
       -- Set correct tab width for various filetypes
-      function set_tab_width_for_ft(ft, width)
-        vim.api.nvim_create_autocmd("Filetype", {
-            pattern = ft,
-            callback = function ()
-                vim.opt.tabstop = width
-                vim.opt.shiftwidth = width
-                vim.opt.softtabstop = width
-            end
-        })
-      end
-
-      set_tab_width_for_ft("nix", 2)
-      set_tab_width_for_ft("yaml", 2)
-      set_tab_width_for_ft("json", 2)
-      set_tab_width_for_ft("markdown", 2)
-      set_tab_width_for_ft("org", 2)
-      set_tab_width_for_ft("html", 2)
-      set_tab_width_for_ft("css", 2)
-      set_tab_width_for_ft("scss", 2)
+      vim.api.nvim_create_autocmd("Filetype", {
+          pattern = "nix,yaml,json,markdown,org,html,css,scss",
+          callback = function ()
+              local w = 2
+              vim.opt.tabstop = w
+              vim.opt.shiftwidth = w
+              vim.opt.softtabstop = w
+          end
+      })
     '';
   };
   # LSP packages
