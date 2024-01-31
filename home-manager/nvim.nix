@@ -438,7 +438,7 @@
 
       -- Enable colorcolumn in all programming files
       vim.api.nvim_create_autocmd("Filetype", {
-          pattern = "python,html,css,scss,typescript,javascript,rust,sh,lua",
+          pattern = "python,html,css,scss,typescript,javascript,rust,sh,lua,nix",
           callback = function ()
               vim.opt.colorcolumn = "81"
           end
