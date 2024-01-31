@@ -13,8 +13,8 @@ There are two configured users in home-manager:
 I am currently gently moving my dotfiles from my [.f](https://github.com/tarneaux/.f) repo to the home-manager configs here.
 
 Roadmap:
-- [ ]: Fully migrate dotfiles
-- [ ]: Actually put some stuff on the server
-- [ ]: 2FA with TOTP for the server
-- [ ]: Move all [renn.es](https://renn.es) servers over to NixOS
-- [ ]: TMPFS for [root](https://elis.nu/blog/2020/05/nixos-tmpfs-as-root/) and [home](https://elis.nu/blog/2020/06/nixos-tmpfs-as-home/) for true immutability
+- [ ] Fully migrate dotfiles
+- [ ] Actually put some stuff on the server
+- [ ] 2FA with TOTP for the server
+- [ ] Move all [renn.es](https://renn.es) servers over to NixOS
+- [ ] TMPFS for [root](https://elis.nu/blog/2020/05/nixos-tmpfs-as-root/) and [home](https://elis.nu/blog/2020/06/nixos-tmpfs-as-home/) for true immutability
