@@ -152,6 +152,8 @@ in {
   home.packages = [
     (zcript "__zprompt_git_info" (builtins.readFile ./config/git-segment.zsh))
     (zcript "ntmux" (builtins.readFile ./config/ntmux.zsh))
+    (zcript "sshtmux" (builtins.readFile ./config/sshtmux.zsh))
+    (zcript "__sshtmux_session" (builtins.readFile ./config/sshtmux-session.zsh))
     pkgs.trash-cli
   ];
   programs.zoxide.enable = true;

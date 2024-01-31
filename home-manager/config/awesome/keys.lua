@@ -21,16 +21,16 @@ local org_quake = lain.util.quake({
     settings = function(c) c.sticky = true end
 })
 
-local weechat_quake = lain.util.quake({
-    app = "alacritty --class WeechatQuake",
-    argname = "--title %s -e ssh tarneo@cocinero -t \"tmux a -t weechat\"",
+local ssh_quake = lain.util.quake({
+    app = "alacritty --class SshQuake",
+    argname = "--title %s -e sshtmux -a",
     followtag = true,
     height = 0.9,
     width = 0.9,
     vert = "center",
     horiz = "center",
     border = 2,
-    name = "WeechatQuake",
+    name = "SshQuake",
     settings = function(c) c.sticky = true end
 })
 
@@ -53,7 +53,7 @@ local globalkeys = gears.table.join(
     -- Open org quake terminal
     awful.key({ ModKey,           }, "j", function() org_quake:toggle() end),
     -- Open weechat quake terminal
-    awful.key({ ModKey,           }, "k", function() weechat_quake:toggle() end),
+    awful.key({ ModKey,           }, "k", function() ssh_quake:toggle() end),
     -- ncmpcpp: terminal music player/mpd frontend. Archlinux package: ncmpcpp.
     awful.key({ ModKey,           }, "slash", function() awful.spawn.with_shell(TerminalCmd .. " ncmpcpp") end),
 
