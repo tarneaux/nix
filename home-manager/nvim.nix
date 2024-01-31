@@ -413,8 +413,21 @@
               else
                 vim.opt.colorcolumn = "81"
               end
+              if vim.opt.textwidth:get() == 0 then
+                vim.opt.textwidth = vim.opt.colorcolumn:get()[1] - 1
+              end
             end,
             "Toggle colorcolumn (81/none)"
+          },
+          w = {
+            function ()
+              if vim.opt.textwidth:get() == 0 then
+                vim.opt.textwidth = vim.opt.colorcolumn:get()[1] - 1
+              else
+                vim.opt.textwidth = 0
+              end
+            end,
+            "Toggle textwidth (colorcolumn-1/none)",
           },
         },
       })
