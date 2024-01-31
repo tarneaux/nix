@@ -319,14 +319,23 @@
       vim.opt.undofile = true
       vim.opt.undodir = vim.fn.stdpath("cache") .. "/undo"
 
-      -- Set tab width to 4 spaces
+      -- Use four spaces for indentation (tabs)
       vim.opt.tabstop = 4
       vim.opt.shiftwidth = 4
       vim.opt.softtabstop = 4
       vim.opt.expandtab = true
 
-      -- Use two spaces for indentation when editing HTML, TS, JS, CSS, SCSS.
-      vim.cmd [[ au FileType html,typescript,javascript,css,scss,typescriptreact setlocal shiftwidth=2 tabstop=2 softtabstop=2 ]]
+      -- Use two spaces for indentation in some filetypes where it's the
+      -- convention
+      vim.api.nvim_create_autocmd("Filetype", {
+          pattern = "nix,yaml,json,markdown,org,html,css,scss",
+          callback = function ()
+              local w = 2
+              vim.opt.tabstop = w
+              vim.opt.shiftwidth = w
+              vim.opt.softtabstop = w
+          end
+      })
 
       -- Enable mouse support just in case I turn into a normie (magic!)
       vim.opt.mouse = "a"
@@ -441,17 +450,6 @@
           pattern = "python,html,css,scss,typescript,javascript,rust,sh,lua,nix",
           callback = function ()
               vim.opt.colorcolumn = "81"
-          end
-      })
-
-      -- Set correct tab width for various filetypes
-      vim.api.nvim_create_autocmd("Filetype", {
-          pattern = "nix,yaml,json,markdown,org,html,css,scss",
-          callback = function ()
-              local w = 2
-              vim.opt.tabstop = w
-              vim.opt.shiftwidth = w
-              vim.opt.softtabstop = w
           end
       })
     '';
