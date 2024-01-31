@@ -81,6 +81,7 @@ in {
         # Misc
         passgen = "tr -dc A-Za-z0-9 < /dev/urandom | head -c 64; echo";
         s = "maim -su | xclip -selection clipboard -t image/png";
+        lg = "lazygit";
 
         # VPN
         vu = "sudo wg-quick up vpn";
