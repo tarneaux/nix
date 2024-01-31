@@ -114,9 +114,6 @@
       };
       windowManager.awesome = {
         enable = true;
-        luaModules = with pkgs.luaPackages; [
-          # lain
-        ];
       };
       libinput.enable = true;
       layout = "fr";

@@ -14,6 +14,12 @@ Terminal = "alacritty"
 TerminalCmd = Terminal .. " -e "
 Editor = "nvim"
 
+local lua_dir = gears.filesystem.get_xdg_config_home() .. "/lua/"
+
+-- Add ~/.config/lua to the Lua path. This allows loading modules from there,
+-- and is needed to install modules from the Nix config.
+package.path = package.path .. ';' .. lua_dir .. '?/init.lua;'
+    .. lua_dir .. '?.lua'
 
 -- Error handling: this isn't useful here, but is if the config is used as fallback.
 dofile(awesome_conf_dir .. "error_handling.lua")
