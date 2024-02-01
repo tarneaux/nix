@@ -7,7 +7,7 @@ fi
 
 if [[ ! -v REMOTE_COMMAND ]]; then
     if [[ "$HOST" = "risitas@cocinero" ]]; then
-        REMOTE_COMMAND="./start-tmux"
+        REMOTE_COMMAND="tmux new -A -s services -c ~/services"
     else
         REMOTE_COMMAND="tmux new -A -s main"
     fi
