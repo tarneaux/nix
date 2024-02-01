@@ -479,6 +479,7 @@
     nodePackages.vscode-html-languageserver-bin
     nodePackages.vscode-json-languageserver-bin
     lua-language-server
+    libclang
     haskell-language-server
     ansible-language-server
     yaml-language-server
