@@ -148,6 +148,8 @@ in {
       PROMPT+='%f' # Reset the text color
 
       PATH=$PATH:$HOME/.config/scripts # Temporary until I move scripts to nix
+
+      source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
     '';
   };
   home.packages = [
@@ -156,6 +158,7 @@ in {
     (zcript "sshtmux" (builtins.readFile ./config/sshtmux.zsh))
     (zcript "__sshtmux_session" (builtins.readFile ./config/sshtmux-session.zsh))
     pkgs.trash-cli
+    pkgs.nix-index
   ];
   programs.zoxide.enable = true;
 }
