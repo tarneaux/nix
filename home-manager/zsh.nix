@@ -152,13 +152,20 @@ in {
       source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
     '';
   };
-  home.packages = [
-    (zcript "__zprompt_git_info" (builtins.readFile ./config/git-segment.zsh))
-    (zcript "ntmux" (builtins.readFile ./config/ntmux.zsh))
-    (zcript "sshtmux" (builtins.readFile ./config/sshtmux.zsh))
-    (zcript "__sshtmux_session" (builtins.readFile ./config/sshtmux-session.zsh))
-    pkgs.trash-cli
-    pkgs.nix-index
-  ];
+  home.packages =
+    [
+      (zcript "__zprompt_git_info" (builtins.readFile ./config/git-segment.zsh))
+      (zcript "ntmux" (builtins.readFile ./config/ntmux.zsh))
+      pkgs.trash-cli
+      pkgs.nix-index
+    ]
+    ++ (
+      if username == "tarneo"
+      then [
+        (zcript "sshtmux" (builtins.readFile ./config/sshtmux.zsh))
+        (zcript "__sshtmux_session" (builtins.readFile ./config/sshtmux-session.zsh))
+      ]
+      else []
+    );
   programs.zoxide.enable = true;
 }
