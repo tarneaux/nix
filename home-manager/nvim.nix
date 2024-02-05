@@ -301,6 +301,15 @@
       vimPlugins.telescope-symbols-nvim
       vimPlugins.vim-devicons
       vimPlugins.nvim-web-devicons
+      {
+        plugin = vimPlugins.neoscroll-nvim;
+        type = "lua";
+        config = ''
+          require('neoscroll').setup {
+            hide_cursor = true,
+          }
+        '';
+      }
     ];
     extraLuaConfig = ''
       -- Leader = space
