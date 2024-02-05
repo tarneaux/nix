@@ -18,6 +18,6 @@ while true; do
     read -r
     clear
 
-    ssh -t "$HOST" "$REMOTE_COMMAND"
+    ssh -t "$HOST" "$REMOTE_COMMAND" || true # ignore errors
     echo "Press enter to reconnect to $HOST and run '$REMOTE_COMMAND'"
 done
