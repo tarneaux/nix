@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   networking = {
     defaultGateway = {
       # The interface is configured per-host
