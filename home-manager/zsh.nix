@@ -90,6 +90,7 @@ in {
         # Docker (or podman)
         d = dockerlike;
         docker = dockerlike;
+        doas = "sudo";
         # In the following, \\\\t resolves to \\t in the abbr, which resolves to
         # \t in the shell, which resolves to a tab in the output.
         # This prevents from adding an actual tab in the prompt when using the
