@@ -19,7 +19,7 @@
   boot.supportedFilesystems = ["btrfs"];
 
   networking.hostName = "issou"; # Define your hostname.
-  networking.interfaces.eno1.ipv4.addresses = [
+  networking.interfaces.enp0s31f6.ipv4.addresses = [
     {
       address = "192.168.1.150";
       prefixLength = 16;
