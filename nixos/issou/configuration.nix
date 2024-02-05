@@ -10,6 +10,7 @@
 }: {
   imports = [
     ../common.nix
+    ../servers.nix
     ./hardware-configuration.nix
   ];
 
@@ -26,33 +27,6 @@
         prefixLength = 24;
       }
     ];
-    defaultGateway = {
-      address = "192.168.1.1";
-      interface = "enp0s31f6";
-      metric = 1;
-    };
-    resolvconf.extraConfig = ''
-      name_servers_append='192.168.1.1'
-      append_search='home'
-    '';
-  };
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.risitas = {
-    isNormalUser = true;
-    extraGroups = ["wheel"]; # Enable ‘sudo’ for the user.
-    openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIODfULxIav+b+6T/A8f9L+2VKag0+X8dY2Kx92gBxbeu tarneo@framy"
-    ];
-    packages = [];
-    shell = pkgs.zsh;
-  };
-
-  # Enable the OpenSSH daemon.
-  services.openssh = {
-    enable = true;
-    settings.PasswordAuthentication = false;
-    settings.KbdInteractiveAuthentication = false;
   };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
