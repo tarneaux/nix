@@ -19,13 +19,16 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.supportedFilesystems = ["btrfs"];
 
-  networking.hostName = "plancha"; # Define your hostname.
-  networking.interfaces.eno1.ipv4.addresses = [
-    {
-      address = "192.168.1.151";
-      prefixLength = 16;
-    }
-  ];
+  networking = {
+    hostName = "plancha"; # Define your hostname.
+    interfaces.eno1.ipv4.addresses = [
+      {
+        address = "192.168.1.151";
+        prefixLength = 16;
+      }
+    ];
+    defaultGateway.interface = "eno1";
+  };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.05";

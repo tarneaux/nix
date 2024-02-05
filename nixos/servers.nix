@@ -4,8 +4,8 @@
 }: {
   networking = {
     defaultGateway = {
+      # The interface is configured per-host
       address = "192.168.1.1";
-      interface = "enp0s31f6";
       metric = 1;
     };
     resolvconf.extraConfig = ''
