@@ -18,13 +18,24 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.supportedFilesystems = ["btrfs"];
 
-  networking.hostName = "issou"; # Define your hostname.
-  networking.interfaces.enp0s31f6.ipv4.addresses = [
-    {
-      address = "192.168.1.150";
-      prefixLength = 16;
-    }
-  ];
+  networking = {
+    hostName = "issou"; # Define your hostname.
+    interfaces.enp0s31f6.ipv4.addresses = [
+      {
+        address = "192.168.1.150";
+        prefixLength = 24;
+      }
+    ];
+    defaultGateway = {
+      address = "192.168.1.1";
+      interface = "enp0s31f6";
+      metric = 1;
+    };
+    resolvconf.extraConfig = ''
+      name_servers_append='192.168.1.1'
+      append_search='home'
+    '';
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.risitas = {
