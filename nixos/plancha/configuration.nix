@@ -19,6 +19,12 @@
   boot.supportedFilesystems = ["btrfs"];
 
   networking.hostName = "plancha"; # Define your hostname.
+  networking.interfaces.eno1.ipv4.addresses = [
+    {
+      address = "192.168.1.151";
+      prefixLength = 16;
+    }
+  ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.risitas = {
