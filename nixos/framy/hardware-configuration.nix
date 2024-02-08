@@ -54,6 +54,7 @@
   fileSystems."/boot" = {
     device = "/dev/disk/by-id/nvme-WD_BLACK_SN770_500GB_23290Y800833_1-part1";
     fsType = "vfat";
+    options = ["fmask=0077" "dmask=0077" "defaults"];
   };
 
   swapDevices = [
