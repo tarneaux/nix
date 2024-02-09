@@ -24,6 +24,7 @@
     ./awesome.nix
     ./common.nix
     ./nsxiv.nix
+    ./aerc.nix
   ];
 
   nixpkgs = {
