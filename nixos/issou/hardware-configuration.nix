@@ -1,5 +1,5 @@
 # This is just an example, you should generate yours with nixos-generate-config and put it in here.
-{...}:{
+{...}: {
   boot.initrd.availableKernelModules = ["xhci_pci" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod"];
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-intel"];
