@@ -97,7 +97,6 @@
         pamixer
         pavucontrol
         playerctl
-        podman
         podman-compose
         signal-desktop
         stow
@@ -112,6 +111,16 @@
         xss-lock
       ];
     };
+  };
+
+  virtualisation = {
+    podman = {
+      enable = true;
+      defaultNetwork.settings.dns_enabled = true;
+    };
+    containers.registries.search = [
+      "docker.io"
+    ];
   };
 
   fonts.packages = with pkgs; [
