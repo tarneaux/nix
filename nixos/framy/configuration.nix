@@ -12,7 +12,7 @@
   boot = {
     loader.systemd-boot.enable = true;
     kernelPackages = pkgs.linuxPackages_latest;
-    supportedFilesystems = ["btrfs"];
+    supportedFilesystems = ["btrfs" "ntfs"];
     loader.efi = {
       canTouchEfiVariables = true;
       efiSysMountPoint = "/boot/";
