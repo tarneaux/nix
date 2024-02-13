@@ -1,4 +1,5 @@
-{...}: let
+{ ... }:
+let
   postswitch-hook = ''
     #!/usr/bin/env bash
     # If the profile changed since last time, run the profile hook
@@ -10,7 +11,8 @@
 
     echo "$AUTORANDR_CURRENT_PROFILE" > /tmp/autorandr-current-profile
   '';
-in {
+in
+{
   programs.autorandr = {
     enable = true;
     profiles = {

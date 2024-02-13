@@ -1,6 +1,6 @@
 # This is your system's configuration file.
 # Use this to configure your system environment (it replaces /etc/nixos/configuration.nix)
-{pkgs, ...}: {
+{ pkgs, ... }: {
   imports = [
     ../common.nix
     ./hardware-configuration.nix
@@ -12,7 +12,7 @@
   boot = {
     loader.systemd-boot.enable = true;
     kernelPackages = pkgs.linuxPackages_latest;
-    supportedFilesystems = ["btrfs" "ntfs"];
+    supportedFilesystems = [ "btrfs" "ntfs" ];
     loader.efi = {
       canTouchEfiVariables = true;
       efiSysMountPoint = "/boot/";
@@ -69,9 +69,9 @@
     defaultUserShell = pkgs.zsh;
     users.tarneo = {
       isNormalUser = true;
-      extraGroups = ["wheel"]; # Enable ‘sudo’ for the user.
+      extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
       packages = with pkgs; [
-        (unison.override {enableX11 = false;})
+        (unison.override { enableX11 = false; })
         blueberry
         digikam
         element-desktop
@@ -99,7 +99,7 @@
 
   fonts.packages = with pkgs; [
     # fantasque-sans-mono
-    (nerdfonts.override {fonts = ["FantasqueSansMono"];})
+    (nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
   ];
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
