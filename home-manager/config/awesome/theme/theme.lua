@@ -91,7 +91,7 @@ theme.titlebar_fg_normal = theme.color14
 -- theme.wallpaper = "~/.config/wallpapers/calvin.png"
 -- theme.wallpaper = "~/.config/wallpapers/mountain-night-3.jpg"
 -- theme.wallpaper = "~/.config/wallpapers/mtn.jpg"
-theme.wallpaper = "~/.config/wallpapers/foggy-forest-3.jpg"
+theme.wallpaper = "~/.config/wallpapers/rock.jpg"
 -- function theme.wallpaper(s)
 --     -- XXX: Tilde expansion doesn't work here
 --     local awesome_conf_dir = gears.filesystem.get_configuration_dir()
