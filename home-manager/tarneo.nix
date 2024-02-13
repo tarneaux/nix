@@ -25,6 +25,8 @@
     ./common.nix
     ./nsxiv.nix
     ./aerc.nix
+    ./bitwarden.nix
+    ./dmenu.nix
   ];
 
   nixpkgs = {
