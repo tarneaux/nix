@@ -1,15 +1,16 @@
-{
-  config,
-  pkgs,
-  username,
-  ...
-}: let
+{ config
+, pkgs
+, username
+, ...
+}:
+let
   dockerlike =
     if username == "risitas"
     then "docker"
     else "podman";
   zcript = name: script: pkgs.writeScriptBin name ("#!${pkgs.zsh}/bin/zsh\n\n" + script);
-in {
+in
+{
   programs.zsh = {
     enable = true;
     dotDir = ".config/zsh";
@@ -112,8 +113,8 @@ in {
     zplug = {
       enable = true;
       plugins = [
-        {name = "zsh-users/zsh-autosuggestions";}
-        {name = "zdharma-continuum/fast-syntax-highlighting";}
+        { name = "zsh-users/zsh-autosuggestions"; }
+        { name = "zdharma-continuum/fast-syntax-highlighting"; }
       ];
     };
     dirHashes = {
@@ -166,7 +167,7 @@ in {
         (zcript "sshtmux" (builtins.readFile ./config/sshtmux.zsh))
         (zcript "__sshtmux_session" (builtins.readFile ./config/sshtmux-session.zsh))
       ]
-      else []
+      else [ ]
     );
   programs.zoxide.enable = true;
 }
