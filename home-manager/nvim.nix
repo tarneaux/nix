@@ -115,7 +115,7 @@
         type = "lua";
         config = ''
           local lspconfig = require('lspconfig')
-          local servers = {"clangd", "rust_analyzer", "pyright", "bashls", "html", "jsonls", "rust_analyzer", "lua_ls", "hls", "eslint", "ansiblels", "yamlls", "nil_ls"}
+          local servers = {"clangd", "rust_analyzer", "pyright", "bashls", "html", "jsonls", "rust_analyzer", "lua_ls", "hls", "eslint", "ansiblels", "yamlls", "nil_ls", "gopls"}
 
           cap = require('cmp_nvim_lsp').default_capabilities()
 
@@ -310,6 +310,22 @@
           }
         '';
       }
+      {
+        plugin = vimPlugins.go-nvim;
+        type = "lua";
+        config = ''
+          require('go').setup {}
+
+          local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
+          vim.api.nvim_create_autocmd("BufWritePre", {
+            pattern = "*.go",
+            callback = function()
+             require('go.format').goimport()
+            end,
+            group = format_sync_grp,
+          })
+        '';
+      }
     ];
     extraLuaConfig = ''
       -- Leader = space
@@ -344,6 +360,12 @@
               vim.opt.shiftwidth = w
               vim.opt.softtabstop = w
           end
+      })
+
+      -- Use tab for indentation in Go
+      vim.api.nvim_create_autocmd("Filetype", {
+          pattern = "go",
+          callback = function () vim.opt.expandtab = false end
       })
 
       -- Enable mouse support just in case I turn into a normie (magic!)
@@ -495,5 +517,6 @@
     nil
     unstable.vscode-langservers-extracted
     vscode-extensions.sumneko.lua
+    gopls
   ];
 }
