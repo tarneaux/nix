@@ -23,11 +23,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1707238373,
-        "narHash": "sha256-WKxT0yLzWbFZwYi92lI0yWJpYtRaFSWHGX8QXzejapw=",
+        "lastModified": 1707650010,
+        "narHash": "sha256-dOhphIA4MGrH4ElNCy/OlwmN24MsnEqFjRR6+RY7jZw=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "fb0c047e30b69696acc42e669d02452ca1b55755",
+        "rev": "809cca784b9f72a5ad4b991e0e7bcf8890f9c3a6",
         "type": "github"
       },
       "original": {
@@ -39,11 +39,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1707092692,
-        "narHash": "sha256-ZbHsm+mGk/izkWtT4xwwqz38fdlwu7nUUKXTOmm4SyE=",
+        "lastModified": 1707546158,
+        "narHash": "sha256-nYYJTpzfPMDxI8mzhQsYjIUX+grorqjKEU9Np6Xwy/0=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "faf912b086576fd1a15fca610166c98d47bc667e",
+        "rev": "d934204a0f8d9198e1e4515dd6fec76a139c87f0",
         "type": "github"
       },
       "original": {
@@ -63,11 +63,11 @@
     },
     "wallpapers": {
       "locked": {
-        "lastModified": 1706518629,
-        "narHash": "sha256-Y+HUN0PH46SBxYZrH5yff1Q8yL36gC5Pz+ehadpd+OI=",
+        "lastModified": 1707739392,
+        "narHash": "sha256-5VA5a1PfMxctbVKOus6qLfSZTXpxTvoP+xJxU/7vrp0=",
         "owner": "tarneaux",
         "repo": "wallpapers-small",
-        "rev": "f05c0bdfd14fe705c7a14c4085517b3bb5d58bca",
+        "rev": "1598072270815ad2059ec92809940660153cab19",
         "type": "github"
       },
       "original": {
