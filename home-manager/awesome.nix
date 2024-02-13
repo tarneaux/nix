@@ -27,4 +27,16 @@
       source = inputs.wallpapers;
     };
   };
+  home.packages = with pkgs; [
+    brightnessctl
+    i3lock
+    libnotify
+    maim
+    mpc-cli
+    playerctl
+    xclip
+    xorg.xinput
+    xorg.xmodmap
+    xss-lock
+  ];
 }

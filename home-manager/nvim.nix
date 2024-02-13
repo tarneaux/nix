@@ -493,5 +493,7 @@
     ansible-language-server
     yaml-language-server
     nil
+    unstable.vscode-langservers-extracted
+    vscode-extensions.sumneko.lua
   ];
 }

@@ -72,43 +72,17 @@
       extraGroups = ["wheel"]; # Enable ‘sudo’ for the user.
       packages = with pkgs; [
         (unison.override {enableX11 = false;})
-        aerc
-        bitwarden
-        bitwarden-cli
         blueberry
-        brightnessctl
         digikam
-        (dmenu.overrideAttrs {
-          src = fetchFromGitHub {
-            owner = "tarneaux";
-            repo = "dmenu";
-            rev = "bab46f0c9f1e8dfc9e19ad26d06bcf3db76f174a";
-            sha256 = "sha256-mLViMJlTKw3UXuofFB9LLtVj/vUn+Wp+ZZivbB+Rifk=";
-          };
-        })
         element-desktop
-        i3lock
         imagemagick
-        libnotify
-        maim
-        mpc-cli
         nsxiv
         ollama
         pamixer
         pavucontrol
-        playerctl
         podman-compose
         signal-desktop
         stow
-        unstable.qutebrowser
-        unstable.rustup
-        unstable.vscode-langservers-extracted
-        vscode-extensions.sumneko.lua
-        w3m # For aerc
-        xclip
-        xorg.xinput
-        xorg.xmodmap
-        xss-lock
       ];
     };
   };
