@@ -326,6 +326,7 @@
           })
         '';
       }
+      vimPlugins.trouble-nvim
     ];
     extraLuaConfig = ''
       -- Leader = space
