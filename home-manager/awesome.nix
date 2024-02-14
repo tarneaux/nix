@@ -25,6 +25,12 @@
       # This is already defined in the `inputs` attribute, as `wallpapers`.
       source = inputs.wallpapers;
     };
+    ".Xmodmap" = {
+      source = ./config/Xmodmap;
+      onChange = ''
+        echo "Reload Xmodmap yourself"
+      '';
+    };
   };
   home.packages = with pkgs; [
     brightnessctl
