@@ -12,6 +12,7 @@
   boot = {
     loader.systemd-boot.enable = true;
     kernelPackages = pkgs.linuxPackages_latest;
+    kernelParams = [ "amdgpu.sg_display=0" ];
     supportedFilesystems = [ "btrfs" "ntfs" ];
     loader.efi = {
       canTouchEfiVariables = true;
@@ -41,6 +42,7 @@
       alsa.support32Bit = true;
       pulse.enable = true;
     };
+    tlp.enable = true;
   };
 
   services.logind = {
