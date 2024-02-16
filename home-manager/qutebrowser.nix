@@ -20,6 +20,7 @@
       "yt" = "https://iv.renn.es/results?search_query={}";
       "w" = "https://en.wikipedia.org/wiki/Special:Search?search={}";
       "wf" = "https://fr.wikipedia.org/wiki/Special:Search?search={}";
+      "rs" = "https://doc.rust-lang.org/std/?search={}";
     };
     settings = {
       colors.webpage.preferred_color_scheme = "dark";
