@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, inputs, ... }: {
   networking = {
     defaultGateway = {
       # The interface is configured per-host
@@ -31,5 +31,19 @@
       enable = true;
       storageDriver = "btrfs";
     };
+  };
+
+  system.autoUpgrade = {
+    enable = true;
+    flake = inputs.self.outPath;
+    flags = [
+      "--update-input"
+      "nixpkgs"
+      "--update-input"
+      "nixpkgs-unstable"
+      "-L"
+    ];
+    dates = "02:00";
+    randomizedDelaySec = "45min";
   };
 }

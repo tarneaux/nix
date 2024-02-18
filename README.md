@@ -18,4 +18,3 @@ Roadmap:
 - [ ] 2FA with TOTP for the server
 - [ ] Move all [renn.es](https://renn.es) servers over to NixOS
 - [ ] TMPFS for [root](https://elis.nu/blog/2020/05/nixos-tmpfs-as-root/) and [home](https://elis.nu/blog/2020/06/nixos-tmpfs-as-home/) for true immutability
-- [ ] Unattended upgrades on servers: [wiki](https://nixos.wiki/wiki/Automatic_system_upgrades)
