@@ -42,7 +42,6 @@
       alsa.support32Bit = true;
       pulse.enable = true;
     };
-    tlp.enable = true;
   };
 
   services.logind = {
