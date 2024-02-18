@@ -70,5 +70,6 @@
     texliveSmall
     pandoc
     unzip
+    xorg.xkill
   ];
 }
