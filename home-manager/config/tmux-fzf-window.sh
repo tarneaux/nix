@@ -19,29 +19,33 @@ fi
 if [ $fzf_exit_code -eq 0 ]; then
     # The user selected a window
 
-# Get the second line of the output (the window name)
-fzf_output=$(echo "$fzf_output" | sed -n 2p)
+    # Get the second line of the output (the window name)
+    fzf_output=$(echo "$fzf_output" | sed -n 2p)
 
-# Get the window name from the output (in the parentheses)
-window=$(echo "$fzf_output" | grep -oP '(?<=\().*(?=\))')
+    # Get the window name from the output (in the parentheses)
+    window=$(echo "$fzf_output" | grep -oP '(?<=\().*(?=\))')
 
-tmux switch-client -t "$window"
+    tmux switch-client -t "$window"
 fi
 
 if [ $fzf_exit_code -eq 1 ]; then
     # The user entered a window name that doesn't exist.
     # We can interpret it as the project directory name.
+
+    # Get the directory name with zoxide
     directory=$(zoxide query "$fzf_output")
     if [ -n "$directory" ]; then
         # Open a new session in the directory, with the directory name as the
         # session name
         dirname=$(basename "$directory")
+
         tmux new-session -c "$directory" -s "$dirname" -d
 
-  # Find the session id of the new session
-  session_id=$(tmux list-sessions -F '#S:#{session_path}' \
-      | grep "$directory" \
-      | cut -d: -f1)
+        # Find the session id of the new session
+        session_id=$(tmux list-sessions -F '#S:#{session_path}' \
+            | grep "$directory" \
+            | cut -d: -f1)
+
         tmux switch-client -t "$session_id"
     fi
 fi
