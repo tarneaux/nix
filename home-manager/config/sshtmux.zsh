@@ -17,6 +17,7 @@ while getopts "a" opt; do
 done
 
 HOSTS=(
+    "local"
     "risitas@cocinero"
     "risitas@issou"
     "risitas@plancha"
@@ -33,13 +34,24 @@ fi
 
 for HOST in "${HOSTS[@]}"; do
     if tmux has-session -t "$SESSION_NAME:$HOST" 2>/dev/null; then continue; fi
+    if [[ "$HOST" == "local" ]]; then
+        tmux new-window \
+            -t "$SESSION_NAME" \
+            -n "$HOST" \
+            -d \
+            "$SHELL"
+        continue
+    fi
     if [[ "$HOST" == "weechat" ]]; then
         VARIABLES="HOST=\"tarneo@cocinero\" REMOTE_COMMAND=\"tmux a -t weechat\""
     else
         VARIABLES="HOST=\"$HOST\""
     fi
-    tmux new-window -t "$SESSION_NAME" -n "$HOST" "$VARIABLES __sshtmux_session; sleep 20"
-    # tmux new-window -t "$SESSION_NAME" -n "$HOST" "HOST=$HOST __sshtmux_session"
+    tmux new-window \
+        -t "$SESSION_NAME" \
+        -n "$HOST" \
+        -d \
+        "$VARIABLES __sshtmux_session; sleep 20"
 done
 
 if $ATTACH; then
