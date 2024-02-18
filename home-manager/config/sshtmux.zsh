@@ -31,7 +31,8 @@ HOSTS=(
 SESSION_NAME="ssh"
 
 if ! tmux has-session -t "$SESSION_NAME" 2>/dev/null; then
-    tmux new-session -d -s "$SESSION_NAME"
+    # Create the session, with the first window being local
+    tmux new-session -d -s "$SESSION_NAME" -n "local"
 fi
 
 for HOST in "${HOSTS[@]}"; do
@@ -40,8 +41,7 @@ for HOST in "${HOSTS[@]}"; do
         tmux new-window \
             -t "$SESSION_NAME" \
             -n "$HOST" \
-            -d \
-            "$SHELL"
+            -d
         continue
     fi
     if [[ "$HOST" == "weechat" ]]; then
