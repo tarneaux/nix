@@ -6,7 +6,7 @@
 let
   dockerlike =
     if username == "risitas"
-    then "docker"
+    then "sudo docker"
     else "podman";
   zcript = name: script: pkgs.writeScriptBin name ("#!${pkgs.zsh}/bin/zsh\n\n" + script);
 in
