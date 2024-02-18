@@ -43,6 +43,10 @@
       pulse.enable = true;
     };
     fwupd.enable = true; # Firmware/BIOS updates
+    printing = {
+      enable = true;
+      drivers = [ pkgs.hplip ];
+    };
   };
 
   services.logind = {
