@@ -42,6 +42,7 @@
       alsa.support32Bit = true;
       pulse.enable = true;
     };
+    fwupd.enable = true; # Firmware/BIOS updates
   };
 
   services.logind = {
