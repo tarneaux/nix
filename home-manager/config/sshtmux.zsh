@@ -16,6 +16,8 @@ while getopts "a" opt; do
     esac
 done
 
+cd ~ # Make sure everything is done from the home directory
+
 HOSTS=(
     "local"
     "risitas@cocinero"
