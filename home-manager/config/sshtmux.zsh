@@ -17,12 +17,12 @@ while getopts "a" opt; do
 done
 
 HOSTS=(
-  "risitas@cocinero"
-  "risitas@issou"
-  "risitas@plancha"
-  "debian@chorizo"
-  "tarneo@cocinero"
-  "weechat"
+    "risitas@cocinero"
+    "risitas@issou"
+    "risitas@plancha"
+    "debian@chorizo"
+    "tarneo@cocinero"
+    "weechat"
 )
 
 SESSION_NAME="ssh"
