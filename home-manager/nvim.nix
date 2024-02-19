@@ -500,6 +500,16 @@
               vim.opt.colorcolumn = "81"
           end
       })
+
+      require('which-key').register ({
+        ['<leader>T'] = {
+          name = "Tabs",
+          n = { "<cmd>tabnew<cr>", "New tab" },
+          c = { "<cmd>tabclose<cr>", "Close tab" },
+          e = { "<cmd>tabnext<cr>", "Next tab" },
+          i = { "<cmd>tabprevious<cr>", "Previous tab" },
+        }
+      })
     '';
   };
   # LSP packages
