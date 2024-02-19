@@ -78,11 +78,11 @@
             ./nixos/plancha/configuration.nix
           ];
         };
-        onda = nixpkgs.lib.nixosSystem {
+        gaspacho = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           modules = [
             # > Our main nixos configuration file <
-            ./nixos/onda/configuration.nix
+            ./nixos/gaspacho/configuration.nix
           ];
         };
       };
@@ -121,7 +121,7 @@
             ./home-manager/risitas.nix
           ];
         };
-        "risitas@onda" = home-manager.lib.homeManagerConfiguration {
+        "risitas@gaspacho" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
           extraSpecialArgs = {
             inherit inputs outputs;
