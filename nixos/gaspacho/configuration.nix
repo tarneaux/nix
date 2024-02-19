@@ -13,7 +13,7 @@
   boot.supportedFilesystems = [ "btrfs" ];
 
   networking = {
-    hostName = "onda"; # Define your hostname.
+    hostName = "gaspacho"; # Define your hostname.
     interfaces.eno1.ipv4.addresses = [
       {
         address = "192.168.1.153";
