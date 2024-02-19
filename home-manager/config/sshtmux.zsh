@@ -23,6 +23,7 @@ HOSTS=(
     "risitas@cocinero"
     "risitas@issou"
     "risitas@plancha"
+    "risitas@gaspacho"
     "debian@chorizo"
     "tarneo@cocinero"
     "weechat"
