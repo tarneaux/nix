@@ -23,8 +23,7 @@ in
       ls = "${pkgs.unstable.eza}/bin/eza --icons --group-directories-first";
 
       # Use less as man & bat pagers
-      man = "man -P 'less -RF --jump-target=.5'";
-      bat = "bat --pager 'less -RF --jump-target=.5'";
+      man = "${pkgs.unstable.bat-extras.batman}/bin/batman";
     };
 
     zsh-abbr = {
@@ -102,6 +101,10 @@ in
         dcr = "${dockerlike} compose restart";
         dcl = "${dockerlike} compose logs -f";
       };
+    };
+
+    sessionVariables = {
+      BAT_PAGER = "less -RF --jump-target=.5";
     };
 
     # Without the option below, compinit takes 3+ secs to load.
