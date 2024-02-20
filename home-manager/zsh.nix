@@ -50,6 +50,7 @@ in
         g = "git";
         gs = "git status";
         ga = "git add";
+        gap = "git add -p";
         gc = "git commit";
         gp = "git push";
         gpu = "git push -u origin main";
