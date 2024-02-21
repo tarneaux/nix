@@ -38,6 +38,9 @@ ModKey = "Mod4"
 
 local previous_layout = nil
 
+-- Unused keys on default triboard layer (for adding new keybindings)
+-- Super + g
+
 local globalkeys = gears.table.join(
     -- Applications launcher: dmenu. Archlinux package: dmenu
     awful.key({ ModKey,           }, "p", function() awful.spawn.with_shell("dmenu_run") end),
@@ -55,7 +58,8 @@ local globalkeys = gears.table.join(
     -- Open weechat quake terminal
     awful.key({ ModKey,           }, "k", function() ssh_quake:toggle() end),
     -- ncmpcpp: terminal music player/mpd frontend. Archlinux package: ncmpcpp.
-    awful.key({ ModKey,           }, "slash", function() awful.spawn.with_shell(TerminalCmd .. " ncmpcpp") end),
+    -- Super + / (triboard) or Super + Shift + : (french keyboard)
+    awful.key({ ModKey, "Shift"   }, "#60", function() awful.spawn.with_shell(TerminalCmd .. " ncmpcpp") end),
 
     -- Open terminal (I use alacritty)
     awful.key({ ModKey,           }, "Return", function () awful.spawn.with_shell(Terminal) end),
@@ -124,14 +128,16 @@ local globalkeys = gears.table.join(
     awful.key({ ModKey,           }, "n",     function () awful.tag.incnmaster( 1, nil, true) end), -- Increase the number of master clients
     awful.key({ ModKey,           }, "o",     function () awful.tag.incnmaster(-1, nil, true) end), -- Decrease the number of master clients
     awful.key({ ModKey, "Shift"   }, "m",     function () awful.tag.incncol( 1, nil, true)    end), -- Increase the number of columns
-    awful.key({ ModKey, "Shift"   }, "/",     function () awful.tag.incncol(-1, nil, true)    end), -- Decrease the number of columns
+    -- Super + Shift + / (triboard) or Super + Shift + , (french keyboard)
+    awful.key({ ModKey, "Shift"   }, "#58",     function () awful.tag.incncol(-1, nil, true)    end), -- Decrease the number of columns
 
     -- Change layout
     awful.key({ ModKey,           }, ",", function () awful.layout.inc( 1)                end),
 
     -- Toggle maximized layout
     -- This will just crash if you set the default layout to maximized, but else it works well.
-    awful.key({ ModKey,           }, ".", function ()
+    -- Super + . (triboard) or Super + Shift + ; (french keyboard)
+    awful.key({ ModKey, "Shift"   }, "#59", function ()
         local screen = awful.screen.focused()
         local tag = screen.selected_tag
         local current_layout = tag.layout
