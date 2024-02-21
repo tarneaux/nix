@@ -106,6 +106,6 @@ theme.wallpaper = "~/.config/wallpapers/rock.jpg"
 
 -- Variable used by `~/.config/scripts/lock`.
 -- If this isn't set, the lock script will use the lock.png image.
-theme.lockwall = "~/.config/wallpapers/foggy-forest-3.jpg"
+theme.lockwall = "~/.config/wallpapers/flower.jpg"
 
 return theme
