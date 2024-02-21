@@ -39,10 +39,13 @@
     xss-lock
     (pkgs.writeScriptBin "autorandr-watcher" ''
       #!${pkgs.bash}/bin/bash
+      # If 2 screens are enabled, which only happens when autorandr hasn't run
+      # yet, run it.
+      xrandr | grep "*+" | wc -l | grep -q 2 && autorandr --change
       while true; do
-        ${pkgs.inotify-tools}/bin/inotifywait -e modify /tmp/autorandr-current-profile
         pgrep awesome | xargs kill -s HUP
         pgrep qutebrowser && qutebrowser :config-source
+        ${pkgs.inotify-tools}/bin/inotifywait -e modify /tmp/autorandr-current-profile
       done
     '')
     (pkgs.writeScriptBin "keyboard-watcher" ''
