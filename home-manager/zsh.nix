@@ -174,4 +174,5 @@ in
       else [ ]
     );
   programs.zoxide.enable = true;
+  programs.direnv.enable = true;
 }
