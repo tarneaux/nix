@@ -45,9 +45,11 @@ dofile(awesome_conf_dir .. "signals.lua")
 -- Autostart applications
 awful.spawn.with_shell("pgrep signal-desktop || signal-desktop --start-in-tray")
 
--- Keyboard & monitor manager, automatically runs autorandr and setxkbmap
--- when a new keyboard or monitor is plugged in/out.
-awful.spawn.with_shell("~/.config/scripts/manager")
+-- Detect when autorandr changes the screen configuration, and reload some apps.
+awful.spawn.with_shell("pidof -x autorandr-watcher || autorandr-watcher")
+
+-- Detect when a new keyboard is connected, set layout and options.
+awful.spawn.with_shell("pidof -x keyboard-watcher || keyboard-watcher")
 
 -- Unison sync script: syncs files with my server.
 awful.spawn.with_shell("pgrep unison || ~/.config/scripts/unison-sync")

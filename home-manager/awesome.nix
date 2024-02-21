@@ -43,5 +43,25 @@
     xorg.xinput
     xorg.xmodmap
     xss-lock
+    (pkgs.writeScriptBin "autorandr-watcher" ''
+      #!${pkgs.bash}/bin/bash
+      while true; do
+        ${pkgs.inotify-tools}/bin/inotifywait -e modify /tmp/autorandr-current-profile
+        pgrep awesome | xargs kill -s HUP
+        pgrep qutebrowser && qutebrowser :config-source
+      done
+    '')
+    (pkgs.writeScriptBin "keyboard-watcher" ''
+      #!${pkgs.bash}/bin/bash
+      while true; do
+        echo "Setting options"
+        setxkbmap fr
+        xset r rate 300 50
+        echo "Waiting for new keyboard"
+        udevadm monitor --udev --subsystem-match=hid | sed '/bind/ q' > /dev/null
+        echo "Sleeping"
+        sleep 1
+      done
+    '')
   ];
 }

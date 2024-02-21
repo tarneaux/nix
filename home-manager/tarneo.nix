@@ -17,7 +17,6 @@
     ./nvim.nix
     ./user.nix
     ./alacritty.nix
-    ./autorandr.nix
     ./zathura.nix
     ./mpv.nix
     ./mpd.nix
