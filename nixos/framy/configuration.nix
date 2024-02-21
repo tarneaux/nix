@@ -4,6 +4,7 @@
   imports = [
     ../common.nix
     ./hardware-configuration.nix
+    ./autorandr.nix
   ];
 
   networking.hostName = "framy";
