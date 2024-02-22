@@ -104,9 +104,14 @@ in
       };
     };
 
-    sessionVariables = {
-      BAT_PAGER = "less -RF --jump-target=.5";
-    };
+    sessionVariables =
+      let
+        pager = "less -RF --jump-target=.5";
+      in
+      {
+        BAT_PAGER = pager;
+        PAGER = pager;
+      };
 
     # Without the option below, compinit takes 3+ secs to load.
     # By adding a cache with the -d option it becomes much faster
