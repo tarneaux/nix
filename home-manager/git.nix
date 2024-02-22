@@ -21,6 +21,7 @@
       branch.sort = "-committerdate"; # Sort branches by last commit date
       url = {
         "git@github.com:".pushInsteadOf = "https://github.com/";
+        "git@github.com:".insteadOf = "gh:";
         "git@renn.es:".pushInsteadOf = "https://renn.es/";
       };
     };
