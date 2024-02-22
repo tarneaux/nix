@@ -70,5 +70,6 @@
     pandoc
     unzip
     xorg.xkill
+    jq
   ];
 }
