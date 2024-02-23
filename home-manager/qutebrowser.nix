@@ -45,7 +45,6 @@
     '';
   };
   home.packages = [
-    #pkgs.pdfjs
     (pkgs.writeScriptBin "fast" ''
       #!${pkgs.bash}/bin/bash
       # Send some text to ~/org/fast.org
