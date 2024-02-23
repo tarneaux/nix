@@ -1,9 +1,10 @@
-{ ... }: {
+{ pkgs, ... }: {
   programs.qutebrowser = {
     enable = true;
     keyBindings = {
       normal = {
         "yo" = "yank inline [[{url}][{title}]]"; # Copy link in org-mode format
+        ",o" = "spawn fast TOREAD [[{url}][{title}]]"; # Send link to ~/org/fast.org
         ",i" = "open https://iv.renn.es/watch?{url:query}"; # Youtube -> Invidious
         # arrows -> HJKL actions because I use a non-qwerty keyboard (colemak)
         "<Shift+Left>" = "back";
@@ -45,5 +46,10 @@
   };
   home.packages = [
     #pkgs.pdfjs
+    (pkgs.writeScriptBin "fast" ''
+      #!${pkgs.bash}/bin/bash
+      # Send some text to ~/org/fast.org
+      echo "* $*" >> ~/org/fast.org
+    '')
   ];
 }
