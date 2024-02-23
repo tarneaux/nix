@@ -47,10 +47,9 @@
       enable = true;
       drivers = [ pkgs.hplip ];
     };
-  };
-
-  services.logind = {
-    lidSwitch = "hibernate";
+    logind = {
+      lidSwitch = "hibernate";
+    };
   };
 
   security = {
