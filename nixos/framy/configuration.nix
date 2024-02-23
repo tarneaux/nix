@@ -50,6 +50,7 @@
     logind = {
       lidSwitch = "hibernate";
     };
+    tlp.enable = true;
   };
 
   security = {
