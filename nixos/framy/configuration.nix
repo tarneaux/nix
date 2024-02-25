@@ -51,6 +51,10 @@
       lidSwitch = "hibernate";
     };
     tlp.enable = true;
+    udev.extraRules = ''
+      # Touch /tmp/keyboard whenever a keyboard is plugged in
+      ACTION=="add", SUBSYSTEM=="input", RUN+="${pkgs.coreutils}/bin/touch /tmp/keyboard"
+    '';
   };
 
   security = {

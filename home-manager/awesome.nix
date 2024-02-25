@@ -50,14 +50,20 @@
     '')
     (pkgs.writeScriptBin "keyboard-watcher" ''
       #!${pkgs.bash}/bin/bash
-      while true; do
-        echo "Setting options"
-        setxkbmap fr
-        xset r rate 300 50
-        echo "Waiting for new keyboard"
-        udevadm monitor --udev --subsystem-match=hid | sed '/bind/ q' > /dev/null
+      manage() {
+        echo "New keyboard detected"
         echo "Sleeping"
         sleep 1
+        echo "Waking up, setting options"
+        setxkbmap fr
+        xset r rate 300 50
+      }
+      touch /tmp/keyboard
+      while true; do
+        # /tmp/keyboard is touched by a udev rule whenever a keyboard is plugged
+        # in.
+        inotifywait /tmp/keyboard
+        manage &
       done
     '')
   ];
