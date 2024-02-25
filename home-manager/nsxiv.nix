@@ -18,7 +18,7 @@
             # Will select the last one if multiple are selected.
             ${pkgs.xclip}/bin/xclip -selection clipboard -t image/png -i "$file" ;;
           "p")
-            echo "$line" ;;
+            echo "$file" ;;
           "r")
             ${pkgs.imagemagick}/bin/convert -rotate 90 "$file" "$file" ;;
           "R")
