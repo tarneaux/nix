@@ -71,5 +71,6 @@
     unzip
     xorg.xkill
     jq
+    qpwgraph
   ];
 }
