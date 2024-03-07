@@ -1,4 +1,4 @@
-{ username
+{ hostname
 , pkgs
 , ...
 }: {
@@ -7,7 +7,7 @@
     extraConfig =
       builtins.readFile ./config/tmux.conf;
     prefix =
-      if username == "tarneo"
+      if hostname == "framy"
       then "C-a"
       else "C-b";
   };
