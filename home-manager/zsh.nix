@@ -1,13 +1,13 @@
 { config
 , pkgs
-, username
+, hostname
 , ...
 }:
 let
   dockerlike =
-    if username == "risitas"
-    then "sudo docker"
-    else "podman";
+    if hostname == "framy"
+    then "podman"
+    else "sudo docker";
   zcript = name: script: pkgs.writeScriptBin name ("#!${pkgs.zsh}/bin/zsh\n\n" + script);
 in
 {
@@ -171,7 +171,7 @@ in
       pkgs.nix-index
     ]
     ++ (
-      if username == "tarneo"
+      if hostname == "framy"
       then [
         (zcript "sshtmux" (builtins.readFile ./config/sshtmux.zsh))
         (zcript "__sshtmux_session" (builtins.readFile ./config/sshtmux-session.zsh))
