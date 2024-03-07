@@ -24,7 +24,10 @@ in
 
       # Use less as man & bat pagers
       man = "${pkgs.unstable.bat-extras.batman}/bin/batman";
-    };
+    } // (if hostname == "framy" then {
+      # Reload wifi kernel module, useful when wifi doesn't work after resume
+      wr = "sudo modprobe -r mt7921e && sudo modprobe mt7921e";
+    } else { });
 
     zsh-abbr = {
       enable = true;
