@@ -78,7 +78,10 @@
     defaultUserShell = pkgs.zsh;
     users.tarneo = {
       isNormalUser = true;
-      extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+      extraGroups = [
+        "wheel"
+        "dialout" # For arduino (/dev/ttyACM0 is owned by root:dialout)
+      ];
       packages = with pkgs; [
         (unison.override { enableX11 = false; })
         blueberry
