@@ -1,7 +1,6 @@
 { pkgs, ... }: {
   programs.neovim = {
     enable = true;
-    package = pkgs.neovim-nightly;
     defaultEditor = true;
     viAlias = true;
     vimAlias = true;
@@ -116,7 +115,7 @@
         type = "lua";
         config = ''
           local lspconfig = require('lspconfig')
-          local servers = {"clangd", "pyright", "bashls", "html", "jsonls", "rust_analyzer", "lua_ls", "hls", "eslint", "ansiblels", "yamlls", "nil_ls", "gopls"}
+          local servers = {"clangd", "rust_analyzer", "pyright", "bashls", "html", "jsonls", "rust_analyzer", "lua_ls", "hls", "eslint", "ansiblels", "yamlls", "nil_ls", "gopls"}
 
           cap = require('cmp_nvim_lsp').default_capabilities()
 
@@ -143,15 +142,6 @@
               cmd = { "texlab" },
               filetypes = { "tex", "bib", "markdown" },
               capabilities = require("cmp_nvim_lsp").default_capabilities(),
-          }
-
-          lspconfig.rust_analyzer.setup{
-              capabilities = require("cmp_nvim_lsp").default_capabilities(),
-              on_attach = function(client, bufnr)
-                  if client.server_capabilities.inlayHintProvider then
-                      vim.lsp.inlay_hint.enable(bufnr, true)
-                  end
-              end,
           }
 
           require("which-key").register({
