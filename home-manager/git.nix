@@ -23,6 +23,7 @@
         "git@github.com:".pushInsteadOf = "https://github.com/";
         "git@github.com:".insteadOf = "gh:";
         "git@renn.es:".pushInsteadOf = "https://renn.es/";
+        "git@renn.es:".insteadOf = "rennes:";
       };
     };
   };
