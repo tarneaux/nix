@@ -15,9 +15,6 @@
 
     # Wallpaper repo
     wallpapers.url = "github:tarneaux/wallpapers-small";
-
-    # Neovim nightly overlay
-    neovim-nightly.url = "github:nix-community/neovim-nightly-overlay";
   };
 
   outputs =
@@ -36,7 +33,6 @@
         "aarch64-darwin"
         "x86_64-darwin"
       ];
-      neovim-nightly = inputs.neovim-nightly;
       # This is a function that generates an attribute by calling a function you
       # pass to it, with each system as an argument
       forAllSystems = nixpkgs.lib.genAttrs systems;
@@ -97,7 +93,7 @@
         "tarneo@framy" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
           extraSpecialArgs = {
-            inherit inputs outputs neovim-nightly;
+            inherit inputs outputs;
             hostname = "framy";
             username = "tarneo";
           };
@@ -109,7 +105,7 @@
         "risitas@issou" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
           extraSpecialArgs = {
-            inherit inputs outputs neovim-nightly;
+            inherit inputs outputs;
             hostname = "issou";
             username = "risitas";
           };
@@ -120,7 +116,7 @@
         "risitas@plancha" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
           extraSpecialArgs = {
-            inherit inputs outputs neovim-nightly;
+            inherit inputs outputs;
             hostname = "plancha";
             username = "risitas";
           };
@@ -131,7 +127,7 @@
         "risitas@gaspacho" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
           extraSpecialArgs = {
-            inherit inputs outputs neovim-nightly;
+            inherit inputs outputs;
             hostname = "gaspacho";
             username = "risitas";
           };
