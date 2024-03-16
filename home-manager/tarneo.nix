@@ -74,5 +74,6 @@
     jq
     qpwgraph
     rawtherapee
+    kicad
   ];
 }
