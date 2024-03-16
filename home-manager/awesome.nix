@@ -54,6 +54,12 @@
         pgrep awesome | xargs kill -s HUP
         pgrep qutebrowser && qutebrowser :config-source
         ${pkgs.inotify-tools}/bin/inotifywait -e modify /tmp/autorandr-current-profile
+        # Re-enable internal keyboard in case it was disabled by the user.
+        # Useful when forgetting to re-enable it, I just know I'll have
+        # forgotten if I plug in a monitor while it's still disabled, since
+        # disabling it is useless when I don't have my split keyboard on top of
+        # the laptop's.
+        xinput enable "AT Translated Set 2 keyboard"
       done
     '')
     (pkgs.writeScriptBin "keyboard-watcher" ''
