@@ -1,6 +1,6 @@
 # This is your system's configuration file.
 # Use this to configure your system environment (it replaces /etc/nixos/configuration.nix)
-{ ... }: {
+{ pkgs, ... }: {
   imports = [
     ../common.nix
     ../servers.nix
@@ -21,6 +21,31 @@
       }
     ];
     defaultGateway.interface = "enp0s31f6";
+  };
+
+  users.users.cocinero = {
+    isNormalUser = true;
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIODfULxIav+b+6T/A8f9L+2VKag0+X8dY2Kx92gBxbeu tarneo@framy"
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDR89bDo1ZoMGJETAuKd6nMAY+j7KW8kBd2/9ZdYTS1G risitas@cocinero"
+    ];
+    shell = pkgs.zsh;
+  };
+
+  services.btrbk = {
+    instances."hdd" = {
+      onCalendar = "hourly";
+      settings = {
+        snapshot_preserve_min = "24h";
+        snapshot_preserve = "48h 14d 8w 12m";
+        volume = {
+          "/mnt/hdd" = {
+            subvolume."@bak" = { };
+            snapshot_dir = "/mnt/hdd/@snapshots";
+          };
+        };
+      };
+    };
   };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
