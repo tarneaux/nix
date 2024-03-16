@@ -73,5 +73,6 @@
     xorg.xkill
     jq
     qpwgraph
+    rawtherapee
   ];
 }
