@@ -89,7 +89,6 @@
         element-desktop
         imagemagick
         nsxiv
-        ollama
         pamixer
         pavucontrol
         podman-compose
