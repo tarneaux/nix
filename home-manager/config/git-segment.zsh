@@ -74,7 +74,8 @@ if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
 	# Get the Git branch name
 	git_branch_name="$(git symbolic-ref --short HEAD 2>/dev/null)"
 	if [[ -n "$git_branch_name" ]]; then
-		git_info+="󰘬 $git_branch_name"
+		# git_info+="󰘬 $git_branch_name"
+		git_info+="$git_branch_name"
 	fi
 	# Get the Git status
 	git_info+="$(__git_symbols)"
