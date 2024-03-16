@@ -26,6 +26,14 @@
       source = inputs.wallpapers;
     };
   };
+  services.redshift = {
+    enable = true;
+    temperature = {
+      day = 6500;
+      night = 4000;
+    };
+    provider = "geoclue2";
+  };
   home.packages = with pkgs; [
     brightnessctl
     i3lock
