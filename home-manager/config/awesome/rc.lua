@@ -52,7 +52,7 @@ awful.spawn.with_shell("pidof -x autorandr-watcher || autorandr-watcher")
 awful.spawn.with_shell("pidof -x keyboard-watcher || keyboard-watcher")
 
 -- Unison sync script: syncs files with my server.
-awful.spawn.with_shell("pgrep unison || ~/.config/scripts/unison-sync")
+awful.spawn.with_shell("pgrep unison || unison-sync")
 
 -- Set the screen to turn off & lock after 5 minutes of inactivity.
 awful.spawn.with_shell("xset s 300")

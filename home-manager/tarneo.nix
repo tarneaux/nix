@@ -26,6 +26,7 @@
     ./aerc.nix
     ./bitwarden.nix
     ./dmenu.nix
+    ./unison.nix
   ];
 
   nixpkgs = {
