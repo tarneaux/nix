@@ -302,15 +302,6 @@
       vimPlugins.vim-devicons
       vimPlugins.nvim-web-devicons
       {
-        plugin = vimPlugins.neoscroll-nvim;
-        type = "lua";
-        config = ''
-          require('neoscroll').setup {
-            hide_cursor = true,
-          }
-        '';
-      }
-      {
         plugin = vimPlugins.go-nvim;
         type = "lua";
         config = ''
