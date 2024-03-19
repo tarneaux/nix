@@ -282,8 +282,8 @@
             },
           }
           require('which-key').register({
-              ["<leader>t"] = {
-                  name = "Telescope",
+              ["<leader>f"] = {
+                  name = "Find",
                   f = { "<cmd>Telescope find_files<cr>", "Find files" },
                   g = { "<cmd>Telescope live_grep<cr>", "Live grep" },
                   b = { "<cmd>Telescope buffers<cr>", "Buffers" },
@@ -493,7 +493,7 @@
       })
 
       require('which-key').register ({
-        ['<leader>T'] = {
+        ['<leader>t'] = {
           name = "Tabs",
           n = { "<cmd>tabnew<cr>", "New tab" },
           c = { "<cmd>tabclose<cr>", "Close tab" },
