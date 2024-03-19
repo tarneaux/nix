@@ -45,7 +45,7 @@
         TERM = "xterm-256color";
       };
       font = {
-        size = 8;
+        size = 7;
         normal = {
           family = "FantasqueSansM Nerd Font";
           style = "Regular";
