@@ -10,6 +10,7 @@
       append_search='home'
     '';
   };
+
   users.users.risitas = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
@@ -48,4 +49,8 @@
     dates = "02:00";
     randomizedDelaySec = "45min";
   };
+
+  environment.systemPackages = [
+    inputs.agenix.packages.x86_64-linux.default
+  ];
 }
