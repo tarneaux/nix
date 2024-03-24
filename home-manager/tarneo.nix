@@ -76,5 +76,6 @@
     rawtherapee
     kicad
     nmap
+    kubectl
   ];
 }
