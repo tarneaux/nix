@@ -37,6 +37,9 @@
       role = "server";
       tokenFile = config.age.secrets.k3s.path;
       clusterInit = true;
+      extraFlags = toString [
+        "--bind-address=0.0.0.0"
+      ];
     };
   };
 
