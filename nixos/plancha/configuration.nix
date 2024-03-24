@@ -21,6 +21,9 @@
       }
     ];
     defaultGateway.interface = "eno1";
+    firewall.allowedTCPPorts = [
+      6443 2379 2380 # K3s, etcd
+    ];
   };
 
   age.secrets = {
