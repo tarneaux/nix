@@ -1,6 +1,6 @@
 # This is your system's configuration file.
 # Use this to configure your system environment (it replaces /etc/nixos/configuration.nix)
-{ ... }: {
+{ config, ... }: {
   imports = [
     ../common.nix
     ../servers.nix
@@ -21,6 +21,23 @@
       }
     ];
     defaultGateway.interface = "eno1";
+  };
+
+  age.secrets = {
+    k3s = {
+      file = ../../secrets/k3s.age;
+      owner = "root";
+      group = "root";
+    };
+  };
+
+  services = {
+    k3s = {
+      enable = true;
+      role = "server";
+      tokenFile = config.age.secrets.k3s.path;
+      clusterInit = true;
+    };
   };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion

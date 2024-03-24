@@ -15,12 +15,17 @@
 
     # Wallpaper repo
     wallpapers.url = "github:tarneaux/wallpapers-small";
+
+    # Secrets management for servers
+    agenix.url = "github:ryantm/agenix";
+    agenix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
     { self
     , nixpkgs
     , home-manager
+    , agenix
     , ...
     } @ inputs:
     let
@@ -69,6 +74,7 @@
           modules = [
             # > Our main nixos configuration file <
             ./nixos/issou/configuration.nix
+            agenix.nixosModules.default
           ];
         };
         plancha = nixpkgs.lib.nixosSystem {
@@ -76,6 +82,7 @@
           modules = [
             # > Our main nixos configuration file <
             ./nixos/plancha/configuration.nix
+            agenix.nixosModules.default
           ];
         };
         gaspacho = nixpkgs.lib.nixosSystem {
@@ -83,6 +90,7 @@
           modules = [
             # > Our main nixos configuration file <
             ./nixos/gaspacho/configuration.nix
+            agenix.nixosModules.default
           ];
         };
       };
