@@ -4,7 +4,6 @@
   imports = [
     ../common.nix
     ../servers.nix
-    ../k3s.nix
     ./hardware-configuration.nix
   ];
 
@@ -23,11 +22,6 @@
     ];
     defaultGateway.interface = "eno1";
   };
-
-  services.k3s.extraFlags = toString [
-    "--bind-address=0.0.0.0"
-  ];
-  services.k3s.clusterInit = true;
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.05";
