@@ -4,7 +4,6 @@
   imports = [
     ../common.nix
     ../servers.nix
-    ../k3s.nix
     ./hardware-configuration.nix
   ];
 
@@ -23,8 +22,6 @@
     ];
     defaultGateway.interface = "eno1";
   };
-
-  services.k3s.serverAddr = "https://192.168.1.151:6443";
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.05";
