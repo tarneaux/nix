@@ -2,7 +2,7 @@
   environment.systemPackages = with pkgs; [
     jq
     mktemp
-    openiscsi
+    nfs-utils
   ];
 
   networking.firewall.allowedTCPPorts = [
@@ -16,12 +16,15 @@
       group = "root";
     };
   };
-
   services = {
     k3s = {
       enable = true;
       role = "server";
       tokenFile = config.age.secrets.k3s.path;
+    };
+    openiscsi = {
+      enable = true;
+      name = "${config.networking.hostName}-initiatorhost"; 
     };
   };
 }
