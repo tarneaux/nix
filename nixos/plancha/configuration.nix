@@ -4,6 +4,7 @@
   imports = [
     ../common.nix
     ../servers.nix
+    ../k3s.nix
     ./hardware-configuration.nix
   ];
 
@@ -21,30 +22,12 @@
       }
     ];
     defaultGateway.interface = "eno1";
-    firewall.allowedTCPPorts = [
-      6443 2379 2380 # K3s, etcd
-    ];
   };
 
-  age.secrets = {
-    k3s = {
-      file = ../../secrets/k3s.age;
-      owner = "root";
-      group = "root";
-    };
-  };
-
-  services = {
-    k3s = {
-      enable = true;
-      role = "server";
-      tokenFile = config.age.secrets.k3s.path;
-      clusterInit = true;
-      extraFlags = toString [
-        "--bind-address=0.0.0.0"
-      ];
-    };
-  };
+  services.k3s.extraFlags = toString [
+    "--bind-address=0.0.0.0"
+  ];
+  services.k3s.clusterInit = true;
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.05";
