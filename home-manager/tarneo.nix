@@ -77,5 +77,7 @@
     kicad
     nmap
     kubectl
+    hplip
+    libreoffice
   ];
 }
