@@ -79,5 +79,6 @@
     kubectl
     hplip
     libreoffice
+    dig
   ];
 }
