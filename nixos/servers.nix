@@ -11,7 +11,18 @@
     '';
   };
 
-  security.pam.services.su.requireWheel = true;
+  security = {
+    sudo.enable = false;
+    doas = {
+      enable = true;
+      extraRules = [{
+        groups = [ "wheel" ];
+        keepEnv = true;
+        persist = true;
+      }];
+    };
+    pam.services.su.requireWheel = true;
+  };
 
   users.users.risitas = {
     isNormalUser = true;

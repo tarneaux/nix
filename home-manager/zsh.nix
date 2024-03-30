@@ -8,6 +8,14 @@ let
     if hostname == "framy"
     then "podman"
     else "doas docker";
+  privesc_wrong = # Wrong privilege escalation command
+    if hostname == "framy"
+    then "doas"
+    else "sudo";
+  privesc_right = # Right privilege escalation command
+    if hostname == "framy"
+    then "sudo"
+    else "doas";
   zcript = name: script: pkgs.writeScriptBin name ("#!${pkgs.zsh}/bin/zsh\n\n" + script);
 in
 {
@@ -26,7 +34,7 @@ in
       man = "${pkgs.unstable.bat-extras.batman}/bin/batman";
     } // (if hostname == "framy" then {
       # Reload wifi kernel module, useful when wifi doesn't work after resume
-      wr = "doas modprobe -r mt7921e && doas modprobe mt7921e";
+      wr = "sudo modprobe -r mt7921e && sudo modprobe mt7921e";
     } else { });
 
     zsh-abbr = {
@@ -72,7 +80,7 @@ in
         tmn = "tmux new-session -s";
 
         # Nixos
-        or = "doas nixos-rebuild switch --flake ~nix";
+        or = "${privesc_right} nixos-rebuild switch --flake ~nix";
         hr = "home-manager switch --flake ~nix";
         ns = "nix shell";
         nr = "nix run";
@@ -88,8 +96,8 @@ in
         lg = "lazygit";
 
         # VPN
-        vu = "doas wg-quick up vpn";
-        vd = "doas wg-quick down vpn";
+        vu = "${privesc_right} wg-quick up vpn";
+        vd = "${privesc_right} wg-quick down vpn";
 
         # Docker (or podman)
         d = dockerlike;
@@ -105,7 +113,7 @@ in
         dcl = "${dockerlike} compose logs -f";
 
         # Correct the common mistake of using sudo instead of doas
-        sudo = "doas";
+        ${privesc_wrong} = privesc_right;
       };
     };
 
