@@ -36,7 +36,7 @@ local function toggle ()
 
         local quake = lain.util.quake({
             app = "alacritty --class VpnQuake",
-            argname = "--title %s -e sudo wg-quick " .. new .. " vpn",
+            argname = "--title %s -e doas wg-quick " .. new .. " vpn",
             followtag = true,
             height = 0.3,
             width = 0.3,
