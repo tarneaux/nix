@@ -11,6 +11,8 @@
     '';
   };
 
+  security.pam.services.su.requireWheel = true;
+
   users.users.risitas = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘doas’ for the user.
