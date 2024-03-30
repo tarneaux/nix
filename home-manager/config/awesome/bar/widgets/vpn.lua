@@ -25,7 +25,7 @@ local function daemon ()
     end)
 end
 
-local function toggle ()
+function ToggleVpn ()
     get_vpn_status(function(status)
         local new
         if status then
@@ -52,7 +52,7 @@ end
 
 widget:connect_signal("button::press", function(_, _, _, button)
     if button == 1 then
-        toggle()
+        ToggleVpn()
     end
 end)
 
