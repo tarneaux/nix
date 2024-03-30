@@ -63,6 +63,18 @@
       })
       config.nix.registry;
 
+  security = {
+    sudo.enable = false;
+    doas = {
+      enable = true;
+      extraRules = [{
+        groups = [ "wheel" ];
+        keepEnv = true;
+        persist = true;
+      }];
+    };
+  };
+
   nix.settings = {
     experimental-features = "nix-command flakes";
     auto-optimise-store = true;

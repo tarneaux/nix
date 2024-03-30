@@ -7,7 +7,7 @@ let
   dockerlike =
     if hostname == "framy"
     then "podman"
-    else "sudo docker";
+    else "doas docker";
   zcript = name: script: pkgs.writeScriptBin name ("#!${pkgs.zsh}/bin/zsh\n\n" + script);
 in
 {
@@ -26,7 +26,7 @@ in
       man = "${pkgs.unstable.bat-extras.batman}/bin/batman";
     } // (if hostname == "framy" then {
       # Reload wifi kernel module, useful when wifi doesn't work after resume
-      wr = "sudo modprobe -r mt7921e && sudo modprobe mt7921e";
+      wr = "doas modprobe -r mt7921e && doas modprobe mt7921e";
     } else { });
 
     zsh-abbr = {
@@ -72,7 +72,7 @@ in
         tmn = "tmux new-session -s";
 
         # Nixos
-        or = "sudo nixos-rebuild switch --flake ~nix";
+        or = "doas nixos-rebuild switch --flake ~nix";
         hr = "home-manager switch --flake ~nix";
         ns = "nix shell";
         nr = "nix run";
@@ -88,13 +88,12 @@ in
         lg = "lazygit";
 
         # VPN
-        vu = "sudo wg-quick up vpn";
-        vd = "sudo wg-quick down vpn";
+        vu = "doas wg-quick up vpn";
+        vd = "doas wg-quick down vpn";
 
         # Docker (or podman)
         d = dockerlike;
         docker = dockerlike;
-        doas = "sudo";
         # In the following, \\\\t resolves to \\t in the abbr, which resolves to
         # \t in the shell, which resolves to a tab in the output.
         # This prevents from adding an actual tab in the prompt when using the
@@ -104,6 +103,9 @@ in
         dcd = "${dockerlike} compose down";
         dcr = "${dockerlike} compose restart";
         dcl = "${dockerlike} compose logs -f";
+
+        # Correct the common mistake of using sudo instead of doas
+        sudo = "doas";
       };
     };
 
