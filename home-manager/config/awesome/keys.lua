@@ -162,10 +162,12 @@ local globalkeys = gears.table.join(
                         "request::activate", "key.unminimize", {raise = true}
                     )
                   end
-              end)
+              end),
 
     -- Switch focus to next screen
     -- awful.key({ ModKey }, "h", function () awful.screen.focus_relative(1) end)
+    -- Toggle VPN
+    awful.key({ ModKey }, "v", ToggleVpn)
 )
 
 -- Keys for clients (windows)
