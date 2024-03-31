@@ -12,7 +12,6 @@
   # Use the systemd-boot EFI boot loader.
   boot = {
     loader.systemd-boot.enable = true;
-    kernelPackages = pkgs.linuxPackages_latest;
     kernelParams = [ "amdgpu.sg_display=0" ];
     supportedFilesystems = [ "btrfs" "ntfs" ];
     loader.efi = {
