@@ -47,7 +47,8 @@
       drivers = [ pkgs.hplip ];
     };
     logind = {
-      lidSwitch = "hibernate";
+      powerKey = "hibernate";
+      lidSwitch = "suspend";
     };
     power-profiles-daemon.enable = true;
     udev.extraRules = ''
