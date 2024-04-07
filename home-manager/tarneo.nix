@@ -80,5 +80,6 @@
     hplip
     libreoffice
     dig
+    ffmpeg
   ];
 }
