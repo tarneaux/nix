@@ -82,5 +82,6 @@
     dig
     ffmpeg
     license-cli
+    inkscape
   ];
 }
