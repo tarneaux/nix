@@ -13,18 +13,6 @@
           highlight clear SignColumn
         '';
       }
-      (pkgs.vimUtils.buildVimPlugin
-        {
-          pname = "copilot-lualine";
-          version = "2024-01-30";
-          src = pkgs.fetchFromGitHub {
-            owner = "AndreM222";
-            repo = "copilot-lualine";
-            rev = "9e226cf8f4653e13ec282f5878d66aa435899c8c";
-            sha256 = "sha256-Ma0wpY2Tg0Kr6Epu3QyGesXRjOcugyJ2NTuOUPSLvLk=";
-          };
-          meta.homepage = "https://github.com/AndreM222/copilot-lualine";
-        })
       {
         plugin = vimPlugins.lualine-nvim;
         type = "lua";
@@ -38,7 +26,7 @@
               lualine_a = {'mode'},
               lualine_b = {'branch', 'diff', 'diagnostics'},
               lualine_c = {'filename'},
-              lualine_x = {'copilot', 'encoding', 'fileformat', 'filetype'},
+              lualine_x = {'encoding', 'fileformat', 'filetype'},
               lualine_y = {'progress'},
               lualine_z = {'location'}
             },
@@ -86,28 +74,6 @@
                   vim.opt.conceallevel = 3
               end
           })
-        '';
-      }
-      {
-        plugin = vimPlugins.copilot-lua;
-        type = "lua";
-        config = ''
-          require('copilot').setup {
-            suggestion = {
-              enabled = true,
-              auto_trigger = true,
-            },
-            panel = { enabled = false },
-            filetypes = {
-              ["*"] = true,
-              ["markdown"] = false,
-              ["org"] = false,
-              ["mail"] = false,
-            },
-            copilot_node_command = '${pkgs.nodejs-slim}/bin/node',
-          }
-          -- Using vim.keymap.set doesn't work here for some reason.
-          vim.cmd [[ nnoremap <leader>c <cmd>silent Copilot! toggle<cr> ]]
         '';
       }
       {
@@ -223,8 +189,6 @@
                 local luasnip = require("luasnip")
                 if cmp.visible() and has_words_before() then
                   cmp.select_next_item()
-                elseif require("copilot.suggestion").is_visible() then
-                  require("copilot.suggestion").accept()
                 else
                   fallback()
                 end
