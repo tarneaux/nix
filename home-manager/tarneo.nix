@@ -83,5 +83,6 @@
     ffmpeg
     license-cli
     inkscape
+    gpick
   ];
 }
