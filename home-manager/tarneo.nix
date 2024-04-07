@@ -81,5 +81,6 @@
     libreoffice
     dig
     ffmpeg
+    license-cli
   ];
 }
