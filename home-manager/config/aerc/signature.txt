@@ -3,8 +3,8 @@
 
 Tarneo
 
-high school student, computer programmer, sysadmin at https://renn.es and
-{privacy, right to repair, free software} advocate.
+high school student, computer programmer, sysadmin and president of
+https://renn.es and {privacy, right to repair, free software} advocate.
 
 Blog: https://tarneo.fr/
 E-mail: tarneo@tarneo.fr
