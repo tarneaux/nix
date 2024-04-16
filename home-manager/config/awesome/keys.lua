@@ -38,9 +38,6 @@ ModKey = "Mod4"
 
 local previous_layout = nil
 
--- Unused keys on default triboard layer (for adding new keybindings)
--- Super + g
-
 local globalkeys = gears.table.join(
     -- Applications launcher: dmenu. Archlinux package: dmenu
     awful.key({ ModKey,           }, "p", function() awful.spawn.with_shell("dmenu_run") end),
@@ -50,7 +47,7 @@ local globalkeys = gears.table.join(
     -- nice alternatives include GNU icecat and librewolf.
     awful.key({ ModKey,           }, "b", function() awful.spawn.with_shell("qutebrowser") end),
     -- Emacs: I use emacsclient to open emacs. You can change this to match your editor, or just remove it.
-    awful.key({ ModKey,           }, "g", function() awful.spawn.with_shell("emacs") end),
+    awful.key({ ModKey,           }, "g", function() awful.spawn.with_shell("maim -su | xclip -selection clipboard -t image/png") end),
     -- Zathura: PDF viewer. Archlinux package: zathura.
     awful.key({ ModKey,           }, "z", function() awful.spawn.with_shell("zathura") end),
     -- Open org quake terminal
