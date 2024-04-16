@@ -34,7 +34,12 @@ local bar = function(s)
                     layout = wibox.layout.align.horizontal,
                     {
                         layout = wibox.layout.align.horizontal,
-                        playing,
+                        {
+                            layout = wibox.layout.align.horizontal,
+                            wibox.widget.systray(false),
+                            spacer,
+                            playing,
+                        },
                         spacer,
                         battery,
                     },
