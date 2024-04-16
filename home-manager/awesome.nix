@@ -45,6 +45,7 @@
     xorg.xinput
     xorg.xmodmap
     xss-lock
+    nextcloud-client
     (pkgs.writeScriptBin "autorandr-watcher" ''
       #!${pkgs.bash}/bin/bash
       # If 2 screens are enabled, which only happens when autorandr hasn't run
@@ -78,6 +79,14 @@
         # in.
         inotifywait /tmp/keyboard
         manage &
+      done
+    '')
+    (pkgs.writeScriptBin "nextcloud-sync" ''
+      #!${pkgs.bash}/bin/bash
+      pass=$(cat ~/.local/share/nextcloudpass)
+      while true; do
+        nextcloudcmd -h --user tarneo --password "$pass" --non-interactive --path / ~/.nc https://cloud.renn.es
+        inotifywait ~/.nc -t 600
       done
     '')
   ];

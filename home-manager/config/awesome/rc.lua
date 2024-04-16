@@ -54,6 +54,9 @@ awful.spawn.with_shell("pidof -x keyboard-watcher || keyboard-watcher")
 -- Unison sync script: syncs files with my server.
 awful.spawn.with_shell("pgrep unison || unison-sync")
 
+-- Nextcloud sync, for files shared with other people.
+awful.spawn.with_shell("pidof -x nextcloud-sync || nextcloud-sync")
+
 -- Set the screen to turn off & lock after 5 minutes of inactivity.
 awful.spawn.with_shell("xset s 300")
 -- xss-lock will exit if already running, no need to pgrep.
