@@ -37,6 +37,13 @@
     wireguard-tools
   ];
 
+  # Automatically collect garbage
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than 7d";
+  };
+
   # ############################ #
   #  Boring flake configuration  #
   # ############################ #
