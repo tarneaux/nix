@@ -79,6 +79,9 @@ local globalkeys = gears.table.join(
     -- Hibernate the computer: you need some configuration for this to work. See the archwiki, page on hibernation.
     awful.key({ ModKey, "Control" }, "q", function() awful.spawn.with_shell("systemctl hibernate") end),
 
+    -- Suspend
+    awful.key({ ModKey, "Control" }, "z", function() awful.spawn.with_shell("systemctl suspend") end),
+
     -- change brightness. Only works on my laptop (asus something)
     awful.key({ }, "XF86MonBrightnessDown", function ()
         awful.spawn.with_shell("brightnessctl -d amdgpu_bl0 set 10%-") end),
