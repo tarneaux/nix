@@ -28,7 +28,7 @@
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘doas’ for the user.
     openssh.authorizedKeys.keys = [
-      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIODfULxIav+b+6T/A8f9L+2VKag0+X8dY2Kx92gBxbeu tarneo@framy"
+      "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIMlgQs21EQEj6BkIviA0aYcwmsUSppUXKiJ81055NoUWAAAABHNzaDo= tarneo@framy"
     ];
     packages = [ ];
     shell = pkgs.zsh;
