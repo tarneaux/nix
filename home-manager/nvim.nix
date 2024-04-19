@@ -81,7 +81,7 @@
         type = "lua";
         config = ''
           local lspconfig = require('lspconfig')
-          local servers = {"clangd", "rust_analyzer", "pyright", "bashls", "html", "jsonls", "rust_analyzer", "lua_ls", "hls", "eslint", "ansiblels", "yamlls", "nil_ls", "gopls"}
+          local servers = {"clangd", "rust_analyzer", "pyright", "bashls", "html", "jsonls", "rust_analyzer", "lua_ls", "hls", "eslint", "ansiblels", "yamlls", "nil_ls", "gopls", "texlab"}
 
           cap = require('cmp_nvim_lsp').default_capabilities()
 
@@ -484,5 +484,6 @@
     unstable.vscode-langservers-extracted
     vscode-extensions.sumneko.lua
     gopls
+    texlab
   ];
 }
