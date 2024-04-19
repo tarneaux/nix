@@ -108,6 +108,10 @@
     ];
   };
 
+  xdg.mime.defaultApplications = {
+    "application/pdf" = "org.pwmt.zathura.desktop";
+  };
+
   fonts.packages = with pkgs; [
     # fantasque-sans-mono
     (nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
