@@ -112,6 +112,8 @@
     "application/pdf" = "org.pwmt.zathura.desktop";
   };
 
+  programs.adb.enable = true;
+
   fonts.packages = with pkgs; [
     # fantasque-sans-mono
     (nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
