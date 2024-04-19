@@ -182,6 +182,7 @@ in
       (zcript "ntmux" (builtins.readFile ./config/ntmux.zsh))
       pkgs.trash-cli
       pkgs.nix-index
+      pkgs.tldr
     ]
     ++ (
       if hostname == "framy"
