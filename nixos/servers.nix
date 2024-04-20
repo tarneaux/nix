@@ -24,14 +24,17 @@
     pam.services.su.requireWheel = true;
   };
 
-  users.users.risitas = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘doas’ for the user.
-    openssh.authorizedKeys.keys = [
-      "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIFCEDrSWpY6a/SN1uHCsbGj2ewvnSTSYlx/1Chsk4fsxAAAABHNzaDo= tarneo@framy"
-    ];
-    packages = [ ];
-    shell = pkgs.zsh;
+  users = {
+    motd = builtins.readFile ./motd.txt;
+    users.risitas = {
+      isNormalUser = true;
+      extraGroups = [ "wheel" ]; # Enable ‘doas’ for the user.
+      openssh.authorizedKeys.keys = [
+        "sk-ssh-ed25519@openssh.com AAAAGnNrLXNzaC1lZDI1NTE5QG9wZW5zc2guY29tAAAAIFCEDrSWpY6a/SN1uHCsbGj2ewvnSTSYlx/1Chsk4fsxAAAABHNzaDo= tarneo@framy"
+      ];
+      packages = [ ];
+      shell = pkgs.zsh;
+    };
   };
 
   services.openssh = {
