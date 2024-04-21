@@ -77,11 +77,11 @@
             agenix.nixosModules.default
           ];
         };
-        plancha = nixpkgs.lib.nixosSystem {
+        chankla = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
           modules = [
             # > Our main nixos configuration file <
-            ./nixos/plancha/configuration.nix
+            ./nixos/chankla/configuration.nix
             agenix.nixosModules.default
           ];
         };
@@ -121,11 +121,11 @@
             ./home-manager/risitas.nix
           ];
         };
-        "risitas@plancha" = home-manager.lib.homeManagerConfiguration {
+        "risitas@chankla" = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
           extraSpecialArgs = {
             inherit inputs outputs;
-            hostname = "plancha";
+            hostname = "chankla";
             username = "risitas";
           };
           modules = [

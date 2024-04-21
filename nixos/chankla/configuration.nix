@@ -13,10 +13,10 @@
   boot.supportedFilesystems = [ "btrfs" ];
 
   networking = {
-    hostName = "plancha"; # Define your hostname.
+    hostName = "chankla"; # Define your hostname.
     interfaces.eno1.ipv4.addresses = [
       {
-        address = "192.168.1.151";
+        address = "192.168.1.154";
         prefixLength = 16;
       }
     ];
