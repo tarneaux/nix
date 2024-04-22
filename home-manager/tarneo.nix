@@ -84,5 +84,6 @@
     license-cli
     inkscape
     gpick
+    xournalpp
   ];
 }
