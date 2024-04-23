@@ -21,19 +21,6 @@ local org_quake = lain.util.quake({
     settings = function(c) c.sticky = true end
 })
 
-local ssh_quake = lain.util.quake({
-    app = "alacritty --class SshQuake",
-    argname = "--title %s -e sshtmux -a",
-    followtag = true,
-    height = 0.9,
-    width = 0.9,
-    vert = "center",
-    horiz = "center",
-    border = 2,
-    name = "SshQuake",
-    settings = function(c) c.sticky = true end
-})
-
 ModKey = "Mod4"
 
 local previous_layout = nil
@@ -52,8 +39,6 @@ local globalkeys = gears.table.join(
     awful.key({ ModKey,           }, "z", function() awful.spawn.with_shell("zathura") end),
     -- Open org quake terminal
     awful.key({ ModKey,           }, "j", function() org_quake:toggle() end),
-    -- Open weechat quake terminal
-    awful.key({ ModKey,           }, "k", function() ssh_quake:toggle() end),
     -- ncmpcpp: terminal music player/mpd frontend. Archlinux package: ncmpcpp.
     -- Super + / (triboard) or Super + Shift + : (french keyboard)
     awful.key({ ModKey, "Shift"   }, "#60", function() awful.spawn.with_shell(TerminalCmd .. " ncmpcpp") end),
