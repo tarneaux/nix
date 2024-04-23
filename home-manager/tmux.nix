@@ -6,10 +6,7 @@
     enable = true;
     extraConfig =
       builtins.readFile ./config/tmux.conf;
-    prefix =
-      if hostname == "framy"
-      then "C-a"
-      else "C-b";
+    prefix = "C-a";
   };
   home.packages = [
     (pkgs.writeScriptBin "__tmux_fzf_window"
