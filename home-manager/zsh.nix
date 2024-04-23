@@ -183,15 +183,7 @@ in
       pkgs.trash-cli
       pkgs.nix-index
       pkgs.tldr
-    ]
-    ++ (
-      if hostname == "framy"
-      then [
-        (zcript "sshtmux" (builtins.readFile ./config/sshtmux.zsh))
-        (zcript "__sshtmux_session" (builtins.readFile ./config/sshtmux-session.zsh))
-      ]
-      else [ ]
-    );
+    ];
   programs.zoxide.enable = true;
   programs.direnv.enable = true;
 }

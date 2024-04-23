@@ -1,10 +1,5 @@
 #!/usr/bin/env bash
 
-if [ "$USER" = "tarneo" ]; then
-    # Make sure ssh sessions are available
-    sshtmux
-fi
-
 windows=$(tmux list-windows -aF '#W (#S:#I)')
 fzf_output=$(echo "$windows" \
     | fzf --prompt="Switch to window: " --reverse --print-query)
