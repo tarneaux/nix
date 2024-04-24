@@ -1,9 +1,7 @@
 # This is your system's configuration file.
 # Use this to configure your system environment (it replaces /etc/nixos/configuration.nix)
-{ config, ... }: {
+{ ... }: {
   imports = [
-    ../common.nix
-    ../servers.nix
     ./hardware-configuration.nix
   ];
 
