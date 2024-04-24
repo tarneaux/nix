@@ -211,7 +211,12 @@
           require('luasnip/loaders/from_vscode').load()
         '';
       }
-      vimPlugins.vim-commentary
+      {
+        plugin = vimPlugins.vim-commentary;
+        config = ''
+          autocmd FileType nix setlocal commentstring=#\ %s
+        '';
+      }
       {
         plugin = vimPlugins.rust-vim;
         type = "lua";
