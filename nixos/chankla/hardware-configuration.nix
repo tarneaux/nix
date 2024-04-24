@@ -16,6 +16,7 @@
     {
       device = "/dev/disk/by-uuid/3D25-8E3D";
       fsType = "vfat";
+      options = [ "fmask=0077" "dmask=0077" "defaults" ];
     };
 
   fileSystems."/data" =
