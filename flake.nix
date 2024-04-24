@@ -38,9 +38,17 @@
         "aarch64-darwin"
         "x86_64-darwin"
       ];
+
       # This is a function that generates an attribute by calling a function you
       # pass to it, with each system as an argument
       forAllSystems = nixpkgs.lib.genAttrs systems;
+
+      # Define IP addresses for servers.
+      ipv4_addresses = {
+        issou = "192.168.1.150";
+        gaspacho = "192.168.1.153";
+        chankla = "192.168.1.154";
+      };
     in
     {
       # Your custom packages
@@ -69,31 +77,17 @@
             ./nixos/framy/configuration.nix
           ];
         };
-        issou = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
+      } // nixpkgs.lib.genAttrs [ "issou" "gaspacho" "chankla" ] (hostname: (
+        nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs outputs hostname ipv4_addresses;
+          };
           modules = [
             # > Our main nixos configuration file <
-            ./nixos/issou/configuration.nix
+            ./nixos/${hostname}/configuration.nix
             agenix.nixosModules.default
           ];
-        };
-        chankla = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          modules = [
-            # > Our main nixos configuration file <
-            ./nixos/chankla/configuration.nix
-            agenix.nixosModules.default
-          ];
-        };
-        gaspacho = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          modules = [
-            # > Our main nixos configuration file <
-            ./nixos/gaspacho/configuration.nix
-            agenix.nixosModules.default
-          ];
-        };
-      };
+        }));
 
       # Standalone home-manager configuration entrypoint
       # Available through 'home-manager --flake .#your-username@your-hostname'

@@ -1,10 +1,23 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, inputs, hostname, ipv4_addresses, ... }: {
   networking = {
+    # See https://nixos.org/manual/nixos/stable/#sec-rename-ifs
+    usePredictableInterfaceNames = false;
+
+    hostName = hostname;
+
+    interfaces.eth0.ipv4.addresses = [
+      {
+        address = ipv4_addresses.${hostname};
+        prefixLength = 24;
+      }
+    ];
+
     defaultGateway = {
-      # The interface is configured per-host
       address = "192.168.1.1";
       metric = 1;
+      interface = "eth0";
     };
+
     resolvconf.extraConfig = ''
       name_servers_append='192.168.1.1'
       append_search='home'
