@@ -86,6 +86,8 @@
           modules = [
             # > Our main nixos configuration file <
             ./nixos/${hostname}/configuration.nix
+            ./nixos/common.nix
+            ./nixos/servers
             agenix.nixosModules.default
           ];
         });

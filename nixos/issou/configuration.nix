@@ -2,8 +2,6 @@
 # Use this to configure your system environment (it replaces /etc/nixos/configuration.nix)
 { pkgs, ... }: {
   imports = [
-    ../common.nix
-    ../servers.nix
     ./hardware-configuration.nix
   ];
 
