@@ -1,6 +1,7 @@
 { pkgs, inputs, hostname, ipv4_addresses, ... }: {
   networking = {
     # See https://nixos.org/manual/nixos/stable/#sec-rename-ifs
+    # TL;DR: Allows using the "eth0" interface name on all hosts
     usePredictableInterfaceNames = false;
 
     hostName = hostname;
