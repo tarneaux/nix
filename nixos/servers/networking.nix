@@ -23,5 +23,10 @@
       name_servers_append='192.168.1.1'
       append_search='home'
     '';
+
+    nftables = {
+      enable = true;
+      ruleset = builtins.readFile ./nftables.conf;
+    };
   };
 }
