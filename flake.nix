@@ -105,39 +105,16 @@
             ./home-manager/tarneo.nix
           ];
         };
-        "risitas@issou" = home-manager.lib.homeManagerConfiguration {
+      } // nixpkgs.lib.genAttrs (map (hostname: "risitas@${hostname}") server_hostnames) (hostname:
+        home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
           extraSpecialArgs = {
-            inherit inputs outputs;
-            hostname = "issou";
+            inherit inputs outputs hostname;
             username = "risitas";
           };
           modules = [
             ./home-manager/risitas.nix
           ];
-        };
-        "risitas@chankla" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-          extraSpecialArgs = {
-            inherit inputs outputs;
-            hostname = "chankla";
-            username = "risitas";
-          };
-          modules = [
-            ./home-manager/risitas.nix
-          ];
-        };
-        "risitas@gaspacho" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-          extraSpecialArgs = {
-            inherit inputs outputs;
-            hostname = "gaspacho";
-            username = "risitas";
-          };
-          modules = [
-            ./home-manager/risitas.nix
-          ];
-        };
-      };
+        });
     };
 }
