@@ -49,6 +49,7 @@
         gaspacho = "192.168.1.153";
         chankla = "192.168.1.154";
       };
+      server_hostnames = builtins.attrNames ipv4_addresses;
     in
     {
       # Your custom packages
@@ -77,7 +78,7 @@
             ./nixos/framy/configuration.nix
           ];
         };
-      } // nixpkgs.lib.genAttrs [ "issou" "gaspacho" "chankla" ] (hostname: (
+      } // nixpkgs.lib.genAttrs server_hostnames (hostname:
         nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit inputs outputs hostname ipv4_addresses;
@@ -87,7 +88,7 @@
             ./nixos/${hostname}/configuration.nix
             agenix.nixosModules.default
           ];
-        }));
+        });
 
       # Standalone home-manager configuration entrypoint
       # Available through 'home-manager --flake .#your-username@your-hostname'
