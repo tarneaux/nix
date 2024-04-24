@@ -37,6 +37,8 @@
     };
   };
 
+  virtualisation.docker.enable = true;
+
   system.autoUpgrade = {
     enable = true;
     flake = inputs.self.outPath;
@@ -51,7 +53,8 @@
     randomizedDelaySec = "45min";
   };
 
-  environment.systemPackages = [
+  environment.systemPackages = with pkgs; [
+    iptables # For docker to be able to create nftables routes
     inputs.agenix.packages.x86_64-linux.default
   ];
 
