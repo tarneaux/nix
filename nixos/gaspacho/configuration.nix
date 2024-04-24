@@ -12,17 +12,6 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.supportedFilesystems = [ "btrfs" ];
 
-  networking = {
-    hostName = "gaspacho"; # Define your hostname.
-    interfaces.eno1.ipv4.addresses = [
-      {
-        address = "192.168.1.153";
-        prefixLength = 24;
-      }
-    ];
-    defaultGateway.interface = "eno1";
-  };
-
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.05";
 }
