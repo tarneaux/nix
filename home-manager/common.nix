@@ -1,5 +1,7 @@
 { pkgs, ... }: {
-  programs.lazygit.enable = true;
+  imports = [
+    ./lazygit.nix
+  ];
   programs.fzf.enable = true;
   home.packages = with pkgs; [
     gnumake
