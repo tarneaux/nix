@@ -85,5 +85,6 @@
     inkscape
     gpick
     xournalpp
+    nodePackages.prettier
   ];
 }
