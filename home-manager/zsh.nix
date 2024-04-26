@@ -4,10 +4,6 @@
 , ...
 }:
 let
-  dockerlike =
-    if hostname == "framy"
-    then "podman"
-    else "doas docker";
   privesc_wrong = # Wrong privilege escalation command
     if hostname == "framy"
     then "doas"
@@ -99,18 +95,18 @@ in
         vu = "${privesc_right} wg-quick up vpn";
         vd = "${privesc_right} wg-quick down vpn";
 
-        # Docker (or podman)
-        d = dockerlike;
-        docker = dockerlike;
+        # podman
+        d = "podman";
+        docker = "podman";
         # In the following, \\\\t resolves to \\t in the abbr, which resolves to
         # \t in the shell, which resolves to a tab in the output.
         # This prevents from adding an actual tab in the prompt when using the
         # abbr.
-        dp = "${dockerlike} ps -a --format 'table {{.Names}}\\\\t{{.Status}}'";
-        dcu = "${dockerlike} compose up -d";
-        dcd = "${dockerlike} compose down";
-        dcr = "${dockerlike} compose restart";
-        dcl = "${dockerlike} compose logs -f";
+        dp = "podman ps -a --format 'table {{.Names}}\\\\t{{.Status}}'";
+        dcu = "podman compose up -d";
+        dcd = "podman compose down";
+        dcr = "podman compose restart";
+        dcl = "podman compose logs -f";
 
         # Correct the common mistake of using sudo instead of doas
         ${privesc_wrong} = privesc_right;

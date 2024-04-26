@@ -37,7 +37,11 @@
     };
   };
 
-  virtualisation.docker.enable = true;
+  virtualisation.podman = {
+    enable = true;
+    defaultNetwork.settings.dns_enabled = true;
+    dockerCompat = true;
+  };
 
   system.autoUpgrade = {
     enable = true;
@@ -53,8 +57,8 @@
     randomizedDelaySec = "45min";
   };
 
-  environment.systemPackages = with pkgs; [
-    iptables # For docker to be able to create nftables routes
+  environment.systemPackages = with pkgs;[
+    podman-compose
     inputs.agenix.packages.x86_64-linux.default
   ];
 
