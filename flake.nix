@@ -45,9 +45,18 @@
 
       # Define IP addresses for servers.
       ipv4_addresses = {
-        issou = "192.168.1.150";
-        gaspacho = "192.168.1.153";
-        chankla = "192.168.1.154";
+        issou = {
+          local = "192.168.1.150";
+          wg = "10.8.0.3/32";
+        };
+        gaspacho = {
+          local = "192.168.1.153";
+          wg = "10.8.0.4/32";
+        };
+        chankla = {
+          local = "192.168.1.154";
+          wg = "10.8.0.2/32";
+        };
       };
       server_hostnames = builtins.attrNames ipv4_addresses;
     in
