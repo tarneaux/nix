@@ -26,6 +26,7 @@
       ];
       packages = [ ];
       shell = pkgs.zsh;
+      linger = true; # Allow using the podman-restart.service without having to log in at reboot
     };
   };
 
