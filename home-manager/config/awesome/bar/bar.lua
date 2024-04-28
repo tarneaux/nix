@@ -21,6 +21,7 @@ local bar = function(s)
         bg = beautiful.background
     }
     wb:setup {
+        layout = wibox.layout.stack,
         {
             {
                 layout = wibox.layout.align.horizontal,
@@ -66,7 +67,6 @@ local bar = function(s)
             halign = "center",
             clock
         },
-        layout = wibox.layout.stack,
     }
 end
 
