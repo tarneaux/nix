@@ -86,5 +86,6 @@
     gpick
     xournalpp
     nodePackages.prettier
+    audacity
   ];
 }
