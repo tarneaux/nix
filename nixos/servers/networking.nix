@@ -29,16 +29,16 @@
       ruleset = builtins.readFile ./nftables.conf;
     };
 
-    wireguard.interfaces = {
+    wg-quick.interfaces = {
       intra = {
-        ips = [ ipv4_addresses.${hostname}.wg ];
+        address = [ ipv4_addresses.${hostname}.wg ];
+        dns = [ "8.8.8.8" ];
         privateKeyFile = "/etc/wireguard/intra.key";
-
         peers = [
           {
             publicKey = "5SFZ1w5fWJHJTkiL6LEeBUH6cPh1CFvRVIOuAFxf6k0=";
-            allowedIPs = [ "10.8.0.0/24" ];
-            endpoint = "vps.renn.es:64468";
+            allowedIPs = [ "0.0.0.0/0" ];
+            endpoint = "51.210.180.14:64468";
             persistentKeepalive = 25;
           }
         ];
