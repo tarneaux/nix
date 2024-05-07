@@ -15,7 +15,7 @@
 
     defaultGateway = {
       address = "192.168.1.1";
-      metric = 1;
+      metric = 200;
       interface = "eth0";
     };
 
