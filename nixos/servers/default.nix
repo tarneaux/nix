@@ -60,7 +60,6 @@
 
   environment.systemPackages = with pkgs;[
     podman-compose
-    inputs.agenix.packages.x86_64-linux.default
   ];
 
   nix.settings.allowed-users = [ "@wheel" ];

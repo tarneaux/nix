@@ -15,17 +15,12 @@
 
     # Wallpaper repo
     wallpapers.url = "github:tarneaux/wallpapers-small";
-
-    # Secrets management for servers
-    agenix.url = "github:ryantm/agenix";
-    agenix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
     { self
     , nixpkgs
     , home-manager
-    , agenix
     , ...
     } @ inputs:
     let
@@ -97,7 +92,6 @@
             ./nixos/${hostname}/configuration.nix
             ./nixos/common.nix
             ./nixos/servers
-            agenix.nixosModules.default
           ];
         });
 
