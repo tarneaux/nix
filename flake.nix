@@ -15,12 +15,17 @@
 
     # Wallpaper repo
     wallpapers.url = "github:tarneaux/wallpapers-small";
+
+    # Automated partitioning for some hosts
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
     { self
     , nixpkgs
     , home-manager
+    , disko
     , ...
     } @ inputs:
     let
@@ -51,6 +56,11 @@
         chankla = {
           local = "192.168.1.154";
           wg = "10.8.0.2/32";
+        };
+        chorizo = {
+          primary = "51.210.180.14";
+          secondary = "178.32.110.62";
+          wg = "10.8.0.1/32";
         };
       };
       server_hostnames = builtins.attrNames ipv4_addresses;
@@ -92,7 +102,9 @@
             ./nixos/${hostname}/configuration.nix
             ./nixos/common.nix
             ./nixos/servers
-          ];
+          ] ++ (if (hostname == "chorizo") then [
+            disko.nixosModules.disko
+          ] else [ ]);
         });
 
       # Standalone home-manager configuration entrypoint

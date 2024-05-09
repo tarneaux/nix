@@ -1,7 +1,6 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, inputs, hostname, ... }: {
   imports = [
-    ./networking.nix
-  ];
+  ] ++ (if hostname != "chorizo" then [ ./networking.nix ] else [ ]);
 
   security = {
     sudo.enable = false;
