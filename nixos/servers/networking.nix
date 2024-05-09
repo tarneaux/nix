@@ -24,11 +24,6 @@
       append_search='home'
     '';
 
-    nftables = {
-      enable = true;
-      ruleset = builtins.readFile ./nftables.conf;
-    };
-
     wg-quick.interfaces = {
       intra = {
         address = [ ipv4_addresses.${hostname}.wg ];
