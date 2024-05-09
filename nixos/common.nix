@@ -35,6 +35,7 @@
     trash-cli
     unstable.eza
     wireguard-tools
+    ncdu
   ];
 
   # Automatically collect garbage
