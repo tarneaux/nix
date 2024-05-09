@@ -1,4 +1,4 @@
-{ pkgs, inputs, hostname, ... }: {
+{ pkgs, inputs, hostname, lib, ... }: {
   imports = [
   ] ++ (if hostname != "chorizo" then [ ./networking.nix ] else [ ]);
 
@@ -37,11 +37,7 @@
     };
   };
 
-  virtualisation.podman = {
-    enable = true;
-    defaultNetwork.settings.dns_enabled = true;
-    dockerCompat = true;
-  };
+  virtualisation.docker.enable = lib.mkDefault true;
 
   system.autoUpgrade = {
     enable = true;
