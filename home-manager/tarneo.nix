@@ -87,5 +87,6 @@
     xournalpp
     nodePackages.prettier
     audacity
+    kdenlive
   ];
 }
