@@ -12,6 +12,10 @@ let
     if hostname == "framy"
     then "sudo"
     else "doas";
+  docker =
+    if hostname == "framy"
+    then "podman"
+    else "doas docker";
   zcript = name: script: pkgs.writeScriptBin name ("#!${pkgs.zsh}/bin/zsh\n\n" + script);
 in
 {
@@ -96,17 +100,17 @@ in
         vd = "${privesc_right} wg-quick down vpn";
 
         # podman
-        d = "podman";
-        docker = "podman";
+        d = docker;
+        docker = docker;
         # In the following, \\\\t resolves to \\t in the abbr, which resolves to
         # \t in the shell, which resolves to a tab in the output.
         # This prevents from adding an actual tab in the prompt when using the
         # abbr.
-        dp = "podman ps -a --format 'table {{.Names}}\\\\t{{.Status}}'";
-        dcu = "podman compose up -d";
-        dcd = "podman compose down";
-        dcr = "podman compose restart";
-        dcl = "podman compose logs -f";
+        dp = "${docker} ps -a --format 'table {{.Names}}\\\\t{{.Status}}'";
+        dcu = "${docker} compose up -d";
+        dcd = "${docker} compose down";
+        dcr = "${docker} compose restart";
+        dcl = "${docker} compose logs -f";
 
         # Correct the common mistake of using sudo instead of doas
         ${privesc_wrong} = privesc_right;
