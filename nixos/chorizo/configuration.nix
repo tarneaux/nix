@@ -15,6 +15,8 @@
 
   users.users.risitas.initialPassword = "changeme";
 
+  services.openssh.ports = [ 52865 ];
+
   networking = {
     usePredictableInterfaceNames = false;
     hostName = hostname;
