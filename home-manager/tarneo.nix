@@ -88,5 +88,6 @@
     nodePackages.prettier
     audacity
     kdenlive
+    gnucash
   ];
 }
