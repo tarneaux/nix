@@ -42,15 +42,9 @@
     options = [ "fmask=0077" "dmask=0077" "defaults" ];
   };
 
-  fileSystems."/home/cocinero/bak" = {
-    device = "/dev/disk/by-uuid/aa685f84-b363-4e8c-98a1-7587ee080d8f";
-    fsType = "btrfs";
-    options = [ "subvol=@bak" "compress=zstd" "noatime" ];
-  };
-
-  fileSystems."/mnt/hdd" = {
-    device = "/dev/disk/by-uuid/aa685f84-b363-4e8c-98a1-7587ee080d8f";
-    fsType = "btrfs";
+  fileSystems."/data" = {
+    device = "/dev/disk/by-uuid/c6bca934-c057-4a17-96a3-40bd606d0b81";
+    fsType = "ext4";
   };
 
   swapDevices = [
