@@ -56,6 +56,12 @@
       ACTION=="add", SUBSYSTEM=="input", RUN+="${pkgs.coreutils}/bin/touch /tmp/keyboard"
     '';
     geoclue2.enable = true;
+    syncthing = {
+      enable = true;
+      user = "tarneo";
+      dataDir = "/home/tarneo/.sync";
+      configDir = "/home/tarneo/.config/syncthing";
+    };
   };
 
   security = {
