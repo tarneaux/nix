@@ -49,7 +49,7 @@ if [[ -n "$interactive" ]]; then
     # interactive mode: sync once with user input and exit
     echo -e "\e[33mReminder: when faced with a conflict, use '<' and '>' to select which way to force the sync,"\
         "or just press enter to skip the file and solve the conflict manually later.\e[0m"
-    cmd="unison -auto -times"
+    cmd="unison -auto"
     echo -e "\e[33mI'll be using the following command: \e[1m${cmd}\e[0m"
     exec $cmd
 else
@@ -63,7 +63,7 @@ else
 			# watch+3600 -> sync on every change and do a full scan every hour (just in case).
 			# -color false -> disable color output, since it could mess up matching the output.
 			# 2>&1 -> redirect stderr to stdout so we can read it. Without this, we wouldn't be able to detect conflicts.
-			unison -repeat watch+3600 -color false -auto -times 2>&1
+			unison -repeat watch+3600 -color false -auto 2>&1
 		}
 
 		# Start the unison command in the background.
