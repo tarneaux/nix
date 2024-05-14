@@ -8,3 +8,5 @@ ignore = Name target/wasm-bindgen
 ignore = Name target/wasm32-unknown-unknown
 ignore = Name venv
 ignore = Name .venv
+
+times = true
