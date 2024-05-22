@@ -19,6 +19,11 @@
     # Automated partitioning for some hosts
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
+
+    # Secret storage
+    agenix.url = "github:ryantm/agenix";
+    agenix.inputs.nixpkgs.follows = "nixpkgs";
+    agenix.inputs.darwin.follows = ""; # Don't download darwin deps
   };
 
   outputs =
@@ -26,6 +31,7 @@
     , nixpkgs
     , home-manager
     , disko
+    , agenix
     , ...
     } @ inputs:
     let
@@ -95,13 +101,14 @@
       } // nixpkgs.lib.genAttrs server_hostnames (hostname:
         nixpkgs.lib.nixosSystem {
           specialArgs = {
-            inherit inputs outputs hostname ipv4_addresses;
+            inherit inputs outputs hostname ipv4_addresses agenix;
           };
           modules = [
             # > Our main nixos configuration file <
             ./nixos/${hostname}/configuration.nix
             ./nixos/common.nix
             ./nixos/servers
+            agenix.nixosModules.default
           ] ++ (if (hostname == "chorizo") then [
             disko.nixosModules.disko
           ] else [ ]);

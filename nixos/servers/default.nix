@@ -1,5 +1,6 @@
-{ pkgs, inputs, hostname, lib, ... }: {
+{ pkgs, inputs, hostname, lib, agenix, ... }: {
   imports = [
+    ./restic.nix
   ] ++ (if hostname != "chorizo" then [ ./networking.nix ] else [ ]);
 
   security = {
@@ -55,7 +56,10 @@
 
   environment.systemPackages = with pkgs;[
     podman-compose
+    agenix.packages.x86_64-linux.default
   ];
+
+  age.identityPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
 
   nix.settings.allowed-users = [ "@wheel" ];
 }
