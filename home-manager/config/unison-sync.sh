@@ -3,11 +3,6 @@
 # This script is used to sync a local directory with a remote one using unison.
 # It notifies you when a conflict occurs and allows you to resolve it manually by running the script again with the -i option.
 
-# Change the following variables to suit your needs:
-REMOTE_HOST="tarneo@cocinero" # the remote host to sync with.
-REMOTE_DIR="sync"             # the remote directory
-LOCAL_DIR="$HOME/.sync"       # the local directory, preferably an absolute path.
-
 # parse arguments
 while getopts 'ih' opt; do
     case "$opt" in
@@ -38,12 +33,6 @@ while ! ping -c 1 -W 1 8.8.8.8
 do
 	sleep 1
 done
-
-# Check that we can connect to the remote host.
-ssh -q "${REMOTE_HOST}" exit || {
-    echo "Could not connect to ${REMOTE_HOST}."
-    exit 1
-}
 
 if [[ -n "$interactive" ]]; then
     # interactive mode: sync once with user input and exit
