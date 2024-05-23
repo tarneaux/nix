@@ -10,6 +10,16 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.supportedFilesystems = [ "btrfs" ];
 
+  custom.restic = {
+    enable = true;
+    paths = [
+      "/data"
+      "/home/risitas/services"
+      "/hdd/data"
+    ];
+    exclude = [ ];
+  };
+
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.05";
 }
