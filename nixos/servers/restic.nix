@@ -26,7 +26,7 @@
   };
 
   config = {
-    age.secrets = {
+    age.secrets = lib.mkIf config.custom.restic.enable {
       "restic/${hostname}/env".file = ../../secrets/restic/${hostname}/env.age;
       "restic/${hostname}/repo".file = ../../secrets/restic/${hostname}/repo.age;
       "restic/${hostname}/password".file = ../../secrets/restic/${hostname}/password.age;
