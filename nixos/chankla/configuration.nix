@@ -10,14 +10,20 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.supportedFilesystems = [ "btrfs" ];
 
-  custom.restic = {
-    enable = true;
-    paths = [
-      "/data"
-      "/home/risitas/services"
-      "/hdd/data"
-    ];
-    exclude = [ ];
+  custom = {
+    restic = {
+      enable = true;
+      paths = [
+        "/data"
+        "/home/risitas/services"
+        "/hdd/data"
+      ];
+      exclude = [ ];
+    };
+    networking.ipv4 = {
+      lan = "192.168.1.154";
+      intra = "10.8.0.2/32";
+    };
   };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
