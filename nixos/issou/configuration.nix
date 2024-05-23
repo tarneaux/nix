@@ -10,16 +10,22 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.supportedFilesystems = [ "btrfs" ];
 
-  custom.restic = {
-    enable = true;
-    paths = [
-      "/data"
-      "/home/risitas/services"
-    ];
-    exclude = [
-      "/data/mastodon/public/system/cache/"
-      "/data/mastodon/elasticsearch/"
-    ];
+  custom = {
+    restic = {
+      enable = true;
+      paths = [
+        "/data"
+        "/home/risitas/services"
+      ];
+      exclude = [
+        "/data/mastodon/public/system/cache/"
+        "/data/mastodon/elasticsearch/"
+      ];
+    };
+    networking.ipv4 = {
+      lan = "192.168.1.150";
+      intra = "10.8.0.3/32";
+    };
   };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion

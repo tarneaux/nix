@@ -49,27 +49,7 @@
       # pass to it, with each system as an argument
       forAllSystems = nixpkgs.lib.genAttrs systems;
 
-      # Define IP addresses for servers.
-      ipv4_addresses = {
-        issou = {
-          local = "192.168.1.150";
-          wg = "10.8.0.3/32";
-        };
-        gaspacho = {
-          local = "192.168.1.153";
-          wg = "10.8.0.4/32";
-        };
-        chankla = {
-          local = "192.168.1.154";
-          wg = "10.8.0.2/32";
-        };
-        chorizo = {
-          primary = "51.210.180.14";
-          secondary = "178.32.110.62";
-          wg = "10.8.0.1/32";
-        };
-      };
-      server_hostnames = builtins.attrNames ipv4_addresses;
+      server_hostnames = [ "issou" "gaspacho" "chankla" "chorizo" ];
     in
     {
       # Your custom packages
@@ -101,7 +81,7 @@
       } // nixpkgs.lib.genAttrs server_hostnames (hostname:
         nixpkgs.lib.nixosSystem {
           specialArgs = {
-            inherit inputs outputs hostname ipv4_addresses agenix;
+            inherit inputs outputs hostname agenix;
           };
           modules = [
             # > Our main nixos configuration file <
