@@ -1,6 +1,6 @@
 # This is your system's configuration file.
 # Use this to configure your system environment (it replaces /etc/nixos/configuration.nix)
-{ modulesPath, ipv4_addresses, hostname, ... }: {
+{ modulesPath, hostname, ... }: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     (modulesPath + "/profiles/qemu-guest.nix")
@@ -21,7 +21,7 @@
     usePredictableInterfaceNames = false;
     hostName = hostname;
     wg-quick.interfaces.intra = {
-      address = [ ipv4_addresses.${hostname}.wg ];
+      address = [ "10.8.0.1/32" ];
       listenPort = 64468;
       privateKeyFile = "/etc/wireguard/intra.key";
       peers = [
@@ -44,11 +44,11 @@
 
     interfaces.eth0.ipv4.addresses = [
       {
-        address = ipv4_addresses.${hostname}.primary;
+        address = "51.210.180.14";
         prefixLength = 24;
       }
       {
-        address = ipv4_addresses.${hostname}.secondary;
+        address = "178.32.110.62";
         prefixLength = 24;
       }
     ];
