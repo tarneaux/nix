@@ -52,24 +52,9 @@
       server_hostnames = [ "issou" "gaspacho" "chankla" "chorizo" ];
     in
     {
-      # Your custom packages
-      # Accessible through 'nix build', 'nix shell', etc
-      packages = forAllSystems (system: import ./pkgs nixpkgs.legacyPackages.${system});
-      # Formatter for your nix files, available through 'nix fmt'
-      # Other options beside 'alejandra' include 'nixpkgs-fmt'
       formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixpkgs-fmt);
-
-      # Your custom packages and modifications, exported as overlays
       overlays = import ./overlays { inherit inputs; };
-      # Reusable nixos modules you might want to export
-      # These are usually stuff you would upstream into nixpkgs
-      nixosModules = import ./modules/nixos;
-      # Reusable home-manager modules you might want to export
-      # These are usually stuff you would upstream into home-manager
-      homeManagerModules = import ./modules/home-manager;
 
-      # NixOS configuration entrypoint
-      # Available through 'nixos-rebuild --flake .#your-hostname'
       nixosConfigurations = {
         framy = nixpkgs.lib.nixosSystem {
           specialArgs = { inherit inputs outputs; };
@@ -84,7 +69,6 @@
             inherit inputs outputs hostname agenix;
           };
           modules = [
-            # > Our main nixos configuration file <
             ./nixos/${hostname}/configuration.nix
             ./nixos/common.nix
             ./nixos/servers
@@ -105,7 +89,6 @@
             username = "tarneo";
           };
           modules = [
-            # > Our main home-manager configuration file <
             ./home-manager/tarneo.nix
           ];
         };
