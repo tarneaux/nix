@@ -42,10 +42,6 @@
         paths = config.custom.restic.paths;
         exclude = config.custom.restic.exclude;
 
-        extraBackupArgs = [
-          "--verbose=2"
-        ];
-
         pruneOpts = [
           "--keep-daily 7"
           "--keep-weekly 5"
