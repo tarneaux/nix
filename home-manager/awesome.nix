@@ -34,6 +34,12 @@
     };
     provider = "geoclue2";
   };
+  services.picom = {
+    enable = true;
+    fade = true;
+    fadeDelta = 3;
+    shadow = true;
+  };
   home.packages = with pkgs; [
     brightnessctl
     i3lock
