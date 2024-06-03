@@ -39,6 +39,11 @@
     fade = true;
     fadeDelta = 3;
     shadow = true;
+    settings = {
+      # Prevent the bug where i3lock is shown behind windows, defeating part of
+      # its purpose.
+      unredir-if-possible = true;
+    };
   };
   home.packages = with pkgs; [
     brightnessctl
