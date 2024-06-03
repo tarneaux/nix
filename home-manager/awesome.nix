@@ -97,7 +97,7 @@
       pass=$(cat ~/.local/share/nextcloudpass)
       while true; do
         nextcloudcmd -h --user tarneo --password "$pass" --non-interactive --path /renn.es ~/renn.es https://cloud.renn.es
-        inotifywait ~/.nc -t 600
+        inotifywait ~/renn.es -t 600
       done
     '')
   ];
