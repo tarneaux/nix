@@ -24,7 +24,6 @@
     ./common.nix
     ./nsxiv.nix
     ./aerc.nix
-    ./bitwarden.nix
     ./dmenu.nix
     ./unison.nix
   ];
@@ -89,5 +88,6 @@
     audacity
     kdenlive
     gnucash
+    bitwarden
   ];
 }
