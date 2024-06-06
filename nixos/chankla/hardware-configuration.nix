@@ -25,7 +25,7 @@
       fsType = "ext4";
     };
 
-  fileSystems."/hdd" =
+  fileSystems."/btrfs" =
     {
       device = "/dev/disk/by-uuid/569a7b5b-6019-49f1-9d98-0d5bdaec353f";
       fsType = "btrfs";
