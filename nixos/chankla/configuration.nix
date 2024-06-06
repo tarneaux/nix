@@ -16,7 +16,7 @@
       paths = [
         "/data"
         "/home/risitas/services"
-        "/hdd/data"
+        "/btrfs/data"
       ];
       exclude = [ ];
     };
