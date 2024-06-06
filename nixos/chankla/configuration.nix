@@ -26,6 +26,22 @@
     };
   };
 
+  services.btrbk = {
+    instances."data" = {
+      onCalendar = "minutely";
+      settings = {
+        snapshot_preserve = "14d";
+        snapshot_preserve_min = "2d";
+        volume."/btrfs/" = {
+          snapshot_dir = "/btrfs/@snapshots";
+          subvolume = {
+            "/btrfs/@data" = {};
+          };
+        };
+      };
+    };
+  };
+
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "23.05";
 }
