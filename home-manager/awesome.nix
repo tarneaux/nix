@@ -63,8 +63,8 @@
       # yet, run it.
       xrandr | grep "*+" | wc -l | grep -q 2 && autorandr --change
       while true; do
-        pgrep awesome | xargs kill -s HUP
-        pgrep qutebrowser && qutebrowser :config-source
+        pkill awesome --signal HUP
+        pkill qutebrowser --signal HUP
         ${pkgs.inotify-tools}/bin/inotifywait -e modify /tmp/autorandr-current-profile
         # Re-enable internal keyboard in case it was disabled by the user.
         # Useful when forgetting to re-enable it, I just know I'll have
