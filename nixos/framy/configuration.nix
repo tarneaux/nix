@@ -21,18 +21,16 @@
   };
 
   services = {
+    displayManager.defaultSession = "none+awesome";
     xserver = {
+      displayManager.lightdm.enable = true;
       enable = true;
-      displayManager = {
-        lightdm.enable = true;
-        defaultSession = "none+awesome";
-      };
       windowManager.awesome = {
         enable = true;
       };
-      libinput.enable = true;
-      layout = "fr";
+      xkb.layout = "fr";
     };
+    libinput.enable = true;
     upower.enable = true;
     fprintd.enable = true;
     pipewire = {
