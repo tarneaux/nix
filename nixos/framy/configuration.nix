@@ -62,6 +62,47 @@
       dataDir = "/home/tarneo/.sync";
       configDir = "/home/tarneo/.config/syncthing";
     };
+    kanata = {
+      enable = true;
+      package = pkgs.unstable.kanata;
+      keyboards = {
+        internal = {
+          devices = [
+            "/dev/input/by-path/platform-i8042-serio-0-event-kbd"
+          ];
+          extraDefCfg = "process-unmapped-keys yes";
+          config = ''
+            (defsrc
+              caps a s d f j k l ;
+              lalt       ralt
+              )
+            (defvar
+              tap-time 150
+              hold-time 200)
+            (defalias
+              caps esc ;; (tap-hold 100 100 esc (layer-while-held arrows))
+              q (tap-hold $tap-time $hold-time q lctl)
+              s (tap-hold $tap-time $hold-time s lmet)
+              f (tap-hold $tap-time $hold-time f lsft)
+
+              j (tap-hold $tap-time $hold-time j rsft)
+              l (tap-hold $tap-time $hold-time l rmet)
+              ; (tap-hold $tap-time $hold-time ; rctl)
+
+              lalt (layer-while-held arrows)
+            )
+            (deflayer default
+              @caps @q @s d @f @j k @l @;
+              @lalt bspc
+            )
+            (deflayer arrows
+              @caps @q @s d @f left up down right
+              @lalt bspc
+            )
+          '';
+        };
+      };
+    };
   };
 
   security = {
