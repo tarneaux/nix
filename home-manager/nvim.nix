@@ -288,6 +288,13 @@
       }
       vimPlugins.trouble-nvim
       vimPlugins.vim-surround
+      {
+        plugin = vimPlugins.leap-nvim;
+        type = "lua";
+        config = ''
+          require('leap').create_default_mappings()
+        '';
+      }
     ];
     extraLuaConfig = ''
       -- Leader = space
