@@ -72,7 +72,7 @@
           config = ''
             (defsrc
               caps a s d f j k l ;
-              lalt       ralt
+              lalt
               )
             (defvar
               tap-time 150
@@ -91,11 +91,11 @@
             )
             (deflayer default
               @caps @q @s d @f @j k @l @;
-              @lalt bspc
+              @lalt
             )
             (deflayer arrows
               @caps @q @s d @f left up down right
-              @lalt bspc
+              @lalt
             )
           '';
         };
