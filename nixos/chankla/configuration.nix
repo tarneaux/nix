@@ -35,7 +35,7 @@
         volume."/btrfs/" = {
           snapshot_dir = "/btrfs/@snapshots";
           subvolume = {
-            "/btrfs/@data" = {};
+            "/btrfs/@data" = { };
           };
         };
       };
