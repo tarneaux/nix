@@ -79,7 +79,7 @@
               hold-time 200)
             (defalias
               caps esc ;; (tap-hold 100 100 esc (layer-while-held arrows))
-              q (tap-hold $tap-time $hold-time q lctl)
+              a (tap-hold $tap-time $hold-time a lctl)
               s (tap-hold $tap-time $hold-time s lmet)
               f (tap-hold $tap-time $hold-time f lsft)
 
@@ -90,11 +90,11 @@
               lalt (layer-while-held arrows)
             )
             (deflayer default
-              @caps @q @s d @f @j k @l @;
+              @caps @a @s d @f @j k @l @;
               @lalt
             )
             (deflayer arrows
-              @caps @q @s d @f left up down right
+              @caps @a @s d @f left up down right
               @lalt
             )
           '';
