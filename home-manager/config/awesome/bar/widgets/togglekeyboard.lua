@@ -40,7 +40,7 @@ local function toggle ()
 
         awful.spawn.easy_async_with_shell('xinput set-prop ' .. id .. ' "Device Enabled" ' .. new, function()
             daemon()
-            awful.spawn.easy_async_with_shell("~/.config/scripts/manage-keyboards")
+            awful.spawn.with_shell("~/.config/scripts/manage-keyboards")
         end)
     end)
 end
