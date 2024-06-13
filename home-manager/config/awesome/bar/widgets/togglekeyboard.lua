@@ -1,4 +1,9 @@
-local internal_keyboard = "AT Translated Set 2 keyboard"
+-- local internal_keyboard = "AT Translated Set 2 keyboard"
+
+-- Kanata (which rebinds some keys) creates a new virtual device. Since I just
+-- have it enabled on the internal keyboard, I can just disable the kanata
+-- virtual device to effectively block the internal keyboard.
+local internal_keyboard = "keyboard:kanata"
 
 local awful = require("awful")
 local wibox = require("wibox")
