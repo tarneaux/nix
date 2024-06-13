@@ -14,7 +14,7 @@ local widget = wibox.widget.textbox()
 local id = '$(xinput list | grep "' .. internal_keyboard .. '" | grep -E "(floating slave|keyboard)" | sed -n "s/.*id=\\([0-9]*\\).*/\\1/p")'
 
 local function get_enabled (callback)
-    awful.spawn.easy_async_with_shell('xinput list-props ' .. id ..  ' | grep "Device Enabled" | awk \'{print $4}\'', function (stdout)
+    awful.spawn.easy_async_with_shell('xinput list-props "' .. id ..  '" | grep "Device Enabled" | awk \'{print $4}\'', function (stdout)
         callback(stdout == "1\n")
     end)
 end
@@ -38,7 +38,7 @@ local function toggle ()
             new = 1
         end
 
-        awful.spawn.easy_async_with_shell('xinput set-prop ' .. id .. ' "Device Enabled" ' .. new, function()
+        awful.spawn.easy_async_with_shell('xinput set-prop "' .. id .. '" "Device Enabled" ' .. new, function()
             daemon()
             awful.spawn.with_shell("~/.config/scripts/manage-keyboards")
         end)
