@@ -8,21 +8,15 @@
 
   fileSystems."/" =
     {
-      device = "/dev/disk/by-uuid/28655a0e-5fb1-433a-ac5e-fd48719e9ace";
+      device = "/dev/disk/by-uuid/3c12dcc2-bdc2-4fd9-b9ee-3a920e65573a";
       fsType = "ext4";
     };
 
   fileSystems."/boot" =
     {
-      device = "/dev/disk/by-uuid/3D25-8E3D";
+      device = "/dev/disk/by-uuid/3F97-00D9";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" "defaults" ];
-    };
-
-  fileSystems."/data" =
-    {
-      device = "/dev/disk/by-uuid/003b3359-3137-4492-9701-08d416d77aa9";
-      fsType = "ext4";
     };
 
   fileSystems."/btrfs" =
@@ -32,7 +26,7 @@
     };
 
   swapDevices =
-    [{ device = "/dev/disk/by-uuid/23b4ea87-b1f5-4fb8-81aa-bfeaa247f81d"; }];
+    [{ device = "/dev/disk/by-uuid/f384b986-a168-46fd-b510-c8c9b7aea82b"; }];
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = true;
