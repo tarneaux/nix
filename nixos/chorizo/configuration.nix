@@ -33,6 +33,10 @@
           publicKey = "Evh0vuKx61wJHVyeAQU+3cpKHIhqheIVRTj2Gua3OnA=";
           allowedIPs = [ "10.8.0.3/32" ];
         }
+        {
+          publicKey = "lBg2zbI/G3A40bf/c/n7lU1PJX7s64c4gVSfZD4a+T4=";
+          allowedIPs = [ "10.8.0.4/32" ];
+        }
       ];
     };
     defaultGateway = {
