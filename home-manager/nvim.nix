@@ -37,7 +37,6 @@
         plugin = vimPlugins.nvim-treesitter.withAllGrammars;
         type = "lua";
         config = ''
-          require('orgmode').setup_ts_grammar()
           require('nvim-treesitter.configs').setup {
             highlight = {
               enable = true,
@@ -64,7 +63,7 @@
             org_hide_emphasis_markers = true,
             org_hide_leading_stars = true,
             org_ellipsis = '  ',
-            org_indent_mode = 'noindent',
+            org_startup_indented = false,
             org_archive_location = "~/org/archive.org::/",
             org_blank_before_new_entry = {heading = false, plain_list_item = false},
           }
