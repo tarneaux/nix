@@ -14,12 +14,12 @@
     restic = {
       enable = true;
       paths = [
-        "/data"
+        "/home/risitas/data"
         "/home/risitas/services"
       ];
       exclude = [
-        "/data/mastodon/public/system/cache/"
-        "/data/mastodon/elasticsearch/"
+        "/home/risitas/data/mastodon/public/system/cache/"
+        "/home/risitas/data/mastodon/elasticsearch/"
       ];
     };
     networking.ipv4 = {
