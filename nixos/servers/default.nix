@@ -54,7 +54,7 @@
     randomizedDelaySec = "45min";
   };
 
-  environment.systemPackages = with pkgs;[
+  environment.systemPackages = with pkgs; [
     podman-compose
     agenix.packages.x86_64-linux.default
   ];
