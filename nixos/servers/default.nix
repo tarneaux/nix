@@ -56,6 +56,7 @@
 
   environment.systemPackages = with pkgs; [
     podman-compose
+    ctop
     agenix.packages.x86_64-linux.default
   ];
 
