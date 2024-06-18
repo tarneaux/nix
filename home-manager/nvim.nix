@@ -223,7 +223,16 @@
           vim.g.rustfmt_autosave = 1
         '';
       }
-      vimPlugins.vim-table-mode
+      {
+        plugin = vimPlugins.vim-table-mode;
+        type = "lua";
+        config = ''
+          vim.api.nvim_create_autocmd("Filetype", {
+              pattern = "markdown,org",
+              callback = function() vim.cmd [[ :silent TableModeEnable ]] end,
+          })
+        '';
+      }
       {
         # nvim-ufo allows folding with highlighting (as opposed to standard
         # folding which removes the highlighting from the remaining line)
