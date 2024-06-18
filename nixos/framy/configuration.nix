@@ -18,6 +18,10 @@
       canTouchEfiVariables = true;
       efiSysMountPoint = "/boot/";
     };
+    # Kernel 6.6 has a bug that prevents the Framework laptop from shutting
+    # down: it goes through the halting procedure and then doesn't cut the
+    # power. Apparently latest doesn't have that bug anymore.
+    kernelPackages = pkgs.linuxPackages_latest;
   };
 
   services = {
