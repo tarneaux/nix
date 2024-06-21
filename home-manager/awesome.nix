@@ -58,6 +58,7 @@
     xss-lock
     nextcloud-client
     (pkgs.writeScriptBin "lock" (builtins.readFile ./config/lock.sh))
+    (pkgs.writeScriptBin "powermenu" (builtins.readFile ./config/powermenu.sh))
     (pkgs.writeScriptBin "autorandr-watcher" ''
       #!${pkgs.bash}/bin/bash
       # If 2 screens are enabled, which only happens when autorandr hasn't run
