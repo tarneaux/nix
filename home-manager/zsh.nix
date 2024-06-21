@@ -185,6 +185,16 @@ in
       pkgs.trash-cli
       pkgs.nix-index
       pkgs.tldr
+    ]
+    ++ lib.lists.optionals (hostname == "framy") [
+      # Exit all SSH control sockets.
+      (zcript "sc" ''
+        ls ~/.ssh/ \
+          | sed -n "s/\\(S\..*:[0-9]*\\)/\.ssh\/\\1/p" \
+          | grep -v "^.ssh/S.tarneo@ssh.renn.es" \
+          | tee /dev/fd/2 \
+          | xargs -r -I {} ssh -o ControlPath={} -O exit ThisArgDoesNotMatter
+      '')
     ];
   programs.zoxide.enable = true;
   programs.direnv.enable = true;
