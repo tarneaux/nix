@@ -97,7 +97,7 @@ in
           s = "maim -su | xclip -selection clipboard -t image/png";
           lg = "lazygit";
 
-          # podman
+          # docker / podman
           d = docker;
           docker = docker;
           # In the following, \\\\t resolves to \\t in the abbr, which resolves to
