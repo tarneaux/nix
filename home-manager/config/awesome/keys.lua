@@ -6,76 +6,33 @@ local gears = require("gears")
 local naughty = require("naughty")
 require("awful.hotkeys_popup.keys")
 
-local lain = require("lain")
-
-local org_quake = lain.util.quake({
-    app = "alacritty --class OrgQuake",
-    argname = "--title %s -e nvim org/fast.org",
-    followtag = true,
-    height = 0.9,
-    width = 0.9,
-    vert = "center",
-    horiz = "center",
-    border = 2,
-    name = "OrgQuake",
-    settings = function(c) c.sticky = true end
-})
-
 ModKey = "Mod4"
 
 local previous_layout = nil
 
 local globalkeys = gears.table.join(
-    -- Applications launcher: dmenu. Archlinux package: dmenu
+    -- Menu
     awful.key({ ModKey,           }, "p", function() awful.spawn.with_shell("dmenu_run") end),
-    -- Dmscripts (my own scripts): see the dotfile's README for more info
-    awful.key({ ModKey,           }, "y", function() awful.spawn.with_shell("bash ~/.config/dmscripts/main.sh") end),
-    -- Qutebrowser (web browser). You can change this to match your browser (don't use chrome, opera, vivaldi, brave, firefox, etc.)
-    -- nice alternatives include GNU icecat and librewolf.
+
+    -- Various apps
+    awful.key({ ModKey,           }, "y", function() awful.spawn.with_shell("") end),
     awful.key({ ModKey,           }, "b", function() awful.spawn.with_shell("qutebrowser") end),
-    -- Emacs: I use emacsclient to open emacs. You can change this to match your editor, or just remove it.
-    awful.key({ ModKey,           }, "g", function() awful.spawn.with_shell("maim -su | xclip -selection clipboard -t image/png") end),
-    -- Zathura: PDF viewer. Archlinux package: zathura.
-    awful.key({ ModKey,           }, "z", function() awful.spawn.with_shell("zathura") end),
-    -- Open org quake terminal
-    awful.key({ ModKey,           }, "j", function() org_quake:toggle() end),
-    -- ncmpcpp: terminal music player/mpd frontend. Archlinux package: ncmpcpp.
+    awful.key({ ModKey,           }, "Return", function () awful.spawn.with_shell(Terminal) end),
     -- Super + / (triboard) or Super + Shift + : (french keyboard)
     awful.key({ ModKey, "Shift"   }, "#60", function() awful.spawn.with_shell(TerminalCmd .. " ncmpcpp") end),
 
-    -- Open terminal (I use alacritty)
-    awful.key({ ModKey,           }, "Return", function () awful.spawn.with_shell(Terminal) end),
-
-    -- Open tmux on server
-    awful.key({ ModKey, "Shift" }, "Return", function () awful.spawn.with_shell(TerminalCmd .. " ssh risitas@cocinero -t \"tmux a -t services\"") end),
-
-    -- Reload awesomewm. This is useful when you change the config file.
+    -- Reload awesome
     awful.key({ ModKey,  }, "q", awesome.restart),
 
-    -- Open BWmenu (Bitwarden dmenu script)
-    awful.key({ ModKey            }, "m", function() awful.spawn.with_shell("~/.config/scripts/bwmenu") end),
+    -- Lock screen
+    awful.key({ ModKey            }, "m", function() awful.spawn.with_shell("lock") end),
 
-    -- Open qobuz (music streaming service) when pressing XF86AudioMedia (F12 key on framework laptop)
-    awful.key({ }, "XF86AudioMedia", function() awful.spawn.with_shell("xdg-open https://play.qobuz.com") end),
+    -- Choose between shutdown, reboot, suspend or hibernate with dmenu
+    awful.key({ ModKey, "Control" }, "q", function() awful.spawn.with_shell("powermenu") end),
 
-    -- Shutdown the computer
-    -- awful.key({ ModKey, "Control" }, "q", function() awful.spawn.with_shell("sudo shutdown now") end),
-
-    -- Hibernate the computer: you need some configuration for this to work. See the archwiki, page on hibernation.
-    awful.key({ ModKey, "Control" }, "q", function() awful.spawn.with_shell("systemctl hibernate") end),
-
-    -- Suspend
-    awful.key({ ModKey, "Control" }, "z", function() awful.spawn.with_shell("systemctl suspend") end),
-
-    -- change brightness. Only works on my laptop (asus something)
-    awful.key({ }, "XF86MonBrightnessDown", function ()
-        awful.spawn.with_shell("brightnessctl set 10%-") end),
-    awful.key({ }, "XF86MonBrightnessUp", function ()
-        awful.spawn.with_shell("brightnessctl set +10%") end),
-
-    ----------------
-    -- Media keys --
-    ----------------
+    -----------------------------
+    -- Media / brightness keys --
+    -----------------------------
 
     -- Volume control
     awful.key({}, "XF86AudioRaiseVolume", function ()   awful.spawn.with_shell("pamixer -i 2")   end),
@@ -92,20 +49,19 @@ local globalkeys = gears.table.join(
     -- awful.key({}, "XF86AudioPrev", function ()          awful.spawn.with_shell("mpc prev")                      end),
     -- awful.key({}, "XF86AudioPlay", function ()          awful.spawn.with_shell("mpc toggle")                    end),
 
+    -- Change brightness
+    awful.key({ }, "XF86MonBrightnessDown", function ()
+        awful.spawn.with_shell("brightnessctl set 10%-") end),
+    awful.key({ }, "XF86MonBrightnessUp", function ()
+        awful.spawn.with_shell("brightnessctl set +10%") end),
 
-    -- Focus (colemak hjkl=neio)
-    awful.key({ ModKey,           }, "i",
-        function ()
-            awful.client.focus.byidx( 1)
-        end
-    ),
-    awful.key({ ModKey,           }, "e",
-        function ()
-            awful.client.focus.byidx(-1)
-        end
-    ),
+    -----------------------------------
+    -- Focus and layout manipulation --
+    -----------------------------------
+    -- (colemak's neio is QWERTY's hjkl.)
 
-    -- Layout manipulation (still colemak keys)
+    awful.key({ ModKey,           }, "i", function () awful.client.focus.byidx( 1) end), -- Focus next
+    awful.key({ ModKey,           }, "e", function () awful.client.focus.byidx(-1) end), -- Focus previous
     awful.key({ ModKey, "Shift"   }, "i",     function () awful.client.swap.byidx(  1)        end), -- Swap with next client
     awful.key({ ModKey, "Shift"   }, "e",     function () awful.client.swap.byidx( -1)        end), -- Swap with previous client
     awful.key({ ModKey, "Shift"   }, "o",     function () awful.tag.incmwfact( 0.05)          end), -- Increase master width factor
@@ -115,13 +71,12 @@ local globalkeys = gears.table.join(
     awful.key({ ModKey, "Shift"   }, "m",     function () awful.tag.incncol( 1, nil, true)    end), -- Increase the number of columns
     -- Super + Shift + / (triboard) or Super + Shift + , (french keyboard)
     awful.key({ ModKey, "Shift"   }, "#58",     function () awful.tag.incncol(-1, nil, true)    end), -- Decrease the number of columns
-
-    -- Change layout
-    awful.key({ ModKey,           }, ",", function () awful.layout.inc( 1)                end),
+    awful.key({ ModKey,           }, ",", function () awful.layout.inc( 1)                end), -- Change layout
 
     -- Toggle maximized layout
     -- This will just crash if you set the default layout to maximized, but else it works well.
     -- Super + . (triboard) or Super + Shift + ; (french keyboard)
+    -- Only really reliable on one tag, this could be improved.
     awful.key({ ModKey, "Shift"   }, "#59", function ()
         local screen = awful.screen.focused()
         local tag = screen.selected_tag
@@ -138,19 +93,14 @@ local globalkeys = gears.table.join(
     end),
 
     -- Restore last minimized client
-    awful.key({ ModKey, }, "u",
-              function ()
-                  local c = awful.client.restore()
-                  -- Focus restored client
-                  if c then
-                    c:emit_signal(
-                        "request::activate", "key.unminimize", {raise = true}
-                    )
-                  end
-              end),
+    awful.key({ ModKey, }, "u", function ()
+        local c = awful.client.restore()
+        -- Focus restored client
+        if c then
+            c:emit_signal("request::activate", "key.unminimize", {raise = true})
+        end
+    end),
 
-    -- Switch focus to next screen
-    -- awful.key({ ModKey }, "h", function () awful.screen.focus_relative(1) end)
     -- Toggle VPN
     awful.key({ ModKey }, "v", ToggleVpn)
 )
@@ -164,27 +114,13 @@ ClientKeys = gears.table.join(
             c:raise()
         end),
     -- Close client
-    awful.key({ ModKey,           }, "w",      function (c) c:kill()                         end),
+    awful.key({ ModKey,           }, "w", function (c) c:kill() end),
     -- Toggle floating
-    awful.key({ ModKey            }, "c",  awful.client.floating.toggle                     ),
+    awful.key({ ModKey            }, "c", awful.client.floating.toggle),
     -- Toggle maximized
-    awful.key({ ModKey, "Shift"   }, "f",  function (c) c.maximized = not c.maximized end),
+    awful.key({ ModKey, "Shift"   }, "f", function (c) c.maximized = not c.maximized end),
     -- Minimize client
-    awful.key({ ModKey,           }, "l",
-        function (c)
-            -- The client currently has the input focus, so it cannot be
-            -- minimized, since minimized clients can't have the focus.
-            c.minimized = true
-        end),
-    -- Take screenshot
-    awful.key({}, "Print", function (c)
-        local filename = os.getenv("HOME") .. "/Downloads/Screenshot_" .. os.date("%Y-%m-%d_%H:%M:%S") .. ".png"
-        awful.screenshot{auto_save_delay = 3, client = c, file_path = filename}
-        awful.spawn.with_shell("xclip -selection clipboard -t image/png " .. filename)
-        naughty.notify({text = "Screenshot saved to " .. filename .. " and copied to clipboard"})
-    end)
-    -- Move client to next screen
-    -- awful.key({ ModKey, "Shift"   }, "h",      function (c) c:move_to_screen()               end)
+    awful.key({ ModKey,           }, "l", function (c) c.minimized = true end)
 )
 
 -- Bind all key numbers to tags.
