@@ -100,7 +100,7 @@ theme.wallpaper = "~/.config/wallpapers/rocky.jpg"
 -- theme.wallpaper_color = "#1d2021"
 -- theme.wallpaper_folder = "~/.config/wallpapers/"
 
--- Variable used by `~/.config/scripts/lock`.
+-- Variable used by `lock` script.
 -- If this isn't set, the lock script will use the lock.png image.
 theme.lockwall = "~/.config/wallpapers/flower.jpg"
 
