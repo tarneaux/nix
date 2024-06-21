@@ -60,4 +60,4 @@ awful.spawn.with_shell("pidof -x nextcloud-sync || nextcloud-sync")
 -- Set the screen to turn off & lock after 5 minutes of inactivity.
 awful.spawn.with_shell("xset s 600")
 -- xss-lock will exit if already running, no need to pgrep.
-awful.spawn.with_shell("xss-lock --transfer-sleep-lock ~/.config/scripts/lock")
+awful.spawn.with_shell("xss-lock --transfer-sleep-lock lock")
