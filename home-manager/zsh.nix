@@ -1,6 +1,7 @@
 { config
 , pkgs
 , hostname
+, lib
 , ...
 }:
 let
@@ -39,82 +40,85 @@ in
 
     zsh-abbr = {
       enable = true;
-      abbreviations = {
-        # Ls
-        l = "ls";
-        ll = "ls -l";
-        la = "ls -a";
-        lla = "ls -la";
-        lt = "ls --tree";
-        tree = "ls --tree";
+      abbreviations = lib.mkMerge [
+        {
+          # Ls
+          l = "ls";
+          ll = "ls -l";
+          la = "ls -a";
+          lla = "ls -la";
+          lt = "ls --tree";
+          tree = "ls --tree";
 
-        # Trash
-        t = "trash";
-        tr = "trash-restore";
+          # Trash
+          t = "trash";
+          tr = "trash-restore";
 
-        # File operations
-        rm = "rm -i";
-        cp = "cp -i";
-        mv = "mv -i";
+          # File operations
+          rm = "rm -i";
+          cp = "cp -i";
+          mv = "mv -i";
 
-        # Git
-        g = "git";
-        gs = "git status";
-        ga = "git add";
-        gap = "git add -p";
-        gc = "git commit";
-        gp = "git push";
-        gpu = "git push -u origin main";
-        gl = "git log --decorate --oneline --graph";
-        gd = "git diff";
-        gr = "git restore";
-        grs = "git restore --staged";
-        gco = "git checkout";
-        gb = "git branch";
+          # Git
+          g = "git";
+          gs = "git status";
+          ga = "git add";
+          gap = "git add -p";
+          gc = "git commit";
+          gp = "git push";
+          gpu = "git push -u origin main";
+          gl = "git log --decorate --oneline --graph";
+          gd = "git diff";
+          gr = "git restore";
+          grs = "git restore --staged";
+          gco = "git checkout";
+          gb = "git branch";
 
-        # Tmux
-        tm = "tmux";
-        tma = "tmux attach -t";
-        tml = "tmux ls";
-        tmk = "tmux kill-session -t";
-        tmn = "tmux new-session -s";
+          # Tmux
+          tm = "tmux";
+          tma = "tmux attach -t";
+          tml = "tmux ls";
+          tmk = "tmux kill-session -t";
+          tmn = "tmux new-session -s";
 
-        # Nixos
-        or = "${privesc_right} nixos-rebuild switch --flake ~nix";
-        hr = "home-manager switch --flake ~nix";
-        ns = "nix shell";
-        nr = "nix run";
-        nd = "nix develop -c 'zsh'";
-        nsn = "nix shell nixpkgs#nodejs";
-        nrn = "nix run nixpkgs#nodejs";
-        nsp = "nix shell nixpkgs#python3";
-        nrp = "nix run nixpkgs#python3";
+          # Nixos
+          or = "${privesc_right} nixos-rebuild switch --flake ~nix";
+          hr = "home-manager switch --flake ~nix";
+          ns = "nix shell";
+          nr = "nix run";
+          nd = "nix develop -c 'zsh'";
+          nsn = "nix shell nixpkgs#nodejs";
+          nrn = "nix run nixpkgs#nodejs";
+          nsp = "nix shell nixpkgs#python3";
+          nrp = "nix run nixpkgs#python3";
 
-        # Misc
-        passgen = "tr -dc A-Za-z0-9 < /dev/urandom | head -c 64; echo";
-        s = "maim -su | xclip -selection clipboard -t image/png";
-        lg = "lazygit";
+          # Misc
+          passgen = "tr -dc A-Za-z0-9 < /dev/urandom | head -c 64; echo";
+          s = "maim -su | xclip -selection clipboard -t image/png";
+          lg = "lazygit";
 
-        # VPN
-        vu = "${privesc_right} wg-quick up vpn";
-        vd = "${privesc_right} wg-quick down vpn";
+          # podman
+          d = docker;
+          docker = docker;
+          # In the following, \\\\t resolves to \\t in the abbr, which resolves to
+          # \t in the shell, which resolves to a tab in the output.
+          # This prevents from adding an actual tab in the prompt when using the
+          # abbr.
+          dp = "${docker} ps -a --format 'table {{.Names}}\\\\t{{.Status}}'";
+          dcu = "${docker} compose up -d";
+          dcd = "${docker} compose down";
+          dcr = "${docker} compose restart";
+          dcl = "${docker} compose logs -f";
 
-        # podman
-        d = docker;
-        docker = docker;
-        # In the following, \\\\t resolves to \\t in the abbr, which resolves to
-        # \t in the shell, which resolves to a tab in the output.
-        # This prevents from adding an actual tab in the prompt when using the
-        # abbr.
-        dp = "${docker} ps -a --format 'table {{.Names}}\\\\t{{.Status}}'";
-        dcu = "${docker} compose up -d";
-        dcd = "${docker} compose down";
-        dcr = "${docker} compose restart";
-        dcl = "${docker} compose logs -f";
-
-        # Correct the common mistake of using sudo instead of doas
-        ${privesc_wrong} = privesc_right;
-      };
+          # Correct the common mistake of using sudo instead of doas
+          ${privesc_wrong} = privesc_right;
+        }
+        (lib.mkIf (hostname == "framy") {
+          # VPN
+          vu = "${privesc_right} wg-quick up vpn";
+          vd = "${privesc_right} wg-quick down vpn";
+        })
+      ];
     };
 
     sessionVariables =
