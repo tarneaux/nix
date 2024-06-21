@@ -175,8 +175,6 @@ in
       PROMPT+='%(?.%F{green}λ .%F{red}λ )' # Display a green prompt if the last command succeeded, or red if it failed
       PROMPT+='%f' # Reset the text color
 
-      PATH=$PATH:$HOME/.config/scripts # Temporary until I move scripts to nix
-
       source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
     '';
   };
