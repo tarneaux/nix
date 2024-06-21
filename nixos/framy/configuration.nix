@@ -55,7 +55,7 @@
     power-profiles-daemon.enable = true;
     udev.extraRules = ''
       # Touch /tmp/keyboard whenever a keyboard is plugged in
-      ACTION=="add", SUBSYSTEM=="input", RUN+="${pkgs.coreutils}/bin/touch /tmp/keyboard"
+      ACTION=="add", RUN+="${pkgs.coreutils}/bin/touch /tmp/keyboard"
     '';
     geoclue2.enable = true;
     syncthing = {
