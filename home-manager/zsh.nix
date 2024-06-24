@@ -17,7 +17,6 @@ let
     if hostname == "framy"
     then "podman"
     else "doas docker";
-  zcript = name: script: pkgs.writeScriptBin name ("#!${pkgs.zsh}/bin/zsh\n\n" + script);
 in
 {
   programs.zsh = {
@@ -181,8 +180,14 @@ in
   };
   home.packages =
     [
-      (zcript "__zprompt_git_info" (builtins.readFile ./config/git-segment.zsh))
-      (zcript "ntmux" (builtins.readFile ./config/ntmux.zsh))
+      (pkgs.writeShellApplication {
+        name = "__zprompt_git_info";
+        text = builtins.readFile ./config/git-segment.zsh;
+      })
+      (pkgs.writeShellApplication {
+        name = "ntmux";
+        text = builtins.readFile ./config/ntmux.zsh;
+      })
       pkgs.trash-cli
       pkgs.nix-index
       pkgs.tldr
@@ -190,13 +195,15 @@ in
     ]
     ++ lib.lists.optionals (hostname == "framy") [
       # Exit all SSH control sockets.
-      (zcript "sc" ''
-        ls ~/.ssh/ \
-          | sed -n "s/\\(S\..*:[0-9]*\\)/\.ssh\/\\1/p" \
-          | grep -v "^.ssh/S.tarneo@ssh.renn.es" \
-          | tee /dev/fd/2 \
-          | xargs -r -I {} ssh -o ControlPath={} -O exit ThisArgDoesNotMatter
-      '')
+      (pkgs.writeShellApplication {
+        name = "sc";
+        text = /* bash */ ''
+          find ~/.ssh/S.* \
+            | grep -v "^$HOME/.ssh/S.tarneo@ssh.renn.es" \
+            | tee /dev/fd/2 \
+            | xargs -r -I {} ssh -o ControlPath={} -O exit ThisArgDoesNotMatter
+        '';
+      })
     ];
   programs.zoxide.enable = true;
   programs.direnv.enable = true;
