@@ -33,7 +33,7 @@ fi
 #   option)
 # The --nofork option prevents i3lock from running in the background and so
 # possibly immediately re-disabling the keyboard below
-convert $WALLPAPER_PATH \
+convert "$WALLPAPER_PATH" \
     -gravity west -resize "${SCREEN_SIZE}^" -extent "$SCREEN_SIZE" \
     RGB:- | i3lock --raw "$SCREEN_SIZE":rgb --image /dev/stdin --nofork
 

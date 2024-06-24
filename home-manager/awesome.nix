@@ -57,51 +57,63 @@
     xorg.xmodmap
     xss-lock
     nextcloud-client
-    (pkgs.writeScriptBin "lock" (builtins.readFile ./config/lock.sh))
-    (pkgs.writeScriptBin "powermenu" (builtins.readFile ./config/powermenu.sh))
-    (pkgs.writeScriptBin "autorandr-watcher" ''
-      #!${pkgs.bash}/bin/bash
-      # If 2 screens are enabled, which only happens when autorandr hasn't run
-      # yet, run it.
-      xrandr | grep "*+" | wc -l | grep -q 2 && autorandr --change
-      while true; do
-        pkill awesome --signal HUP
-        pkill qutebrowser --signal HUP
-        ${pkgs.inotify-tools}/bin/inotifywait -e modify /tmp/autorandr-current-profile
-        # Re-enable internal keyboard in case it was disabled by the user.
-        # Useful when forgetting to re-enable it, I just know I'll have
-        # forgotten if I plug in a monitor while it's still disabled, since
-        # disabling it is useless when I don't have my split keyboard on top of
-        # the laptop's.
-        # xinput enable "AT Translated Set 2 keyboard"
-        xinput enable $(xinput list | grep "kanata" | grep -E "(floating slave|keyboard)" | sed -n "s/.*id=\\([0-9]*\\).*/\\1/p")
-      done
-    '')
-    (pkgs.writeScriptBin "keyboard-watcher" ''
-      #!${pkgs.bash}/bin/bash
-      manage() {
-        echo "New keyboard detected"
-        echo "Sleeping"
-        sleep 1
-        echo "Waking up, setting options"
-        setxkbmap fr
-        xset r rate 300 50
-      }
-      touch /tmp/keyboard
-      while true; do
-        # /tmp/keyboard is touched by a udev rule whenever a keyboard is plugged
-        # in.
-        inotifywait /tmp/keyboard
-        manage &
-      done
-    '')
-    (pkgs.writeScriptBin "nextcloud-sync" ''
-      #!${pkgs.bash}/bin/bash
-      pass=$(cat ~/.local/share/nextcloudpass)
-      while true; do
-        nextcloudcmd -h --user tarneo --password "$pass" --non-interactive --path /renn.es ~/renn.es https://cloud.renn.es
-        inotifywait ~/renn.es -t 600
-      done
-    '')
+    (pkgs.writeShellApplication {
+      name = "lock";
+      text = builtins.readFile ./config/lock.sh;
+    })
+    (pkgs.writeShellApplication {
+      name = "powermenu";
+      text = builtins.readFile ./config/powermenu.sh;
+    })
+    (pkgs.writeShellApplication {
+      name = "autorandr-watcher";
+      text = /* bash */ ''
+        # If 2 screens are enabled, which only happens when autorandr hasn't run
+        # yet, run it.
+        xrandr | grep -c "\\*\\+" | grep -q 2 && autorandr --change
+        while true; do
+          pkill awesome --signal HUP
+          pkill qutebrowser --signal HUP
+          ${pkgs.inotify-tools}/bin/inotifywait -e modify /tmp/autorandr-current-profile
+          # Re-enable internal keyboard in case it was disabled by the user.
+          # Useful when forgetting to re-enable it, I just know I'll have
+          # forgotten if I plug in a monitor while it's still disabled, since
+          # disabling it is useless when I don't have my split keyboard on top of
+          # the laptop's.
+          # xinput enable "AT Translated Set 2 keyboard"
+          xinput enable "$(xinput list | grep "kanata" | grep -E "(floating slave|keyboard)" | sed -n "s/.*id=\\([0-9]*\\).*/\\1/p")"
+        done
+      '';
+    })
+    (pkgs.writeShellApplication {
+      name = "keyboard-watcher";
+      text = /* bash */ ''
+        manage() {
+          echo "New keyboard detected"
+          echo "Sleeping"
+          sleep 1
+          echo "Waking up, setting options"
+          setxkbmap fr
+          xset r rate 300 50
+        }
+        touch /tmp/keyboard
+        while true; do
+          # /tmp/keyboard is touched by a udev rule whenever a keyboard is plugged
+          # in.
+          inotifywait /tmp/keyboard
+          manage &
+        done
+      '';
+    })
+    (pkgs.writeShellApplication {
+      name = "nextcloud-sync";
+      text = /* bash */ ''
+        pass=$(cat ~/.local/share/nextcloudpass)
+        while true; do
+          nextcloudcmd -h --user tarneo --password "$pass" --non-interactive --path /renn.es ~/renn.es https://cloud.renn.es
+          inotifywait ~/renn.es -t 600
+        done
+      '';
+    })
   ];
 }

@@ -30,7 +30,7 @@ if [ $fzf_exit_code -eq 1 ]; then
     # Let's first remove the leading plus sign if there one; this allows us to
     # force the creation of a new session if a results are found when searching
     # for the directory name.
-    fzf_output=$(echo "$fzf_output" | sed 's/^\+//')
+    fzf_output="${fzf_output//^\+//}"
 
     # Get the directory name with zoxide
     directory=$(zoxide query "$fzf_output")

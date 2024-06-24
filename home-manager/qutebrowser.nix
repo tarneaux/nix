@@ -45,10 +45,10 @@
     '';
   };
   home.packages = [
-    (pkgs.writeScriptBin "fast" ''
-      #!${pkgs.bash}/bin/bash
+    (pkgs.writeShellApplication {
+      name = "fast";
       # Send some text to ~/org/fast.org
-      echo "* $*" >> ~/org/fast.org
-    '')
+      text = ''echo "* $*" >> ~/org/fast.org'';
+    })
   ];
 }
