@@ -303,6 +303,7 @@
           require('leap').create_default_mappings()
         '';
       }
+      vimPlugins.undotree
     ];
     extraLuaConfig = ''
       -- Leader = space
