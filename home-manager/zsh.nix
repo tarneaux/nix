@@ -96,6 +96,7 @@ in
           passgen = "tr -dc A-Za-z0-9 < /dev/urandom | head -c 64; echo";
           s = "maim -su | xclip -selection clipboard -t image/png";
           lg = "lazygit";
+          y = "yazi";
 
           # docker / podman
           d = docker;
@@ -185,6 +186,7 @@ in
       pkgs.trash-cli
       pkgs.nix-index
       pkgs.tldr
+      pkgs.yazi
     ]
     ++ lib.lists.optionals (hostname == "framy") [
       # Exit all SSH control sockets.
