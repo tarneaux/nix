@@ -506,5 +506,7 @@
     vscode-extensions.sumneko.lua
     gopls
     texlab
+    tree-sitter
+    nodejs_22
   ];
 }
