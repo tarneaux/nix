@@ -8,7 +8,7 @@
     plugins = with pkgs; [
       {
         plugin = vimPlugins.gruvbox-nvim;
-        config = ''
+        config = /* vim */ ''
           colorscheme gruvbox
           highlight clear SignColumn
         '';
@@ -16,7 +16,7 @@
       {
         plugin = vimPlugins.lualine-nvim;
         type = "lua";
-        config = ''
+        config = /* lua */ ''
           require('lualine').setup {
             options = {
               component_separators = {"", ""},
@@ -36,7 +36,7 @@
       {
         plugin = vimPlugins.nvim-treesitter.withAllGrammars;
         type = "lua";
-        config = ''
+        config = /* lua */''
           require('nvim-treesitter.configs').setup {
             highlight = {
               enable = true,
@@ -55,7 +55,7 @@
       {
         plugin = vimPlugins.orgmode;
         type = "lua";
-        config = ''
+        config = /* lua */ ''
           require('orgmode').setup {
             org_agenda_files = {'~/org/**'},
             org_default_notes_file = '~/org/fast.org',
@@ -78,7 +78,7 @@
       {
         plugin = vimPlugins.nvim-lspconfig;
         type = "lua";
-        config = ''
+        config = /* lua */ ''
           local lspconfig = require('lspconfig')
           local servers = {"clangd", "rust_analyzer", "pyright", "bashls", "html", "jsonls", "rust_analyzer", "lua_ls", "hls", "eslint", "ansiblels", "yamlls", "nil_ls", "gopls", "texlab"}
 
@@ -131,7 +131,7 @@
       {
         plugin = vimPlugins.which-key-nvim;
         type = "lua";
-        config = ''
+        config = /* lua */ ''
           vim.o.timeout = true
           vim.o.timeoutlen = 300
           require('which-key').setup {}
@@ -141,7 +141,7 @@
       {
         plugin = vimPlugins.gitsigns-nvim;
         type = "lua";
-        config = ''
+        config = /* lua */ ''
           require('gitsigns').setup {
             signs = {
               add          = { text = '+' },
@@ -159,7 +159,7 @@
       {
         plugin = vimPlugins.nvim-cmp;
         type = "lua";
-        config = ''
+        config = /* lua */ ''
           local cmp = require("cmp")
           local has_words_before = function()
             if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then return false end
@@ -206,27 +206,27 @@
       {
         plugin = vimPlugins.luasnip;
         type = "lua";
-        config = ''
+        config = /* lua */ ''
           require('luasnip/loaders/from_vscode').load()
         '';
       }
       {
         plugin = vimPlugins.vim-commentary;
-        config = ''
+        config = /* vim */ ''
           autocmd FileType nix setlocal commentstring=#\ %s
         '';
       }
       {
         plugin = vimPlugins.rust-vim;
         type = "lua";
-        config = ''
+        config = /* lua */ ''
           vim.g.rustfmt_autosave = 1
         '';
       }
       {
         plugin = vimPlugins.vim-table-mode;
         type = "lua";
-        config = ''
+        config = /* lua */ ''
           vim.api.nvim_create_autocmd("Filetype", {
               pattern = "markdown,org",
               callback = function() vim.cmd [[ :silent TableModeEnable ]] end,
@@ -238,7 +238,7 @@
         # folding which removes the highlighting from the remaining line)
         plugin = vimPlugins.nvim-ufo;
         type = "lua";
-        config = ''
+        config = /* lua */ ''
           vim.opt.foldenable = true
           require('ufo').setup()
         '';
@@ -247,7 +247,7 @@
       {
         plugin = vimPlugins.telescope-nvim;
         type = "lua";
-        config = ''
+        config = /* lua */ ''
           local telescope = require('telescope')
           telescope.setup {
             defaults = {
@@ -281,7 +281,7 @@
       {
         plugin = vimPlugins.go-nvim;
         type = "lua";
-        config = ''
+        config = /* lua */ ''
           require('go').setup {}
 
           local format_sync_grp = vim.api.nvim_create_augroup("GoFormat", {})
@@ -299,14 +299,14 @@
       {
         plugin = vimPlugins.leap-nvim;
         type = "lua";
-        config = ''
+        config = /* lua */ ''
           require('leap').create_default_mappings()
         '';
       }
       {
         plugin = vimPlugins.noice-nvim;
         type = "lua";
-        config = ''
+        config = /* lua */ ''
           require("noice").setup {
             lsp = {
               -- override markdown rendering so that **cmp** and other plugins use **Treesitter**
@@ -332,12 +332,12 @@
       {
         plugin = vimPlugins.todo-comments-nvim;
         type = "lua";
-        config = ''
+        config = /* lua */ ''
           require('todo-comments').setup {}
         '';
       }
     ];
-    extraLuaConfig = ''
+    extraLuaConfig = /* lua */ ''
       -- Leader = space
       vim.g.mapleader = " "
 
