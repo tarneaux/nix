@@ -31,6 +31,9 @@ in
             inc_counter
           elif [[ "$line" == "failed: "* ]]; then
             inc_counter
+          elif [[ "$line" == "Nothing to do: replicas have not changed since last sync." ]]; then
+            counter=0
+            echo $counter > ${counter_path}
           fi
         done <&"''${COPROC[0]}"
 
