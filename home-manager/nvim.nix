@@ -281,7 +281,6 @@
                   name = "Find",
                   f = { "<cmd>Telescope find_files<cr>", "Find files" },
                   g = { "<cmd>Telescope live_grep<cr>", "Live grep" },
-                  b = { "<cmd>Telescope buffers<cr>", "Buffers" },
                   h = { "<cmd>Telescope help_tags<cr>", "Help tags" },
                   s = { "<cmd>Telescope git_status<cr>", "Git status" },
                   c = { "<cmd>Telescope git_commits<cr>", "Git commits" },
@@ -289,6 +288,10 @@
                   r = { "<cmd>Telescope registers<cr>", "Registers" },
                   m = { "<cmd>Telescope marks<cr>", "Marks" },
                   e = { "<cmd>Telescope symbols<cr>", "Symbols" },
+              },
+              [","] = {
+                "<cmd>Telescope buffers<cr>",
+                "Switch buffer"
               }
           })
         '';
