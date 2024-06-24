@@ -33,6 +33,7 @@
           }
         '';
       }
+      vimPlugins.nvim-treesitter-textobjects
       {
         plugin = vimPlugins.nvim-treesitter.withAllGrammars;
         type = "lua";
@@ -42,6 +43,23 @@
               enable = true,
               autotag = {
                 enable = true,
+              },
+            },
+            textobjects = {
+              select = {
+                enable = true,
+                lookahead = true,
+                keymaps = {
+                  ["af"] = { query = "@function.outer", desc = "Around function" },
+                  ["if"] = { query = "@function.inner", desc = "In function" },
+                  ["ac"] = { query = "@class.outer", desc = "Around class" },
+                  ["ic"] = { query = "@class.inner", desc = "In class" },
+                },
+                selection_modes = {
+                  ['@parameter.outer'] = 'v', -- charwise
+                  ['@function.outer'] = 'V', -- linewise
+                  ['@class.outer'] = '<c-v>', -- blockwise
+                },
               },
             },
           }
