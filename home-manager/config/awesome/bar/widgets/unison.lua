@@ -7,14 +7,8 @@ local widget = wibox.widget.textbox()
 local icon = " "
 
 local function daemon ()
-    awful.spawn.easy_async_with_shell('pgrep unison', function(stdout)
-		-- Check we have at least 4 unison processes (4 lines)
-		local _, process_count = stdout:gsub('\n', '\n')
-		if process_count >= 4 then
-			widget:set_markup(icon .. "OK")
-		else
-			widget:set_markup("<span color='#FF0000'>" .. icon .. "DOWN</span>")
-		end
+    awful.spawn.easy_async_with_shell('unison-status', function(stdout)
+      widget:set_markup(icon .. stdout)
     end)
 end
 

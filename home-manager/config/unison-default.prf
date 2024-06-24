@@ -10,3 +10,4 @@ ignore = Name venv
 ignore = Name .venv
 
 times = true
+auto = true
