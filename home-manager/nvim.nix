@@ -329,6 +329,13 @@
       }
       vimPlugins.nvim-notify
       vimPlugins.undotree
+      {
+        plugin = vimPlugins.todo-comments-nvim;
+        type = "lua";
+        config = ''
+          require('todo-comments').setup {}
+        '';
+      }
     ];
     extraLuaConfig = ''
       -- Leader = space
