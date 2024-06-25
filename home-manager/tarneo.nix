@@ -90,5 +90,7 @@
     gnucash
     bitwarden
     gh
+    evcxr
+    rustc
   ];
 }
