@@ -1,6 +1,6 @@
 { ... }:
 let
-  postswitch-hook = ''
+  postswitch-hook = /* bash */ ''
     #!/usr/bin/env bash
     # If the profile changed since last time, run the profile hook
     echo "$AUTORANDR_CURRENT_PROFILE" > /tmp/autorandr-current-profile
