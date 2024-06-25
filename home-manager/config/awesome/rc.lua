@@ -40,24 +40,4 @@ dofile(awesome_conf_dir .. "rules.lua")
 -- Signals: what to do when a window is created, moved, etc.
 dofile(awesome_conf_dir .. "signals.lua")
 
-
-
--- Autostart applications
-awful.spawn.with_shell("pgrep signal-desktop || signal-desktop --start-in-tray")
-
--- Detect when autorandr changes the screen configuration, and reload some apps.
-awful.spawn.with_shell("pidof -x autorandr-watcher || autorandr-watcher")
-
--- Detect when a new keyboard is connected, set layout and options.
-awful.spawn.with_shell("pidof -x keyboard-watcher || keyboard-watcher")
-
--- Unison sync script: syncs files with my server.
-awful.spawn.with_shell("pgrep unison || unison-sync")
-
--- Nextcloud sync, for files shared with other people.
-awful.spawn.with_shell("pidof -x nextcloud-sync || nextcloud-sync")
-
--- Set the screen to turn off & lock after 5 minutes of inactivity.
-awful.spawn.with_shell("xset s 600")
--- xss-lock will exit if already running, no need to pgrep.
-awful.spawn.with_shell("xss-lock --transfer-sleep-lock lock")
+awful.spawn.with_shell("awesomewm-autostart")
