@@ -89,5 +89,6 @@
     kdenlive
     gnucash
     bitwarden
+    gh
   ];
 }
