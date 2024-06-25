@@ -184,10 +184,6 @@ in
         name = "__zprompt_git_info";
         text = builtins.readFile ./config/git-segment.zsh;
       })
-      (pkgs.writeShellApplication {
-        name = "ntmux";
-        text = builtins.readFile ./config/ntmux.zsh;
-      })
       pkgs.trash-cli
       pkgs.nix-index
       pkgs.tldr
