@@ -53,10 +53,6 @@
       lidSwitch = "suspend";
     };
     power-profiles-daemon.enable = true;
-    udev.extraRules = ''
-      # Touch /tmp/keyboard whenever a keyboard is plugged in
-      ACTION=="add", RUN+="${pkgs.coreutils}/bin/touch /tmp/keyboard"
-    '';
     geoclue2.enable = true;
     syncthing = {
       enable = true;
