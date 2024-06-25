@@ -66,15 +66,36 @@
       text = builtins.readFile ./config/powermenu.sh;
     })
     (pkgs.writeShellApplication {
+      name = "awesomewm-autostart";
+      # Gets run every time awesomewm starts or reloads.
+      text = /* bash */ ''
+        # Misc
+        xset r rate 300 50
+        setxkbmap fr
+        xset s 600
+
+        # Autostart apps
+        pgrep signal-desktop > /dev/null || signal-desktop --start-in-tray &
+        pgrep blueberry-tray > /dev/null || blueberry-tray &
+
+        # Handle display hotplugs
+        pidof -x autorandr-watcher > /dev/null || autorandr-watcher &
+
+        # Lock the screen when it turns off or when going to sleep
+        # xss-lock will exit if already running, no need to pgrep.
+        xss-lock --transfer-sleep-lock lock &
+
+        # Sync files with my server
+        pgrep -l unison | grep -v unison-status > /dev/null || unison-sync &
+        pidof -x nextcloud-sync > /dev/null || nextcloud-sync &
+      '';
+    })
+    (pkgs.writeShellApplication {
       name = "autorandr-watcher";
       text = /* bash */ ''
-        # If 2 screens are enabled, which only happens when autorandr hasn't run
-        # yet, run it.
-        xrandr | grep -c "\\*\\+" | grep -q 2 && autorandr --change
-        while true; do
+        reload() {
           pkill awesome --signal HUP
           pkill qutebrowser --signal HUP
-          ${pkgs.inotify-tools}/bin/inotifywait -e modify /tmp/autorandr-current-profile
           # Re-enable internal keyboard in case it was disabled by the user.
           # Useful when forgetting to re-enable it, I just know I'll have
           # forgotten if I plug in a monitor while it's still disabled, since
@@ -82,26 +103,17 @@
           # the laptop's.
           # xinput enable "AT Translated Set 2 keyboard"
           xinput enable "$(xinput list | grep "kanata" | grep -E "(floating slave|keyboard)" | sed -n "s/.*id=\\([0-9]*\\).*/\\1/p")"
-        done
-      '';
-    })
-    (pkgs.writeShellApplication {
-      name = "keyboard-watcher";
-      text = /* bash */ ''
-        manage() {
-          echo "New keyboard detected"
-          echo "Sleeping"
-          sleep 1
-          echo "Waking up, setting options"
-          setxkbmap fr
-          xset r rate 300 50
         }
-        touch /tmp/keyboard
+
+        # If 2 screens are enabled, which only happens when autorandr hasn't run
+        # yet, run it.
+        if [[ $(xrandr | grep -c "\\*\\+") -eq 2 ]]; then
+          autorandr --change
+          reload
+        fi
         while true; do
-          # /tmp/keyboard is touched by a udev rule whenever a keyboard is plugged
-          # in.
-          inotifywait /tmp/keyboard
-          manage &
+          ${pkgs.inotify-tools}/bin/inotifywait -e modify /tmp/autorandr-current-profile
+          reload
         done
       '';
     })

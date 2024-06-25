@@ -20,30 +20,34 @@ in
           echo $counter > ${counter_path}
         }
 
-        coproc run_unison
+        while true; do
+          while ! ping -c 1 -W 1 8.8.8.8; do sleep 1; done
 
-        echo -e "\e[33mBackground Unison process started. PID: \e[1m''${COPROC_PID}\e[0m"
-        echo -e "\e[33mNow outputting Unison log.\e[0m"
+          coproc run_unison
 
-        while read -r line; do
-          echo "$line"
-          if [[ "$line" == "skipped: "* ]]; then
-            inc_counter
-          elif [[ "$line" == "failed: "* ]]; then
-            inc_counter
-          elif [[ "$line" == "Nothing to do: replicas have not changed since last sync." ]]; then
-            counter=0
-            echo $counter > ${counter_path}
-          fi
-        done <&"''${COPROC[0]}"
+          echo -e "\e[33mBackground Unison process started. PID: \e[1m''${COPROC_PID}\e[0m"
+          echo -e "\e[33mNow outputting Unison log.\e[0m"
 
-        rm ${counter_path}
+          while read -r line; do
+            echo "$line"
+            if [[ "$line" == "skipped: "* ]]; then
+              inc_counter
+            elif [[ "$line" == "failed: "* ]]; then
+              inc_counter
+            elif [[ "$line" == "Nothing to do: replicas have not changed since last sync." ]]; then
+              counter=0
+              echo $counter > ${counter_path}
+            fi
+          done <&"''${COPROC[0]}"
+
+          sleep 20
+        done
       '';
     })
     (pkgs.writeShellApplication {
       name = "unison-status";
       text = /* bash */ ''
-        if [[ $(pgrep -c unison) -ge 4 ]]; then
+        if [[ $(pgrep -c unison) -ge 5 ]]; then
           errs=$(cat ${counter_path})
           if [[ "$errs" == 0 ]]; then
             echo "OK"
