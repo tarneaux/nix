@@ -548,6 +548,7 @@
     texlab
     pyright
     nodePackages.bash-language-server
+    shellcheck
     nodePackages.vscode-html-languageserver-bin
     nodePackages.vscode-json-languageserver-bin
     lua-language-server
