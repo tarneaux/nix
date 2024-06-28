@@ -30,6 +30,8 @@ local globalkeys = gears.table.join(
     -- Choose between shutdown, reboot, suspend or hibernate with dmenu
     awful.key({ ModKey, "Control" }, "q", function() awful.spawn.with_shell("powermenu") end),
 
+    awful.key({ ModKey }, "g", function() awful.spawn.with_shell("maim -su | xclip -selection clipboard -t image/png") end),
+
     -----------------------------
     -- Media / brightness keys --
     -----------------------------
