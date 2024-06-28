@@ -1,9 +1,5 @@
--- This file configures the keybindings of awesome.
--- It is made to work well in combination with the colemak keyboard layout.
-
 local awful = require("awful")
 local gears = require("gears")
-local naughty = require("naughty")
 require("awful.hotkeys_popup.keys")
 
 ModKey = "Mod4"
@@ -11,6 +7,13 @@ ModKey = "Mod4"
 local previous_layout = nil
 
 local globalkeys = gears.table.join(
+    -- Reload awesome
+    awful.key({ ModKey,           }, "q", awesome.restart),
+
+    ---------------------------
+    -- Start other processes --
+    ---------------------------
+
     -- Menu
     awful.key({ ModKey,           }, "p", function() awful.spawn.with_shell("dmenu_run") end),
 
@@ -21,16 +24,13 @@ local globalkeys = gears.table.join(
     -- Super + / (triboard) or Super + Shift + : (french keyboard)
     awful.key({ ModKey, "Shift"   }, "#60", function() awful.spawn.with_shell(TerminalCmd .. " ncmpcpp") end),
 
-    -- Reload awesome
-    awful.key({ ModKey,  }, "q", awesome.restart),
+    awful.key({ ModKey,           }, "m", function() awful.spawn.with_shell("lock") end),      -- Lock screen
+    awful.key({ ModKey, "Control" }, "q", function() awful.spawn.with_shell("powermenu") end), -- Power menu
+    awful.key({ ModKey,           }, "g", function()
+        awful.spawn.with_shell("maim -su | xclip -selection clipboard -t image/png") end),     -- Screenshot
 
-    -- Lock screen
-    awful.key({ ModKey            }, "m", function() awful.spawn.with_shell("lock") end),
-
-    -- Choose between shutdown, reboot, suspend or hibernate with dmenu
-    awful.key({ ModKey, "Control" }, "q", function() awful.spawn.with_shell("powermenu") end),
-
-    awful.key({ ModKey }, "g", function() awful.spawn.with_shell("maim -su | xclip -selection clipboard -t image/png") end),
+    -- Toggle VPN
+    awful.key({ ModKey,           }, "v", ToggleVpn),
 
     -----------------------------
     -- Media / brightness keys --
@@ -51,28 +51,27 @@ local globalkeys = gears.table.join(
     -- awful.key({}, "XF86AudioPrev", function ()          awful.spawn.with_shell("mpc prev")                      end),
     -- awful.key({}, "XF86AudioPlay", function ()          awful.spawn.with_shell("mpc toggle")                    end),
 
-    -- Change brightness
-    awful.key({ }, "XF86MonBrightnessDown", function ()
-        awful.spawn.with_shell("brightnessctl set 10%-") end),
-    awful.key({ }, "XF86MonBrightnessUp", function ()
-        awful.spawn.with_shell("brightnessctl set +10%") end),
+    -- Brightness
+    awful.key({ }, "XF86MonBrightnessDown", function () awful.spawn.with_shell("brightnessctl set 10%-") end),
+    awful.key({ }, "XF86MonBrightnessUp", function ()   awful.spawn.with_shell("brightnessctl set +10%") end),
 
     -----------------------------------
     -- Focus and layout manipulation --
     -----------------------------------
+
     -- (colemak's neio is QWERTY's hjkl.)
 
-    awful.key({ ModKey,           }, "i", function () awful.client.focus.byidx( 1) end), -- Focus next
-    awful.key({ ModKey,           }, "e", function () awful.client.focus.byidx(-1) end), -- Focus previous
-    awful.key({ ModKey, "Shift"   }, "i",     function () awful.client.swap.byidx(  1)        end), -- Swap with next client
-    awful.key({ ModKey, "Shift"   }, "e",     function () awful.client.swap.byidx( -1)        end), -- Swap with previous client
-    awful.key({ ModKey, "Shift"   }, "o",     function () awful.tag.incmwfact( 0.05)          end), -- Increase master width factor
-    awful.key({ ModKey, "Shift"   }, "n",     function () awful.tag.incmwfact(-0.05)          end), -- Decrease master width factor
-    awful.key({ ModKey,           }, "n",     function () awful.tag.incnmaster( 1, nil, true) end), -- Increase the number of master clients
-    awful.key({ ModKey,           }, "o",     function () awful.tag.incnmaster(-1, nil, true) end), -- Decrease the number of master clients
-    awful.key({ ModKey, "Shift"   }, "m",     function () awful.tag.incncol( 1, nil, true)    end), -- Increase the number of columns
+    awful.key({ ModKey,           }, "i", function () awful.client.focus.byidx( 1) end),        -- Focus next
+    awful.key({ ModKey,           }, "e", function () awful.client.focus.byidx(-1) end),        -- Focus previous
+    awful.key({ ModKey, "Shift"   }, "i", function () awful.client.swap.byidx(  1) end),        -- Swap with next client
+    awful.key({ ModKey, "Shift"   }, "e", function () awful.client.swap.byidx( -1) end),        -- Swap with previous client
+    awful.key({ ModKey, "Shift"   }, "o", function () awful.tag.incmwfact( 0.05) end),          -- Increase master width factor
+    awful.key({ ModKey, "Shift"   }, "n", function () awful.tag.incmwfact(-0.05) end),          -- Decrease master width factor
+    awful.key({ ModKey,           }, "n", function () awful.tag.incnmaster( 1, nil, true) end), -- Increase the number of master clients
+    awful.key({ ModKey,           }, "o", function () awful.tag.incnmaster(-1, nil, true) end), -- Decrease the number of master clients
+    awful.key({ ModKey, "Shift"   }, "m", function () awful.tag.incncol( 1, nil, true) end),    -- Increase the number of columns
     -- Super + Shift + / (triboard) or Super + Shift + , (french keyboard)
-    awful.key({ ModKey, "Shift"   }, "#58",     function () awful.tag.incncol(-1, nil, true)    end), -- Decrease the number of columns
+    awful.key({ ModKey, "Shift"   }, "#58", function () awful.tag.incncol(-1, nil, true) end),  -- Decrease the number of columns
     awful.key({ ModKey,           }, ",", function () awful.layout.inc( 1)                end), -- Change layout
 
     -- Toggle maximized layout
@@ -95,16 +94,13 @@ local globalkeys = gears.table.join(
     end),
 
     -- Restore last minimized client
-    awful.key({ ModKey, }, "u", function ()
+    awful.key({ ModKey,           }, "u", function ()
         local c = awful.client.restore()
         -- Focus restored client
         if c then
             c:emit_signal("request::activate", "key.unminimize", {raise = true})
         end
-    end),
-
-    -- Toggle VPN
-    awful.key({ ModKey }, "v", ToggleVpn)
+    end)
 )
 
 -- Keys for clients (windows)
@@ -128,7 +124,6 @@ ClientKeys = gears.table.join(
 -- Bind all key numbers to tags.
 -- Colemak's "arstd" = qwerty's "asdfg"
 local tagkeys = { "a", "r", "s", "t", "d", "h"}
--- Here change the number 5 to the number of buttons you set just above.
 for i = 1, 6 do
     globalkeys = gears.table.join(globalkeys,
         -- View tag only.
@@ -140,7 +135,7 @@ for i = 1, 6 do
                            tag:view_only()
                         end
                   end),
-        -- Toggle tag display. (in awesomewm you can view multiple tags at once)
+        -- Toggle tag display.
         awful.key({ ModKey, "Control" }, tagkeys[i],
                   function ()
                       local screen = awful.screen.focused()
@@ -159,7 +154,7 @@ for i = 1, 6 do
                           end
                      end
                   end),
-        -- Toggle tag on focused client. (clients/windows can be tagged with multiple tags)
+        -- Toggle tag on focused client.
         awful.key({ ModKey, "Control", "Shift" }, tagkeys[i],
                   function ()
                       if client.focus then
