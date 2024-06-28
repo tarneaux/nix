@@ -110,8 +110,8 @@
           # forgotten if I plug in a monitor while it's still disabled, since
           # disabling it is useless when I don't have my split keyboard on top of
           # the laptop's.
-          # xinput enable "AT Translated Set 2 keyboard"
-          xinput enable "$(xinput list | grep "kanata" | grep -E "(floating slave|keyboard)" | sed -n "s/.*id=\\([0-9]*\\).*/\\1/p")"
+          xinput enable "AT Translated Set 2 keyboard"
+          # xinput enable "$(xinput list | grep "kanata" | grep -E "(floating slave|keyboard)" | sed -n "s/.*id=\\([0-9]*\\).*/\\1/p")"
         }
 
         # If 2 screens are enabled, which only happens when autorandr hasn't run
