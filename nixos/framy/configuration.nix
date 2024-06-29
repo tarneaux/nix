@@ -87,6 +87,7 @@
       extraGroups = [
         "wheel"
         "dialout" # For arduino (/dev/ttyACM0 is owned by root:dialout)
+        "input" # For libinput-gestures
       ];
       packages = with pkgs; [
         blueberry
