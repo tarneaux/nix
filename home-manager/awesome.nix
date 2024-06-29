@@ -25,6 +25,14 @@
       # This is already defined in the `inputs` attribute, as `wallpapers`.
       source = inputs.wallpapers;
     };
+    ".config/libinput-gestures.conf" = {
+      text = ''
+        gesture swipe down awesome-client "require('awful').tag.history.restore (s)"
+
+        gesture swipe left awesome-client "require('awful').tag.viewidx (-1)"
+        gesture swipe right	awesome-client "require('awful').tag.viewidx (1)"
+      '';
+    };
   };
   services.redshift = {
     enable = true;
@@ -57,6 +65,7 @@
     xorg.xmodmap
     xss-lock
     nextcloud-client
+    libinput-gestures
     (pkgs.writeShellApplication {
       name = "lock";
       text = builtins.readFile ./config/lock.sh;
@@ -97,6 +106,8 @@
         # Sync files with my server
         pgrep -l unison | grep -v unison-status > /dev/null || unison-sync &
         pidof -x nextcloud-sync > /dev/null || nextcloud-sync &
+
+        libinput-gestures
       '';
     })
     (pkgs.writeShellApplication {
