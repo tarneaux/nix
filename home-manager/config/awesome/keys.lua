@@ -24,7 +24,7 @@ local globalkeys = gears.table.join(
     -- Super + / (triboard) or Super + Shift + : (french keyboard)
     awful.key({ ModKey, "Shift"   }, "#60", function() awful.spawn.with_shell(TerminalCmd .. " ncmpcpp") end),
 
-    awful.key({ ModKey,           }, "m", function() awful.spawn.with_shell("lock") end),      -- Lock screen
+    awful.key({ ModKey,           }, "z", function() awful.spawn.with_shell("lock") end),      -- Lock screen
     awful.key({ ModKey, "Control" }, "q", function() awful.spawn.with_shell("powermenu") end), -- Power menu
     awful.key({ ModKey,           }, "g", function()
         awful.spawn.with_shell("maim -su | xclip -selection clipboard -t image/png") end),     -- Screenshot
@@ -73,6 +73,7 @@ local globalkeys = gears.table.join(
     -- Super + Shift + / (triboard) or Super + Shift + , (french keyboard)
     awful.key({ ModKey, "Shift"   }, "#58", function () awful.tag.incncol(-1, nil, true) end),  -- Decrease the number of columns
     awful.key({ ModKey,           }, ",", function () awful.layout.inc( 1)                end), -- Change layout
+    awful.key({ ModKey,           }, "m", function() awful.tag.history.restore() end),      -- Switch to previous workspace in history
 
     -- Toggle maximized layout
     -- This will just crash if you set the default layout to maximized, but else it works well.
