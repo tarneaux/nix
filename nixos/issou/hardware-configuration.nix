@@ -42,12 +42,6 @@
     options = [ "fmask=0077" "dmask=0077" "defaults" ];
   };
 
-  fileSystems."/hdd" = {
-    device = "/dev/disk/by-uuid/c7df6f0d-afe5-4bc2-8aa2-af9008c85e05";
-    fsType = "btrfs";
-    options = [ "subvol=/" "compress=zstd" "noatime" ];
-  };
-
   swapDevices = [
     { device = "/dev/nvme0n1p2"; }
   ];
