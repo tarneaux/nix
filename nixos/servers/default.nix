@@ -35,6 +35,7 @@
     settings = {
       PasswordAuthentication = false;
       KbdInteractiveAuthentication = false;
+      LoginGraceTime = 0;
     };
   };
 
