@@ -16,6 +16,10 @@
       paths = [
         "/home/risitas/data"
         "/home/risitas/services"
+        # Temp for services moved from chankla
+        "/home/risitas/data-chankla"
+        "/home/risitas/services-chankla"
+        "/btrfs/@data"
       ];
       exclude = [
         "/home/risitas/data/mastodon/public/system/cache/"
