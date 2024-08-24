@@ -87,7 +87,7 @@ theme.tasklist_fg_normal = theme.color14
 theme.titlebar_fg_focus = theme.color15
 theme.titlebar_fg_normal = theme.color14
 
-theme.wallpaper = "~/.config/wallpapers/rocky.jpg"
+theme.wallpaper = "~/.config/wallpapers/lichen.png"
 -- function theme.wallpaper(s)
 --     -- XXX: Tilde expansion doesn't work here
 --     local awesome_conf_dir = gears.filesystem.get_configuration_dir()
