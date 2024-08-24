@@ -79,7 +79,6 @@
     hplip
     libreoffice
     dig
-    ffmpeg
     license-cli
     inkscape
     gpick
@@ -92,6 +91,7 @@
     gh
     evcxr
     rustc
+    ffmpeg-full
     blueberry
     digikam
     exiftool
