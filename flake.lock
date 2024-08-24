@@ -144,11 +144,11 @@
     },
     "wallpapers": {
       "locked": {
-        "lastModified": 1716124231,
-        "narHash": "sha256-AnBKgxDzGV5WFopVdFsua3MHQFOIUUWj5cibbhF/F+4=",
+        "lastModified": 1724517727,
+        "narHash": "sha256-rUTTppHTWjTB2lsr4q2pbGUb710xg77zZg8C+OYSsh8=",
         "owner": "tarneaux",
         "repo": "wallpapers-small",
-        "rev": "bff64d5f1b55968bf32614a99924f3e862c3e198",
+        "rev": "c379101607b23e3ccfcf269d076de8c325325fa4",
         "type": "github"
       },
       "original": {
