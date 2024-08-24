@@ -90,16 +90,6 @@
         "input" # For libinput-gestures
       ];
       packages = with pkgs; [
-        blueberry
-        digikam
-        element-desktop
-        imagemagick
-        nsxiv
-        pamixer
-        pavucontrol
-        podman-compose
-        signal-desktop
-        stow
       ];
     };
   };

@@ -92,5 +92,15 @@
     gh
     evcxr
     rustc
+    blueberry
+    digikam
+    exiftool
+    element-desktop
+    imagemagick
+    nsxiv
+    pamixer
+    pavucontrol
+    podman-compose
+    signal-desktop
   ];
 }
