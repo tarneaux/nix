@@ -10,7 +10,7 @@ local level_icons = {
     "  "
 }
 
-local charging_icon = ""
+local charging_icon = "󱐋"
 
 local notification_shown = 100
 
@@ -27,7 +27,7 @@ local combo_widget = wibox.widget {
     charging_widget,
     {
         icon_widget,
-        left = 5,
+        left = 3,
         widget = wibox.container.margin
     },
     percentage_widget,
