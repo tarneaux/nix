@@ -3,30 +3,8 @@ local beautiful = require("beautiful")
 local gears = require("gears")
 local bar = require("bar.bar")
 
-local function set_wallpaper(s)
-    -- Wallpaper
-    if beautiful.wallpaper then
-        local wallpaper = beautiful.wallpaper
-        -- If wallpaper is a function, call it with the screen
-        if type(wallpaper) == "function" then
-            wallpaper = wallpaper(s)
-        end
-        gears.wallpaper.maximized(wallpaper, s, false)
-    elseif beautiful.wallpaper_color then
-        gears.wallpaper.set(beautiful.wallpaper_color)
-    elseif beautiful.wallpaper_folder then
-        local f = io.popen("sh -c \"find ".. beautiful.wallpaper_folder .. " -name '*.png' | shuf -n 1 | xargs echo -n\"")
-        if f == nil then
-            return
-        end
-        local wallpaper = f:read("*all")
-        f:close()
-        gears.wallpaper.maximized(wallpaper, s, false)
-    end
-end
-
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
-screen.connect_signal("property::geometry", set_wallpaper)
+screen.connect_signal("property::geometry", beautiful.set_wallpaper)
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
@@ -50,7 +28,7 @@ awful.layout.layouts = {
 
 awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
-    set_wallpaper(s)
+    beautiful.set_wallpaper(s)
 
     bar(s)
 
