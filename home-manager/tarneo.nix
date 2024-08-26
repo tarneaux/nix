@@ -102,5 +102,6 @@
     pavucontrol
     podman-compose
     signal-desktop
+    yt-dlp
   ];
 }
