@@ -87,18 +87,21 @@ theme.tasklist_fg_normal = theme.color14
 theme.titlebar_fg_focus = theme.color15
 theme.titlebar_fg_normal = theme.color14
 
-theme.wallpaper = "~/.config/wallpapers/lichen.png"
--- function theme.wallpaper(s)
---     -- XXX: Tilde expansion doesn't work here
---     local awesome_conf_dir = gears.filesystem.get_configuration_dir()
---     if s.geometry.width == 2560 and s.geometry.height == 1080 then
---         return os.getenv("HOME") .. ".config/wallpapers/foggy-forest-3.jpg"
---     else
---         return os.getenv("HOME") .. ".config/wallpapers/leaves-dark.jpg"
---     end
--- end
--- theme.wallpaper_color = "#1d2021"
--- theme.wallpaper_folder = "~/.config/wallpapers/"
+function theme.set_wallpaper(s)
+    local wallpaper
+
+    if s.geometry.width == 2560 and s.geometry.height == 1080 then
+        -- External display at home
+        wallpaper = "mtn.jpg"
+    else
+        -- Internal display
+        wallpaper = "falaise.jpg"
+    end
+
+    -- XXX: Tilde expansion doesn't work here, and there may be strange behavior
+    -- because this function does not error out when it does not find the file.
+    gears.wallpaper.maximized(os.getenv("HOME") .. "/.config/wallpapers/" .. wallpaper, s, false)
+end
 
 -- Variable used by `lock` script.
 -- If this isn't set, the lock script will use the lock.png image.
