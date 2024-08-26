@@ -103,5 +103,6 @@
     podman-compose
     signal-desktop
     yt-dlp
+    pcmanfm
   ];
 }
