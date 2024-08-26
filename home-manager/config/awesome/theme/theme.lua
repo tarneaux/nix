@@ -100,6 +100,8 @@ function theme.set_wallpaper(s)
 
     -- XXX: Tilde expansion doesn't work here, and there may be strange behavior
     -- because this function does not error out when it does not find the file.
+    -- On different setups, pay especially attention to whether or not there is
+    -- a forward slash at the end of $HOME.
     gears.wallpaper.maximized(os.getenv("HOME") .. "/.config/wallpapers/" .. wallpaper, s, false)
 end
 
