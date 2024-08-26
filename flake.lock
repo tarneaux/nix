@@ -30,11 +30,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1724349583,
-        "narHash": "sha256-zgB1Cfk46irIsto8666yLdKjqKdBrjR48Dd3lhQ0CnQ=",
+        "lastModified": 1724639687,
+        "narHash": "sha256-L2h46/z8WExNvtCEdZ8YuMu5TwfAGsKXXgM7pyIShvs=",
         "owner": "nix-community",
         "repo": "disko",
-        "rev": "435737144be0259559ca3b43f7d72252b1fdcc1b",
+        "rev": "b09eb605e376c9e95c87c0ef3fcb8008e11c8368",
         "type": "github"
       },
       "original": {
@@ -144,11 +144,11 @@
     },
     "wallpapers": {
       "locked": {
-        "lastModified": 1724517727,
-        "narHash": "sha256-rUTTppHTWjTB2lsr4q2pbGUb710xg77zZg8C+OYSsh8=",
+        "lastModified": 1724681323,
+        "narHash": "sha256-jU/c1MV3jRs8mceYP8/HOaUKuVa1TxtuVnMRdgXNi8c=",
         "owner": "tarneaux",
         "repo": "wallpapers-small",
-        "rev": "c379101607b23e3ccfcf269d076de8c325325fa4",
+        "rev": "eb6950f68b2df3d57b3b23c0779d945365272370",
         "type": "github"
       },
       "original": {
