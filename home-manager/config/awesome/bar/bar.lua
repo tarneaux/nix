@@ -4,7 +4,6 @@ local wibox = require("wibox")
 
 local taglist = require("bar/widgets/taglist")
 local clock = require("bar/widgets/clock")
-local vpn = require("bar/widgets/vpn")
 local spacer = require("bar/widgets/spacer")
 local layout = require("bar/widgets/layout")
 local battery = require("bar/widgets/battery")
@@ -52,14 +51,9 @@ local bar = function(s)
 					},
                     {
                         layout = wibox.layout.align.horizontal,
-                        {
-                            layout = wibox.layout.align.horizontal,
-                            togglekeyboard,
-                            spacer,
-                            triboard_batt,
-                        },
+                        togglekeyboard,
                         spacer,
-                        vpn,
+                        triboard_batt,
                     }
                 }
             },
