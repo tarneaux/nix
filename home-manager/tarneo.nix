@@ -104,5 +104,6 @@
     signal-desktop
     yt-dlp
     pcmanfm
+    librewolf
   ];
 }
