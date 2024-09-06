@@ -332,6 +332,13 @@
           require('todo-comments').setup {}
         '';
       }
+      {
+        plugin = vimPlugins.otter-nvim;
+        type = "lua";
+        config = /* lua */ ''
+          require("otter").activate({ "bash", "lua", "vim" }, true, true, nil)
+        '';
+      }
     ];
     extraLuaConfig = /* lua */ ''
       -- Leader = space
