@@ -36,7 +36,6 @@
     };
     libinput.enable = true;
     upower.enable = true;
-    fprintd.enable = true;
     pipewire = {
       enable = true;
       alsa.enable = true;
@@ -65,10 +64,6 @@
 
   security = {
     rtkit.enable = true;
-    pam.services.i3lock = {
-      # i3lock doesn't support fprintd.
-      # Make sure it is disabled, otherwise it will hang.
-      fprintAuth = false;
     };
   };
 
