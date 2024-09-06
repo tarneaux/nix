@@ -5,14 +5,8 @@
 , ...
 }:
 let
-  privesc_wrong = # Wrong privilege escalation command
-    if hostname == "framy"
-    then "doas"
-    else "sudo";
-  privesc_right = # Right privilege escalation command
-    if hostname == "framy"
-    then "sudo"
-    else "doas";
+  privesc_wrong = "sudo";
+  privesc_right = "doas";
   docker =
     if hostname == "framy"
     then "podman"
