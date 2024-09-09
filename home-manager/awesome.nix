@@ -88,7 +88,7 @@
       # Gets run every time awesomewm starts or reloads.
       text = /* bash */ ''
         # Misc
-        xset r rate 300 50
+        xset r rate 300 50 # Also set in bar/widgets/triboard_batt.lua
         setxkbmap fr
         xset s 600
 
