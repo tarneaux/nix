@@ -105,6 +105,7 @@
     yt-dlp
     pcmanfm
     librewolf
+    openssl
   ];
 
   xdg.mimeApps.enable = true;
