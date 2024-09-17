@@ -500,6 +500,13 @@
           end
       })
 
+      vim.api.nvim_create_autocmd("Filetype", {
+          pattern = "mail",
+          callback = function ()
+              vim.keymap.set("n", ",u", function () vim.cmd [[ :r ~/.config/aerc/signature_univ.txt ]] end, { buffer = true })
+          end
+      })
+
       vim.g.pyindent_open_paren = "shiftwidth()"
 
       -- Enable colorcolumn in all files
