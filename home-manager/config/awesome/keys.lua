@@ -25,7 +25,7 @@ local globalkeys = gears.table.join(
     awful.key({ ModKey, "Shift"   }, "#60", function() awful.spawn.with_shell(TerminalCmd .. " ncmpcpp") end),
 
     awful.key({ ModKey,           }, "z", function() awful.spawn.with_shell("lock") end),      -- Lock screen
-    awful.key({ ModKey, "Control" }, "z", function() awful.spawn.with_shell("xset dpms force off") end), -- Blank screen
+    awful.key({ ModKey, "Control" }, "z", function() awful.spawn.with_shell("xset s activate") end), -- Blank screen
     awful.key({ ModKey, "Control" }, "q", function() awful.spawn.with_shell("powermenu") end), -- Power menu
     awful.key({ ModKey,           }, "g", function()
         awful.spawn.with_shell("maim -su | xclip -selection clipboard -t image/png") end),     -- Screenshot
