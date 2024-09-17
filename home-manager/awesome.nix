@@ -107,7 +107,8 @@
         pgrep -l unison | grep -v unison-status > /dev/null || unison-sync &
         pidof -x nextcloud-sync > /dev/null || nextcloud-sync &
 
-        libinput-gestures
+        # libinput-gestures will exit if already running, no need to pgrep.
+        libinput-gestures &
       '';
     })
     (pkgs.writeShellApplication {
