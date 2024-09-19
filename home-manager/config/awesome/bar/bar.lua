@@ -11,6 +11,7 @@ local unison = require("bar/widgets/unison")
 local togglekeyboard = require("bar/widgets/togglekeyboard")
 local playing = require("bar/widgets/playing")
 local triboard_batt = require("bar/widgets/triboard_batt")
+local vpn = require("bar/widgets/vpn")
 
 local bar = function(s)
     local wb = awful.wibar {
@@ -53,7 +54,12 @@ local bar = function(s)
                         layout = wibox.layout.align.horizontal,
                         togglekeyboard,
                         spacer,
-                        triboard_batt,
+                        {
+                            layout = wibox.layout.align.horizontal,
+                            triboard_batt,
+                            spacer,
+                            vpn,
+                        }
                     }
                 }
             },
