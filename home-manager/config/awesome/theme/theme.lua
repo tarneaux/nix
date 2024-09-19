@@ -95,7 +95,7 @@ function theme.set_wallpaper(s)
         wallpaper = "mtn.jpg"
     else
         -- Internal display
-        wallpaper = "falaise.jpg"
+        wallpaper = "bastaings.jpg"
     end
 
     -- XXX: Tilde expansion doesn't work here, and there may be strange behavior
