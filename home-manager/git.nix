@@ -12,6 +12,7 @@
       init.defaultBranch = "main";
       pull.rebase = true; # Rebase by default when pulling
       merge.conflictstyle = "zdiff3"; # Also show the common ancestor
+      merge.tool = "vimdiff";
       rebase.autostash = true; # Stash changes before rebasing
       push.default = "current"; # Push to a remote branch with the same name
       fetch.prune = true; # Prune remote branches when fetching
