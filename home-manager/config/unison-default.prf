@@ -6,6 +6,7 @@ ignore = Name target/debug
 ignore = Name target/release
 ignore = Name target/wasm-bindgen
 ignore = Name target/wasm32-unknown-unknown
+ignore = Name target/riscv32imc-unknown-none-elf
 ignore = Name venv
 ignore = Name .venv
 
