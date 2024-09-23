@@ -106,6 +106,7 @@
     pcmanfm
     librewolf
     openssl
+    hut
   ];
 
   xdg.mimeApps.enable = true;
