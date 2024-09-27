@@ -7,6 +7,9 @@
       key = null; # Let GPG decide
       signByDefault = hostname == "framy";
     };
+    delta = {
+      enable = true;
+    };
     extraConfig = {
       credential.helper = "store";
       init.defaultBranch = "main";
