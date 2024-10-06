@@ -39,6 +39,17 @@
         }
       ];
     };
+    wg-quick.interfaces.extra = {
+      address = [ "10.9.0.1/32" ];
+      listenPort = 64469;
+      privateKeyFile = "/etc/wireguard/extra.key";
+      peers = [
+        {
+          publicKey = "GTspZHM25+iyevjXLZk36IrxD66+WTkoTRMJyKopdTM=";
+          allowedIPs = [ "10.9.0.2/32" ];
+        }
+      ];
+    };
     defaultGateway = {
       address = "51.210.176.1";
       metric = 200;
