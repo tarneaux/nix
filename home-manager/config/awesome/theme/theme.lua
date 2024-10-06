@@ -3,6 +3,7 @@
 ---------------------------
 
 local gears = require("gears")
+local naughty = require("naughty")
 
 local theme = {}
 
@@ -87,22 +88,33 @@ theme.tasklist_fg_normal = theme.color14
 theme.titlebar_fg_focus = theme.color15
 theme.titlebar_fg_normal = theme.color14
 
+-- function theme.set_wallpaper(s)
+--     local wallpaper
+
+--     if s.geometry.width == 2560 and s.geometry.height == 1080 then
+--         -- External display at home
+--         wallpaper = "mtn.jpg"
+--     else
+--         -- Internal display
+--         wallpaper = "bastaings.jpg"
+--     end
+
+--     -- XXX: Tilde expansion doesn't work here, and there may be strange behavior
+--     -- because this function does not error out when it does not find the file.
+--     -- On different setups, pay especially attention to whether or not there is
+--     -- a forward slash at the end of $HOME.
+--     gears.wallpaper.maximized(os.getenv("HOME") .. "/.config/wallpapers/" .. wallpaper, s, false)
+-- end
+
 function theme.set_wallpaper(s)
-    local wallpaper
-
-    if s.geometry.width == 2560 and s.geometry.height == 1080 then
-        -- External display at home
-        wallpaper = "mtn.jpg"
-    else
-        -- Internal display
-        wallpaper = "bastaings.jpg"
+    local dir = "~/pics/wallpapers/landscape"
+    local f = io.popen("sh -c \"find " .. dir .. " \\( -name '*.JPG' -or -name '*.png' -or -name '*.jpg' \\) | shuf -n 1 | xargs echo -n\"")
+    if f == nil then
+        return
     end
-
-    -- XXX: Tilde expansion doesn't work here, and there may be strange behavior
-    -- because this function does not error out when it does not find the file.
-    -- On different setups, pay especially attention to whether or not there is
-    -- a forward slash at the end of $HOME.
-    gears.wallpaper.maximized(os.getenv("HOME") .. "/.config/wallpapers/" .. wallpaper, s, false)
+    local wallpaper = f:read("*all")
+    f:close()
+    gears.wallpaper.maximized(wallpaper, s, false)
 end
 
 -- Variable used by `lock` script.
