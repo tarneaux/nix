@@ -48,6 +48,10 @@
           publicKey = "GTspZHM25+iyevjXLZk36IrxD66+WTkoTRMJyKopdTM=";
           allowedIPs = [ "10.9.0.2/32" ];
         }
+        {
+          publicKey = "kSxL4ZAGoeNRHWjLen0pk2pPEvCzv2nuOXDHDZj/K2I=";
+          allowedIPs = [ "10.8.0.5/32" ];
+        }
       ];
     };
     defaultGateway = {
