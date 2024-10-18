@@ -90,8 +90,10 @@
             ];
           };
         in
-        { "framy" = (makeUser "framy" false); }
-        // nixpkgs.lib.genAttrs server_hostnames (user: makeUser user true)
+        { "tarneo@framy" = (makeUser "tarneo@framy" false); }
+        // nixpkgs.lib.genAttrs
+          (map (hostname: "risitas@${hostname}") server_hostnames)
+          (user: makeUser user true)
       ;
     };
 }
