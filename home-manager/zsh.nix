@@ -1,6 +1,6 @@
 { config
 , pkgs
-, hostname
+, is_server
 , lib
 , ...
 }:
@@ -8,9 +8,9 @@ let
   privesc_wrong = "sudo";
   privesc_right = "doas";
   docker =
-    if hostname == "framy"
-    then "podman"
-    else "doas docker";
+    if is_server
+    then "doas docker"
+    else "podman";
 in
 {
   programs.zsh = {
@@ -26,10 +26,10 @@ in
 
       # Use less as man & bat pagers
       man = "${pkgs.unstable.bat-extras.batman}/bin/batman";
-    } // (if hostname == "framy" then {
+    } // lib.attrsets.optionalAttrs (!is_server) {
       # Reload wifi kernel module, useful when wifi doesn't work after resume
       wr = "sudo modprobe -r mt7921e && sudo modprobe mt7921e";
-    } else { });
+    };
 
     zsh-abbr = {
       enable = true;
@@ -108,7 +108,7 @@ in
           # Correct the common mistake of using sudo instead of doas
           ${privesc_wrong} = privesc_right;
         }
-        (lib.mkIf (hostname == "framy") {
+        (lib.mkIf (!is_server) {
           # VPN
           vu = "${privesc_right} wg-quick up vpn";
           vd = "${privesc_right} wg-quick down vpn";
@@ -171,6 +171,12 @@ in
       PROMPT+='%f' # Reset the text color
 
       source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
+
+      # GPG config for pinentry, see:
+      # https://superuser.com/questions/520980/how-to-force-gpg-to-use-console-mode-pinentry-to-prompt-for-passwords
+      export GPG_TTY=$(tty)
+      gpg-connect-agent updatestartuptty /bye >/dev/null
+
     '';
   };
   home.packages =
@@ -184,7 +190,7 @@ in
       pkgs.tldr
       pkgs.yazi
     ]
-    ++ lib.lists.optionals (hostname == "framy") [
+    ++ lib.lists.optionals (!is_server) [
       # Exit all SSH control sockets.
       (pkgs.writeShellApplication {
         name = "sc";

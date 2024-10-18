@@ -10,18 +10,12 @@
     # inputs.nix-colors.homeManagerModules.default
 
     # You can also split up your configuration and import pieces of it here:
-    ./zsh.nix
     ./qutebrowser.nix
-    ./git.nix
-    ./tmux.nix
-    ./nvim.nix
-    ./user.nix
     ./alacritty.nix
     ./zathura.nix
     ./mpv.nix
     ./mpd.nix
     ./awesome.nix
-    ./common.nix
     ./nsxiv.nix
     ./aerc.nix
     ./dmenu.nix

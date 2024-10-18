@@ -78,30 +78,20 @@
           ] else [ ]);
         });
 
-      # Standalone home-manager configuration entrypoint
-      # Available through 'home-manager --flake .#your-username@your-hostname'
-      homeConfigurations = {
-        "tarneo@framy" = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-          extraSpecialArgs = {
-            inherit inputs outputs;
-            hostname = "framy";
-            username = "tarneo";
+      homeConfigurations =
+        let
+          makeUser = user: is_server: home-manager.lib.homeManagerConfiguration {
+            pkgs = nixpkgs.legacyPackages.x86_64-linux;
+            extraSpecialArgs = {
+              inherit inputs outputs is_server;
+            };
+            modules = [
+              ./home-manager
+            ];
           };
-          modules = [
-            ./home-manager/tarneo.nix
-          ];
-        };
-      } // nixpkgs.lib.genAttrs (map (hostname: "risitas@${hostname}") server_hostnames) (hostname:
-        home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-          extraSpecialArgs = {
-            inherit inputs outputs hostname;
-            username = "risitas";
-          };
-          modules = [
-            ./home-manager/risitas.nix
-          ];
-        });
+        in
+        { "framy" = (makeUser "framy" false); }
+        // nixpkgs.lib.genAttrs server_hostnames (user: makeUser user true)
+      ;
     };
 }
