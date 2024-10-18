@@ -36,6 +36,7 @@
       PasswordAuthentication = false;
       KbdInteractiveAuthentication = false;
       LoginGraceTime = 0;
+      StreamLocalBindUnlink = true;
     };
   };
 
