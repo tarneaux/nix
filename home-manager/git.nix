@@ -1,11 +1,11 @@
-{ hostname, ... }: {
+{ is_server, lib, ... }: {
   programs.git = {
     enable = true;
     userName = "tarneo";
     userEmail = "tarneo@tarneo.fr";
     signing = {
-      key = null; # Let GPG decide
-      signByDefault = hostname == "framy";
+      key = null; # Overriden in includes below
+      signByDefault = true;
     };
     delta = {
       enable = true;
@@ -30,6 +30,23 @@
         "git@renn.es:".insteadOf = "rennes:";
       };
     };
+    includes = (lib.lists.optionals (!is_server) [
+      {
+        contents.user = {
+          email = "tarneo@tarneo.fr";
+          signingKey = "4E7072A78326617F";
+        };
+      }
+    ])
+    ++ [
+      {
+        condition = if is_server then null else "gitdir:~/renn.es/";
+        contents.user = {
+          email = "admin@renn.es";
+          signingKey = "6F145B0C9A5BFC47";
+        };
+      }
+    ];
   };
   home.file.".config/git/ignore".text = ''
     .envrc
