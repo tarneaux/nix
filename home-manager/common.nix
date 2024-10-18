@@ -6,6 +6,7 @@
     ./nvim.nix
     ./user.nix
     ./git.nix
+    ./gpg.nix
   ];
   programs.fzf.enable = true;
   home.packages = with pkgs; [
