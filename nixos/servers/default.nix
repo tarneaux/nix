@@ -1,7 +1,7 @@
-{ pkgs, inputs, hostname, lib, agenix, ... }: {
+{ pkgs, inputs, lib, agenix, ... }: {
   imports = [
     ./restic.nix
-  ] ++ (if hostname != "chorizo" then [ ./networking.nix ] else [ ]);
+  ];
 
   security = {
     sudo.enable = false;

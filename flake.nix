@@ -45,14 +45,10 @@
         "x86_64-darwin"
       ];
 
-      # This is a function that generates an attribute by calling a function you
-      # pass to it, with each system as an argument
-      forAllSystems = nixpkgs.lib.genAttrs systems;
-
       server_hostnames = [ "issou" "gaspacho" "chankla" "chorizo" ];
     in
     {
-      formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixpkgs-fmt);
+      formatter = nixpkgs.lib.genAttrs systems (system: nixpkgs.legacyPackages.${system}.nixpkgs-fmt);
       overlays = import ./overlays { inherit inputs; };
 
       nixosConfigurations = {
@@ -73,9 +69,9 @@
             ./nixos/common.nix
             ./nixos/servers
             agenix.nixosModules.default
-          ] ++ (if (hostname == "chorizo") then [
-            disko.nixosModules.disko
-          ] else [ ]);
+          ] ++ (if (hostname == "chorizo")
+          then [ disko.nixosModules.disko ]
+          else [ ./nixos/servers/networking.nix ]);
         });
 
       homeConfigurations =
