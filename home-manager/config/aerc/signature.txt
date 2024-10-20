@@ -13,5 +13,6 @@ Matrix: @tarneo:matrix.renn.es
 Mastodon: @tarneo@toot.renn.es
 
 PGP:
-https://tarneo.fr/tarneo.asc
-7C56 89A0 383A 1228 2DCE 83D2 BA92 4E53 D0EB 3FCC
+$ gpg --locate-keys tarneo@tarneo.fr
+Communication: BB7E 3E76 C8DB 37AF 94F3 22DF A106 AD72 EA62 ADDF
+Git signature: 74E9 F0A2 0B52 F743 674B 04A5 4E70 72A7 8326 617F
