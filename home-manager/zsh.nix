@@ -171,12 +171,6 @@ in
       PROMPT+='%f' # Reset the text color
 
       source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
-
-      # GPG config for pinentry, see:
-      # https://superuser.com/questions/520980/how-to-force-gpg-to-use-console-mode-pinentry-to-prompt-for-passwords
-      export GPG_TTY=$(tty)
-      gpg-connect-agent updatestartuptty /bye >/dev/null
-
     '';
   };
   home.packages =
