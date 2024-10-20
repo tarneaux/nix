@@ -8,7 +8,6 @@ https://renn.es and {privacy, right to repair, free software} advocate.
 
 Blog: https://tarneo.fr/
 E-mail: tarneo@tarneo.fr
-XMPP: tarneo@renn.es
 GitHub: tarneaux
 Matrix: @tarneo:matrix.renn.es
 Mastodon: @tarneo@toot.renn.es
