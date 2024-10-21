@@ -20,6 +20,11 @@ in
       size = 1000000;
       path = "${config.xdg.dataHome}/zsh/history";
     };
+    historySubstringSearch = {
+      enable = true;
+      searchUpKey = "^[OA";
+      searchDownKey = "^[OB";
+    };
     shellAliases = {
       # Use eza for listing files
       ls = "${pkgs.unstable.eza}/bin/eza --icons --group-directories-first";
