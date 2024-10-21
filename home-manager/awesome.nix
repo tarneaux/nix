@@ -113,6 +113,7 @@
     })
     (pkgs.writeShellApplication {
       name = "autorandr-watcher";
+      runtimeInputs = with pkgs; [ inotify-tools ];
       text = /* bash */ ''
         reload() {
           pkill awesome --signal HUP
@@ -133,7 +134,7 @@
           reload
         fi
         while true; do
-          ${pkgs.inotify-tools}/bin/inotifywait -e modify /tmp/autorandr-current-profile
+          inotifywait -e modify /tmp/autorandr-current-profile
           reload
         done
       '';
