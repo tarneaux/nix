@@ -148,5 +148,16 @@
         done
       '';
     })
+    (pkgs.writeShellApplication {
+      name = "__enter_risitas_pass";
+      runtimeInputs = with pkgs; [ xdotool ];
+      text = /* bash */ ''
+        if ! [[ $(xdotool getactivewindow getwindowname) =~ risitas@.*:doas ]]; then
+          exit 1
+        fi
+        xdotool keyup super
+        gpg --decrypt ~/.risitas.gpg | xdotool type --file -
+      '';
+    })
   ];
 }

@@ -18,7 +18,6 @@ local globalkeys = gears.table.join(
     awful.key({ ModKey,           }, "p", function() awful.spawn.with_shell("dmenu_run") end),
 
     -- Various apps
-    awful.key({ ModKey,           }, "y", function() awful.spawn.with_shell("") end),
     awful.key({ ModKey,           }, "b", function() awful.spawn.with_shell("qutebrowser") end),
     awful.key({ ModKey,           }, "Return", function () awful.spawn.with_shell(Terminal) end),
     -- Super + / (triboard) or Super + Shift + : (french keyboard)
@@ -32,6 +31,9 @@ local globalkeys = gears.table.join(
 
     -- Toggle VPN
     awful.key({ ModKey,           }, "v", ToggleVpn),
+
+    -- Type in server user password
+    awful.key({ ModKey,           }, "y", function() awful.spawn.with_shell("__enter_risitas_pass") end),
 
     -----------------------------
     -- Media / brightness keys --
