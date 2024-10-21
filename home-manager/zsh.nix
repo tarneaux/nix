@@ -170,6 +170,23 @@ in
       PROMPT+='%(?.%F{green}λ .%F{red}λ )' # Display a green prompt if the last command succeeded, or red if it failed
       PROMPT+='%f' # Reset the text color
 
+      # Set window titles depending on commands and user@hostname
+
+      function __set_title() {
+        cmd=$(echo "$1" | awk '{print $1}')
+        title="$(whoami)@$(hostname):$cmd"
+        echo -n "\033]0;$title\a"
+      }
+
+      add-zsh-hook preexec __set_title
+
+      function __clear_title() {
+        title="$(whoami)@$(hostname)"
+        echo -n "\033]0;$title\a"
+      }
+
+      add-zsh-hook precmd __clear_title
+
       source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
     '';
   };
