@@ -35,47 +35,52 @@
   home.stateVersion = "23.05";
 
   home.packages = with pkgs; [
-    inotify-tools
-    texliveSmall
-    pandoc
-    unzip
-    xorg.xkill
-    jq
-    qpwgraph
-    rawtherapee
-    kicad
-    nmap
-    kubectl
-    hplip
-    libreoffice
+    # Command line utilities
     dig
-    license-cli
-    inkscape
-    gpick
-    xournalpp
-    nodePackages.prettier
-    audacity
-    kdenlive
-    gnucash
-    bitwarden
-    gh
     evcxr
     rustc
-    ffmpeg-full
-    blueberry
-    digikam
     exiftool
-    element-desktop
-    imagemagick
-    nsxiv
-    pamixer
-    pavucontrol
-    podman-compose
-    signal-desktop
-    yt-dlp
-    pcmanfm
-    librewolf
-    openssl
+    ffmpeg-full
+    gh
     hut
+    imagemagick
+    inotify-tools
+    jq
+    kubectl
+    license-cli
+    nmap
+    nodePackages.prettier
+    openssl
+    pamixer
+    pandoc
+    podman-compose
+    texliveSmall
+    unzip
+    yt-dlp
+
+    # X utilities
+    bitwarden
+    blueberry
+    gpick
+    hplip
+    pavucontrol
+    pcmanfm
+    qpwgraph
+    xorg.xkill
+
+    # Full-blown X programs
+    audacity
+    digikam
+    element-desktop
+    gnucash
+    inkscape
+    kdenlive
+    kicad
+    libreoffice
+    librewolf
+    nsxiv
+    rawtherapee
+    signal-desktop
+    xournalpp
   ];
 }
