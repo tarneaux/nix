@@ -16,10 +16,12 @@ in
   programs.zsh = {
     enable = true;
     dotDir = ".config/zsh";
+
     history = {
       size = 1000000;
       path = "${config.xdg.dataHome}/zsh/history";
     };
+
     historySubstringSearch = {
       enable = true;
       searchUpKey = "^[OA";
