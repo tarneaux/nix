@@ -25,6 +25,9 @@ in
       searchUpKey = "^[OA";
       searchDownKey = "^[OB";
     };
+
+    autosuggestion.enable = true;
+
     shellAliases = {
       # Use eza for listing files
       ls = "${pkgs.unstable.eza}/bin/eza --icons --group-directories-first";
@@ -139,7 +142,6 @@ in
     zplug = {
       enable = true;
       plugins = [
-        { name = "zsh-users/zsh-autosuggestions"; }
         { name = "zdharma-continuum/fast-syntax-highlighting"; }
       ];
     };
