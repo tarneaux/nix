@@ -20,6 +20,7 @@ in
     history = {
       size = 1000000;
       path = "${config.xdg.dataHome}/zsh/history";
+      ignoreAllDups = true;
     };
 
     historySubstringSearch = {
