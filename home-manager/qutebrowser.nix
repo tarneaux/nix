@@ -41,7 +41,7 @@
           c.fonts.default_size = '8pt'
       else:
           c.zoom.default = '120%'
-          c.fonts.default_size = '14pt'
+          c.fonts.default_size = '15pt'
     '';
   };
   home.packages = [
