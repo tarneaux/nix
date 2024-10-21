@@ -27,6 +27,7 @@ in
     };
 
     autosuggestion.enable = true;
+    localVariables.ZSH_AUTOSUGGEST_STRATEGY = [ "history" "completion" ];
 
     shellAliases = {
       # Use eza for listing files
