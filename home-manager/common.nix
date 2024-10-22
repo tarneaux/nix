@@ -11,6 +11,7 @@
   programs.fzf.enable = true;
   home.packages = with pkgs; [
     gnumake
+    bottom
     progress
     file
   ];
