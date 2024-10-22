@@ -106,7 +106,7 @@
           exit 1
         fi
         xdotool keyup super
-        gpg --decrypt ~/.risitas.gpg | xdotool type --file -
+        pass show risitas | xdotool type --file -
       '';
     })
   ];

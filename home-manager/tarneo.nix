@@ -52,6 +52,7 @@
     openssl
     pamixer
     pandoc
+    pass
     podman-compose
     rustc
     texliveSmall
