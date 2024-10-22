@@ -43,7 +43,7 @@
 
     (writeShellApplication {
       name = "lock";
-      runtimeInputs = [ xss-lock i3lock ];
+      runtimeInputs = [ i3lock ];
       text = builtins.readFile ./config/lock.sh;
     })
 
