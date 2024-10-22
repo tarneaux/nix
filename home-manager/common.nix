@@ -12,6 +12,7 @@
   home.packages = with pkgs; [
     gnumake
     bottom
+    glow
     progress
     file
   ];
