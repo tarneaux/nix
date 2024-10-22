@@ -1,9 +1,4 @@
-{ config
-, pkgs
-, is_server
-, lib
-, ...
-}:
+{ config, pkgs, is_server, lib, ... }:
 let
   privesc_wrong = "sudo";
   privesc_right = "doas";
