@@ -38,7 +38,6 @@
     # Command line utilities
     dig
     evcxr
-    rustc
     exiftool
     ffmpeg-full
     gh
@@ -54,6 +53,7 @@
     pamixer
     pandoc
     podman-compose
+    rustc
     texliveSmall
     unzip
     yt-dlp
