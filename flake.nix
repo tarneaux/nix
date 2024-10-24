@@ -98,12 +98,23 @@
       homeConfigurations =
         let
           makeUser =
-            user: is_server:
+            user_at_host: is_server:
             home-manager.lib.homeManagerConfiguration {
               pkgs = nixpkgs.legacyPackages.x86_64-linux;
-              extraSpecialArgs = {
-                inherit inputs outputs is_server;
-              };
+              extraSpecialArgs =
+                let
+                  user_and_host = nixpkgs.lib.strings.splitString "@" user_at_host;
+                in
+                {
+                  inherit
+                    inputs
+                    outputs
+                    is_server
+                    user_at_host
+                    ;
+                  username = builtins.elemAt user_and_host 0;
+                  hostname = builtins.elemAt user_and_host 1;
+                };
               modules = [ ./home-manager ];
             };
         in
@@ -111,7 +122,7 @@
           "tarneo@framy" = (makeUser "tarneo@framy" false);
         }
         // nixpkgs.lib.genAttrs (map (hostname: "risitas@${hostname}") server_hostnames) (
-          user: makeUser user true
+          user_at_host: makeUser user_at_host true
         );
     };
 }
