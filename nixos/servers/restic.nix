@@ -1,4 +1,9 @@
-{ hostname, config, lib, ... }:
+{
+  hostname,
+  config,
+  lib,
+  ...
+}:
 {
   options = {
     # Option intentionally have no default value set so that they have to be set

@@ -27,13 +27,14 @@
   };
 
   outputs =
-    { self
-    , nixpkgs
-    , home-manager
-    , disko
-    , agenix
-    , ...
-    } @ inputs:
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      disko,
+      agenix,
+      ...
+    }@inputs:
     let
       inherit (self) outputs;
       # Supported systems for your flake packages, shell, etc.
@@ -45,51 +46,72 @@
         "x86_64-darwin"
       ];
 
-      server_hostnames = [ "issou" "gaspacho" "chankla" "chorizo" ];
+      server_hostnames = [
+        "issou"
+        "gaspacho"
+        "chankla"
+        "chorizo"
+      ];
     in
     {
-      formatter = nixpkgs.lib.genAttrs systems (system: nixpkgs.legacyPackages.${system}.nixpkgs-fmt);
+      formatter = nixpkgs.lib.genAttrs systems (
+        system: nixpkgs.legacyPackages.${system}.nixfmt-rfc-style
+      );
       overlays = import ./overlays { inherit inputs; };
 
-      nixosConfigurations = {
-        framy = nixpkgs.lib.nixosSystem {
-          specialArgs = { inherit inputs outputs; };
-          modules = [
-            # > Our main nixos configuration file <
-            ./nixos/framy/configuration.nix
-          ];
-        };
-      } // nixpkgs.lib.genAttrs server_hostnames (hostname:
-        nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs outputs hostname agenix;
+      nixosConfigurations =
+        {
+          framy = nixpkgs.lib.nixosSystem {
+            specialArgs = {
+              inherit inputs outputs;
+            };
+            modules = [
+              # > Our main nixos configuration file <
+              ./nixos/framy/configuration.nix
+            ];
           };
-          modules = [
-            ./nixos/${hostname}/configuration.nix
-            ./nixos/common.nix
-            ./nixos/servers
-            agenix.nixosModules.default
-          ] ++ (if (hostname == "chorizo")
-          then [ disko.nixosModules.disko ]
-          else [ ./nixos/servers/networking.nix ]);
-        });
+        }
+        // nixpkgs.lib.genAttrs server_hostnames (
+          hostname:
+          nixpkgs.lib.nixosSystem {
+            specialArgs = {
+              inherit
+                inputs
+                outputs
+                hostname
+                agenix
+                ;
+            };
+            modules =
+              [
+                ./nixos/${hostname}/configuration.nix
+                ./nixos/common.nix
+                ./nixos/servers
+                agenix.nixosModules.default
+              ]
+              ++ (
+                if (hostname == "chorizo") then [ disko.nixosModules.disko ] else [ ./nixos/servers/networking.nix ]
+              );
+          }
+        );
 
       homeConfigurations =
         let
-          makeUser = user: is_server: home-manager.lib.homeManagerConfiguration {
-            pkgs = nixpkgs.legacyPackages.x86_64-linux;
-            extraSpecialArgs = {
-              inherit inputs outputs is_server;
+          makeUser =
+            user: is_server:
+            home-manager.lib.homeManagerConfiguration {
+              pkgs = nixpkgs.legacyPackages.x86_64-linux;
+              extraSpecialArgs = {
+                inherit inputs outputs is_server;
+              };
+              modules = [ ./home-manager ];
             };
-            modules = [
-              ./home-manager
-            ];
-          };
         in
-        { "tarneo@framy" = (makeUser "tarneo@framy" false); }
-        // nixpkgs.lib.genAttrs
-          (map (hostname: "risitas@${hostname}") server_hostnames)
-          (user: makeUser user true)
-      ;
+        {
+          "tarneo@framy" = (makeUser "tarneo@framy" false);
+        }
+        // nixpkgs.lib.genAttrs (map (hostname: "risitas@${hostname}") server_hostnames) (
+          user: makeUser user true
+        );
     };
 }

@@ -1,11 +1,14 @@
-{ config, pkgs, is_server, lib, ... }:
+{
+  config,
+  pkgs,
+  is_server,
+  lib,
+  ...
+}:
 let
   privesc_wrong = "sudo";
   privesc_right = "doas";
-  docker =
-    if is_server
-    then "doas docker"
-    else "podman";
+  docker = if is_server then "doas docker" else "podman";
 in
 {
   programs.zsh = {
@@ -25,18 +28,23 @@ in
     };
 
     autosuggestion.enable = true;
-    localVariables.ZSH_AUTOSUGGEST_STRATEGY = [ "history" "completion" ];
+    localVariables.ZSH_AUTOSUGGEST_STRATEGY = [
+      "history"
+      "completion"
+    ];
 
-    shellAliases = {
-      # Use eza for listing files
-      ls = "${pkgs.unstable.eza}/bin/eza --icons --group-directories-first";
+    shellAliases =
+      {
+        # Use eza for listing files
+        ls = "${pkgs.unstable.eza}/bin/eza --icons --group-directories-first";
 
-      # Use less as man & bat pagers
-      man = "${pkgs.unstable.bat-extras.batman}/bin/batman";
-    } // lib.attrsets.optionalAttrs (!is_server) {
-      # Reload wifi kernel module, useful when wifi doesn't work after resume
-      wr = "sudo modprobe -r mt7921e && sudo modprobe mt7921e";
-    };
+        # Use less as man & bat pagers
+        man = "${pkgs.unstable.bat-extras.batman}/bin/batman";
+      }
+      // lib.attrsets.optionalAttrs (!is_server) {
+        # Reload wifi kernel module, useful when wifi doesn't work after resume
+        wr = "sudo modprobe -r mt7921e && sudo modprobe mt7921e";
+      };
 
     zsh-abbr = {
       enable = true;
@@ -140,9 +148,7 @@ in
     '';
     zplug = {
       enable = true;
-      plugins = [
-        { name = "zdharma-continuum/fast-syntax-highlighting"; }
-      ];
+      plugins = [ { name = "zdharma-continuum/fast-syntax-highlighting"; } ];
     };
     dirHashes = {
       # These hashes will be used to shorten the paths, both for commands you
@@ -211,12 +217,13 @@ in
       # Exit all SSH control sockets.
       (pkgs.writeShellApplication {
         name = "sc";
-        text = /* bash */ ''
-          find ~/.ssh/S.* \
-            | grep -v "^$HOME/.ssh/S.tarneo@ssh.renn.es" \
-            | tee /dev/fd/2 \
-            | xargs -r -I {} ssh -o ControlPath={} -O exit ThisArgDoesNotMatter
-        '';
+        text = # bash
+          ''
+            find ~/.ssh/S.* \
+              | grep -v "^$HOME/.ssh/S.tarneo@ssh.renn.es" \
+              | tee /dev/fd/2 \
+              | xargs -r -I {} ssh -o ControlPath={} -O exit ThisArgDoesNotMatter
+          '';
       })
     ];
   programs.zoxide.enable = true;

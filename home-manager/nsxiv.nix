@@ -1,7 +1,6 @@
-{ pkgs, ... }: {
-  home.packages = [
-    pkgs.nsxiv
-  ];
+{ pkgs, ... }:
+{
+  home.packages = [ pkgs.nsxiv ];
   home.file.".config/nsxiv/exec/key-handler" = {
     text = ''
       #!${pkgs.bash}/bin/bash
