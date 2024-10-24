@@ -133,6 +133,20 @@
                 capabilities = require("cmp_nvim_lsp").default_capabilities(),
             }
 
+            lspconfig.nixd.setup{
+              cmd = { "nixd" },
+              settings = {
+                nixd = {
+                  nixpkgs = {
+                    expr = "import <nixpkgs> { }",
+                  },
+                  formatting = {
+                    command = { "nixfmt" },
+                  },
+                },
+              },
+            }
+
             require("which-key").register({
                 ["<leader>l"] = {
                     name = "LSP actions",
@@ -572,5 +586,7 @@
     texlab
     tree-sitter
     nodejs_22
+    nixd
+    nixfmt-rfc-style
   ];
 }
