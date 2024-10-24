@@ -1,4 +1,9 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  username,
+  hostname,
+  ...
+}:
 {
   programs.neovim = {
     enable = true;
@@ -142,6 +147,14 @@
                   },
                   formatting = {
                     command = { "nixfmt" },
+                  },
+                  options = {
+                    nixos = {
+                      expr = '(builtins.getFlake "~nix").nixosConfigurations.\"${hostname}\".options'
+                    },
+                    home_manager = {
+                      expr = '(builtins.getFlake "~nix").homeConfigurations.\"${username}@${hostname}\".options'
+                    },
                   },
                 },
               },
