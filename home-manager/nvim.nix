@@ -6,9 +6,9 @@
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
-    plugins = with pkgs; [
+    plugins = [
       {
-        plugin = vimPlugins.gruvbox-nvim;
+        plugin = pkgs.vimPlugins.gruvbox-nvim;
         config = # vim
           ''
             colorscheme gruvbox
@@ -16,7 +16,7 @@
           '';
       }
       {
-        plugin = vimPlugins.lualine-nvim;
+        plugin = pkgs.vimPlugins.lualine-nvim;
         type = "lua";
         config = # lua
           ''
@@ -36,9 +36,9 @@
             }
           '';
       }
-      vimPlugins.nvim-treesitter-textobjects
+      pkgs.vimPlugins.nvim-treesitter-textobjects
       {
-        plugin = vimPlugins.nvim-treesitter.withAllGrammars;
+        plugin = pkgs.vimPlugins.nvim-treesitter.withAllGrammars;
         type = "lua";
         config = # lua
           ''
@@ -75,7 +75,7 @@
           '';
       }
       {
-        plugin = vimPlugins.orgmode;
+        plugin = pkgs.vimPlugins.orgmode;
         type = "lua";
         config = # lua
           ''
@@ -99,7 +99,7 @@
           '';
       }
       {
-        plugin = vimPlugins.nvim-lspconfig;
+        plugin = pkgs.vimPlugins.nvim-lspconfig;
         type = "lua";
         config = # lua
           ''
@@ -167,7 +167,7 @@
           '';
       }
       {
-        plugin = vimPlugins.which-key-nvim;
+        plugin = pkgs.vimPlugins.which-key-nvim;
         type = "lua";
         config = # lua
           ''
@@ -176,9 +176,9 @@
             require('which-key').setup {}
           '';
       }
-      vimPlugins.vim-rooter
+      pkgs.vimPlugins.vim-rooter
       {
-        plugin = vimPlugins.gitsigns-nvim;
+        plugin = pkgs.vimPlugins.gitsigns-nvim;
         type = "lua";
         config = # lua
           ''
@@ -194,10 +194,10 @@
             }
           '';
       }
-      vimPlugins.cmp-nvim-lsp
-      vimPlugins.cmp_luasnip
+      pkgs.vimPlugins.cmp-nvim-lsp
+      pkgs.vimPlugins.cmp_luasnip
       {
-        plugin = vimPlugins.nvim-cmp;
+        plugin = pkgs.vimPlugins.nvim-cmp;
         type = "lua";
         config = # lua
           ''
@@ -243,9 +243,9 @@
             })
           '';
       }
-      vimPlugins.friendly-snippets
+      pkgs.vimPlugins.friendly-snippets
       {
-        plugin = vimPlugins.luasnip;
+        plugin = pkgs.vimPlugins.luasnip;
         type = "lua";
         config = # lua
           ''
@@ -253,14 +253,14 @@
           '';
       }
       {
-        plugin = vimPlugins.vim-commentary;
+        plugin = pkgs.vimPlugins.vim-commentary;
         config = # vim
           ''
             autocmd FileType nix setlocal commentstring=#\ %s
           '';
       }
       {
-        plugin = vimPlugins.rust-vim;
+        plugin = pkgs.vimPlugins.rust-vim;
         type = "lua";
         config = # lua
           ''
@@ -268,7 +268,7 @@
           '';
       }
       {
-        plugin = vimPlugins.vim-table-mode;
+        plugin = pkgs.vimPlugins.vim-table-mode;
         type = "lua";
         config = # lua
           ''
@@ -281,7 +281,7 @@
       {
         # nvim-ufo allows folding with highlighting (as opposed to standard
         # folding which removes the highlighting from the remaining line)
-        plugin = vimPlugins.nvim-ufo;
+        plugin = pkgs.vimPlugins.nvim-ufo;
         type = "lua";
         config = # lua
           ''
@@ -289,9 +289,9 @@
             require('ufo').setup()
           '';
       }
-      vimPlugins.vim-wakatime
+      pkgs.vimPlugins.vim-wakatime
       {
-        plugin = vimPlugins.telescope-nvim;
+        plugin = pkgs.vimPlugins.telescope-nvim;
         type = "lua";
         config = # lua
           ''
@@ -325,11 +325,11 @@
             })
           '';
       }
-      vimPlugins.telescope-symbols-nvim
-      vimPlugins.vim-devicons
-      vimPlugins.nvim-web-devicons
+      pkgs.vimPlugins.telescope-symbols-nvim
+      pkgs.vimPlugins.vim-devicons
+      pkgs.vimPlugins.nvim-web-devicons
       {
-        plugin = vimPlugins.go-nvim;
+        plugin = pkgs.vimPlugins.go-nvim;
         type = "lua";
         config = # lua
           ''
@@ -345,19 +345,19 @@
             })
           '';
       }
-      vimPlugins.trouble-nvim
-      vimPlugins.vim-surround
+      pkgs.vimPlugins.trouble-nvim
+      pkgs.vimPlugins.vim-surround
       {
-        plugin = vimPlugins.leap-nvim;
+        plugin = pkgs.vimPlugins.leap-nvim;
         type = "lua";
         config = # lua
           ''
             require('leap').create_default_mappings()
           '';
       }
-      vimPlugins.undotree
+      pkgs.vimPlugins.undotree
       {
-        plugin = vimPlugins.todo-comments-nvim;
+        plugin = pkgs.vimPlugins.todo-comments-nvim;
         type = "lua";
         config = # lua
           ''
@@ -365,7 +365,7 @@
           '';
       }
       {
-        plugin = vimPlugins.otter-nvim;
+        plugin = pkgs.vimPlugins.otter-nvim;
         type = "lua";
         config = # lua
           ''
