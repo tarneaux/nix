@@ -1,4 +1,5 @@
-{ inputs, pkgs, ... }: {
+{ inputs, pkgs, ... }:
+{
   home.file."./.config/wallpapers".source = inputs.wallpapers;
 
   services = {
@@ -61,53 +62,61 @@
       '';
     })
 
-
     (writeShellApplication {
       name = "autorandr-watcher";
-      runtimeInputs = [ inotify-tools xorg.xinput ];
-      text = /* bash */ ''
-        reload() {
-          pkill awesome --signal HUP
-          pkill qutebrowser --signal HUP
-          xinput enable "AT Translated Set 2 keyboard"
-        }
+      runtimeInputs = [
+        inotify-tools
+        xorg.xinput
+      ];
+      text = # bash
+        ''
+          reload() {
+            pkill awesome --signal HUP
+            pkill qutebrowser --signal HUP
+            xinput enable "AT Translated Set 2 keyboard"
+          }
 
-        # If 2 screens are enabled, which only happens when autorandr hasn't run
-        # yet, run it.
-        if [[ $(xrandr | grep -c "\\*\\+") -eq 2 ]]; then
-          autorandr --change
-          reload
-        fi
-        while true; do
-          inotifywait -e modify /tmp/autorandr-current-profile
-          reload
-        done
-      '';
+          # If 2 screens are enabled, which only happens when autorandr hasn't run
+          # yet, run it.
+          if [[ $(xrandr | grep -c "\\*\\+") -eq 2 ]]; then
+            autorandr --change
+            reload
+          fi
+          while true; do
+            inotifywait -e modify /tmp/autorandr-current-profile
+            reload
+          done
+        '';
     })
 
     (writeShellApplication {
       name = "nextcloud-sync";
-      runtimeInputs = [ nextcloud-client inotify-tools ];
-      text = /* bash */ ''
-        pass=$(cat ~/.local/share/nextcloudpass)
-        while true; do
-          nextcloudcmd -h --user tarneo --password "$pass" --non-interactive --path /renn.es ~/renn.es https://cloud.renn.es
-          inotifywait ~/renn.es -t 600
-        done
-      '';
+      runtimeInputs = [
+        nextcloud-client
+        inotify-tools
+      ];
+      text = # bash
+        ''
+          pass=$(cat ~/.local/share/nextcloudpass)
+          while true; do
+            nextcloudcmd -h --user tarneo --password "$pass" --non-interactive --path /renn.es ~/renn.es https://cloud.renn.es
+            inotifywait ~/renn.es -t 600
+          done
+        '';
 
     })
 
     (writeShellApplication {
       name = "__enter_risitas_pass";
       runtimeInputs = [ xdotool ];
-      text = /* bash */ ''
-        if ! [[ $(xdotool getactivewindow getwindowname) =~ risitas@.*:doas ]]; then
-          exit 1
-        fi
-        xdotool keyup super
-        pass show risitas | xdotool type --file -
-      '';
+      text = # bash
+        ''
+          if ! [[ $(xdotool getactivewindow getwindowname) =~ risitas@.*:doas ]]; then
+            exit 1
+          fi
+          xdotool keyup super
+          pass show risitas | xdotool type --file -
+        '';
     })
   ];
 }

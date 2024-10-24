@@ -1,4 +1,10 @@
-{ hostname, config, lib, ... }: {
+{
+  hostname,
+  config,
+  lib,
+  ...
+}:
+{
   options.custom.networking = {
     ipv4 = {
       lan = lib.mkOption {

@@ -1,17 +1,24 @@
-{ pkgs, inputs, lib, agenix, ... }: {
-  imports = [
-    ./restic.nix
-  ];
+{
+  pkgs,
+  inputs,
+  lib,
+  agenix,
+  ...
+}:
+{
+  imports = [ ./restic.nix ];
 
   security = {
     sudo.enable = false;
     doas = {
       enable = true;
-      extraRules = [{
-        groups = [ "wheel" ];
-        keepEnv = true;
-        persist = true;
-      }];
+      extraRules = [
+        {
+          groups = [ "wheel" ];
+          keepEnv = true;
+          persist = true;
+        }
+      ];
     };
     pam.services.su.requireWheel = true;
   };

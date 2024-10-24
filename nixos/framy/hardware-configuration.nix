@@ -1,13 +1,19 @@
-{ config
-, lib
-, modulesPath
-, ...
-}: {
-  imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
-  ];
+{
+  config,
+  lib,
+  modulesPath,
+  ...
+}:
+{
+  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
-  boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "thunderbolt" "usb_storage" "sd_mod" ];
+  boot.initrd.availableKernelModules = [
+    "nvme"
+    "xhci_pci"
+    "thunderbolt"
+    "usb_storage"
+    "sd_mod"
+  ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.initrd.luks.devices = {
     cryptlvm = {
@@ -21,43 +27,65 @@
   fileSystems."/" = {
     device = "/dev/Data/root";
     fsType = "btrfs";
-    options = [ "subvol=@root" "compress=zstd" "noatime" ];
+    options = [
+      "subvol=@root"
+      "compress=zstd"
+      "noatime"
+    ];
   };
 
   fileSystems."/home" = {
     device = "/dev/Data/root";
     fsType = "btrfs";
-    options = [ "subvol=@home" "compress=zstd" "noatime" ];
+    options = [
+      "subvol=@home"
+      "compress=zstd"
+      "noatime"
+    ];
   };
 
   fileSystems."/nix" = {
     device = "/dev/Data/root";
     fsType = "btrfs";
-    options = [ "subvol=@nix" "compress=zstd" "noatime" ];
+    options = [
+      "subvol=@nix"
+      "compress=zstd"
+      "noatime"
+    ];
   };
 
   fileSystems."/persist" = {
     device = "/dev/Data/root";
     fsType = "btrfs";
-    options = [ "subvol=@persist" "compress=zstd" "noatime" ];
+    options = [
+      "subvol=@persist"
+      "compress=zstd"
+      "noatime"
+    ];
   };
 
   fileSystems."/var/log" = {
     device = "/dev/Data/root";
     fsType = "btrfs";
-    options = [ "subvol=@log" "compress=zstd" "noatime" ];
+    options = [
+      "subvol=@log"
+      "compress=zstd"
+      "noatime"
+    ];
     neededForBoot = true;
   };
 
   fileSystems."/boot" = {
     device = "/dev/disk/by-id/nvme-WD_BLACK_SN770_500GB_23290Y800833_1-part1";
     fsType = "vfat";
-    options = [ "fmask=0077" "dmask=0077" "defaults" ];
+    options = [
+      "fmask=0077"
+      "dmask=0077"
+      "defaults"
+    ];
   };
 
-  swapDevices = [
-    { device = "/dev/Data/swap"; }
-  ];
+  swapDevices = [ { device = "/dev/Data/swap"; } ];
 
   boot.resumeDevice = "/dev/Data/swap";
 

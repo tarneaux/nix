@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   programs.qutebrowser = {
     enable = true;
     keyBindings = {

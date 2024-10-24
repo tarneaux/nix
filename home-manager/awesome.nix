@@ -1,7 +1,6 @@
-{ pkgs, ... }: {
-  imports = [
-    ./xorg.nix
-  ];
+{ pkgs, ... }:
+{
+  imports = [ ./xorg.nix ];
   home.file = {
     ".config/awesome" = {
       source = ./config/awesome;
@@ -31,27 +30,28 @@
     (pkgs.writeShellApplication {
       name = "awesomewm-autostart";
       # Gets run every time awesomewm starts or reloads.
-      text = /* bash */ ''
-        # Misc
-        xset r rate 300 50 # Also set in bar/widgets/triboard_batt.lua
-        setxkbmap fr
-        xset s 600
+      text = # bash
+        ''
+          # Misc
+          xset r rate 300 50 # Also set in bar/widgets/triboard_batt.lua
+          setxkbmap fr
+          xset s 600
 
-        # Autostart apps
-        pgrep signal-desktop > /dev/null || signal-desktop --start-in-tray &
-        pgrep blueberry-tray > /dev/null || blueberry-tray &
+          # Autostart apps
+          pgrep signal-desktop > /dev/null || signal-desktop --start-in-tray &
+          pgrep blueberry-tray > /dev/null || blueberry-tray &
 
-        # Handle display hotplugs
-        pidof -x autorandr-watcher > /dev/null || autorandr-watcher &
+          # Handle display hotplugs
+          pidof -x autorandr-watcher > /dev/null || autorandr-watcher &
 
-        # Lock the screen when it turns off or when going to sleep
-        # xss-lock will exit if already running, no need to pgrep.
-        xss-lock --transfer-sleep-lock lock &
+          # Lock the screen when it turns off or when going to sleep
+          # xss-lock will exit if already running, no need to pgrep.
+          xss-lock --transfer-sleep-lock lock &
 
-        # Sync files with my server
-        pgrep -l unison | grep -v unison-status > /dev/null || unison-sync &
-        pidof -x nextcloud-sync > /dev/null || nextcloud-sync &
-      '';
+          # Sync files with my server
+          pgrep -l unison | grep -v unison-status > /dev/null || unison-sync &
+          pidof -x nextcloud-sync > /dev/null || nextcloud-sync &
+        '';
     })
   ];
 }

@@ -1,6 +1,7 @@
 # This is your system's configuration file.
 # Use this to configure your system environment (it replaces /etc/nixos/configuration.nix)
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   imports = [
     ../common.nix
     ./hardware-configuration.nix
@@ -13,7 +14,10 @@
   boot = {
     loader.systemd-boot.enable = true;
     kernelParams = [ "amdgpu.sg_display=0" ];
-    supportedFilesystems = [ "btrfs" "ntfs" ];
+    supportedFilesystems = [
+      "btrfs"
+      "ntfs"
+    ];
     loader.efi = {
       canTouchEfiVariables = true;
       efiSysMountPoint = "/boot/";
@@ -67,11 +71,13 @@
     sudo.enable = false;
     doas = {
       enable = true;
-      extraRules = [{
-        groups = [ "wheel" ];
-        keepEnv = true;
-        persist = true;
-      }];
+      extraRules = [
+        {
+          groups = [ "wheel" ];
+          keepEnv = true;
+          persist = true;
+        }
+      ];
     };
   };
 
@@ -99,9 +105,7 @@
       enable = true;
       defaultNetwork.settings.dns_enabled = true;
     };
-    containers.registries.search = [
-      "docker.io"
-    ];
+    containers.registries.search = [ "docker.io" ];
   };
 
   xdg.mime.defaultApplications = {
