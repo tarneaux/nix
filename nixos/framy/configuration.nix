@@ -8,7 +8,14 @@
     ./autorandr.nix
   ];
 
-  networking.hostName = "framy";
+  networking = {
+    hostName = "framy";
+    firewall.allowedTCPPorts = [ 22000 ];
+    firewall.allowedUDPPorts = [
+      22000
+      21027
+    ];
+  };
 
   # Use the systemd-boot EFI boot loader.
   boot = {
