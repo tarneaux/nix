@@ -33,7 +33,7 @@
       text = # bash
         ''
           # Misc
-          xset r rate 300 50 # Also set in bar/widgets/triboard_batt.lua
+          xset r rate 300 50
           setxkbmap fr
           xset s 600
 
