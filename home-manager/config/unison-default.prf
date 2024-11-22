@@ -4,11 +4,14 @@ root = ssh://tarneo@ssh.renn.es/sync
 ignore = Name node_modules
 ignore = Name target/debug
 ignore = Name target/release
+ignore = Name target/doc
 ignore = Name target/wasm-bindgen
 ignore = Name target/wasm32-unknown-unknown
 ignore = Name target/riscv32imc-unknown-none-elf
 ignore = Name venv
 ignore = Name .venv
+ignore = Name .direnv
+ignore = Name .devenv
 
 times = true
 auto = true
