@@ -153,6 +153,7 @@
                     S = { "<cmd>lua vim.lsp.buf.workspace_symbol()<cr>", "Workspace symbols" },
                     t = { "<cmd>lua vim.lsp.buf.type_definition()<cr>", "Go to type definition" },
                     x = { "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>", "Show line diagnostics" },
+                    f = { "<cmd>lua vim.lsp.buf.format()<cr>", "Format buffer" },
                 }
             })
           '';
