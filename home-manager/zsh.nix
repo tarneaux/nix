@@ -106,6 +106,7 @@ in
           s = "maim -su | xclip -selection clipboard -t image/png";
           lg = "lazygit";
           y = "yazi";
+          cmm = "zathura ~/fac/maths/cours.pdf";
 
           # docker / podman
           d = docker;
