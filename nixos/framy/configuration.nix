@@ -56,7 +56,6 @@
       lidSwitch = "suspend";
     };
     power-profiles-daemon.enable = true;
-    geoclue2.enable = true;
     syncthing = {
       enable = true;
       user = "tarneo";

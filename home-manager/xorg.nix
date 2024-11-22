@@ -9,7 +9,8 @@
         day = 6500;
         night = 4000;
       };
-      provider = "geoclue2";
+      latitude = "48.864716";
+      longitude = "2.349014";
     };
 
     picom = {
