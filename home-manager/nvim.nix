@@ -138,28 +138,6 @@
                 capabilities = require("cmp_nvim_lsp").default_capabilities(),
             }
 
-            lspconfig.nixd.setup{
-              cmd = { "nixd" },
-              settings = {
-                nixd = {
-                  nixpkgs = {
-                    expr = "import <nixpkgs> { }",
-                  },
-                  formatting = {
-                    command = { "nixfmt" },
-                  },
-                  options = {
-                    nixos = {
-                      expr = '(builtins.getFlake "~nix").nixosConfigurations.\"${hostname}\".options'
-                    },
-                    home_manager = {
-                      expr = '(builtins.getFlake "~nix").homeConfigurations.\"${username}@${hostname}\".options'
-                    },
-                  },
-                },
-              },
-            }
-
             require("which-key").register({
                 ["<leader>l"] = {
                     name = "LSP actions",
