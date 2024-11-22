@@ -27,7 +27,7 @@
     mpc-cli
     playerctl
     xss-lock
-    (pkgs.writeShellApplication {
+    (writeShellApplication {
       name = "awesomewm-autostart";
       # Gets run every time awesomewm starts or reloads.
       text = # bash
