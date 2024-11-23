@@ -59,6 +59,7 @@
     libreoffice
     librewolf
     nsxiv
+    obsidian
     rawtherapee
     signal-desktop
     xournalpp
