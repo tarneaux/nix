@@ -6,9 +6,6 @@
     prefix = "C-a";
   };
   home.packages = [
-    (pkgs.writeShellApplication {
-      name = "__tmux_fzf_window";
-      text = builtins.readFile ./config/tmux-fzf-window.sh;
-    })
+    (pkgs.writeScriptBin "__tmux_fzf_window" (builtins.readFile ./config/tmux-fzf-window.sh))
   ];
 }
