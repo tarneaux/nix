@@ -186,19 +186,16 @@ in
       # Set window titles depending on commands and user@hostname
 
       function __set_title() {
-        cmd=$(echo "$1" | awk '{print $1}')
-        title="$(whoami)@$(hostname):$cmd"
+        # Get the prompt, remove colors and prompt symbol
+        title=$(print -nP "$PROMPT" \
+                | sed -r "s/\x1B\[([0-9]{1,3}(;[0-9]{1,2};?)?)?[mGK]//g" \
+                | sed -e 's/ λ $//g')
+        title=$(echo "$title $ $1") # $1 is the running command, if there is one
         echo -n "\033]0;$title\a"
       }
 
       add-zsh-hook preexec __set_title
-
-      function __clear_title() {
-        title="$(whoami)@$(hostname)"
-        echo -n "\033]0;$title\a"
-      }
-
-      add-zsh-hook precmd __clear_title
+      add-zsh-hook precmd __set_title
 
       source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
     '';
