@@ -108,16 +108,10 @@
     })
 
     (writeShellApplication {
-      name = "__enter_risitas_pass";
+      name = "passmenu";
+      bashOptions = [ ];
       runtimeInputs = [ xdotool ];
-      text = # bash
-        ''
-          if ! [[ $(xdotool getactivewindow getwindowname) =~ risitas@.*\ .*\ \\$\ doas\ .* ]]; then
-            exit 1
-          fi
-          xdotool keyup super
-          pass show risitas | xdotool type --file -
-        '';
+      text = builtins.readFile ./config/passmenu.sh;
     })
   ];
 }

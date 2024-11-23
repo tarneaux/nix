@@ -31,7 +31,7 @@
     openssl
     pamixer
     pandoc
-    pass
+    (pass.override { dmenuSupport = false; })
     podman-compose
     rustc
     texliveSmall

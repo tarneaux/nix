@@ -33,7 +33,7 @@ local globalkeys = gears.table.join(
     awful.key({ ModKey,           }, "v", ToggleVpn),
 
     -- Type in server user password
-    awful.key({ ModKey,           }, "y", function() awful.spawn.with_shell("__enter_risitas_pass") end),
+    awful.key({ ModKey,           }, "y", function() awful.spawn.with_shell("passmenu type") end),
 
     -----------------------------
     -- Media / brightness keys --
