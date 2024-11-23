@@ -47,6 +47,8 @@
     options = "--delete-older-than 7d";
   };
 
+  nix.settings.allowed-users = [ "@wheel" ];
+
   # ############################ #
   #  Boring flake configuration  #
   # ############################ #
