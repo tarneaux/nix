@@ -20,6 +20,7 @@ local globalkeys = gears.table.join(
     -- Various apps
     awful.key({ ModKey,           }, "b", function() awful.spawn.with_shell("qutebrowser") end),
     awful.key({ ModKey,           }, "Return", function () awful.spawn.with_shell(Terminal) end),
+    awful.key({ ModKey, "Shift"   }, "Return", function () awful.spawn.with_shell(TerminalCmd .. "tmw") end),
     -- Super + / (triboard) or Super + Shift + : (french keyboard)
     awful.key({ ModKey, "Shift"   }, "#60", function() awful.spawn.with_shell(TerminalCmd .. " ncmpcpp") end),
 
