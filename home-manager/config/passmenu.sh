@@ -2,10 +2,35 @@
 
 # Based on: https://git.zx2c4.com/password-store/tree/contrib/dmenu/passmenu
 
-typeit=0
-if [[ $1 == "--type" ]]; then
-  typeit=1
-  shift
+shopt -s nullglob globstar
+
+
+usage() {
+  echo "Usage: passmenu [action]"
+  echo "Possible actions: print copy type"
+  echo "Default: print"
+}
+
+ACTION="print"
+if [[ $# -eq 1 ]]; then
+  case $1 in
+    t|type)
+      ACTION="type"
+      ;;
+    c|copy)
+      ACTION="copy"
+      ;;
+    p|print)
+      ACTION="print"
+      ;;
+    *)
+      usage
+      exit 1
+      ;;
+  esac
+elif [[ $# -gt 2 ]]; then
+  usage
+  exit 1
 fi
 
 prefix=${PASSWORD_STORE_DIR-~/.password-store}
@@ -17,7 +42,9 @@ password=$(printf '%s\n' "${password_files[@]}" | "dmenu")
 
 [[ -n $password ]] || exit
 
-if [[ $typeit -eq 0 ]]; then
+if [[ $ACTION = "print" ]]; then
+  pass show "$password" 2>/dev/null
+elif [[ $ACTION = "copy" ]]; then
   pass show -c "$password" 2>/dev/null
 else
   pass show "$password" \
