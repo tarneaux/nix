@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 
-windows=$(tmux list-windows -aF '#W (#S:#I)')
+if [[ -n $TMUX ]]; then
+  ATTACH_CMD="switch-client"
+else
+  ATTACH_CMD="attach"
+fi
+
+windows=$(tmux list-windows -aF '#W (#S:#I)' | grep -v "fzf-window (fzf-window:0)")
 fzf_output=$(echo "$windows" \
     | fzf --prompt="Switch to window: " --reverse --print-query)
 
@@ -20,7 +26,7 @@ if [ $fzf_exit_code -eq 0 ]; then
     # Get the window name from the output (in the parentheses)
     window=$(echo "$fzf_output" | grep -oP '(?<=\().*(?=\))')
 
-    tmux switch-client -t "$window"
+    tmux "$ATTACH_CMD" -t "$window"
 fi
 
 if [ $fzf_exit_code -eq 1 ]; then
@@ -46,6 +52,6 @@ if [ $fzf_exit_code -eq 1 ]; then
             | grep "$directory" \
             | cut -d: -f1)
 
-        tmux switch-client -t "$session_id"
+        tmux "$ATTACH_CMD" -t "$session_id"
     fi
 fi

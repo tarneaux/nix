@@ -7,7 +7,7 @@
   };
   home.packages = [
     (pkgs.writeShellApplication {
-      name = "__tmux_fzf_window";
+      name = "tmw";
       bashOptions = [ ];
       text = builtins.readFile ./config/tmux-fzf-window.sh;
     })
