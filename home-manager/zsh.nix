@@ -186,11 +186,7 @@ in
       # Set window titles depending on commands and user@hostname
 
       function __set_title() {
-        # Get the prompt, remove colors and prompt symbol
-        title=$(print -nP "$PROMPT" \
-                | sed -r "s/\x1B\[([0-9]{1,3}(;[0-9]{1,2};?)?)?[mGK]//g" \
-                | sed -e 's/ λ $//g')
-        title=$(echo "$title $ $1") # $1 is the running command, if there is one
+        title=$(print -nP "%n@%m %~ $ $1") # $1 is the running command, if there is one
         echo -n "\033]0;$title\a"
       }
 
