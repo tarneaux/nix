@@ -40,18 +40,23 @@ if [ $fzf_exit_code -eq 1 ]; then
 
     # Get the directory name with zoxide
     directory=$(zoxide query "$fzf_output")
-    if [ -n "$directory" ]; then
-        # Open a new session in the directory, with the directory name as the
-        # session name
-        dirname=$(basename "$directory")
 
-        tmux new-session -c "$directory" -s "$dirname" -d
-
-        # Find the session id of the new session
-        session_id=$(tmux list-sessions -F '#S:#{session_path}' \
-            | grep "$directory" \
-            | cut -d: -f1)
-
-        tmux "$ATTACH_CMD" -t "$session_id"
+    if [ -z "$directory" ]; then
+        echo "Couldn't query this directory's location with zoxide."
+        exit 1
     fi
+
+    # Open a new session in the directory, with the directory name as the
+    # session name
+    dirname=$(basename "$directory")
+
+    tmux new-session -c "$directory" -s "$dirname" -d
+
+    # Find the session id of the new session (needed if there are special
+    # characters in the name)
+    session_id=$(tmux list-sessions -F '#S:#{session_path}' \
+        | grep "$directory" \
+        | cut -d: -f1)
+
+    tmux "$ATTACH_CMD" -t "$session_id"
 fi
