@@ -119,6 +119,6 @@ end
 
 -- Variable used by `lock` script.
 -- If this isn't set, the lock script will use the lock.png image.
-theme.lockwall = "~/.config/wallpapers/flower.jpg"
+theme.lockwall = "~/.config/wallpapers/nebula.jpg"
 
 return theme
