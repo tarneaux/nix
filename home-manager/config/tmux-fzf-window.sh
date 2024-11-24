@@ -36,7 +36,7 @@ if [ $fzf_exit_code -eq 1 ]; then
     # Let's first remove the leading plus sign if there one; this allows us to
     # force the creation of a new session if results are found when searching
     # for the directory name.
-    fzf_output="${fzf_output//^\+//}"
+    fzf_output=$(echo "$fzf_output" | sed -s 's/^\+//g')
 
     # Get the directory name with zoxide
     directory=$(zoxide query "$fzf_output")
@@ -55,7 +55,7 @@ if [ $fzf_exit_code -eq 1 ]; then
     # Find the session id of the new session (needed if there are special
     # characters in the name)
     session_id=$(tmux list-sessions -F '#S:#{session_path}' \
-        | grep "$directory" \
+        | grep ":$directory$" \
         | cut -d: -f1)
 
     tmux "$ATTACH_CMD" -t "$session_id"
