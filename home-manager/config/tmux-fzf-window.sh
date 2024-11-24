@@ -34,7 +34,7 @@ if [ $fzf_exit_code -eq 1 ]; then
     # We can interpret it as the project directory name.
     
     # Let's first remove the leading plus sign if there one; this allows us to
-    # force the creation of a new session if a results are found when searching
+    # force the creation of a new session if results are found when searching
     # for the directory name.
     fzf_output="${fzf_output//^\+//}"
 
