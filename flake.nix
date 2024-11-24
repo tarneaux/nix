@@ -49,7 +49,6 @@
       server_hostnames = [
         "issou"
         "gaspacho"
-        "chankla"
         "chorizo"
       ];
     in

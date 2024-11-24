@@ -4,7 +4,7 @@ These are my NixOS and Home-manager configurations for my (Framework) laptop and
 
 There are two configured hosts:
 - `framy`: My daily driver Framework laptop.
-- `issou` and `chankla`: Two thinkcentre 1L servers.
+- `issou`: A thinkcentre 1L server.
 - `gaspacho`: A dell Optiplex used for backups.
 - `chorizo`: An OVH VPS used as a VPN host and network gateway.
 
