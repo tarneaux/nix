@@ -9,7 +9,7 @@
     (pkgs.writeShellApplication {
       name = "tmw";
       bashOptions = [ ];
-      text = builtins.readFile ./tmux-fzf-window.sh;
+      text = builtins.readFile ./tmw.sh;
     })
   ];
 }
