@@ -6,7 +6,7 @@ shopt -s nullglob globstar
 
 
 usage() {
-  echo "Usage: passmenu [action]"
+  echo "Usage: $(basename "$0") [action]"
   echo "Possible actions: print copy type"
   echo "Default: print"
 }
