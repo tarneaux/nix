@@ -15,6 +15,7 @@
 
   home.packages = with pkgs; [
     # Command line utilities
+    devenv
     dig
     evcxr
     exiftool
