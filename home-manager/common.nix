@@ -1,13 +1,13 @@
 { pkgs, outputs, ... }:
 {
   imports = [
-    ./lazygit.nix
-    ./zsh.nix
-    ./tmux.nix
-    ./nvim.nix
-    ./user.nix
-    ./git.nix
-    ./gpg.nix
+    ./lazygit
+    ./zsh
+    ./tmux
+    ./nvim
+    ./user
+    ./git
+    ./gpg
   ];
   programs.fzf.enable = true;
   home.packages = with pkgs; [

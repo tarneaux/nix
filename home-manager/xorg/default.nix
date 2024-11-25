@@ -46,7 +46,7 @@
     (writeShellApplication {
       name = "lock";
       runtimeInputs = [ i3lock ];
-      text = builtins.readFile ./config/lock.sh;
+      text = builtins.readFile ./lock.sh;
     })
 
     (writeShellApplication {
@@ -111,7 +111,7 @@
       name = "passmenu";
       bashOptions = [ ];
       runtimeInputs = [ xdotool ];
-      text = builtins.readFile ./config/passmenu.sh;
+      text = builtins.readFile ./passmenu.sh;
     })
   ];
 }

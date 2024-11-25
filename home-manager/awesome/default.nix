@@ -1,9 +1,9 @@
 { pkgs, ... }:
 {
-  imports = [ ./xorg.nix ];
+  imports = [ ../xorg ];
   home.file = {
     ".config/awesome" = {
-      source = ./config/awesome;
+      source = ./config;
       onChange = ''
         ${pkgs.procps}/bin/pgrep awesome | xargs kill -HUP
       '';

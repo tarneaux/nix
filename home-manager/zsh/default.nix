@@ -200,7 +200,7 @@ in
     [
       (pkgs.writeShellApplication {
         name = "__zprompt_git_info";
-        text = builtins.readFile ./config/git-segment.zsh;
+        text = builtins.readFile ./git-segment.zsh;
       })
       pkgs.trash-cli
       pkgs.nix-index

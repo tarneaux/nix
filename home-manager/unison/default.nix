@@ -62,5 +62,5 @@ in
         '';
     })
   ];
-  home.file.".unison/default.prf".source = ./config/unison-default.prf;
+  home.file.".unison/default.prf".source = ./unison-default.prf;
 }

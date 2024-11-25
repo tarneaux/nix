@@ -5,7 +5,7 @@
     w3m
   ];
   home.file.".config/aerc" = {
-    source = ./config/aerc;
+    source = ./config;
     recursive = true;
   };
 }

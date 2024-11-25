@@ -1,16 +1,16 @@
 { pkgs, ... }:
 {
   imports = [
-    ./qutebrowser.nix
-    ./alacritty.nix
-    ./zathura.nix
-    ./mpv.nix
-    ./mpd.nix
-    ./awesome.nix
-    ./nsxiv.nix
-    ./aerc.nix
-    ./dmenu.nix
-    ./unison.nix
+    ./qutebrowser
+    ./alacritty
+    ./zathura
+    ./mpv
+    ./mpd
+    ./awesome
+    ./nsxiv
+    ./aerc
+    ./dmenu
+    ./unison
   ];
 
   home.packages = with pkgs; [

@@ -33,7 +33,7 @@
       content.pdfjs = true;
     };
     extraConfig = ''
-      ${builtins.readFile ./config/qutebrowser-gruvbox.py}
+      ${builtins.readFile ./qutebrowser-gruvbox.py}
 
       import subprocess
       res = subprocess.check_output(['sh', '-c', 'xrandr | grep primary | grep -oE "[0-9]+x[0-9]+"']).strip()
