@@ -14,7 +14,7 @@ fzf_exit_code=$?
 
 if [ $fzf_exit_code -eq 130 ]; then
     # The user escaped the fzf window
-    exit 0
+    exit 1
 fi
 
 if [ $fzf_exit_code -eq 0 ]; then
