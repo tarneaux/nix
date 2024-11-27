@@ -11,5 +11,9 @@
       bashOptions = [ ];
       text = builtins.readFile ./tmw.sh;
     })
+    (pkgs.writeShellApplication {
+      name = "dev";
+      text = builtins.readFile ./dev.sh;
+    })
   ];
 }
