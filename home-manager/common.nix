@@ -1,4 +1,9 @@
-{ pkgs, outputs, ... }:
+{
+  pkgs,
+  outputs,
+  inputs,
+  ...
+}:
 {
   imports = [
     ./lazygit
@@ -8,6 +13,7 @@
     ./user
     ./git
     ./gpg
+    ./emacs
   ];
   programs.fzf.enable = true;
   home.packages = with pkgs; [
@@ -25,6 +31,7 @@
       outputs.overlays.additions
       outputs.overlays.modifications
       outputs.overlays.unstable-packages
+      inputs.emacs-overlay.overlays.default
     ];
     config = {
       allowUnfree = true;

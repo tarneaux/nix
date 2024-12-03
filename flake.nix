@@ -24,6 +24,9 @@
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
     agenix.inputs.darwin.follows = ""; # Don't download darwin deps
+
+    # Emacs overlay
+    emacs-overlay.url = "github:nix-community/emacs-overlay";
   };
 
   outputs =
