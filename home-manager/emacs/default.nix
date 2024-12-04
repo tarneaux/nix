@@ -4,7 +4,7 @@
     enable = true;
     package = (
       pkgs.emacsWithPackagesFromUsePackage {
-        config = ./config.org;
+        config = ./config.el;
 
         defaultInitFile = true;
 
@@ -15,4 +15,5 @@
       }
     );
   };
+  # TODO: Emacs service
 }
