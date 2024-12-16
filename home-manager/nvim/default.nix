@@ -384,7 +384,7 @@
         -- Use two spaces for indentation in some filetypes where it's the
         -- convention
         vim.api.nvim_create_autocmd("Filetype", {
-            pattern = "nix,yaml,json,markdown,org,html,css,scss,arduino",
+            pattern = "nix,yaml,json,markdown,org,html,css,scss,arduino,lisp",
             callback = function ()
                 local w = 2
                 vim.opt.tabstop = w
