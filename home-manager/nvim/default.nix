@@ -98,7 +98,7 @@
             vim.api.nvim_create_autocmd("Filetype", {
                 pattern = "org",
                 callback = function ()
-                    vim.opt.conceallevel = 3
+                    vim.opt_local.conceallevel = 3
                 end
             })
           '';
