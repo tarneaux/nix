@@ -35,7 +35,7 @@
     (pass.override { dmenuSupport = false; })
     podman-compose
     rustc
-    texliveSmall
+    texliveMedium
     unzip
     yt-dlp
 
