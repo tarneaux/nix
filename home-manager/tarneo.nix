@@ -38,6 +38,7 @@
     texliveMedium
     unzip
     yt-dlp
+    black
 
     # X utilities
     bitwarden
