@@ -38,7 +38,10 @@ password_files=( "$prefix"/**/*.gpg )
 password_files=( "${password_files[@]#"$prefix"/}" )
 password_files=( "${password_files[@]%.gpg}" )
 
-password=$(printf '%s\n' "${password_files[@]}" | "dmenu")
+ignorefile=${PASS_IGNORE_PATH-~/.passignore}
+password=$(printf '%s\n' "${password_files[@]}" \
+    | grep -vxF -f "$ignorefile" \
+    | "dmenu")
 
 [[ -n $password ]] || exit
 
