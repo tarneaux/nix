@@ -118,6 +118,7 @@
   fonts.packages = with pkgs; [
     # fantasque-sans-mono
     (nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+    lmodern # For emacs
   ];
 
   nix.extraOptions = ''
