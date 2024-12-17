@@ -138,23 +138,21 @@
                 capabilities = require("cmp_nvim_lsp").default_capabilities(),
             }
 
-            require("which-key").register({
-                ["<leader>l"] = {
-                    name = "LSP actions",
-                    a = { "<cmd>lua vim.lsp.buf.code_action()<cr>", "Code action" },
-                    d = { "<cmd>lua vim.lsp.buf.definition()<cr>", "Go to definition" },
-                    D = { "<cmd>lua vim.lsp.buf.declaration()<cr>", "Go to declaration" },
-                    i = { "<cmd>lua vim.lsp.buf.implementation()<cr>", "Go to implementation" },
-                    r = { "<cmd>lua vim.lsp.buf.references()<cr>", "Go to references" },
-                    R = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
-                    h = { "<cmd>lua vim.lsp.buf.hover()<cr>", "Hover" },
-                    H = { "<cmd>lua vim.lsp.buf.signature_help()<cr>", "Signature help" },
-                    s = { "<cmd>lua vim.lsp.buf.document_symbol()<cr>", "Document symbols" },
-                    S = { "<cmd>lua vim.lsp.buf.workspace_symbol()<cr>", "Workspace symbols" },
-                    t = { "<cmd>lua vim.lsp.buf.type_definition()<cr>", "Go to type definition" },
-                    x = { "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>", "Show line diagnostics" },
-                    f = { "<cmd>lua vim.lsp.buf.format()<cr>", "Format buffer" },
-                }
+            require("which-key").add({
+                { "<leader>l", group = "LSP actions" },
+                { "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Code action" },
+                { "<leader>ld", "<cmd>lua vim.lsp.buf.definition()<cr>", desc = "Go to definition" },
+                { "<leader>lD", "<cmd>lua vim.lsp.buf.declaration()<cr>", desc = "Go to declaration" },
+                { "<leader>li", "<cmd>lua vim.lsp.buf.implementation()<cr>", desc = "Go to implementation" },
+                { "<leader>lr", "<cmd>lua vim.lsp.buf.references()<cr>", desc = "Go to references" },
+                { "<leader>lR", "<cmd>lua vim.lsp.buf.rename()<cr>", desc = "Rename" },
+                { "<leader>lh", "<cmd>lua vim.lsp.buf.hover()<cr>", desc = "Hover" },
+                { "<leader>lH", "<cmd>lua vim.lsp.buf.signature_help()<cr>", desc = "Signature help" },
+                { "<leader>ls", "<cmd>lua vim.lsp.buf.document_symbol()<cr>", desc = "Document symbols" },
+                { "<leader>lS", "<cmd>lua vim.lsp.buf.workspace_symbol()<cr>", desc = "Workspace symbols" },
+                { "<leader>lt", "<cmd>lua vim.lsp.buf.type_definition()<cr>", desc = "Go to type definition" },
+                { "<leader>lx", "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<cr>", desc = "Show line diagnostics" },
+                { "<leader>lf", "<cmd>lua vim.lsp.buf.format()<cr>", desc = "Format buffer" },
             })
           '';
       }
@@ -297,23 +295,18 @@
                 },
               },
             }
-            require('which-key').register({
-                ["<leader>f"] = {
-                    name = "Find",
-                    f = { "<cmd>Telescope find_files<cr>", "Find files" },
-                    g = { "<cmd>Telescope live_grep<cr>", "Live grep" },
-                    h = { "<cmd>Telescope help_tags<cr>", "Help tags" },
-                    s = { "<cmd>Telescope git_status<cr>", "Git status" },
-                    c = { "<cmd>Telescope git_commits<cr>", "Git commits" },
-                    C = { "<cmd>Telescope git_bcommits<cr>", "Git buffer commits" },
-                    r = { "<cmd>Telescope registers<cr>", "Registers" },
-                    m = { "<cmd>Telescope marks<cr>", "Marks" },
-                    e = { "<cmd>Telescope symbols<cr>", "Symbols" },
-                },
-                [","] = {
-                  "<cmd>Telescope buffers<cr>",
-                  "Switch buffer"
-                }
+            require('which-key').add({
+                { "<leader>f", group = "Find" },
+                { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find files" },
+                { "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Live grep" },
+                { "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Help tags" },
+                { "<leader>fs", "<cmd>Telescope git_status<cr>", desc = "Git status" },
+                { "<leader>fc", "<cmd>Telescope git_commits<cr>", desc = "Git commits" },
+                { "<leader>fC", "<cmd>Telescope git_bcommits<cr>", desc = "Git buffer commits" },
+                { "<leader>fr", "<cmd>Telescope registers<cr>", desc = "Registers" },
+                { "<leader>fm", "<cmd>Telescope marks<cr>", desc = "Marks" },
+                { "<leader>fe", "<cmd>Telescope symbols<cr>", desc = "Symbols" },
+                { "<leader>f,", "<cmd>Telescope buffers<cr>", desc = "Switch buffer" },
             })
           '';
       }
@@ -451,46 +444,47 @@
         vim.keymap.set("n", "<leader>e", ":Explore<cr>", {desc = "Open netrw"})
 
         -- <leader>O to set options
-        require('which-key').register({
-          ["<leader>O"] = {
-            name = "Options",
-            t = {
-              function ()
-                if vim.opt.tabstop:get() == 4 then
-                  vim.opt.tabstop = 2
-                  vim.opt.shiftwidth = 2
-                  vim.opt.softtabstop = 2
-                else
-                  vim.opt.tabstop = 4
-                  vim.opt.shiftwidth = 4
-                  vim.opt.softtabstop = 4
-                end
-              end,
-              "Toggle tab width (2/4)"
-            },
-            c = {
-              function ()
-                if vim.opt.colorcolumn:get()[1] == "81" then
-                  vim.opt.colorcolumn = ""
-                else
-                  vim.opt.colorcolumn = "81"
-                end
-                if vim.opt.textwidth:get() == 0 then
-                  vim.opt.textwidth = vim.opt.colorcolumn:get()[1] - 1
-                end
-              end,
-              "Toggle colorcolumn (81/none)"
-            },
-            w = {
-              function ()
-                if vim.opt.textwidth:get() == 0 then
-                  vim.opt.textwidth = vim.opt.colorcolumn:get()[1] - 1
-                else
-                  vim.opt.textwidth = 0
-                end
-              end,
-              "Toggle textwidth (colorcolumn-1/none)",
-            },
+        require('which-key').add({
+          { "<leader>O", group = "Options" },
+          { 
+            "<leader>Ot",
+            function ()
+              if vim.opt.tabstop:get() == 4 then
+                vim.opt.tabstop = 2
+                vim.opt.shiftwidth = 2
+                vim.opt.softtabstop = 2
+              else
+                vim.opt.tabstop = 4
+                vim.opt.shiftwidth = 4
+                vim.opt.softtabstop = 4
+              end
+            end,
+            desc = "Toggle tab width (2/4)"
+          },
+          {
+            "<leader>Oc",
+            function ()
+              if vim.opt.colorcolumn:get()[1] == "81" then
+                vim.opt.colorcolumn = ""
+              else
+                vim.opt.colorcolumn = "81"
+              end
+              if vim.opt.textwidth:get() == 0 then
+                vim.opt.textwidth = vim.opt.colorcolumn:get()[1] - 1
+              end
+            end,
+            desc = "Toggle colorcolumn (81/none)"
+          },
+          {
+            "<leader>Ow",
+            function ()
+              if vim.opt.textwidth:get() == 0 then
+                vim.opt.textwidth = vim.opt.colorcolumn:get()[1] - 1
+              else
+                vim.opt.textwidth = 0
+              end
+            end,
+            desc = "Toggle textwidth (colorcolumn-1/none)",
           },
         })
 
@@ -538,14 +532,12 @@
             end
         })
 
-        require('which-key').register ({
-          ['<leader>t'] = {
-            name = "Tabs",
-            n = { "<cmd>tabnew<cr>", "New tab" },
-            c = { "<cmd>tabclose<cr>", "Close tab" },
-            e = { "<cmd>tabnext<cr>", "Next tab" },
-            i = { "<cmd>tabprevious<cr>", "Previous tab" },
-          }
+        require('which-key').add ({
+          { "<leader>t", group = "Tabs"},
+          { "<leader>tn", "<cmd>tabnew<cr>", desc = "New tab" },
+          { "<leader>tc", "<cmd>tabclose<cr>", desc = "Close tab" },
+          { "<leader>te", "<cmd>tabnext<cr>", desc = "Next tab" },
+          { "<leader>ti", "<cmd>tabprevious<cr>", desc = "Previous tab" },
         })
       '';
   };
@@ -556,15 +548,13 @@
     pyright
     nodePackages.bash-language-server
     shellcheck
-    nodePackages.vscode-html-languageserver-bin
-    nodePackages.vscode-json-languageserver-bin
+    vscode-langservers-extracted
     lua-language-server
     libclang
     haskell-language-server
     ansible-language-server
     yaml-language-server
     nil
-    unstable.vscode-langservers-extracted
     vscode-extensions.sumneko.lua
     gopls
     texlab

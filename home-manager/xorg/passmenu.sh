@@ -41,7 +41,7 @@ password_files=( "${password_files[@]%.gpg}" )
 ignorefile=${PASS_IGNORE_PATH-~/.passignore}
 password=$(printf '%s\n' "${password_files[@]}" \
     | grep -vxF -f "$ignorefile" \
-    | "dmenu")
+    | rofi -dmenu -p "Select password to $ACTION")
 
 [[ -n $password ]] || exit
 

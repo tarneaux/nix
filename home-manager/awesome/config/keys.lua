@@ -15,7 +15,7 @@ local globalkeys = gears.table.join(
     ---------------------------
 
     -- Menu
-    awful.key({ ModKey,           }, "p", function() awful.spawn.with_shell("dmenu_run") end),
+    awful.key({ ModKey,           }, "p", function() awful.spawn.with_shell("rofi -show drun") end),
 
     -- Various apps
     awful.key({ ModKey,           }, "b", function() awful.spawn.with_shell("qutebrowser") end),

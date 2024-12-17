@@ -9,7 +9,7 @@
     ./awesome
     ./nsxiv
     ./aerc
-    ./dmenu
+    ./rofi
     ./unison
     ./emacs
   ];

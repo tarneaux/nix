@@ -52,7 +52,8 @@
     (writeShellApplication {
       name = "powermenu";
       text = ''
-        action=$(printf 'suspend\nhibernate\nreboot\nshutdown' | dmenu)
+        action=$(printf 'suspend\nhibernate\nreboot\nshutdown' \
+          | rofi -dmenu -p "Action")
 
         case $action in
             suspend) systemctl suspend;;
