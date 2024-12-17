@@ -18,7 +18,13 @@
 (setq-default create-lockfiles nil)
 
 ;; Set font
-(set-face-attribute 'default nil :font "FantasqueSansM Nerd Font-9")
+(custom-theme-set-faces
+ 'user
+ '(variable-pitch ((t (:family "Latin Modern" :height 90))))
+ '(fixed-pitch ((t (:family "FantasqueSansM Nerd Font" :height 90)))))
+
+;; Enable text wrapping
+(global-visual-line-mode t)
 
 ;; Disable some UI elements
 (menu-bar-mode -1)
@@ -46,11 +52,6 @@
 (use-package gruvbox-theme
   :config
   (load-theme 'gruvbox-dark-medium t)
-  ;; I don't like the default line number colors
-  ; (set-face-attribute 'line-number nil :background "#0000" :foreground "#504945")
-  ; (set-face-attribute 'line-number-current-line nil :background "#0000")
-  ;; Disable highlighting of new lines
-  ;;(set-face-attribute 'fringe nil :background "#0000")
 )
 
 
@@ -78,11 +79,12 @@
   :config
   (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
-(custom-theme-set-faces
-  'user
-  `(org-document-title ((t (:height 2.0 :underline nil))))
-  `(org-level-1 ((t (:height 1.75))))
-  `(org-level-2 ((t (:height 1.5))))
-  `(org-level-3 ((t (:height 1.25))))
-  `(org-level-4 ((t (:height 1.1)))))
+(add-hook 'org-mode-hook 'variable-pitch-mode)
+(add-hook 'org-mode-hook (lambda () (display-line-numbers-mode -1)))
+
+
+;; LaTeX
+(use-package xenops
+  :config
+  (add-hook 'org-mode-hook #'xenops-mode))
 
