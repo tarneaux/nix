@@ -40,6 +40,7 @@
     unzip
     yt-dlp
     black
+    gimp
 
     # X utilities
     bitwarden
