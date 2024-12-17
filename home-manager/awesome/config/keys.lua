@@ -21,13 +21,14 @@ local globalkeys = gears.table.join(
     awful.key({ ModKey,           }, "b", function() awful.spawn.with_shell("qutebrowser") end),
     awful.key({ ModKey,           }, "Return", function () awful.spawn.with_shell(Terminal) end),
     awful.key({ ModKey, "Shift"   }, "Return", function () awful.spawn.with_shell(TerminalCmd .. "tmw") end),
+    awful.key({ ModKey,           }, "g", function () awful.spawn.with_shell("emacs") end),
     -- Super + / (triboard) or Super + Shift + : (french keyboard)
     awful.key({ ModKey, "Shift"   }, "#60", function() awful.spawn.with_shell(TerminalCmd .. " ncmpcpp") end),
 
     awful.key({ ModKey,           }, "z", function() awful.spawn.with_shell("lock") end),      -- Lock screen
     awful.key({ ModKey, "Control" }, "z", function() awful.spawn.with_shell("xset s activate") end), -- Blank screen
     awful.key({ ModKey, "Control" }, "q", function() awful.spawn.with_shell("powermenu") end), -- Power menu
-    awful.key({ ModKey,           }, "g", function()
+    awful.key({ ModKey,           }, "x", function()
         awful.spawn.with_shell("maim -su | xclip -selection clipboard -t image/png") end),     -- Screenshot
 
     -- Toggle VPN
