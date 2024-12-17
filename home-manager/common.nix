@@ -13,7 +13,6 @@
     ./user
     ./git
     ./gpg
-    ./emacs
   ];
   programs.fzf.enable = true;
   home.packages = with pkgs; [

@@ -11,6 +11,7 @@
     ./aerc
     ./dmenu
     ./unison
+    ./emacs
   ];
 
   home.packages = with pkgs; [
