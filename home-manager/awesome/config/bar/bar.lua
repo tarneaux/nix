@@ -14,65 +14,65 @@ local triboard_batt = require("bar/widgets/triboard_batt")
 local vpn = require("bar/widgets/vpn")
 
 local bar = function(s)
-    local wb = awful.wibar {
-        position = "top",
-        height = beautiful.bar_height,
-        screen = s,
-        bg = beautiful.background
-    }
-    wb:setup {
-        layout = wibox.layout.stack,
-        {
-            {
-                layout = wibox.layout.align.horizontal,
-                {
-                    layout = wibox.layout.align.horizontal,
-                    taglist(s),
-                    layout(s)
-                },
-                nil,
-                {
-                    layout = wibox.layout.align.horizontal,
-                    {
-                        layout = wibox.layout.align.horizontal,
-                        {
-                            layout = wibox.layout.align.horizontal,
-                            wibox.widget.systray(false),
-                            spacer,
-                            playing,
-                        },
-                        spacer,
-                        battery,
-                    },
+	local wb = awful.wibar({
+		position = "top",
+		height = beautiful.bar_height,
+		screen = s,
+		bg = beautiful.background,
+	})
+	wb:setup({
+		layout = wibox.layout.stack,
+		{
+			{
+				layout = wibox.layout.align.horizontal,
+				{
+					layout = wibox.layout.align.horizontal,
+					taglist(s),
+					layout(s),
+				},
+				nil,
+				{
+					layout = wibox.layout.align.horizontal,
 					{
 						layout = wibox.layout.align.horizontal,
-                        spacer,
+						{
+							layout = wibox.layout.align.horizontal,
+							wibox.widget.systray(false),
+							spacer,
+							playing,
+						},
+						spacer,
+						battery,
+					},
+					{
+						layout = wibox.layout.align.horizontal,
+						spacer,
 						unison,
 						spacer,
 					},
-                    {
-                        layout = wibox.layout.align.horizontal,
-                        togglekeyboard,
-                        spacer,
-                        {
-                            layout = wibox.layout.align.horizontal,
-                            triboard_batt,
-                            spacer,
-                            vpn,
-                        }
-                    }
-                }
-            },
-            widget = wibox.container.margin,
-            right = 5,
-            left = 5
-        },
-        {
-            layout = wibox.container.place,
-            halign = "center",
-            clock
-        },
-    }
+					{
+						layout = wibox.layout.align.horizontal,
+						togglekeyboard,
+						spacer,
+						{
+							layout = wibox.layout.align.horizontal,
+							triboard_batt,
+							spacer,
+							vpn,
+						},
+					},
+				},
+			},
+			widget = wibox.container.margin,
+			right = 5,
+			left = 5,
+		},
+		{
+			layout = wibox.container.place,
+			halign = "center",
+			clock,
+		},
+	})
 end
 
 return bar
