@@ -57,16 +57,26 @@
     in
     {
       formatter = nixpkgs.lib.genAttrs systems (
-        system: nixpkgs.legacyPackages.${system}.nixfmt-rfc-style
+        system:
+        let
+          pkgs = nixpkgs.legacyPackages.${system};
+        in
+        pkgs.writeShellApplication {
+          name = "formatter";
+          runtimeInputs = with pkgs; [
+            treefmt
+            nixfmt-rfc-style
+            stylua
+          ];
+          text = "${pkgs.treefmt}/bin/treefmt";
+        }
       );
       overlays = import ./overlays { inherit inputs; };
 
       nixosConfigurations =
         {
           framy = nixpkgs.lib.nixosSystem {
-            specialArgs = {
-              inherit inputs outputs;
-            };
+            specialArgs = { inherit inputs outputs; };
             modules = [
               # > Our main nixos configuration file <
               ./nixos/framy/configuration.nix
