@@ -357,8 +357,6 @@
         vim.opt.number = true
         vim.opt.relativenumber = true
 
-        -- Show gutter in line numbers
-
         -- Disable those annoying swap files
         vim.opt.swapfile = false
 
