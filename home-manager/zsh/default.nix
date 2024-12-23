@@ -147,10 +147,12 @@ in
       autoload -U compinit
       compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION"
     '';
+
     zplug = {
       enable = true;
       plugins = [ { name = "zdharma-continuum/fast-syntax-highlighting"; } ];
     };
+
     dirHashes = {
       # These hashes will be used to shorten the paths, both for commands you
       # type and in the prompt, e.g. typing cd ~g will go to ~/git.
@@ -172,29 +174,29 @@ in
     initExtra = ''
       zstyle ":completion:*" menu select
 
-      _comp_options+=(globdots) # Include hidden files in filename completion
+      # Allow executing shell scripts in prompt
+      setopt prompt_subst
+
+      # Include hidden files in filename completion
+      _comp_options+=(globdots)
 
       # Re-set cursor after each command
       __reset-cursor() {printf '\033[5 q'}
       add-zsh-hook precmd "__reset-cursor"
 
-      # And reload the tmux bar, so that segments are updated faster
+      # Reload the tmux bar after each command for faster updates
       __reload-tmux-bar() {tmux refresh-client -S > /dev/null 2>&1}
       add-zsh-hook precmd "__reload-tmux-bar"
 
-      # Allow executing shell scripts in prompt
-      setopt prompt_subst
-
       # Set window titles depending on commands and user@hostname
-
       function __set_title() {
         title=$(print -nP "%n@%m %~ $ $1") # $1 is the running command, if there is one
         echo -n "\033]0;$title\a"
       }
-
       add-zsh-hook preexec __set_title
       add-zsh-hook precmd __set_title
 
+      # Display which package contains a command when it isn't found
       source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
     '';
   };
