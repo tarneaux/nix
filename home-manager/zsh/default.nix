@@ -160,6 +160,15 @@ in
       nix = "$HOME/git/nix";
       s = "$HOME/.sync";
     };
+
+    localVariables.PROMPT = lib.strings.concatStrings [
+      "%F{yellow}%n@%m " # username@hostname
+      "%F{blue}%~" # working dir, with hash substitution
+      "%F{red}$(__zprompt_git_info)%f " # git info
+      "%(?.%F{green}λ .%F{red}λ )" # green or red prompt symbol depending on exit status
+      "%f" # Reset text color
+    ];
+
     initExtra = ''
       zstyle ":completion:*" menu select
 
@@ -173,15 +182,8 @@ in
       __reload-tmux-bar() {tmux refresh-client -S > /dev/null 2>&1}
       add-zsh-hook precmd "__reload-tmux-bar"
 
-      # Enable substitution in the prompt.
+      # Allow executing shell scripts in prompt
       setopt prompt_subst
-
-      PROMPT=""
-      PROMPT+='%F{yellow}%n@%m ' # Display the username followed by @ and hostname in yellow
-      PROMPT+='%F{blue}%~' # Display the current working directory in blue
-      PROMPT+='%F{red}$(__zprompt_git_info)%f ' # Display the vcs info in red
-      PROMPT+='%(?.%F{green}λ .%F{red}λ )' # Display a green prompt if the last command succeeded, or red if it failed
-      PROMPT+='%f' # Reset the text color
 
       # Set window titles depending on commands and user@hostname
 
