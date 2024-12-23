@@ -23,6 +23,7 @@
     file
     onefetch
     zip
+    treefmt
   ];
 
   # Minimum viable configurations for home manager
