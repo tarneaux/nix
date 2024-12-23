@@ -169,7 +169,7 @@ in
     localVariables.PROMPT = lib.strings.concatStrings [
       "%F{yellow}%n@%m " # username@hostname
       "%F{blue}%~" # working dir, with hash substitution
-      "%F{red}$(__zprompt_git_info)%f " # git info
+      "%F{red}\\$(__zprompt_git_info)%f " # git info
       "%(?.%F{green}λ .%F{red}λ )" # green or red prompt symbol depending on exit status
       "%f" # Reset text color
     ];
