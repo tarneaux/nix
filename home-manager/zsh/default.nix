@@ -107,6 +107,7 @@ in
           lg = "lazygit";
           y = "yazi";
           cmm = "zathura ~/fac/maths/cours.pdf";
+          arc = "archive";
 
           # docker / podman
           d = docker;
@@ -139,6 +140,8 @@ in
       {
         BAT_PAGER = pager;
         PAGER = pager;
+
+        ARCHIVE_DIR = "~/.sync/archive";
       };
 
     # Without the option below, compinit takes 3+ secs to load.
@@ -205,6 +208,10 @@ in
       (pkgs.writeShellApplication {
         name = "__zprompt_git_info";
         text = builtins.readFile ./git-segment.zsh;
+      })
+      (pkgs.writeShellApplication {
+        name = "archive";
+        text = builtins.readFile ./archive.sh;
       })
       pkgs.trash-cli
       pkgs.nix-index
