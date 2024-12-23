@@ -21,6 +21,7 @@
     glow
     progress
     file
+    onefetch
   ];
 
   # Minimum viable configurations for home manager
