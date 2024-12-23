@@ -22,6 +22,7 @@
     progress
     file
     onefetch
+    zip
   ];
 
   # Minimum viable configurations for home manager
