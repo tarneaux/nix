@@ -141,7 +141,7 @@ in
         BAT_PAGER = pager;
         PAGER = pager;
 
-        ARCHIVE_DIR = "~/.sync/archive";
+        ARCHIVE_DIR = "$HOME/.sync/archive";
       };
 
     # Without the option below, compinit takes 3+ secs to load.
@@ -164,6 +164,7 @@ in
       g = "$HOME/git";
       nix = "$HOME/git/nix";
       s = "$HOME/.sync";
+      ar = "$ARCHIVE_DIR";
     };
 
     localVariables.PROMPT = lib.strings.concatStrings [
