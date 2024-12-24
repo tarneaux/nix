@@ -21,12 +21,8 @@
     evcxr
     exiftool
     ffmpeg-full
-    gh
-    hut
     imagemagick
     inotify-tools
-    jq
-    kubectl
     license-cli
     nmap
     nodePackages.prettier
@@ -40,7 +36,7 @@
     unzip
     yt-dlp
     black
-    gimp
+    pastel
 
     # X utilities
     bitwarden
@@ -67,5 +63,6 @@
     rawtherapee
     signal-desktop
     xournalpp
+    gimp
   ];
 }

@@ -24,6 +24,12 @@
     onefetch
     zip
     treefmt
+    dust
+    jq
+    nmap
+    openssl
+    eva
+    lnav
   ];
 
   # Minimum viable configurations for home manager
