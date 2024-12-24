@@ -51,4 +51,8 @@ for file in "${FILES[@]}"; do
     dst=$(to_dest "$file")
     $CMD "$file" "$dst"
     trash -f "$dst/.direnv" "$dst/.devenv" "$dst/.venv" "$dst/venv"
+    if [[ -d "$dst" ]]; then
+        realpath "$file" > "$dst/.archive-source"
+    fi
+    echo "$(realpath "$file") $(basename "$dst")" >> "$ARCHIVE_DIR/index.txt"
 done
