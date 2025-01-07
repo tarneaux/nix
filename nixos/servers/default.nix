@@ -16,7 +16,6 @@
         {
           groups = [ "wheel" ];
           keepEnv = true;
-          persist = true;
         }
       ];
     };
