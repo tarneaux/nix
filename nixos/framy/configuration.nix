@@ -68,20 +68,7 @@
     gnome.gnome-keyring.enable = true;
   };
 
-  security = {
-    rtkit.enable = true;
-    sudo.enable = false;
-    doas = {
-      enable = true;
-      extraRules = [
-        {
-          groups = [ "wheel" ];
-          keepEnv = true;
-          persist = true;
-        }
-      ];
-    };
-  };
+  security.rtkit.enable = true;
 
   hardware.bluetooth = {
     enable = true;
