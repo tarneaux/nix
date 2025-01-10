@@ -203,7 +203,7 @@ in
       # Start the SSH agent and add the authentication key for remote auth with
       # a FIDO key
       eval $(ssh-agent) > /dev/null
-      ssh-add -q .ssh/id_ed25519_sk_auth
+      ssh-add -q ~/.ssh/id_ed25519_sk_auth
 
       # Display which package contains a command when it isn't found
       source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
