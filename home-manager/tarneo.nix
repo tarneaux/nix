@@ -12,6 +12,7 @@
     ./rofi
     ./unison
     ./emacs
+    ./ssh
   ];
 
   home.packages = with pkgs; [
