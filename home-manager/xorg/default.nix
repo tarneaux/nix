@@ -74,7 +74,7 @@
         ''
           reload() {
             pkill awesome --signal HUP
-            pkill qutebrowser --signal HUP
+            pkill -f "^/nix/store/[[:alnum:]]*-python3-[0-9.]*/bin/python3.[0-9]* /nix/store/[[:alnum:]]*-qutebrowser-[0-9.]*/bin/.qutebrowser-wrapped$" --signal HUP
             xinput enable "AT Translated Set 2 keyboard"
           }
 
