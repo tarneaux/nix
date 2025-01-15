@@ -3,6 +3,7 @@
   pkgs,
   is_server,
   lib,
+  hostname,
   ...
 }:
 let
@@ -90,8 +91,8 @@ in
           tmn = "tmux new-session -s";
 
           # Nixos
-          or = "${privesc_right} nixos-rebuild switch --flake ~nix";
-          hr = "home-manager switch --flake ~nix";
+          or = "${privesc_right} nixos-rebuild switch --flake ~nix " + (if (hostname == "chorizo") then " -j 1" else "");
+          hr = "home-manager switch --flake ~nix" + (if (hostname == "chorizo") then " -j 1" else "");
           ns = "nix shell";
           nr = "nix run";
           nd = "nix develop -c 'zsh'";
