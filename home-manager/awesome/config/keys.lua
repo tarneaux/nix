@@ -1,10 +1,26 @@
 local awful = require("awful")
 local gears = require("gears")
+local lain = require("lain")
 require("awful.hotkeys_popup.keys")
 
 ModKey = "Mod4"
 
 local previous_layout = nil
+
+local ncmpcpp_quake = lain.util.quake({
+	app = "alacritty --class NcmpCppQuake",
+	argname = "--title %s -e ncmpcpp",
+	followtag = true,
+	height = 0.8,
+	width = 0.8,
+	vert = "center",
+	horiz = "center",
+	border = 2,
+	name = "NcmpCppQuake",
+	settings = function(c)
+		c.sticky = true
+	end,
+})
 
 local globalkeys = gears.table.join(
 	-- Reload awesome
@@ -34,7 +50,7 @@ local globalkeys = gears.table.join(
 	end),
 	-- Super + / (triboard) or Super + Shift + : (french keyboard)
 	awful.key({ ModKey, "Shift" }, "#60", function()
-		awful.spawn.with_shell(TerminalCmd .. " ncmpcpp")
+		ncmpcpp_quake:toggle()
 	end),
 
 	-- Lock screen
