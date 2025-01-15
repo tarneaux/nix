@@ -45,7 +45,7 @@ function __git_symbols() {
 	# STAGED
 	[[ $(git diff --name-only --cached) ]] && output_symbols+="$staged"
 
-	symbols="$(git status --porcelain=v1 | cut -c1-2 | sed 's/ //g')"
+	symbols="$(git status --porcelain=v1 | cut -c1-2 | sed 's/ //g' | sort | uniq)"
 
 	while IFS= read -r symbol; do
 		case $symbol in
@@ -55,9 +55,6 @@ function __git_symbols() {
 			D) output_symbols+="$deleted";;
 		esac
 	done <<< "$symbols"
-
-	# Remove duplicate symbols
-	output_symbols="$(echo -n "$output_symbols" | tr -s "$untracked$modified$moved$deleted")"
 
 	[[ -n $output_symbols ]] && echo -n " $output_symbols"
 }
