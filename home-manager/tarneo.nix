@@ -36,7 +36,7 @@
     texliveMedium
     unzip
     yt-dlp
-    black
+    ruff
     pastel
 
     # X utilities

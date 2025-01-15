@@ -108,6 +108,7 @@ in
           y = "yazi";
           cmm = "zathura ~/fac/maths/cours.pdf";
           arc = "archive";
+          black = "ruff";
 
           # docker / podman
           d = docker;
