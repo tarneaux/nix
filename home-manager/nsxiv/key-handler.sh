@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-while read file; do
+while read -r file; do
 case "$1" in
   "y")
     # Copy the absolute path to the clipboard.
