@@ -9,6 +9,7 @@
 let
   privesc_wrong = "sudo";
   privesc_right = "doas";
+  nix_job_limit_arg = if (hostname == "chorizo") then " -j 1" else "";
   docker = if is_server then "doas docker" else "podman";
 in
 {
@@ -91,8 +92,8 @@ in
           tmn = "tmux new-session -s";
 
           # Nixos
-          or = "${privesc_right} nixos-rebuild switch --flake ~nix " + (if (hostname == "chorizo") then " -j 1" else "");
-          hr = "home-manager switch --flake ~nix" + (if (hostname == "chorizo") then " -j 1" else "");
+          or = "${privesc_right} nixos-rebuild switch --flake ~nix" + nix_job_limit_arg;
+          hr = "home-manager switch --flake ~nix" + nix_job_limit_arg;
           ns = "nix shell";
           nr = "nix run";
           nd = "nix develop -c 'zsh'";
