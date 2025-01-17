@@ -18,5 +18,8 @@ case "$1" in
     convert -rotate 90 "$file" "$file" ;;
   "R")
     convert -rotate -90 "$file" "$file" ;;
+  "d")
+    ln -sr "$(readlink -f "$file")" ~/pics/to-develop/ || notify-send -u critical \
+        "Failed create a link for this picture in to-develop directory" ;;
   esac
 done
