@@ -32,6 +32,12 @@
     lnav
   ];
 
+  nix.gc = {
+    automatic = true;
+    frequency = "weekly";
+    options = "--delete-older-than 7d";
+  };
+
   # Minimum viable configurations for home manager
   programs.home-manager.enable = true;
   nixpkgs = {
