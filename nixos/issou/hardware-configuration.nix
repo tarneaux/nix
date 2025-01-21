@@ -74,9 +74,9 @@
     ];
   };
 
-  fileSystems."/btrfs" = {
-    device = "/dev/disk/by-uuid/569a7b5b-6019-49f1-9d98-0d5bdaec353f";
-    fsType = "btrfs";
+  fileSystems."/big/data" = {
+    device = "/dev/disk/by-uuid/5bee2edb-2a8f-453e-b12c-2ddcb10b5215";
+    fsType = "ext4";
   };
 
   swapDevices = [ { device = "/dev/nvme0n1p2"; } ];

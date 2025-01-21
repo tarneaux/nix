@@ -16,12 +16,12 @@
         "/home/risitas/data"
         "/home/risitas/services"
         "/home/risitas/git/nix"
-        "/btrfs/@data"
+        "/big/data"
       ];
       exclude = [
         "/home/risitas/data/mastodon/public/system/cache/"
         "/home/risitas/data/mastodon/elasticsearch/"
-        "/btrfs/@data/mssh/home/tarneo/sync/Films/"
+        "/big/data/mssh/home/tarneo/sync/Films/"
       ];
     };
     networking.ipv4 = {
