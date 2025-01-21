@@ -50,6 +50,7 @@
         pruneOpts = [
           "--keep-daily 7"
           "--keep-weekly 5"
+          "--group-by host"
         ];
       };
     };
