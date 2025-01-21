@@ -1,7 +1,13 @@
 #!/usr/bin/env bash
 
+REBUILD_OPTS=""
+
+if [ "$(hostname)" = chorizo ]; then
+    REBUILD_OPTS+="-j 1"
+fi
+
 nix flake update
-home-manager switch --flake .
+home-manager switch --flake . $REBUILD_OPTS
 
 # See which of doas or sudo is installed
 if command -v doas &> /dev/null; then
@@ -13,4 +19,4 @@ else
   exit 1
 fi
 
-$PRIVESC nixos-rebuild switch --flake .
+$PRIVESC nixos-rebuild switch --flake . $REBUILD_OPTS
