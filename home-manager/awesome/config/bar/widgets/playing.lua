@@ -4,13 +4,6 @@ local gears = require("gears")
 
 local icon = wibox.widget.textbox("󰝚 ")
 local title = wibox.widget.textbox()
-local cover = wibox.widget({
-	resize = true,
-	forced_height = 300,
-	forced_width = 300,
-	clip_shape = gears.shape.rounded_rect,
-	widget = wibox.widget.imagebox,
-})
 
 local function daemon()
 	awful.spawn.easy_async_with_shell('mpc current --format "%artist% - %title%"', function(stdout)
