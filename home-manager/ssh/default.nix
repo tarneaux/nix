@@ -18,7 +18,7 @@
         hostname = "aur.archlinux.org";
         user = "aur";
       };
-      "chorizo issou issou-v chankla gaspacho" = {
+      "chorizo chorizo-v issou issou-v chankla gaspacho" = {
         forwardAgent = true;
         remoteForwards = [
           {
@@ -30,6 +30,10 @@
       };
       "chorizo" = {
         hostname = "51.210.180.14";
+        port = 52865;
+      };
+      "chorizo-v" = {
+        hostname = "10.8.0.1";
         port = 52865;
       };
       "issou" = {
