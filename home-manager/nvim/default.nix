@@ -136,6 +136,8 @@
                 capabilities = require("cmp_nvim_lsp").default_capabilities(),
             }
 
+            vim.lsp.inlay_hint.enable()
+
             require("which-key").add({
                 { "<leader>l", group = "LSP actions" },
                 { "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "Code action" },
