@@ -574,7 +574,6 @@
     gopls
     texlab
     tree-sitter
-    nodejs_22
     nixd
     nixfmt-rfc-style
   ];
