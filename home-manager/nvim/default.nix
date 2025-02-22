@@ -157,6 +157,14 @@
           '';
       }
       {
+        plugin = pkgs.vimPlugins.rust-vim;
+        type = "lua";
+        config = # lua
+          ''
+            vim.g.rustfmt_autosave = 1
+          '';
+      }
+      {
         plugin = pkgs.vimPlugins.which-key-nvim;
         type = "lua";
         config = # lua
@@ -238,14 +246,6 @@
         config = # vim
           ''
             autocmd FileType nix setlocal commentstring=#\ %s
-          '';
-      }
-      {
-        plugin = pkgs.vimPlugins.rust-vim;
-        type = "lua";
-        config = # lua
-          ''
-            vim.g.rustfmt_autosave = 1
           '';
       }
       {
