@@ -107,7 +107,7 @@
         config = # lua
           ''
             local lspconfig = require('lspconfig')
-            local servers = {"clangd", "rust_analyzer", "pyright", "bashls", "html", "jsonls", "rust_analyzer", "lua_ls", "hls", "eslint", "ansiblels", "yamlls", "nil_ls", "gopls", "texlab"}
+            local servers = {"clangd", "pyright", "bashls", "html", "jsonls", "lua_ls", "hls", "eslint", "ansiblels", "yamlls", "nil_ls", "gopls", "texlab"}
 
             cap = require('cmp_nvim_lsp').default_capabilities()
 
@@ -162,6 +162,30 @@
         config = # lua
           ''
             vim.g.rustfmt_autosave = 1
+          '';
+      }
+      {
+        plugin = pkgs.vimPlugins.rustaceanvim;
+        type = "lua";
+        config = # lua
+          ''
+            vim.g.rustaceanvim = {
+                tools = {},
+                server = {
+                    on_attach = function(client, bufnr)
+                    end,
+                    default_settings = {
+                      -- rust-analyzer language server configuration
+                      ['rust-analyzer'] = {
+                        diagnostic = {
+                          enable = true,
+                          refreshSupport = true,
+                        },
+                      },
+                    },
+                },
+                dap = {},
+            }
           '';
       }
       {
