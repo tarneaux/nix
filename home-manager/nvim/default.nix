@@ -146,8 +146,6 @@
                 { "<leader>lR", "<cmd>lua vim.lsp.buf.rename()<cr>", desc = "Rename" },
                 { "<leader>lh", "<cmd>lua vim.lsp.buf.hover()<cr>", desc = "Hover" },
                 { "<leader>lH", "<cmd>lua vim.lsp.buf.signature_help()<cr>", desc = "Signature help" },
-                { "<leader>ls", "<cmd>lua vim.lsp.buf.document_symbol()<cr>", desc = "Document symbols" },
-                { "<leader>lS", "<cmd>lua vim.lsp.buf.workspace_symbol()<cr>", desc = "Workspace symbols" },
                 { "<leader>lt", "<cmd>lua vim.lsp.buf.type_definition()<cr>", desc = "Go to type definition" },
                 { "<leader>lx", "<cmd>lua vim.diagnostic.open_float()<cr>", desc = "Show line diagnostics"},
                 { "<leader>lf", "<cmd>lua vim.lsp.buf.format()<cr>", desc = "Format buffer" },
