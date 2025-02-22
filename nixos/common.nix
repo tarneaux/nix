@@ -38,6 +38,7 @@
     eza
     wireguard-tools
     ncdu
+    comma
   ];
 
   # Automatically collect garbage
