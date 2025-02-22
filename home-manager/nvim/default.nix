@@ -347,7 +347,14 @@
             })
           '';
       }
-      pkgs.vimPlugins.trouble-nvim
+      {
+        plugin = pkgs.vimPlugins.trouble-nvim;
+        type = "lua";
+        config = # lua
+          ''
+            require('trouble').setup {}
+          '';
+      }
       pkgs.vimPlugins.vim-surround
       {
         plugin = pkgs.vimPlugins.leap-nvim;
