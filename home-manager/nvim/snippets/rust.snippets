@@ -1,0 +1,5 @@
+snippet display "Display trait implementation"
+	impl std::fmt::Display for ${0:Type} {
+		fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+		}
+	}

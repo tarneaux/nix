@@ -257,12 +257,14 @@
           '';
       }
       pkgs.vimPlugins.friendly-snippets
+      pkgs.vimPlugins.vim-snipmate
+      pkgs.vimPlugins.vim-snippets
       {
         plugin = pkgs.vimPlugins.luasnip;
         type = "lua";
         config = # lua
           ''
-            require('luasnip/loaders/from_vscode').load()
+            require('luasnip/loaders/from_snipmate').load()
           '';
       }
       {
@@ -399,10 +401,10 @@
             end
         })
 
-        -- Use tab for indentation in Go
+        -- Use tab for indentation in Go and snippet files
         vim.api.nvim_create_autocmd("Filetype", {
-            pattern = "go",
-            callback = function () vim.opt.expandtab = false end
+            pattern = "go,snippets",
+            callback = function () vim.opt_local.expandtab = false end
         })
 
         -- Enable mouse support just in case I turn into a normie (magic!)
@@ -576,4 +578,5 @@
     nixd
     nixfmt-rfc-style
   ];
+  home.file.".config/nvim/snippets/".source = ./snippets;
 }
