@@ -35,7 +35,7 @@
     ripgrep
     tmux
     trash-cli
-    unstable.eza
+    eza
     wireguard-tools
     ncdu
   ];
