@@ -188,6 +188,15 @@
                 },
                 dap = {},
             }
+            require('which-key').add({
+              { "<leader>r", group = "Rust"},
+              { "<leader>re", "<cmd>RustLsp expandMacro<cr>", desc = "Expand macro" },
+              { "<leader>ra", "<cmd>RustLsp codeAction<cr>", desc = "Code actions including categories" },
+              { "<leader>rx", "<cmd>RustLsp renderDiagnostic<cr>", desc = "Display rendered diagnostic"},
+              { "<leader>rr", "<cmd>RustLsp relatedDiagnostics<cr>", desc = "Go to related diagnostic"},
+              { "<leader>rd", "<cmd>RustLsp openDocs<cr>", desc = "Go to symbol documentation" },
+              { "<leader>rj", "<cmd>RustLsp joinLines<cr>", desc = "Join lines" },
+            })
           '';
       }
       {
