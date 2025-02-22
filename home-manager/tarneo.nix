@@ -62,6 +62,7 @@
     nsxiv
     obsidian
     rawtherapee
+    darktable
     signal-desktop
     xournalpp
     gimp
