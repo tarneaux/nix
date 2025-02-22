@@ -402,9 +402,9 @@
             pattern = "nix,yaml,json,markdown,org,html,css,scss,arduino,lisp",
             callback = function ()
                 local w = 2
-                vim.opt.tabstop = w
-                vim.opt.shiftwidth = w
-                vim.opt.softtabstop = w
+                vim.opt_local.tabstop = w
+                vim.opt_local.shiftwidth = w
+                vim.opt_local.softtabstop = w
             end
         })
 
