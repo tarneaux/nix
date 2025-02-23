@@ -23,19 +23,18 @@ fi
 WALLPAPER_PATH=$(awesome-client "return require('beautiful').lockwall" \
     | sed "s/^\s*string \"//" | sed "s/\"$//")
 
+I3LOCK_CMD="i3lock --nofork"
+
 if [ -z "$WALLPAPER_PATH" ]; then
-    WALLPAPER_PATH="$HOME/.config/wallpapers/nord-earth.png"
-    echo "Could not get wallpaper path, falling back to $WALLPAPER_PATH"
+    echo "Could not get wallpaper path, falling back to solid background"
+    eval "$I3LOCK_CMD --color=e9967a"
+else
+    magick "$WALLPAPER_PATH" \
+        -gravity west -resize "${SCREEN_SIZE}^" -extent "$SCREEN_SIZE" \
+        RGB:- \
+        | eval "$I3LOCK_CMD --raw $SCREEN_SIZE:rgb --image /dev/stdin"
 fi
 
-# In the follwing line, the ^ after the size means "fill at least this size"
-# (kinda like the CSS background-size: cover property or the feh --bg-fill
-#   option)
-# The --nofork option prevents i3lock from running in the background and so
-# possibly immediately re-disabling the keyboard below
-magick "$WALLPAPER_PATH" \
-    -gravity west -resize "${SCREEN_SIZE}^" -extent "$SCREEN_SIZE" \
-    RGB:- | i3lock --raw "$SCREEN_SIZE":rgb --image /dev/stdin --nofork
 
 # Restore the state of the internal keyboard
 xinput set-prop "AT Translated Set 2 keyboard" \

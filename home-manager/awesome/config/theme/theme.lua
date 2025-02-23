@@ -104,6 +104,6 @@ end
 
 -- Variable used by `lock` script.
 -- If this isn't set, the lock script will use the lock.png image.
-theme.lockwall = "~/.config/wallpapers/nebula.jpg"
+theme.lockwall = "/home/tarneo/.sync/pics/lockwall.jpg"
 
 return theme

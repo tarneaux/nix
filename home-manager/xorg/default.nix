@@ -1,7 +1,5 @@
-{ inputs, pkgs, ... }:
+{ pkgs, ... }:
 {
-  home.file."./.config/wallpapers".source = inputs.wallpapers;
-
   services = {
     redshift = {
       enable = true;

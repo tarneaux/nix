@@ -13,9 +13,6 @@
     home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    # Wallpaper repo
-    wallpapers.url = "github:tarneaux/wallpapers-small";
-
     # Automated partitioning for some hosts
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
