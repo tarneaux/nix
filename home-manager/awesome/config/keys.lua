@@ -59,7 +59,7 @@ local globalkeys = gears.table.join(
 	end),
 	-- Blank screen
 	awful.key({ ModKey, "Control" }, "z", function()
-		awful.spawn.with_shell("xset s activate")
+		awful.spawn.with_shell("xset s activate; sleep 2; xset dpms force standby")
 	end),
 	-- Power menu
 	awful.key({ ModKey, "Control" }, "q", function()
