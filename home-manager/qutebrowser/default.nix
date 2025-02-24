@@ -23,6 +23,7 @@
       "w" = "https://en.wikipedia.org/wiki/Special:Search?search={}";
       "wf" = "https://fr.wikipedia.org/wiki/Special:Search?search={}";
       "rs" = "https://docs.rs/std/?search={}";
+      "rc" = "https://docs.rs/{0}/latest/{0}";
     };
     settings = {
       colors.webpage.preferred_color_scheme = "dark";
