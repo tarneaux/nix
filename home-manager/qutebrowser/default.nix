@@ -12,6 +12,10 @@
         "<Shift+Right>" = "forward";
         "<Shift+Up>" = "tab-prev";
         "<Shift+Down>" = "tab-next";
+        "tn" = "back -t";
+        "to" = "forward -t";
+        "a" = "tab-focus last";
+        "ts" = "config-cycle tabs.show always never";
       };
     };
     searchEngines = {
