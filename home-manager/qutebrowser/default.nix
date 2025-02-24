@@ -32,6 +32,9 @@
       url.start_pages = "https://searx.renn.es";
       hints.chars = "arstneoi"; # Use colemak-friendly hints (home row)
       content.pdfjs = true;
+      tabs.position = "left";
+      tabs.show = "multiple";
+      tabs.width = 350;
     };
     extraConfig = ''
       ${builtins.readFile ./qutebrowser-gruvbox.py}
