@@ -384,6 +384,39 @@
             require('todo-comments').setup {}
           '';
       }
+      {
+        plugin = pkgs.vimPlugins.telekasten-nvim;
+        type = "lua";
+        config = # lua
+          ''
+            require('telekasten').setup({
+                home = vim.fn.expand("~/zk"), -- Put the name of your notes directory here
+            })
+
+            vim.api.nvim_create_user_command("ZettelkastenQuickNote", function ()
+              local dir = vim.fn.expand("~/zk/quick/" .. vim.fn.strftime("%Y-%m-%d %a"))
+              local file = dir .. "/" .. vim.fn.strftime("%H-%M-%S.md")
+              vim.fn.mkdir(dir, 'p')
+              vim.cmd.edit(file)
+            end, {})
+
+            require('which-key').add({
+                { "<leader>k", group = "Zettelkasten" },
+                { "<leader>kk", "<cmd>Telekasten panel<cr>", desc = "Open panel" },
+                { "<leader>kf", "<cmd>Telekasten find_notes<cr>", desc = "Find notes" },
+                { "<leader>kg", "<cmd>Telekasten search_notes<cr>", desc = "Grep notes" },
+                { "<leader>kq", "<cmd>ZettelkastenQuickNote<cr>", desc = "Quick note" },
+                { "<leader>kn", "<cmd>Telekasten new_note<cr>", desc = "New note" },
+            })
+
+            vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile"}, {
+                pattern = "*/zk/**.md",
+                callback = function ()
+                  vim.api.nvim_buf_set_keymap(0, "i", "[[", "<cmd>Telekasten insert_link<CR>", {})
+                end
+            })
+          '';
+      }
     ];
     extraLuaConfig = # lua
       ''
