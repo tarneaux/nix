@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
   programs.qutebrowser = {
     enable = true;
@@ -58,6 +58,10 @@
       name = "fast";
       # Send some text to ~/org/fast.org
       text = ''echo "* $*" >> ~/org/fast.org'';
+    })
+    (pkgs.writeShellApplication {
+      name = "qprofile";
+      text = lib.readFile ./qprofile.sh;
     })
   ];
 }

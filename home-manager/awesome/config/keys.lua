@@ -37,7 +37,13 @@ local globalkeys = gears.table.join(
 
 	-- Various apps
 	awful.key({ ModKey }, "b", function()
-		awful.spawn.with_shell("qutebrowser")
+		awful.spawn.with_shell([[
+            cat \
+            <(find ~/.config/qb-profiles/ -mindepth 1 -maxdepth 1 -type d -printf '%P\n') \
+            <(echo tmp) \
+            | rofi -dmenu -p profile \
+            | xargs -r qprofile \
+        ]])
 	end),
 	awful.key({ ModKey }, "Return", function()
 		awful.spawn.with_shell(Terminal)
