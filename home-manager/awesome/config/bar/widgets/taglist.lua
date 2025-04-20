@@ -1,5 +1,6 @@
 local awful = require("awful")
 local gears = require("gears")
+local wibox = require("wibox")
 
 return function(s)
 	local taglist_buttons = gears.table.join(
@@ -25,9 +26,14 @@ return function(s)
 		end)
 	)
 
-	return awful.widget.taglist({
-		screen = s,
-		filter = awful.widget.taglist.filter.all,
-		buttons = taglist_buttons,
+	return wibox.widget({
+		awful.widget.taglist({
+			screen = s,
+			filter = awful.widget.taglist.filter.all,
+			buttons = taglist_buttons,
+		}),
+		bottom = 2,
+		top = 2,
+		widget = wibox.container.margin,
 	})
 end
