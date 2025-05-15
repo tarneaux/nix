@@ -15,7 +15,7 @@
         "tn" = "back -t";
         "to" = "forward -t";
         "a" = "tab-focus last";
-        "ts" = "config-cycle tabs.show always never";
+        "ts" = "config-cycle tabs.show multiple never";
       };
     };
     searchEngines = {
