@@ -29,10 +29,6 @@
         user = "risitas";
       };
       "chorizo" = {
-        hostname = "51.210.180.14";
-        port = 52865;
-      };
-      "chorizo-v" = {
         hostname = "10.8.0.1";
         port = 52865;
       };
