@@ -20,14 +20,14 @@
     };
     searchEngines = {
       "DEFAULT" = "https://searx.renn.es/search?q={}";
-      "aw" = "https://wiki.archlinux.org/?search={}";
-      "no" = "https://search.nixos.org/options?channel=unstable&query={}";
-      "np" = "https://nixos.org/nixos/packages.html?channel=unstable&query={}";
-      "yt" = "https://iv.renn.es/results?search_query={}";
-      "w" = "https://en.wikipedia.org/wiki/Special:Search?search={}";
-      "wf" = "https://fr.wikipedia.org/wiki/Special:Search?search={}";
-      "rs" = "https://docs.rs/std/?search={}";
-      "rc" = "https://docs.rs/{0}/latest/{0}";
+      "!aw" = "https://wiki.archlinux.org/?search={}";
+      "!no" = "https://search.nixos.org/options?channel=unstable&query={}";
+      "!np" = "https://nixos.org/nixos/packages.html?channel=unstable&query={}";
+      "!yt" = "https://iv.renn.es/results?search_query={}";
+      "!w" = "https://en.wikipedia.org/wiki/Special:Search?search={}";
+      "!wf" = "https://fr.wikipedia.org/wiki/Special:Search?search={}";
+      "!rs" = "https://docs.rs/std/?search={}";
+      "!rc" = "https://docs.rs/{0}/latest/{0}";
     };
     settings = {
       colors.webpage.preferred_color_scheme = "dark";
