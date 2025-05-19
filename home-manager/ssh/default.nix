@@ -9,16 +9,11 @@
       ConnectTimeout = "5";
     };
     matchBlocks = {
-      "ssh.renn.es" = {
-        extraOptions = {
-          "ControlMaster" = "no";
-        };
+      "ssh.renn.es".extraOptions = {
+        "ControlMaster" = "no";
       };
-      "aur" = {
-        hostname = "aur.archlinux.org";
-        user = "aur";
-      };
-      "chorizo chorizo-v issou issou-v chankla gaspacho" = {
+      "chorizo issou issou-lan chankla gaspacho" = {
+        user = "risitas";
         forwardAgent = true;
         remoteForwards = [
           {
@@ -26,24 +21,17 @@
             host.address = "/run/user/1000/gnupg/S.gpg-agent.extra";
           }
         ];
-        user = "risitas";
       };
       "chorizo" = {
         hostname = "10.8.0.1";
         port = 52865;
       };
-      "issou" = {
-        hostname = "192.168.1.150";
-      };
-      "issou-v" = {
-        hostname = "10.8.0.3";
-      };
-      "chankla" = {
-        hostname = "10.8.0.2";
-      };
-      "gaspacho" = {
-        hostname = "192.168.1.153";
-      };
+      "issou".hostname = "10.8.0.3";
+      "issou-lan".hostname = "192.168.1.150";
+      "chankla".hostname = "10.8.0.2";
+      "gaspacho".hostname = "192.168.1.153";
+      "aur".hostname = "aur.archlinux.org";
+      "aur".user = "aur";
     };
   };
 }
