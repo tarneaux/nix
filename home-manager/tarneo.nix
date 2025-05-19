@@ -48,6 +48,7 @@
     pcmanfm
     qpwgraph
     xorg.xkill
+    arandr
 
     # Full-blown X programs
     audacity
