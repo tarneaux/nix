@@ -42,6 +42,7 @@ if [[ "$PROFILE" = "tmp" ]] || [[ "$CREATE" = "YES" ]]; then
 fi
 
 cp -f ~/.config/qutebrowser/config.py "$BDIR"/config/config.py
+ln -sf ~/.config/qutebrowser/greasemonkey "$BDIR"/config/
 cp -f ~/.local/share/qutebrowser/blocked-hosts "$BDIR"/data/blocked-hosts
 
 if [[ ! -d "$BDIR" ]]; then

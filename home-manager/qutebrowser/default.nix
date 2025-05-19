@@ -39,6 +39,7 @@
       tabs.position = "left";
       tabs.show = "multiple";
       tabs.width = 350;
+      content.autoplay = false;
     };
     extraConfig = ''
       ${builtins.readFile ./qutebrowser-gruvbox.py}
@@ -52,6 +53,27 @@
           c.zoom.default = '120%'
           c.fonts.default_size = '15pt'
     '';
+    greasemonkey = [
+      (pkgs.writeText "youtube-ads.js" ''
+        // ==UserScript==
+        // @name Skip YouTube ads
+        // @description Skips the ads in YouTube videos
+        // @run-at document-start
+        // @include *.youtube.com/*
+        // ==/UserScript==
+
+        document.addEventListener('load', () => {
+            const btn = document.querySelector('.videoAdUiSkipButton,.ytp-ad-skip-button-modern')
+            if (btn) {
+                btn.click()
+            }
+            const ad = [...document.querySelectorAll('.ad-showing')][0];
+            if (ad) {
+                document.querySelector('video').currentTime = 9999999999;
+            }
+        }, true);
+      '')
+    ];
   };
   home.packages = [
     (pkgs.writeShellApplication {
