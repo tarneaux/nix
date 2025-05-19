@@ -60,6 +60,7 @@
     kicad
     libreoffice
     librewolf
+    firefox
     nsxiv
     obsidian
     rawtherapee
