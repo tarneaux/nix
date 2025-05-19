@@ -51,7 +51,7 @@
         }
         {
           publicKey = "kSxL4ZAGoeNRHWjLen0pk2pPEvCzv2nuOXDHDZj/K2I=";
-          allowedIPs = [ "10.8.0.5/32" ];
+          allowedIPs = [ "10.9.0.3/32" ];
         }
       ];
     };
