@@ -88,17 +88,18 @@ theme.titlebar_fg_focus = theme.color15
 theme.titlebar_fg_normal = theme.color14
 
 function theme.set_wallpaper(s)
-	local dir = "~/pics/wallpapers/landscape"
-	local f = io.popen(
-		'sh -c "find '
-			.. dir
-			.. " \\( -name '*.JPG' -or -name '*.png' -or -name '*.jpg' \\) | shuf -n 1 | xargs echo -n\""
-	)
-	if f == nil then
-		return
-	end
-	local wallpaper = f:read("*all")
-	f:close()
+	-- local dir = "~/pics/wallpapers/landscape"
+	-- local f = io.popen(
+	-- 	'sh -c "find '
+	-- 		.. dir
+	-- 		.. " \\( -name '*.JPG' -or -name '*.png' -or -name '*.jpg' \\) | shuf -n 1 | xargs echo -n\""
+	-- )
+	-- if f == nil then
+	-- 	return
+	-- end
+	-- local wallpaper = f:read("*all")
+	-- f:close()
+	local wallpaper = "/home/tarneo/.sync/pics/wall.jpg"
 	gears.wallpaper.maximized(wallpaper, s, false)
 end
 
