@@ -1,4 +1,4 @@
-{ config, ... }:
+{ config, pkgs, ... }:
 {
   services = {
     mpd =
@@ -21,5 +21,11 @@
       enable = true; # for playerctl integration
     };
   };
-  programs.ncmpcpp.enable = true;
+  # programs.ncmpcpp.enable = true;
+  home.packages = with pkgs; [
+    ueberzugpp
+    (import ./rmpc-git.nix { inherit pkgs; }) # custom defined in pkgs/default.nix
+  ];
+  home.file.".config/rmpc/config.ron".source = ./rmpc.config.ron;
+  home.file.".config/rmpc/themes/gruvbox.ron".source = ./rmpc.theme.ron;
 }

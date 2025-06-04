@@ -6,7 +6,7 @@ local icon = wibox.widget.textbox("󰝚 ")
 local title = wibox.widget.textbox()
 
 local function daemon()
-	awful.spawn.easy_async_with_shell('mpc current --format "%artist% - %title%"', function(stdout)
+	awful.spawn.easy_async_with_shell("rmpc song | jq -r '.metadata | .artist + \" -  \" + .title'", function(stdout)
 		-- Remove all lines after the first one
 		stdout = stdout:gsub("\n.*", "")
 		if stdout ~= "" and stdout ~= " - " then

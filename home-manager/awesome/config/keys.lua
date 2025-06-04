@@ -7,16 +7,16 @@ ModKey = "Mod4"
 
 local previous_layout = nil
 
-local ncmpcpp_quake = lain.util.quake({
-	app = "alacritty --class NcmpCppQuake",
-	argname = "--title %s -e ncmpcpp",
+local music_quake = lain.util.quake({
+	app = "alacritty --class MusicQuake",
+	argname = "--title %s -e rmpc",
 	followtag = true,
 	height = 0.8,
 	width = 0.8,
 	vert = "center",
 	horiz = "center",
 	border = 2,
-	name = "NcmpCppQuake",
+	name = "MusicQuake",
 	settings = function(c)
 		c.sticky = true
 	end,
@@ -56,7 +56,7 @@ local globalkeys = gears.table.join(
 	end),
 	-- Super + / (triboard) or Super + Shift + : (french keyboard)
 	awful.key({ ModKey, "Shift" }, "#60", function()
-		ncmpcpp_quake:toggle()
+		music_quake:toggle()
 	end),
 
 	-- Lock screen
