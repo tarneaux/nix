@@ -180,7 +180,7 @@ in
       "%f" # Reset text color
     ];
 
-    initExtra = lib.strings.concatStringsSep "\n" (
+    initContent = lib.strings.concatStringsSep "\n" (
       [
         ''
           zstyle ":completion:*" menu select

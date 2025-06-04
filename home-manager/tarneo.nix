@@ -56,7 +56,7 @@
     element-desktop
     gnucash
     inkscape
-    kdenlive
+    kdePackages.kdenlive
     kicad
     libreoffice
     librewolf

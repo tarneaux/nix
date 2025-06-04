@@ -102,7 +102,7 @@
 
   fonts.packages = with pkgs; [
     # fantasque-sans-mono
-    (nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
+    nerd-fonts.fantasque-sans-mono
     lmodern # For emacs
   ];
 
