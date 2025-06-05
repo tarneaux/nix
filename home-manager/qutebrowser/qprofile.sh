@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-POSITIONAL_ARGS=()
-
 CREATE="no"
 
 while [[ $# -gt 0 ]]; do
@@ -10,25 +8,33 @@ while [[ $# -gt 0 ]]; do
       CREATE=YES
       shift
       ;;
+    http://*|https://*|about:*|*\.html|*\.xml|qute://*)
+      if [ "${URL+set}" ]; then
+        echo "Only one URL argument is allowed."
+        exit 1
+      fi
+      URL="$1"
+      shift
+      ;;
     -*) # includes --*
       echo "Unknown option $1"
       exit 1
       ;;
     *)
-      POSITIONAL_ARGS+=("$1") # save positional arg
+      if [ "${PROFILE+set}" ]; then
+        echo "Only one profile (positional arg) is allowed."
+        exit 1
+      fi
+      PROFILE=("$1") # save positional arg
       shift # past argument
       ;;
   esac
 done
 
-set -- "${POSITIONAL_ARGS[@]}" # restore positional parameters
-
-if [[ $# -ne 1 ]]; then
-    echo "Exactly one positional argument is required."
+if ! [ "${PROFILE+set}" ]; then
+    echo "Missing profile name."
     exit 1
 fi
-
-PROFILE="$1"
 
 if [[ "$PROFILE" = "tmp" ]]; then
     BDIR="$(mktemp -d)"
@@ -50,7 +56,7 @@ if [[ ! -d "$BDIR" ]]; then
     exit 1
 fi
 
-qutebrowser --basedir "$BDIR"
+qutebrowser --basedir "$BDIR" "${URL:-}"
 
 if [[ "$PROFILE" = "tmp" ]]; then
     rm -rf "$BDIR"

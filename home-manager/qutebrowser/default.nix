@@ -85,5 +85,32 @@
       name = "qprofile";
       text = lib.readFile ./qprofile.sh;
     })
+    (pkgs.writeShellApplication {
+      name = "qprofile-menu";
+      text = ''
+        cat \
+        <(find ~/.config/qb-profiles/ -mindepth 1 -maxdepth 1 -type d -printf '%P\n') \
+        <(echo tmp) \
+        | rofi -dmenu -p profile \
+        | xargs -r qprofile "$@"
+      '';
+    })
   ];
+  xdg.desktopEntries = {
+    qprofile = {
+      name = "Qutebrowser Profile";
+      genericName = "Web Browser";
+      exec = "qprofile-menu %U";
+      terminal = false;
+      categories = [ "Network" "WebBrowser" ];
+      mimeType = [ "text/html" "text/xml" "x-scheme-handler/http" "x-scheme-handler/https" "x-scheme-handler/qute" "x-scheme-handler/about" ];
+    };
+  };
+  xdg.mimeApps.defaultApplications = {
+    "text/html" = [ "qprofile.desktop" ];
+    "x-scheme-handler/http" = [ "qprofile.desktop" ];
+    "x-scheme-handler/https" = [ "qprofile.desktop" ];
+    "x-scheme-handler/about" = [ "qprofile.desktop" ];
+    "x-scheme-handler/qute" = [ "qprofile.desktop" ];
+  };
 }
