@@ -68,6 +68,9 @@
     gnome.gnome-keyring.enable = true;
   };
 
+  programs.i3lock.enable = true; # Needed since nixpkgs 25.05 to set SUID and
+                                 # avoid a locked-forever bug.
+
   security.rtkit.enable = true;
 
   hardware.bluetooth = {

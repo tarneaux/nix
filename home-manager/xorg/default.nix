@@ -39,7 +39,6 @@
 
     (writeShellApplication {
       name = "lock";
-      runtimeInputs = [ i3lock ];
       text = builtins.readFile ./lock.sh;
     })
 
