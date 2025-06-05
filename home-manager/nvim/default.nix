@@ -9,13 +9,17 @@
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
+    package = pkgs.unstable.neovim-unwrapped;
     plugins = [
       {
         plugin = pkgs.vimPlugins.gruvbox-nvim;
-        config = # vim
+        type = "lua";
+        config = # lua
           ''
-            colorscheme gruvbox
-            highlight clear SignColumn
+            vim.o.background = "dark"
+            require('gruvbox').setup {}
+            vim.cmd.colorscheme('gruvbox')
+            vim.cmd.highlight("clear SignColumn")
           '';
       }
       {
