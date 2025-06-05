@@ -211,14 +211,31 @@ in
           source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
         ''
       ]
-      ++ lib.optionals (!is_server) [
-        ''
-          # Start the SSH agent and add the authentication key for remote auth with
-          # a FIDO key
-          eval $(ssh-agent) > /dev/null
-          ssh-add -q ~/.ssh/id_ed25519_sk_auth
-        ''
-      ]
+      ++ (
+        if is_server then
+          [
+            ''
+              # Warn about unapplied updates
+              __kernel_update_info () {
+                [ $(readlink /run/{current,booted}-system/kernel \
+                    | sed -ne 's|.*-linux-\([0-9.]*\)/bzImage|\1|p' \
+                    | uniq \
+                    | wc -l \
+                  ) -eq 2 ] && echo 'A reboot is needed to apply kernel updates.'
+              }
+              add-zsh-hook precmd __kernel_update_info
+            ''
+          ]
+        else
+          [
+            ''
+              # Start the SSH agent and add the authentication key for remote auth with
+              # a FIDO key
+              eval $(ssh-agent) > /dev/null
+              ssh-add -q ~/.ssh/id_ed25519_sk_auth
+            ''
+          ]
+      )
     );
   };
   home.packages =
