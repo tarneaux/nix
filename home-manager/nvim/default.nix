@@ -74,11 +74,22 @@
                 },
               },
             }
+          '';
+      }
+      {
+        plugin = pkgs.vimPlugins.nvim-ufo;
+        type = "lua";
+        config = # lua
+          ''
+            vim.o.foldlevel = 99
+            vim.o.foldlevelstart = 99
+            vim.o.foldenable = true
 
-            -- Enable folding using treesitter
-            vim.opt.foldmethod = 'expr'
-            vim.opt.foldexpr = 'nvim_treesitter#foldexpr()'
-            vim.opt.foldlevel = 99
+            require('ufo').setup({
+                provider_selector = function(bufnr, filetype, buftype)
+                    return {'treesitter', 'indent'}
+                end
+            })
           '';
       }
       {
@@ -298,17 +309,6 @@
                 pattern = "markdown,org",
                 callback = function() vim.cmd [[ :silent TableModeEnable ]] end,
             })
-          '';
-      }
-      {
-        # nvim-ufo allows folding with highlighting (as opposed to standard
-        # folding which removes the highlighting from the remaining line)
-        plugin = pkgs.vimPlugins.nvim-ufo;
-        type = "lua";
-        config = # lua
-          ''
-            vim.opt.foldenable = true
-            require('ufo').setup()
           '';
       }
       pkgs.vimPlugins.vim-wakatime
