@@ -17,9 +17,7 @@
           }
         '';
       };
-    mpdris2 = {
-      enable = true; # for playerctl integration
-    };
+    # mpdris2.enable = true; # for playerctl integration
   };
   # programs.ncmpcpp.enable = true;
   home.packages = with pkgs; [

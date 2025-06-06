@@ -94,33 +94,33 @@ local globalkeys = gears.table.join(
 		awful.spawn.with_shell("pamixer -t")
 	end),
 
-	-- Playerctl control (incompatible with mpd below)
+	-- MPD control
 	awful.key({}, "XF86AudioNext", function()
-		awful.spawn.with_shell("playerctl next")
+		awful.spawn.with_shell("mpc next")
 	end),
 	awful.key({}, "XF86AudioPrev", function()
-		awful.spawn.with_shell("playerctl previous")
+		awful.spawn.with_shell("mpc prev")
 	end),
 	awful.key({}, "XF86AudioPlay", function()
-		awful.spawn.with_shell("playerctl play-pause")
+		awful.spawn.with_shell("mpc toggle")
 	end),
 	awful.key({}, "XF86AudioPause", function()
-		awful.spawn.with_shell("playerctl play-pause")
+		awful.spawn.with_shell("mpc toggle")
 	end),
 
-	-- MPD control (incompatible with playerctl above)
-	-- awful.key({}, "XF86AudioNext", function()
-	-- 	awful.spawn.with_shell("mpc next")
-	-- end),
-	-- awful.key({}, "XF86AudioPrev", function()
-	-- 	awful.spawn.with_shell("mpc prev")
-	-- end),
-	-- awful.key({}, "XF86AudioPlay", function()
-	-- 	awful.spawn.with_shell("mpc toggle")
-	-- end),
-	-- awful.key({}, "XF86AudioPause", function()
-	-- 	awful.spawn.with_shell("mpc toggle")
-	-- end),
+	-- Playerctl control
+	awful.key({ "Control" }, "XF86AudioNext", function()
+		awful.spawn.with_shell("playerctl next")
+	end),
+	awful.key({ "Control" }, "XF86AudioPrev", function()
+		awful.spawn.with_shell("playerctl previous")
+	end),
+	awful.key({ "Control" }, "XF86AudioPlay", function()
+		awful.spawn.with_shell("playerctl play-pause")
+	end),
+	awful.key({ "Control" }, "XF86AudioPause", function()
+		awful.spawn.with_shell("playerctl play-pause")
+	end),
 
 	-- Brightness
 	awful.key({}, "XF86MonBrightnessDown", function()
