@@ -521,7 +521,7 @@
             end
             llen_handle:close()
 
-            local toilet_handle = io.popen("toilet -f future '" .. text .. "'")
+            local toilet_handle = io.popen("toilet -f future '" .. text .. "' | sed -e 's/[[:space:]]*$//'")
             if toilet_handle == nil then return end
 
             local padding = string.rep(" ", math.max(math.floor(40-maxlen/2), 0))
