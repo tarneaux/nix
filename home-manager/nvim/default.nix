@@ -507,6 +507,33 @@
         -- <leader>e to open netrw
         vim.keymap.set("n", "<leader>e", ":Explore<cr>", {desc = "Open netrw"})
 
+        -- <leader>T to insert a title (confuses screen readers, only for private stuff !)
+        vim.keymap.set("n", "<leader>T", function ()
+            local text = vim.fn.input("Title text: ")
+
+            -- Use awk to print length since Lua counts ANSI commands
+            local llen_handle = io.popen("toilet -f future '" .. text .. "' | awk '{ print length }'")
+            if llen_handle == nil then return end
+
+            local maxlen = 0
+            for line in llen_handle:read("*a"):gmatch("([^\n]+)\n?") do
+                 maxlen = math.max(maxlen, tonumber(line))
+            end
+            llen_handle:close()
+
+            local toilet_handle = io.popen("toilet -f future '" .. text .. "'")
+            if toilet_handle == nil then return end
+
+            local padding = string.rep(" ", math.max(math.floor(40-maxlen/2), 0))
+            local out_lines = {}
+            for line in toilet_handle:read("*a"):gmatch("([^\n]+)\n?") do
+                out_lines[#out_lines + 1] = padding .. line
+            end
+            toilet_handle:close()
+
+            vim.api.nvim_put(out_lines, "l", true, true)
+        end, { desc = "Insert title" })
+
         -- <leader>O to set options
         require('which-key').add({
           { "<leader>O", group = "Options" },

@@ -30,6 +30,7 @@
     openssl
     eva
     lnav
+    toilet
   ];
 
   nix.gc = {
