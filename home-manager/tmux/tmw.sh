@@ -42,7 +42,7 @@ case $# in
                         WINDOW=$(cut -d: -f1 <<< "$grep_output")
                         ;;
                     *)
-                        $0
+                        exec $0
                         ;;
                 esac
                 ;;
