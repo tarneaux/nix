@@ -108,12 +108,6 @@
               org_archive_location = "~/org/archive.org::/",
               org_blank_before_new_entry = {heading = false, plain_list_item = false},
             }
-            vim.api.nvim_create_autocmd("Filetype", {
-                pattern = "org",
-                callback = function ()
-                    vim.opt_local.conceallevel = 3
-                end
-            })
           '';
       }
       {
@@ -501,6 +495,14 @@
             pattern = "python",
             callback = function ()
                 vim.keymap.set("n", "<leader>f", ":!black %<cr>", {desc = "Format python file"})
+            end
+        })
+
+        -- Conceal some stuff in org and markdown
+        vim.api.nvim_create_autocmd("Filetype", {
+            pattern = "org,markdown",
+            callback = function ()
+                vim.opt_local.conceallevel = 3
             end
         })
 
