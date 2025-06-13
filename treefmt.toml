@@ -4,15 +4,18 @@ on-unmatched = "debug"
 command = "nixfmt"
 options = []
 includes = [ "*.nix" ]
-excludes = []
 
 [formatter.lua]
 command = "stylua"
 options = []
 includes = [ "*.lua" ]
-excludes = []
 
 [formatter.sh]
 command = "shfmt"
 options = [ "-w", "-i", "4", "-s" ]
 includes = [ "*.sh" ]
+
+[formatter.python]
+command = "ruff"
+options = [ "format" ]
+includes = [ "*.py" ]
