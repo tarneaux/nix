@@ -106,7 +106,6 @@
   };
 
   fonts.packages = with pkgs; [
-    # fantasque-sans-mono
     nerd-fonts.fantasque-sans-mono
     lmodern # For emacs
   ];
