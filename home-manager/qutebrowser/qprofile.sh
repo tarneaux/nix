@@ -47,9 +47,9 @@ if [[ "$PROFILE" = "tmp" ]] || [[ "$CREATE" = "YES" ]]; then
     mkdir -p "$BDIR"/data/
 fi
 
-cp -f ~/.config/qutebrowser/config.py "$BDIR"/config/config.py
+ln -sf ~/.config/qutebrowser/config.py "$BDIR"/config/config.py
 ln -sf ~/.config/qutebrowser/greasemonkey "$BDIR"/config/
-cp -f ~/.local/share/qutebrowser/blocked-hosts "$BDIR"/data/blocked-hosts
+ln -sf ~/.local/share/qutebrowser/blocked-hosts "$BDIR"/data/blocked-hosts
 
 if [[ ! -d "$BDIR" ]]; then
     echo "Base directory not found, specify --create to create it"
