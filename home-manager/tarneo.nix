@@ -49,6 +49,8 @@
     qpwgraph
     xorg.xkill
     arandr
+    gnome-calendar
+    evolution-data-server # gnome-calendar dep
 
     # Full-blown X programs
     audacity

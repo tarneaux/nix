@@ -70,6 +70,7 @@
 
   # Needed since nixpkgs 25.05 to set SUID and avoid a locked-forever bug.
   programs.i3lock.enable = true;
+  programs.dconf.enable = true; # For GNOME calendar
 
   security.rtkit.enable = true;
 
