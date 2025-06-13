@@ -12,6 +12,11 @@
       text = builtins.readFile ./tmw.sh;
     })
     (pkgs.writeShellApplication {
+      name = "tms";
+      bashOptions = [ ];
+      text = builtins.readFile ./tms.sh;
+    })
+    (pkgs.writeShellApplication {
       name = "dev";
       text = builtins.readFile ./dev.sh;
     })
