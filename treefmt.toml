@@ -11,3 +11,8 @@ command = "stylua"
 options = []
 includes = [ "*.lua" ]
 excludes = []
+
+[formatter.sh]
+command = "shfmt"
+options = [ "-w", "-i", "4" ]
+includes = [ "*.sh" ]

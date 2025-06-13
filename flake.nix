@@ -64,6 +64,7 @@
             treefmt
             nixfmt-rfc-style
             stylua
+            shfmt
           ];
           text = "${pkgs.treefmt}/bin/treefmt";
         }
