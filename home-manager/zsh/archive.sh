@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
-if [[ -z "$ARCHIVE_DIR" ]]; then
-    echo "\$ARCHIVE_DIR is unset, refusing to continue."
+if [[ -z $ARCHIVE_DIR ]]; then
+    # shellcheck disable=SC2016
+    echo '$ARCHIVE_DIR is unset, refusing to continue.'
     exit 1
 fi
 
@@ -35,12 +36,12 @@ to_dest() {
 }
 
 for file in "${FILES[@]}"; do
-    if [[ ! -e "$file" ]]; then
+    if [[ ! -e $file ]]; then
         echo "$file doesn't exist, aborting."
         exit 1
     fi
     dst=$(to_dest "$file")
-    if [[ -e "$dst" ]]; then
+    if [[ -e $dst ]]; then
         echo "$dst already exists, aborting."
         exit 1
     fi
@@ -50,7 +51,7 @@ for file in "${FILES[@]}"; do
     dst=$(to_dest "$file")
     $CMD "$file" "$dst"
     trash -f "$dst/.direnv" "$dst/.devenv" "$dst/.venv" "$dst/venv"
-    if [[ -d "$dst" ]]; then
+    if [[ -d $dst ]]; then
         realpath "$file" >"$dst/.archive-source"
     fi
     echo "$(realpath "$file") $(basename "$dst")" >>"$ARCHIVE_DIR/index.txt"

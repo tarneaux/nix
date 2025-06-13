@@ -14,5 +14,5 @@ excludes = []
 
 [formatter.sh]
 command = "shfmt"
-options = [ "-w", "-i", "4" ]
+options = [ "-w", "-i", "4", "-s" ]
 includes = [ "*.sh" ]

@@ -44,9 +44,9 @@ password=$(printf '%s\n' "${password_files[@]}" |
 
 [[ -n $password ]] || exit
 
-if [[ $ACTION = "print" ]]; then
+if [[ $ACTION == "print" ]]; then
     pass show "$password" 2>/dev/null
-elif [[ $ACTION = "copy" ]]; then
+elif [[ $ACTION == "copy" ]]; then
     pass show -c "$password" 2>/dev/null
 else
     pass show "$password" |

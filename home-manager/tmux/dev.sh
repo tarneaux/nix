@@ -2,7 +2,7 @@ if [[ $# -ne 1 ]]; then
     echo "Usage: $(basename "$0") <profile>"
 fi
 
-if [[ "$1" = "rust" ]]; then
+if [[ $1 == "rust" ]]; then
     tmux split-window -h -l 120
     tmux send-keys 'bacon -j clippy' Enter
 
