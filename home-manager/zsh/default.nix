@@ -187,6 +187,7 @@ in
       [
         ''
           zstyle ":completion:*" menu select
+          zstyle ":completion:*" list-colors "$${(s.:.)LS_COLORS}"
 
           # Allow executing shell scripts in prompt
           setopt prompt_subst
