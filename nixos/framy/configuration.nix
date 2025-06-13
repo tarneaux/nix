@@ -68,8 +68,8 @@
     gnome.gnome-keyring.enable = true;
   };
 
-  programs.i3lock.enable = true; # Needed since nixpkgs 25.05 to set SUID and
-                                 # avoid a locked-forever bug.
+  # Needed since nixpkgs 25.05 to set SUID and avoid a locked-forever bug.
+  programs.i3lock.enable = true;
 
   security.rtkit.enable = true;
 
