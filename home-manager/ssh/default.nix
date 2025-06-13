@@ -11,6 +11,8 @@
     matchBlocks = {
       "ssh.renn.es".extraOptions = {
         "ControlMaster" = "no";
+        "ServerAliveInterval" = "60";
+        "ServerAliveCountMax" = "10";
       };
       "chorizo issou issou-lan chankla gaspacho" = {
         user = "risitas";
