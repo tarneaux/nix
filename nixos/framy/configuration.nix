@@ -88,6 +88,7 @@
         "wheel"
         "dialout" # For arduino (/dev/ttyACM0 is owned by root:dialout)
         "input"
+        "cdrom"
       ];
     };
   };
