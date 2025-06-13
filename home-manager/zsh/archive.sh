@@ -18,16 +18,15 @@ usage() {
 
 while [[ $# -gt 0 ]]; do
     case $1 in
-        -k|--keep) CMD="rsync -a --info=progress2" ;;
-        -*)
-            usage
-            exit 1
-            ;;
-        *) FILES+=("$1") ;;
+    -k | --keep) CMD="rsync -a --info=progress2" ;;
+    -*)
+        usage
+        exit 1
+        ;;
+    *) FILES+=("$1") ;;
     esac
     shift
 done
-
 
 DATE=$(date --iso-8601)
 
@@ -52,7 +51,7 @@ for file in "${FILES[@]}"; do
     $CMD "$file" "$dst"
     trash -f "$dst/.direnv" "$dst/.devenv" "$dst/.venv" "$dst/venv"
     if [[ -d "$dst" ]]; then
-        realpath "$file" > "$dst/.archive-source"
+        realpath "$file" >"$dst/.archive-source"
     fi
-    echo "$(realpath "$file") $(basename "$dst")" >> "$ARCHIVE_DIR/index.txt"
+    echo "$(realpath "$file") $(basename "$dst")" >>"$ARCHIVE_DIR/index.txt"
 done
