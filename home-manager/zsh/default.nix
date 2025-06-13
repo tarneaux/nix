@@ -217,13 +217,16 @@ in
             ''
               # Warn about unapplied updates
               __kernel_update_info () {
-                [ $(readlink /run/{current,booted}-system/kernel \
+                local versions="$(readlink /run/{current,booted}-system/kernel \
                     | sed -ne 's|.*-linux-\([0-9.]*\)/bzImage|\1|p' \
                     | uniq \
-                    | wc -l \
-                  ) -eq 2 ] && echo 'A reboot is needed to apply kernel updates.'
+                    | sort)"
+                if [ $(wc -l <<< "$versions") -eq 2 ]; then
+                  tr -s '\n' ' ' <<< "$versions" \
+                    | awk '{print "kernel updated from " $1 " to " $2 ", a reboot may be needed"}'
+                fi
               }
-              add-zsh-hook precmd __kernel_update_info
+              __kernel_update_info
             ''
           ]
         else
