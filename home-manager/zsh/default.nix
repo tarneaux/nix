@@ -245,7 +245,7 @@ in
     [
       (pkgs.writeShellApplication {
         name = "__zprompt_git_info";
-        text = builtins.readFile ./git-segment.zsh;
+        text = builtins.readFile ./git-segment.sh;
       })
       (pkgs.writeShellApplication {
         name = "archive";
