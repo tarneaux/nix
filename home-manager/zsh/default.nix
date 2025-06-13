@@ -158,7 +158,10 @@ in
 
     zplug = {
       enable = true;
-      plugins = [ { name = "zdharma-continuum/fast-syntax-highlighting"; } ];
+      plugins = [
+        { name = "zdharma-continuum/fast-syntax-highlighting"; }
+        { name = "jeffreytse/zsh-vi-mode"; }
+      ];
     };
 
     dirHashes = {
@@ -191,9 +194,6 @@ in
           # Include hidden files in filename completion
           _comp_options+=(globdots)
 
-          # Re-set cursor after each command
-          __reset-cursor() {printf '\033[5 q'}
-          add-zsh-hook precmd "__reset-cursor"
 
           # Reload the tmux bar after each command for faster updates
           __reload-tmux-bar() {tmux refresh-client -S > /dev/null 2>&1}
