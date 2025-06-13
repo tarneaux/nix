@@ -38,6 +38,7 @@
     yt-dlp
     ruff
     pastel
+    numbat
 
     # X utilities
     bitwarden
