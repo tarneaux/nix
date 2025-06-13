@@ -102,8 +102,18 @@
       genericName = "Web Browser";
       exec = "qprofile-menu %U";
       terminal = false;
-      categories = [ "Network" "WebBrowser" ];
-      mimeType = [ "text/html" "text/xml" "x-scheme-handler/http" "x-scheme-handler/https" "x-scheme-handler/qute" "x-scheme-handler/about" ];
+      categories = [
+        "Network"
+        "WebBrowser"
+      ];
+      mimeType = [
+        "text/html"
+        "text/xml"
+        "x-scheme-handler/http"
+        "x-scheme-handler/https"
+        "x-scheme-handler/qute"
+        "x-scheme-handler/about"
+      ];
     };
   };
   xdg.mimeApps.defaultApplications = {
