@@ -11,7 +11,6 @@
     ./aerc
     ./rofi
     ./unison
-    ./emacs
     ./ssh
   ];
 
