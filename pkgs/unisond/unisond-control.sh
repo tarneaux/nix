@@ -1,6 +1,15 @@
 usage() {
-    echo "$0 <profile> <action>"
-    echo "Actions: wake,kill,stop"
+    cat <<EOF
+$(basename "$0") <profile> <action>
+Actions:
+- wake: wake a dead unisond, so that unison is run again.
+- gfsd: gracefully shutdown unison by letting the current synchronization finish
+     before stopping it. Simply sends a SIGUSR2 signal to unison, see unison
+     -doc running.
+- kill: kills the unison process, which allows it to stop gracefully without
+        finishing the current sync.
+- stop: kills the daemon process, killing unison.
+EOF
 }
 
 if [ "$#" -ne 2 ]; then
@@ -21,13 +30,20 @@ sendsig() {
 
 case "$2" in
 wake)
-    sendsig "waiter.pid" SIGUSR1 "cannot wake, unisond is currently not dead (i.e. up or down)"
+    sendsig "waiter.pid" SIGUSR1 \
+        "Cannot wake unisond because it is not dead."
+    ;;
+gfsd)
+    sendsig "unison.pid" SIGUSR2 \
+        "Cannot gracefully shutdown unison as it is not running."
     ;;
 kill)
-    sendsig "unison.pid" TERM "cannot kill, unisond is currently not up (i.e. dead or down)."
+    sendsig "unison.pid" SIGTERM \
+        "Cannot gracefully stop unison as it is not running."
     ;;
 stop)
-    sendsig "daemon.pid" TERM "cannot stop, unisond is already down."
+    sendsig "daemon.pid" SIGTERM \
+        "Cannot stop unisond as it is already down."
     ;;
 *)
     usage

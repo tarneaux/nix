@@ -15,7 +15,9 @@ mkdir -p "$pdir"
 echo $$ >"$pdir/daemon.pid"
 
 run_unison() {
-    unison -repeat watch+3600 -color false -auto -terse "$unison_profile" 2>&1
+    unison -repeat watch+3600 -color false -auto -terse "$unison_profile" 2>&1 &
+    echo "$!" >"$pdir/unison.pid"
+    wait
 }
 
 write_counter() { echo $counter >"$pdir/counter"; }
@@ -36,10 +38,9 @@ wait_for_signal() {
 
 while true; do
     coproc run_unison
-    echo "$COPROC_PID" >"$pdir/unison.pid"
 
-    echo -e "\e[33mBackground Unison process started. PID: \e[1m${COPROC_PID}\e[0m"
-    echo -e "\e[33mNow outputting (terse) Unison output.\e[0m"
+    echo -e "\e[33mBackground Unison process started.\e[0m"
+    echo -e "\e[33mNow showing (terse) Unison output.\e[0m"
 
     while read -r line; do
         echo "$line"
@@ -52,7 +53,7 @@ while true; do
 
     rm "$pdir/unison.pid"
 
-    echo -e "\e[33mWaiting for SIGUSR1...\e[0m"
+    echo -e "\e[33mUnison exited; waiting for SIGUSR1...\e[0m"
 
     wait_for_signal
 
