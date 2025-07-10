@@ -49,7 +49,8 @@
           xss-lock --transfer-sleep-lock lock &
 
           # Sync files with my server
-          pgrep -l unison | grep -v unison-status > /dev/null || unison-sync &
+          unisond space &
+          unisond dotsync &
           pidof -x nextcloud-sync > /dev/null || nextcloud-sync &
         '';
     })
