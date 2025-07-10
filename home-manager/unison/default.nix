@@ -62,5 +62,6 @@ in
         '';
     })
   ];
-  home.file.".unison/default.prf".source = ./unison-default.prf;
+  home.file.".unison/dotsync.prf".source = ./dotsync.prf;
+  home.file.".unison/space.prf".source = ./space.prf;
 }

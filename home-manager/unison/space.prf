@@ -1,0 +1,5 @@
+root = /home/tarneo/space
+root = ssh://tarneo@ssh.renn.es/space
+
+times = true
+auto = true
