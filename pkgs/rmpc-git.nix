@@ -7,12 +7,12 @@ rustPlatform.buildRustPackage rec {
   src = fetchFromGitHub {
     owner = "mierak";
     repo = "rmpc";
-    rev = "448142ba2d830af874845a05c3baaac945beac22";
-    hash = "sha256-oY2J79/ARk1DcYcRCrdF8SxGWujXTtuNSHaMHvH9JWE=";
+    rev = "f0c0a1e67ce19728e365a47dcc8bf2251b797f93";
+    hash = "sha256-OwGdRyE9uQZKM/0ZsieYA5hO2W0lmiAzlvOkmUR56qk=";
   };
 
   useFetchCargoVendor = true;
-  cargoHash = "sha256-s6BTqgmM4TGNwRTzdycqAU/76OSizcfG53aRPGLeE/Q=";
+  cargoHash = "sha256-ZHajqTkdw0wkNVws0fr9HFcC3JF1B6TuwP5CTGw/3nQ=";
 
   nativeBuildInputs = [
     installShellFiles

@@ -21,7 +21,7 @@
   };
   home.packages = with pkgs; [
     ueberzugpp
-    (import ./rmpc-git.nix { inherit pkgs; }) # custom defined in pkgs/default.nix
+    rmpc-git
   ];
   home.file.".config/rmpc/config.ron".source = ./rmpc.config.ron;
   home.file.".config/rmpc/themes/gruvbox.ron".source = ./rmpc.theme.ron;
