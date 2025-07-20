@@ -8,6 +8,7 @@
   ];
 
   nixpkgs.config.allowUnfree = true;
+  documentation.nixos.includeAllModules = true;
 
   programs = {
     command-not-found.enable = false;
@@ -39,7 +40,15 @@
     wireguard-tools
     ncdu
     comma
+    man-pages
+    man-pages-posix
   ];
+
+  documentation.enable = true;
+  documentation.man.enable = true;
+  documentation.man.generateCaches = true;
+  documentation.dev.enable = true;
+  documentation.doc.enable = true;
 
   # Automatically collect garbage
   nix.gc = {
