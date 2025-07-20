@@ -185,6 +185,7 @@ in
 
     initContent = lib.strings.concatStringsSep "\n" (
       [
+        #sh
         ''
           zstyle ":completion:*" menu select
           zstyle ":completion:*" list-colors "$${(s.:.)LS_COLORS}"
@@ -215,6 +216,7 @@ in
       ++ (
         if is_server then
           [
+            # sh
             ''
               # Warn about unapplied updates
               __kernel_update_info () {
@@ -232,6 +234,7 @@ in
           ]
         else
           [
+            # sh
             ''
               # Start the SSH agent and add the authentication key for remote auth with
               # a FIDO key
