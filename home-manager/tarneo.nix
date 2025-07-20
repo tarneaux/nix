@@ -1,4 +1,8 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  ugd,
+  ...
+}:
 {
   imports = [
     ./qutebrowser
@@ -45,6 +49,7 @@
     ruff
     pastel
     numbat
+    ugd.packages.x86_64-linux.default
 
     # X utilities
     bitwarden

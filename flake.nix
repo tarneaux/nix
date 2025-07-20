@@ -21,6 +21,10 @@
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
     agenix.inputs.darwin.follows = ""; # Don't download darwin deps
+
+    # Ultimate Guitar Downloader
+    ugd.url = "github:tarneaux/ugd";
+    ugd.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -30,6 +34,7 @@
       home-manager,
       disko,
       agenix,
+      ugd,
       ...
     }@inputs:
     let
@@ -119,6 +124,7 @@
                     outputs
                     is_server
                     user_at_host
+                    ugd
                     ;
                   username = builtins.elemAt user_and_host 0;
                   hostname = builtins.elemAt user_and_host 1;
