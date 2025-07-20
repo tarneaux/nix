@@ -32,7 +32,14 @@
     (pass.override { dmenuSupport = false; })
     podman-compose
     rustc
-    texliveMedium
+    (pkgs.texlive.combine {
+      inherit (pkgs.texlive)
+        scheme-medium
+        musixtex
+        musixtex-fonts
+        songs
+        ;
+    })
     unzip
     yt-dlp
     ruff
