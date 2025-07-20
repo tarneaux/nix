@@ -202,7 +202,7 @@ in
 
           # Set window titles depending on commands and user@hostname
           function __set_title() {
-            title=$(print -nP "%n@%m %~ $ $1") # $1 is the running command, if there is one
+            title="$(print -nP "%n@%m %~ $ $1")" # $1 = cmd
             echo -n "\033]0;$title\a"
           }
           add-zsh-hook preexec __set_title
