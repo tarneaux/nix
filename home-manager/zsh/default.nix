@@ -255,6 +255,15 @@ in
         name = "archive";
         text = builtins.readFile ./archive.sh;
       })
+      (pkgs.writeShellApplication {
+        name = "sticketmerge";
+        text = builtins.readFile ./sticketmerge.sh;
+        runtimeInputs = with pkgs; [
+          ghostscript
+          poppler-utils
+          pdftk
+        ];
+      })
       pkgs.trash-cli
       pkgs.nix-index
       pkgs.tldr
