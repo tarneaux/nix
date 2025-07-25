@@ -670,7 +670,7 @@
         })
 
         vim.api.nvim_create_user_command("ZettelkastenQuickNote", function ()
-          local dir = vim.fn.expand("~/zk/quick/" .. vim.fn.strftime("%Y-%m-%d %a"))
+          local dir = vim.fn.expand("~/space/journal/" .. vim.fn.strftime("%Y-%m-%d %a"))
           local file = dir .. "/" .. vim.fn.strftime("%H-%M-%S.md")
           vim.fn.mkdir(dir, 'p')
           vim.cmd.edit(file)
