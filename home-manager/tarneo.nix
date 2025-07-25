@@ -67,7 +67,6 @@
     # Full-blown X programs
     audacity
     digikam
-    element-desktop
     gnucash
     inkscape
     kdePackages.kdenlive
