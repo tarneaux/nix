@@ -77,22 +77,6 @@
           '';
       }
       {
-        plugin = pkgs.vimPlugins.nvim-ufo;
-        type = "lua";
-        config = # lua
-          ''
-            vim.o.foldlevel = 99
-            vim.o.foldlevelstart = 99
-            vim.o.foldenable = true
-
-            require('ufo').setup({
-                provider_selector = function(bufnr, filetype, buftype)
-                    return {'treesitter', 'indent'}
-                end
-            })
-          '';
-      }
-      {
         plugin = pkgs.vimPlugins.orgmode;
         type = "lua";
         config = # lua
@@ -103,7 +87,7 @@
               org_todo_keywords = {'TODO', 'NEXT', 'DOING', 'WAITING', 'LATER', 'TOREAD', 'TOWRITE', 'DONE'},
               org_hide_emphasis_markers = true,
               org_hide_leading_stars = true,
-              org_ellipsis = '  ',
+              org_ellipsis = ' ===',
               org_startup_indented = false,
               org_archive_location = "~/org/archive.org::/",
               org_blank_before_new_entry = {heading = false, plain_list_item = false},
@@ -119,12 +103,6 @@
             local servers = {"clangd", "pyright", "bashls", "html", "jsonls", "lua_ls", "hls", "eslint", "ansiblels", "yamlls", "nil_ls", "gopls", "texlab"}
 
             cap = require('cmp_nvim_lsp').default_capabilities()
-
-            -- The following is needed for nvim-ufo (folding) to work
-            cap.textDocument.foldingRange = {
-              dynamicRegistration = false,
-              lineFoldingOnly = true
-            }
 
             for _, lsp in ipairs(servers) do
               lspconfig[lsp].setup {
