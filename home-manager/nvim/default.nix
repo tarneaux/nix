@@ -448,14 +448,18 @@
 
         -- Use two spaces for indentation in some filetypes where it's the
         -- convention
+        function set_tw(w)
+            vim.opt_local.tabstop = w
+            vim.opt_local.shiftwidth = w
+            vim.opt_local.softtabstop = w
+        end
         vim.api.nvim_create_autocmd("Filetype", {
             pattern = "nix,yaml,json,markdown,org,html,css,scss,arduino,lisp",
-            callback = function ()
-                local w = 2
-                vim.opt_local.tabstop = w
-                vim.opt_local.shiftwidth = w
-                vim.opt_local.softtabstop = w
-            end
+            callback = function () set_tw(2) end
+        })
+        vim.api.nvim_create_autocmd("Filetype", {
+            pattern = "tex",
+            callback = function () set_tw(1) end
         })
 
         -- Use tab for indentation in Go and snippet files
