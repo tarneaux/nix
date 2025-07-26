@@ -426,50 +426,43 @@
     ];
     extraLuaConfig = # lua
       ''
-        -- Leader = space
+        -- Basic options
         vim.g.mapleader = " "
-
-        -- Enable relative line numbers
+        vim.opt.mouse = "a"
         vim.opt.number = true
         vim.opt.relativenumber = true
-
-        -- Disable those annoying swap files
+        -- sidecar files
         vim.opt.swapfile = false
-
-        -- Store undo history between sessions
         vim.opt.undofile = true
         vim.opt.undodir = vim.fn.stdpath("cache") .. "/undo"
 
-        -- Use four spaces for indentation (tabs)
+        -- Indentation options
+        -- default
         vim.opt.tabstop = 4
         vim.opt.shiftwidth = 4
         vim.opt.softtabstop = 4
         vim.opt.expandtab = true
-
-        -- Use two spaces for indentation in some filetypes where it's the
-        -- convention
+        -- others
         function set_tw(w)
             vim.opt_local.tabstop = w
             vim.opt_local.shiftwidth = w
             vim.opt_local.softtabstop = w
         end
+        -- 2 space indentation
         vim.api.nvim_create_autocmd("Filetype", {
             pattern = "nix,yaml,json,markdown,org,html,css,scss,arduino,lisp",
             callback = function () set_tw(2) end
         })
+        -- 1 space indentation
         vim.api.nvim_create_autocmd("Filetype", {
             pattern = "tex",
             callback = function () set_tw(1) end
         })
-
-        -- Use tab for indentation in Go and snippet files
+        -- tab indentation
         vim.api.nvim_create_autocmd("Filetype", {
             pattern = "go,snippets",
             callback = function () vim.opt_local.expandtab = false end
         })
-
-        -- Enable mouse support just in case I turn into a normie (magic!)
-        vim.opt.mouse = "a"
 
         -- Enable system clipboard support
         vim.opt.clipboard = "unnamedplus"
@@ -480,22 +473,21 @@
 
         vim.opt.scrolloff = 2
 
-        -- Add french to spellcheck and keep english
-        -- For this we need to add the classic vim RTP (for neovim to find the spell files)
+        -- Spellcheck
+        -- Add the classic vim RTP (for neovim to find the spell files)
         vim.opt.runtimepath:append("/usr/share/vim/vimfiles/")
-
-        vim.api.nvim_create_autocmd("FileType", {
-            pattern = "markdown,org",
-            callback = function ()
-                vim.opt.spelllang:append("fr")
-            end
-        })
-
-        -- When editing a git commit message, org or markdown file, enable spellcheck
+        -- Where to enable checking
         vim.api.nvim_create_autocmd("FileType", {
             pattern = "gitcommit,markdown,org",
             callback = function ()
                 vim.opt.spell = true
+            end
+        })
+        -- Where to enable French too
+        vim.api.nvim_create_autocmd("FileType", {
+            pattern = "markdown,org",
+            callback = function ()
+                vim.opt.spelllang:append("fr")
             end
         })
 
