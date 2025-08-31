@@ -74,39 +74,37 @@
       );
       overlays = import ./overlays { inherit inputs; };
 
-      nixosConfigurations =
-        {
-          framy = nixpkgs.lib.nixosSystem {
-            specialArgs = { inherit inputs outputs; };
-            modules = [
-              # > Our main nixos configuration file <
-              ./nixos/framy/configuration.nix
-            ];
+      nixosConfigurations = {
+        framy = nixpkgs.lib.nixosSystem {
+          specialArgs = { inherit inputs outputs; };
+          modules = [
+            # > Our main nixos configuration file <
+            ./nixos/framy/configuration.nix
+          ];
+        };
+      }
+      // nixpkgs.lib.genAttrs server_hostnames (
+        hostname:
+        nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit
+              inputs
+              outputs
+              hostname
+              agenix
+              ;
           };
+          modules = [
+            ./nixos/${hostname}/configuration.nix
+            ./nixos/common.nix
+            ./nixos/servers
+            agenix.nixosModules.default
+          ]
+          ++ (
+            if (hostname == "chorizo") then [ disko.nixosModules.disko ] else [ ./nixos/servers/networking.nix ]
+          );
         }
-        // nixpkgs.lib.genAttrs server_hostnames (
-          hostname:
-          nixpkgs.lib.nixosSystem {
-            specialArgs = {
-              inherit
-                inputs
-                outputs
-                hostname
-                agenix
-                ;
-            };
-            modules =
-              [
-                ./nixos/${hostname}/configuration.nix
-                ./nixos/common.nix
-                ./nixos/servers
-                agenix.nixosModules.default
-              ]
-              ++ (
-                if (hostname == "chorizo") then [ disko.nixosModules.disko ] else [ ./nixos/servers/networking.nix ]
-              );
-          }
-        );
+      );
 
       homeConfigurations =
         let

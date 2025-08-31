@@ -35,18 +35,17 @@ in
       "completion"
     ];
 
-    shellAliases =
-      {
-        # Use eza for listing files
-        ls = "${pkgs.eza}/bin/eza --icons --group-directories-first";
+    shellAliases = {
+      # Use eza for listing files
+      ls = "${pkgs.eza}/bin/eza --icons --group-directories-first";
 
-        # Use less as man & bat pagers
-        man = "${pkgs.bat-extras.batman}/bin/batman";
-      }
-      // lib.attrsets.optionalAttrs (!is_server) {
-        # Reload wifi kernel module, useful when wifi doesn't work after resume
-        wr = "sudo modprobe -r mt7921e && sudo modprobe mt7921e";
-      };
+      # Use less as man & bat pagers
+      man = "${pkgs.bat-extras.batman}/bin/batman";
+    }
+    // lib.attrsets.optionalAttrs (!is_server) {
+      # Reload wifi kernel module, useful when wifi doesn't work after resume
+      wr = "sudo modprobe -r mt7921e && sudo modprobe mt7921e";
+    };
 
     zsh-abbr = {
       enable = true;
@@ -245,43 +244,42 @@ in
       )
     );
   };
-  home.packages =
-    [
-      (pkgs.writeShellApplication {
-        name = "__zprompt_git_info";
-        text = builtins.readFile ./git-segment.sh;
-      })
-      (pkgs.writeShellApplication {
-        name = "archive";
-        text = builtins.readFile ./archive.sh;
-      })
-      (pkgs.writeShellApplication {
-        name = "sticketmerge";
-        text = builtins.readFile ./sticketmerge.sh;
-        runtimeInputs = with pkgs; [
-          ghostscript
-          poppler-utils
-          pdftk
-        ];
-      })
-      pkgs.trash-cli
-      pkgs.nix-index
-      pkgs.tldr
-      pkgs.yazi
-    ]
-    ++ lib.lists.optionals (!is_server) [
-      # Exit all SSH control sockets.
-      (pkgs.writeShellApplication {
-        name = "sc";
-        text = # bash
-          ''
-            find ~/.ssh/S.* \
-              | grep -v "^$HOME/.ssh/S.tarneo@ssh.renn.es" \
-              | tee /dev/fd/2 \
-              | xargs -r -I {} ssh -o ControlPath={} -O exit ThisArgDoesNotMatter
-          '';
-      })
-    ];
+  home.packages = [
+    (pkgs.writeShellApplication {
+      name = "__zprompt_git_info";
+      text = builtins.readFile ./git-segment.sh;
+    })
+    (pkgs.writeShellApplication {
+      name = "archive";
+      text = builtins.readFile ./archive.sh;
+    })
+    (pkgs.writeShellApplication {
+      name = "sticketmerge";
+      text = builtins.readFile ./sticketmerge.sh;
+      runtimeInputs = with pkgs; [
+        ghostscript
+        poppler-utils
+        pdftk
+      ];
+    })
+    pkgs.trash-cli
+    pkgs.nix-index
+    pkgs.tldr
+    pkgs.yazi
+  ]
+  ++ lib.lists.optionals (!is_server) [
+    # Exit all SSH control sockets.
+    (pkgs.writeShellApplication {
+      name = "sc";
+      text = # bash
+        ''
+          find ~/.ssh/S.* \
+            | grep -v "^$HOME/.ssh/S.tarneo@ssh.renn.es" \
+            | tee /dev/fd/2 \
+            | xargs -r -I {} ssh -o ControlPath={} -O exit ThisArgDoesNotMatter
+        '';
+    })
+  ];
   programs.zoxide.enable = true;
   programs.direnv = {
     enable = true;
