@@ -388,6 +388,15 @@
           '';
       }
       {
+        plugin = pkgs.vimPlugins.markdown-nvim;
+        type = "lua";
+        config = # lua
+          ''
+            require("markdown").setup {}
+          '';
+      }
+      pkgs.vimPlugins.markdown-preview-nvim
+      {
         plugin = pkgs.vimPlugins.tmux-nvim;
         type = "lua";
         config = # lua
