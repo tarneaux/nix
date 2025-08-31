@@ -8,25 +8,10 @@ while [[ $# -gt 0 ]]; do
         CREATE=YES
         shift
         ;;
-    http://* | https://* | about:* | *\.html | *\.xml | qute://*)
-        if [ "${URL+set}" ]; then
-            echo "Only one URL argument is allowed."
-            exit 1
-        fi
-        URL="$1"
-        shift
-        ;;
-    -*) # includes --*
-        echo "Unknown option $1"
-        exit 1
-        ;;
     *)
-        if [ "${PROFILE+set}" ]; then
-            echo "Only one profile (positional arg) is allowed."
-            exit 1
-        fi
         PROFILE=("$1") # save positional arg
         shift          # past argument
+        break
         ;;
     esac
 done
@@ -56,7 +41,7 @@ if [[ ! -d $BDIR ]]; then
     exit 1
 fi
 
-qutebrowser --basedir "$BDIR" "${URL:-}"
+qutebrowser --basedir "$BDIR" :adblock-update "$@"
 
 if [[ $PROFILE == "tmp" ]]; then
     rm -rf "$BDIR"
