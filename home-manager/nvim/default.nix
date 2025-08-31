@@ -553,13 +553,9 @@
             "<leader>Ot",
             function ()
               if vim.opt.tabstop:get() == 4 then
-                vim.opt.tabstop = 2
-                vim.opt.shiftwidth = 2
-                vim.opt.softtabstop = 2
+                set_tw(2)
               else
-                vim.opt.tabstop = 4
-                vim.opt.shiftwidth = 4
-                vim.opt.softtabstop = 4
+                set_tw(4)
               end
             end,
             desc = "Toggle tab width (2/4)"
