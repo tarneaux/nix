@@ -15,7 +15,7 @@ mkdir -p "$pdir"
 echo $$ >"$pdir/daemon.pid"
 
 run_unison() {
-    unison -repeat watch+3600 -color false -auto -terse "$unison_profile" 2>&1 &
+    unison -repeat watch+3600 -color false -auto -terse -logfile "$unison_profile.log" "$unison_profile" 2>&1 &
     echo "$!" >"$pdir/unison.pid"
     wait
 }
