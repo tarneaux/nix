@@ -38,9 +38,6 @@ in
     shellAliases = {
       # Use eza for listing files
       ls = "${pkgs.eza}/bin/eza --icons --group-directories-first";
-
-      # Use less as man & bat pagers
-      man = "${pkgs.bat-extras.batman}/bin/batman";
     }
     // lib.attrsets.optionalAttrs (!is_server) {
       # Reload wifi kernel module, useful when wifi doesn't work after resume
