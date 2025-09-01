@@ -1,7 +1,21 @@
 #!/usr/bin/env bash
 
+usage() {
+    cat <<EOF
+tmw - Create and switch to tmux windows with fzf
+usage: tmw [query]
+If query matches only one window, it will be selected automatically.
+Leading plus signs in queries are removed, which allows creating new windows
+even if the query has matches. This also works in the fzf menu.
+Using '.' as the query (only in the command line) will open a session in the
+current working directory.
+EOF
+}
+
 if [ $# -gt 1 ]; then
     echo "Only one argument is allowed."
+    usage
+    exit 1
 fi
 
 get_win_by_dir() {
@@ -11,6 +25,10 @@ get_win_by_dir() {
 }
 
 case "$1" in
+--help)
+    usage
+    exit 0
+    ;;
 .)
     window=$(get_win_by_dir "$(pwd)")
 
