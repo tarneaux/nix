@@ -6,6 +6,7 @@
     ../common.nix
     ./hardware-configuration.nix
     ./autorandr.nix
+    ./dnsmasq.nix
   ];
 
   networking = {
