@@ -21,7 +21,6 @@
       exclude = [
         "/home/risitas/data/mastodon/public/system/cache/"
         "/home/risitas/data/mastodon/elasticsearch/"
-        "/big/data/mssh/home/tarneo/sync/Films/"
       ];
     };
     networking.ipv4 = {
