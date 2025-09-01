@@ -93,7 +93,7 @@
         <(find ~/.config/qb-profiles/ -mindepth 1 -maxdepth 1 -type d -printf '%P\n') \
         <(echo tmp) \
         | rofi -dmenu -p profile \
-        | xargs -r qprofile "$@"
+        | xargs -r -I '{}' qprofile '{}' "$@"
       '';
     })
   ];
