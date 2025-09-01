@@ -42,6 +42,7 @@ in
     // lib.attrsets.optionalAttrs (!is_server) {
       # Reload wifi kernel module, useful when wifi doesn't work after resume
       wr = "sudo modprobe -r mt7921e && sudo modprobe mt7921e";
+      clip = "perl -p -e 'chomp if eof' | xclip -in -sel clip";
     };
 
     zsh-abbr = {
