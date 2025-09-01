@@ -34,6 +34,9 @@
       "gaspacho".hostname = "192.168.1.153";
       "aur".hostname = "aur.archlinux.org";
       "aur".user = "aur";
+      "github.com renn.es git.sr.ht".extraOptions = {
+        "ControlPersist" = "1h";
+      };
     };
   };
 }
