@@ -101,7 +101,7 @@ in
           # Misc
           passgen = "tr -dc A-Za-z0-9 < /dev/urandom | head -c 64; echo";
           reduce = "mkdir -p ~/reduced && mogrify -path ~/reduced -verbose -resize x1080 *.JPG";
-          reducevideo = ''for file in *.MP4; do ffmpeg -i "$file" -crf 28 -af volume=7 "$HOME/reduced/$file"; done'';
+          reducevideo = ''for file in *.MP4; do ffmpeg -i "$file" -crf 28 -vf "scale=w='if(lt(iw\,ih),min(iw,1080),-2)':h='if(lte(iw\,ih),-2,min(ih,1080))'" "$HOME/reduced/$file"; done'';
           s = "maim -su | xclip -selection clipboard -t image/png";
           lg = "lazygit";
           y = "yazi";
