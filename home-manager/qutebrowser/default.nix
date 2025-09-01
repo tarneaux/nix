@@ -40,6 +40,7 @@
       tabs.show = "multiple";
       tabs.width = 350;
       content.autoplay = false;
+      downloads.location.directory = "~/Downloads/";
     };
     extraConfig = ''
       ${builtins.readFile ./qutebrowser-gruvbox.py}
