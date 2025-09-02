@@ -110,24 +110,28 @@
         let
           makeUser =
             user_at_host: is_server:
+            let
+              user_and_host = nixpkgs.lib.strings.splitString "@" user_at_host;
+              username = builtins.elemAt user_and_host 0;
+              hostname = builtins.elemAt user_and_host 1;
+            in
             home-manager.lib.homeManagerConfiguration {
               pkgs = nixpkgs.legacyPackages.x86_64-linux;
-              extraSpecialArgs =
-                let
-                  user_and_host = nixpkgs.lib.strings.splitString "@" user_at_host;
-                in
-                {
-                  inherit
-                    inputs
-                    outputs
-                    is_server
-                    user_at_host
-                    ugd
-                    ;
-                  username = builtins.elemAt user_and_host 0;
-                  hostname = builtins.elemAt user_and_host 1;
-                };
-              modules = [ ./home-manager ];
+              extraSpecialArgs = {
+                inherit
+                  inputs
+                  outputs
+                  is_server
+                  user_at_host
+                  username
+                  hostname
+                  ugd
+                  ;
+              };
+              modules = [
+                ./users/common.nix
+                ./users/${username}.nix
+              ];
             };
         in
         {

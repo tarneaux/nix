@@ -1,19 +1,19 @@
 {
   pkgs,
   outputs,
-  inputs,
+  lib,
   ...
 }:
 {
-  imports = [
-    ./lazygit
-    ./zsh
-    ./tmux
-    ./nvim
-    ./user
-    ./git
-    ./gpg
-  ];
+  imports = lib.lists.forEach [
+    /lazygit
+    /zsh
+    /tmux
+    /nvim
+    /user
+    /git
+    /gpg
+  ] (mod: ../home-manager + mod);
   programs.fzf.enable = true;
   home.packages = with pkgs; [
     gnumake

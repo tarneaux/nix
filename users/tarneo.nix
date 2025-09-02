@@ -1,22 +1,23 @@
 {
   pkgs,
   ugd,
+  lib,
   ...
 }:
 {
-  imports = [
-    ./qutebrowser
-    ./alacritty
-    ./zathura
-    ./mpv
-    ./mpd
-    ./awesome
-    ./nsxiv
-    ./aerc
-    ./rofi
-    ./unison
-    ./ssh
-  ];
+  imports = lib.lists.forEach [
+    /qutebrowser
+    /alacritty
+    /zathura
+    /mpv
+    /mpd
+    /awesome
+    /nsxiv
+    /aerc
+    /rofi
+    /unison
+    /ssh
+  ] (mod: ../home-manager + mod);
 
   home.packages = with pkgs; [
     # Command line utilities
