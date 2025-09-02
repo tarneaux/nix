@@ -129,8 +129,8 @@
                   ;
               };
               modules = [
-                ./users/common.nix
-                ./users/${username}.nix
+                ./user/common.nix
+                ./user/${username}.nix
               ];
             };
         in
