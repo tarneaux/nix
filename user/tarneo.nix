@@ -17,7 +17,7 @@
     /rofi
     /unison
     /ssh
-  ] (mod: ../home-manager + mod);
+  ] (mod: ../hm + mod);
 
   home.packages = with pkgs; [
     # Command line utilities

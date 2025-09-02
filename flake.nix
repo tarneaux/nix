@@ -79,7 +79,7 @@
           specialArgs = { inherit inputs outputs; };
           modules = [
             # > Our main nixos configuration file <
-            ./nixos/framy/configuration.nix
+            ./os/framy/configuration.nix
           ];
         };
       }
@@ -95,13 +95,13 @@
               ;
           };
           modules = [
-            ./nixos/${hostname}/configuration.nix
-            ./nixos/common.nix
-            ./nixos/servers
+            ./os/${hostname}/configuration.nix
+            ./os/common.nix
+            ./os/servers
             agenix.nixosModules.default
           ]
           ++ (
-            if (hostname == "chorizo") then [ disko.nixosModules.disko ] else [ ./nixos/servers/networking.nix ]
+            if (hostname == "chorizo") then [ disko.nixosModules.disko ] else [ ./os/servers/networking.nix ]
           );
         }
       );

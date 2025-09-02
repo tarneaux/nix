@@ -13,7 +13,7 @@
     /user
     /git
     /gpg
-  ] (mod: ../home-manager + mod);
+  ] (mod: ../hm + mod);
   programs.fzf.enable = true;
   home.packages = with pkgs; [
     gnumake
