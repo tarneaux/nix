@@ -84,6 +84,11 @@ local globalkeys = gears.table.join(
 		awful.spawn.with_shell("passmenu type")
 	end),
 
+	-- Rerun autostart script (and therefore unisond)
+	awful.key({ ModKey, "Control" }, "u", function()
+		awful.spawn.with_shell("awesomewm-autostart")
+	end),
+
 	-----------------------------
 	-- Media / brightness keys --
 	-----------------------------
