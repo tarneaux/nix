@@ -38,7 +38,7 @@
           xset s 600
 
           # Autostart apps
-          pgrep signal-desktop > /dev/null || signal-desktop --start-in-tray &
+          pgrep -f signal-desktop > /dev/null || signal-desktop --start-in-tray &
           pgrep blueberry-tray > /dev/null || blueberry-tray &
 
           # Handle display hotplugs
