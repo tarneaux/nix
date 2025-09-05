@@ -6,8 +6,13 @@ if [ "$#" -ne 1 ]; then
 fi
 
 unison_profile=$1
-if [ "$(unisond-status "$unison_profile")" = "UP" ]; then
+if [ "$(unisond-status "$unison_profile")" != "DOWN" ]; then
     echo "Unisond is already running for this profile."
+    if [ "$(unisond-status "$unison_profile")" = 'DEAD' ]; then
+        echo "Sending wake signal to prior unisond instance."
+        unisond-control "$unison_profile" wake
+    fi
+    echo "Exiting."
     exit 1
 fi
 pdir="$state_dir/$unison_profile"

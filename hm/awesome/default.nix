@@ -48,9 +48,11 @@
           # xss-lock will exit if already running, no need to pgrep.
           xss-lock --transfer-sleep-lock lock &
 
-          # Sync files with my server
+          # unison sync daemon, handles secondary instances by waking previous.
           unisond space &
           unisond dotsync &
+
+          # sync nextcloud files periodically
           pidof -x nextcloud-sync > /dev/null || nextcloud-sync &
 
           # Automatically commit markdown space changes
