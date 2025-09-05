@@ -1,5 +1,6 @@
 {
   pkgs,
+  user_at_host,
   ...
 }:
 {
@@ -100,7 +101,7 @@
         config = # lua
           ''
             local lspconfig = require('lspconfig')
-            local servers = {"clangd", "pyright", "bashls", "html", "jsonls", "lua_ls", "hls", "eslint", "ansiblels", "yamlls", "nil_ls", "gopls", "texlab"}
+            local servers = {"clangd", "pyright", "bashls", "html", "jsonls", "lua_ls", "hls", "eslint", "ansiblels", "yamlls", "gopls", "texlab"}
 
             cap = require('cmp_nvim_lsp').default_capabilities()
 
@@ -121,6 +122,28 @@
                 cmd = { "texlab" },
                 filetypes = { "tex", "bib", "markdown" },
                 capabilities = require("cmp_nvim_lsp").default_capabilities(),
+            }
+
+            lspconfig.nixd.setup{
+              capabilities = cap,
+              settings = {
+                nixd = {
+                  nixpkgs = {
+                    expr = "import <nixpkgs> { }",
+                  },
+                  formatting = {
+                    command = { "nixfmt" },
+                  },
+                  options = {
+                    nixos = {
+                      expr = '(builtins.getFlake ("git+file://" + toString ./.)).nixosConfigurations.k-on.options',
+                    },
+                    home_manager = {
+                      expr = '(builtins.getFlake ("git+file://" + toString ./.)).homeConfigurations."${user_at_host}".options',
+                    },
+                  },
+                },
+              },
             }
 
             vim.lsp.inlay_hint.enable()
@@ -667,7 +690,6 @@
     haskell-language-server
     ansible-language-server
     yaml-language-server
-    nil
     vscode-extensions.sumneko.lua
     gopls
     texlab
