@@ -16,6 +16,7 @@
     ./rofi
     ./unison
     ./ssh
+    ./space
   ];
 
   home.packages = with pkgs; [

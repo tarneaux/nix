@@ -52,6 +52,9 @@
           unisond space &
           unisond dotsync &
           pidof -x nextcloud-sync > /dev/null || nextcloud-sync &
+
+          # Automatically commit markdown space changes
+          pidof -x space-autocommit > /dev/null || space-autocommit &
         '';
     })
   ];
