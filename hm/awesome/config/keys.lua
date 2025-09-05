@@ -7,20 +7,24 @@ ModKey = "Mod4"
 
 local previous_layout = nil
 
-local music_quake = lain.util.quake({
-	app = "alacritty --class MusicQuake",
-	argname = "--title %s -e rmpc",
-	followtag = true,
-	height = 0.8,
-	width = 0.8,
-	vert = "center",
-	horiz = "center",
-	border = 2,
-	name = "MusicQuake",
-	settings = function(c)
-		c.sticky = true
-	end,
-})
+function termquake(name, command)
+	return lain.util.quake({
+		app = "alacritty --class " .. name,
+		argname = "--title %s -e " .. command,
+		followtag = true,
+		height = 0.8,
+		width = 0.8,
+		vert = "center",
+		horiz = "center",
+		border = 2,
+		name = name,
+		settings = function(c)
+			c.sticky = true
+		end,
+	})
+end
+
+local music_quake = termquake("MusicQuake", "rmpc")
 
 local globalkeys = gears.table.join(
 	-- Reload awesome
