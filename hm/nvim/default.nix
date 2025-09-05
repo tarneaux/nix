@@ -114,14 +114,14 @@
             -- arduino_language_server specific setup
             lspconfig.arduino_language_server.setup{
                 cmd = { "arduino-language-server", "--fqbn", "esp32:esp32:XIAO_ESP32C3" },
-                capabilities = require("cmp_nvim_lsp").default_capabilities(),
+                capabilities = cap,
             }
 
             -- texlab specific setup
             lspconfig.texlab.setup{
                 cmd = { "texlab" },
                 filetypes = { "tex", "bib", "markdown" },
-                capabilities = require("cmp_nvim_lsp").default_capabilities(),
+                capabilities = cap,
             }
 
             lspconfig.nixd.setup{
