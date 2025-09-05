@@ -109,7 +109,6 @@ in
           cmm = "zathura ~/fac/maths/cours.pdf";
           arc = "archive";
           black = "ruff";
-          q = "nvim +:ZettelkastenQuickNote";
           mnt = "doas mount -o uid=1000,gid=100";
 
           # docker / podman

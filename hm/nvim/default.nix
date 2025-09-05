@@ -669,7 +669,7 @@
           { "<leader>ti", "<cmd>tabprevious<cr>", desc = "Previous tab" },
         })
 
-        vim.api.nvim_create_user_command("ZettelkastenQuickNote", function ()
+        vim.api.nvim_create_user_command("NewJournalEntry", function ()
           local dir = vim.fn.expand("~/space/journal/" .. vim.fn.strftime("%Y-%m-%d %a"))
           local file = dir .. "/" .. vim.fn.strftime("%H-%M-%S.md")
           vim.fn.mkdir(dir, 'p')
