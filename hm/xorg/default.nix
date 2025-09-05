@@ -66,9 +66,9 @@
       text = # bash
         ''
           reload() {
-            pkill awesome --signal HUP
-            pkill -f "^/nix/store/[[:alnum:]]*-python3-[0-9.]*/bin/python3.[0-9]* /nix/store/[[:alnum:]]*-qutebrowser-[0-9.]*/bin/.qutebrowser-wrapped" --signal HUP
-            xinput enable "AT Translated Set 2 keyboard"
+            pkill awesome --signal HUP || true
+            pkill -f "^/nix/store/[[:alnum:]]*-python3-[0-9.]*/bin/python3.[0-9]* /nix/store/[[:alnum:]]*-qutebrowser-[0-9.]*/bin/.qutebrowser-wrapped" --signal HUP || true
+            xinput enable "AT Translated Set 2 keyboard" || true
           }
 
           # If 2 screens are enabled, which only happens when autorandr hasn't run
