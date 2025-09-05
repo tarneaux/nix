@@ -25,6 +25,7 @@ function termquake(name, command)
 end
 
 local music_quake = termquake("MusicQuake", "rmpc")
+local space_quake = termquake("SpaceQuake", "zsh -c 'tmw space'")
 
 local globalkeys = gears.table.join(
 	-- Reload awesome
@@ -50,7 +51,7 @@ local globalkeys = gears.table.join(
 		awful.spawn.with_shell(TerminalCmd .. "tmw")
 	end),
 	awful.key({ ModKey }, "g", function()
-		awful.spawn.with_shell("emacs")
+		space_quake:toggle()
 	end),
 	-- Super + / (triboard) or Super + Shift + : (french keyboard)
 	awful.key({ ModKey, "Shift" }, "#60", function()
