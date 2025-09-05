@@ -412,6 +412,9 @@
               swap = {
                 enable_default_keybindings = false,
               },
+              copy_sync = {
+                enable = false -- Don't mess up my clipboard OS sync !
+              },
             }
             local tmux_keymaps = require("tmux.keymaps")
             tmux_keymaps.register("n", {
