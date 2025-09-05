@@ -28,6 +28,7 @@
     imagemagick
     inotify-tools
     license-cli
+    moreutils
     nmap
     nodePackages.prettier
     openssl
