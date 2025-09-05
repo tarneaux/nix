@@ -79,6 +79,36 @@
           y = 5;
         };
       };
+      hints = {
+        alphabet = "arstneio";
+        enabled = [
+          {
+            command = "xdg-open";
+            hyperlinks = true;
+            post_processing = true;
+            persist = false;
+            mouse.enabled = true;
+            binding = {
+              key = "O";
+              mods = "Control|Shift";
+            };
+            regex = ''(mailto:https://|http://|file:)[^\u0000-\u001F\u007F-\u009F<>"\\s{-}\\^⟨⟩`\\\\]+'';
+          }
+          {
+            action = "Copy";
+            hyperlinks = false;
+            post_processing = true;
+            persist = false;
+            mouse.enabled = true;
+            binding = {
+              key = "Y";
+              mods = "Control|Shift";
+            };
+            # File names without spaces.
+            regex = ''[^ \\n'"]*(\\/|~)[^ \\n'"]*'';
+          }
+        ];
+      };
     };
   };
 }
