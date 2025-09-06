@@ -15,7 +15,7 @@
                 git add .
                 git commit -m "Auto commit"
             fi
-            inotifywait -e modify .
+            inotifywait -r -e modify .
         done
       '';
     })
