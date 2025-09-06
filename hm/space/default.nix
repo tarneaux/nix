@@ -24,5 +24,9 @@
       name = "nje";
       text = "nvim +:NewJournalEntry";
     })
+    (pkgs.writeShellApplication {
+      name = "journal-build";
+      text = builtins.readFile ./journal-build.sh;
+    })
   ];
 }
