@@ -35,13 +35,14 @@ fi
 ln -sf ~/.config/qutebrowser/config.py "$BDIR"/config/config.py
 ln -sf ~/.config/qutebrowser/greasemonkey "$BDIR"/config/
 ln -sf ~/.local/share/qutebrowser/blocked-hosts "$BDIR"/data/blocked-hosts
+ln -sf ~/.local/share/qutebrowser/adblock-cache.dat "$BDIR"/data/adblock-cache.dat
 
 if [[ ! -d $BDIR ]]; then
     echo "Base directory not found, specify --create to create it"
     exit 1
 fi
 
-qutebrowser --basedir "$BDIR" :adblock-update "$@"
+qutebrowser --basedir "$BDIR" "$@"
 
 if [[ $PROFILE == "tmp" ]]; then
     rm -rf "$BDIR"
