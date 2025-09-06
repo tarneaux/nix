@@ -30,7 +30,7 @@ find "$JOURNAL_PATH" -mindepth 1 -maxdepth 1 -type d -printf '%f\n' |
     done \
         >>"$BUILD_DIR"/tmp.md
 
-find "$JOURNAL_PATH" -mindepth 1 -type f \( -iname '*.jpeg' -or -iname '*.jpg' -or -iname '*.png' -or -iname '*.JPEG' -or -iname '*.JPG' -or -iname '*.PNG' \) -exec cp '{}' "$BUILD_DIR"/ \;
+find "$JOURNAL_PATH" -mindepth 1 -type f \( -iname '*.jpeg' -or -iname '*.jpg' -or -iname '*.png' \) -exec cp '{}' "$BUILD_DIR"/ \;
 
 echo "If you get a cryptic error about a missing file, see:"
 echo "https://tex.stackexchange.com/questions/416183/setmainfont-error-on-path-2-levels-deep"
