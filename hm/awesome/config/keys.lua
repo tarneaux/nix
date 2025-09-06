@@ -7,7 +7,7 @@ ModKey = "Mod4"
 
 local previous_layout = nil
 
-function termquake(name, command)
+local function termquake(name, command)
 	return lain.util.quake({
 		app = "alacritty --class " .. name,
 		argname = "--title %s -e " .. command,
