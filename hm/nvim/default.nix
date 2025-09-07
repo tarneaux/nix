@@ -53,7 +53,7 @@
               highlight = {
                 enable = true,
                 autotag = {
-                  enable = true,
+                  enable = true, -- for HTML tags
                 },
               },
             }
