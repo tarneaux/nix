@@ -466,6 +466,15 @@
             require("oil").setup {}
           '';
       }
+      {
+        plugin = pkgs.vimPlugins.typst-preview-nvim;
+        type = "lua";
+        config = # lua
+          ''
+            require("typst-preview").setup {}
+            vim.keymap.set("n", "<leader>p", ":TypstPreview<cr>", {desc = "Open typst preview"})
+          '';
+      }
     ];
     extraLuaConfig = # lua
       ''
