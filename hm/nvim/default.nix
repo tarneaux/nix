@@ -477,7 +477,9 @@
         type = "lua";
         config = # lua
           ''
-            require("typst-preview").setup {}
+            require("typst-preview").setup {
+               open_cmd = "surf -m %s",
+            }
             vim.keymap.set("n", "<leader>p", ":TypstPreview<cr>", {desc = "Open typst preview"})
           '';
       }
@@ -720,6 +722,7 @@
     nixd
     nixfmt-rfc-style
     tinymist # Typst LSP
+    surf # For typst preview
   ];
   home.file.".config/nvim/snippets/".source = ./snippets;
 }
