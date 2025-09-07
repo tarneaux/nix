@@ -50,7 +50,6 @@
       wg-quick.interfaces = {
         intra = {
           address = [ config.custom.networking.ipv4.intra ];
-          dns = [ "9.9.9.9" ];
           privateKeyFile = "/etc/wireguard/intra.key";
           peers = [
             {
