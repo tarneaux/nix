@@ -27,6 +27,7 @@
     mpc-cli
     playerctl
     xss-lock
+    yubikey-touch-detector
     (writeShellApplication {
       name = "awesomewm-autostart";
       # Gets run every time awesomewm starts or reloads.
@@ -41,6 +42,7 @@
           # Daemons & autostart apps
           pgrep -f signal-desktop > /dev/null || signal-desktop --start-in-tray &
           pidof -q blueberry-tray || blueberry-tray &
+          pidof -q yubikey-touch-detector || yubikey-touch-detector --libnotify -v &
 
           # Custom daemons
           pidof -qx autorandr-watcher || autorandr-watcher &
