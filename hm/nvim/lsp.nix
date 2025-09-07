@@ -1,6 +1,6 @@
 # LSP and treesitter configuration
 
-{ pkgs, user_at_host, ... }:
+{ pkgs, ... }:
 {
   programs.neovim.plugins = [
     {
@@ -24,52 +24,30 @@
       config = # lua
         ''
           local lspconfig = require('lspconfig')
-          local servers = {"clangd", "pyright", "bashls", "html", "jsonls", "lua_ls", "hls", "eslint", "ansiblels", "yamlls", "gopls", "texlab", "tinymist"}
+
+          vim.lsp.enable({
+            "ansiblels",
+            "arduino_language_server",
+            "bashls",
+            "clangd",
+            "eslint",
+            "gopls",
+            "hls",
+            "html",
+            "jsonls",
+            "lua_ls",
+            "nixd",
+            "pyright",
+            "texlab",
+            "tinymist",
+            "yamlls",
+          })
 
           cap = require('cmp_nvim_lsp').default_capabilities()
-
-          for _, lsp in ipairs(servers) do
-            lspconfig[lsp].setup {
-              capabilities = cap,
-            }
-          end
-
-          -- arduino_language_server specific setup
-          lspconfig.arduino_language_server.setup{
-              cmd = { "arduino-language-server", "--fqbn", "esp32:esp32:XIAO_ESP32C3" },
-              capabilities = cap,
-          }
-
-          -- texlab specific setup
-          lspconfig.texlab.setup{
-              cmd = { "texlab" },
-              filetypes = { "tex", "bib", "markdown" },
-              capabilities = cap,
-          }
-
-          lspconfig.nixd.setup{
-            capabilities = cap,
-            settings = {
-              nixd = {
-                nixpkgs = {
-                  expr = "import <nixpkgs> { }",
-                },
-                formatting = {
-                  command = { "nixfmt" },
-                },
-                options = {
-                  nixos = {
-                    expr = '(builtins.getFlake ("git+file://" + toString ./.)).nixosConfigurations.k-on.options',
-                  },
-                  home_manager = {
-                    expr = '(builtins.getFlake ("git+file://" + toString ./.)).homeConfigurations."${user_at_host}".options',
-                  },
-                },
-              },
-            },
-          }
-
+          vim.lsp.config('*', { capabilities = cap })
           vim.lsp.inlay_hint.enable()
+
+          -- Language-specific configs are in specific.nix
 
           require("which-key").add({
               { "<leader>l", group = "LSP actions" },

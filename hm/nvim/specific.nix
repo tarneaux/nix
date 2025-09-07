@@ -1,6 +1,6 @@
 # Settings specific to a language
 
-{ pkgs, ... }:
+{ pkgs, user_at_host, ... }:
 {
   programs.neovim.extraLuaConfig = # lua
     ''
@@ -91,6 +91,35 @@
         vim.fn.mkdir(dir, 'p')
         vim.cmd.edit(file)
       end, {})
+
+
+      vim.lsp.config('arduino_language_server', {
+          cmd = { "arduino-language-server", "--fqbn", "esp32:esp32:XIAO_ESP32C3" },
+      })
+      vim.lsp.config('texlab', {
+          cmd = { "texlab" },
+          filetypes = { "tex", "bib", "markdown" },
+      })
+      vim.lsp.config('nixd', {
+        settings = {
+          nixd = {
+            nixpkgs = {
+              expr = "import <nixpkgs> { }",
+            },
+            formatting = {
+              command = { "nixfmt" },
+            },
+            options = {
+              nixos = {
+                expr = '(builtins.getFlake ("git+file://" + toString ./.)).nixosConfigurations.k-on.options',
+              },
+              home_manager = {
+                expr = '(builtins.getFlake ("git+file://" + toString ./.)).homeConfigurations."${user_at_host}".options',
+              },
+            },
+          },
+        },
+      })
     '';
   programs.neovim.plugins = [
     #                             =========
