@@ -103,9 +103,7 @@ in
           passgen = "tr -dc A-Za-z0-9 < /dev/urandom | head -c 64; echo";
           reduce = "mkdir -p ~/reduced && mogrify -path ~/reduced -verbose -resize x1080 *.JPG";
           reducevideo = ''for file in *.MP4; do ffmpeg -i "$file" -crf 28 -vf "scale=w='if(lt(iw\,ih),min(iw,1080),-2)':h='if(lte(iw\,ih),-2,min(ih,1080))'" "$HOME/reduced/$file"; done'';
-          s = "maim -su | xclip -selection clipboard -t image/png";
           lg = "lazygit";
-          y = "yazi";
           cmm = "zathura ~/fac/maths/cours.pdf";
           arc = "archive";
           black = "ruff";
@@ -205,9 +203,6 @@ in
           }
           add-zsh-hook preexec __set_title
           add-zsh-hook precmd __set_title
-
-          # Display which package contains a command when it isn't found
-          source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
         ''
       ]
       ++ (
@@ -260,9 +255,7 @@ in
       ];
     })
     pkgs.trash-cli
-    pkgs.nix-index
     pkgs.tldr
-    pkgs.yazi
   ]
   ++ lib.lists.optionals (!is_server) [
     # Exit all SSH control sockets.
