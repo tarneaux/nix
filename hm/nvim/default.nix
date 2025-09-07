@@ -323,6 +323,12 @@
               },
             }
 
+            -- Wrap lines in preview
+            vim.api.nvim_create_autocmd("User", {
+                pattern = "TelescopePreviewerLoaded",
+                callback = function(args) vim.wo.wrap = true end,
+            })
+
             local colors = require('gruvbox').palette
             local TelescopeColor = {
               TelescopeMatching = { fg = colors.bright_yellow },
