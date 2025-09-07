@@ -458,6 +458,14 @@
             })
           '';
       }
+      {
+        plugin = pkgs.vimPlugins.oil-nvim;
+        type = "lua";
+        config = # lua
+          ''
+            require("oil").setup {}
+          '';
+      }
     ];
     extraLuaConfig = # lua
       ''
@@ -552,7 +560,7 @@
         })
 
         -- <leader>e to open netrw
-        vim.keymap.set("n", "<leader>e", ":Explore<cr>", {desc = "Open netrw"})
+        vim.keymap.set("n", "-", ":Oil<cr>", {desc = "Open parent directory"})
 
         -- <leader>T to insert a title (confuses screen readers, only for private stuff !)
         vim.keymap.set("n", "<leader>T", function ()
