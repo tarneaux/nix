@@ -233,9 +233,8 @@ in
           [
             # sh
             ''
-              # Start the SSH agent and add the authentication key for remote auth with
-              # a FIDO key
-              eval $(ssh-agent) > /dev/null
+              # Add the authentication key to ssh-agent for remote auth with a
+              # FIDO key
               ssh-add -q ~/.ssh/id_ed25519_sk_auth
             ''
           ]
