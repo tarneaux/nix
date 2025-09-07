@@ -228,8 +228,6 @@
                 end,
               },
               mapping = {
-                ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-                ["<C-f>"] = cmp.mapping.scroll_docs(4),
                 ["<C-e>"] = cmp.mapping.close(),
                 ["<C-space>"] = cmp.mapping.confirm({
                   behavior = cmp.ConfirmBehavior.Replace,
