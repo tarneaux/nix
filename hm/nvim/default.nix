@@ -101,7 +101,7 @@
         config = # lua
           ''
             local lspconfig = require('lspconfig')
-            local servers = {"clangd", "pyright", "bashls", "html", "jsonls", "lua_ls", "hls", "eslint", "ansiblels", "yamlls", "gopls", "texlab"}
+            local servers = {"clangd", "pyright", "bashls", "html", "jsonls", "lua_ls", "hls", "eslint", "ansiblels", "yamlls", "gopls", "texlab", "tinymist"}
 
             cap = require('cmp_nvim_lsp').default_capabilities()
 
@@ -696,6 +696,7 @@
     tree-sitter
     nixd
     nixfmt-rfc-style
+    tinymist # Typst LSP
   ];
   home.file.".config/nvim/snippets/".source = ./snippets;
 }

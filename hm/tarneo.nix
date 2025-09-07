@@ -52,6 +52,7 @@
     pastel
     numbat
     ugd.packages.x86_64-linux.default
+    typst
 
     # X utilities
     bitwarden
