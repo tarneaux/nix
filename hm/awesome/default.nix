@@ -32,30 +32,21 @@
       # Gets run every time awesomewm starts or reloads.
       text = # bash
         ''
-          # Misc
+          # X settings
           xset r rate 300 50
           setxkbmap fr
           xset s 600
+          xss-lock --transfer-sleep-lock lock &
 
-          # Autostart apps
+          # Daemons & autostart apps
           pgrep -f signal-desktop > /dev/null || signal-desktop --start-in-tray &
           pidof -q blueberry-tray || blueberry-tray &
 
-          # Handle display hotplugs
+          # Custom daemons
           pidof -qx autorandr-watcher || autorandr-watcher &
-
-          # Lock the screen when it turns off or when going to sleep
-          # xss-lock will exit if already running, no need to check.
-          xss-lock --transfer-sleep-lock lock &
-
-          # unison sync daemon, handles secondary instances by waking previous.
           unisond space &
           unisond dotsync &
-
-          # sync nextcloud files periodically
           pidof -qx nextcloud-sync || nextcloud-sync &
-
-          # Automatically commit markdown space changes
           pidof -qx space-autocommit || space-autocommit &
         '';
     })
