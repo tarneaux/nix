@@ -1,5 +1,6 @@
 local awful = require("awful")
 local beautiful = require("beautiful")
+local naughty = require("naughty")
 
 -- Rules to apply to new clients (through the "manage" signal).
 awful.rules.rules = {
@@ -85,3 +86,8 @@ awful.rules.rules = {
 	-- { rule = { class = "Firefox" },
 	--   properties = { screen = 1, tag = "2" } },
 }
+
+-- Set notification location
+for _, preset in pairs(naughty.config.presets) do
+	preset.position = "top_middle"
+end
