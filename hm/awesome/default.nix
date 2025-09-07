@@ -39,13 +39,13 @@
 
           # Autostart apps
           pgrep -f signal-desktop > /dev/null || signal-desktop --start-in-tray &
-          pgrep blueberry-tray > /dev/null || blueberry-tray &
+          pidof -q blueberry-tray || blueberry-tray &
 
           # Handle display hotplugs
-          pidof -x autorandr-watcher > /dev/null || autorandr-watcher &
+          pidof -qx autorandr-watcher || autorandr-watcher &
 
           # Lock the screen when it turns off or when going to sleep
-          # xss-lock will exit if already running, no need to pgrep.
+          # xss-lock will exit if already running, no need to check.
           xss-lock --transfer-sleep-lock lock &
 
           # unison sync daemon, handles secondary instances by waking previous.
@@ -53,10 +53,10 @@
           unisond dotsync &
 
           # sync nextcloud files periodically
-          pidof -x nextcloud-sync > /dev/null || nextcloud-sync &
+          pidof -qx nextcloud-sync || nextcloud-sync &
 
           # Automatically commit markdown space changes
-          pidof -x space-autocommit > /dev/null || space-autocommit &
+          pidof -qx space-autocommit || space-autocommit &
         '';
     })
   ];
