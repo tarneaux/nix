@@ -1,55 +1,56 @@
 # Settings useful for all files.
 
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
-  programs.neovim.extraLuaConfig = # lua
-    ''
-      vim.g.mapleader = "<space>"
-      vim.opt.mouse = "a"
+  programs.neovim.extraLuaConfig =
+    lib.mkBefore # lua
+      ''
+        vim.g.mapleader = "<space>"
+        vim.opt.mouse = "a"
 
-      -- Basic options
-      vim.g.mapleader = " "
-      vim.opt.mouse = "a"
-      vim.opt.number = true
-      vim.opt.relativenumber = true
-      -- sidecar files
-      vim.opt.swapfile = false
-      vim.opt.undofile = true
-      vim.opt.undodir = vim.fn.stdpath("cache") .. "/undo"
+        -- Basic options
+        vim.g.mapleader = " "
+        vim.opt.mouse = "a"
+        vim.opt.number = true
+        vim.opt.relativenumber = true
+        -- sidecar files
+        vim.opt.swapfile = false
+        vim.opt.undofile = true
+        vim.opt.undodir = vim.fn.stdpath("cache") .. "/undo"
 
-      -- Indentation options
-      -- default
-      vim.opt.tabstop = 4
-      vim.opt.shiftwidth = 4
-      vim.opt.softtabstop = 4
-      vim.opt.expandtab = true
+        -- Indentation options
+        -- default
+        vim.opt.tabstop = 4
+        vim.opt.shiftwidth = 4
+        vim.opt.softtabstop = 4
+        vim.opt.expandtab = true
 
-      -- Set the default register to the system clipboard
-      vim.opt.clipboard = "unnamedplus"
+        -- Set the default register to the system clipboard
+        vim.opt.clipboard = "unnamedplus"
 
-      -- Word wrap
-      vim.opt.wrap = true
-      vim.opt.linebreak = true
+        -- Word wrap
+        vim.opt.wrap = true
+        vim.opt.linebreak = true
 
-      vim.opt.scrolloff = 2
+        vim.opt.scrolloff = 2
 
-      -- Add the classic vim RTP for neovim to find the spell files
-      -- See specific.nix for other spellcheck options
-      vim.opt.runtimepath:append("/usr/share/vim/vimfiles/")
+        -- Add the classic vim RTP for neovim to find the spell files
+        -- See specific.nix for other spellcheck options
+        vim.opt.runtimepath:append("/usr/share/vim/vimfiles/")
 
-      vim.keymap.set("x", "<leader>p", '"_dP', {desc = "Paste without changing register"})
+        vim.keymap.set("x", "<leader>p", '"_dP', {desc = "Paste without changing register"})
 
-      -- move lines
-      vim.keymap.set("n", "<S-Up>", "<cmd>m .-2<cr>")
-      vim.keymap.set("n", "<S-Down>", "<cmd>m .+1<cr>")
-      -- Shift+Up/Down to move selected lines in visual mode
-      vim.keymap.set("x", "<S-Up>", ":move'<-2<CR>gv")
-      vim.keymap.set("x", "<S-Down>", ":move'>+1<CR>gv")
+        -- move lines
+        vim.keymap.set("n", "<S-Up>", "<cmd>m .-2<cr>")
+        vim.keymap.set("n", "<S-Down>", "<cmd>m .+1<cr>")
+        -- Shift+Up/Down to move selected lines in visual mode
+        vim.keymap.set("x", "<S-Up>", ":move'<-2<CR>gv")
+        vim.keymap.set("x", "<S-Down>", ":move'>+1<CR>gv")
 
-      -- Enable colorcolumn, is disabled for some ft's in specific.nix
-      vim.opt.colorcolumn = "81"
-    '';
-  programs.neovim.plugins = [
+        -- Enable colorcolumn, is disabled for some ft's in specific.nix
+        vim.opt.colorcolumn = "81"
+      '';
+  programs.neovim.plugins = lib.mkBefore [
     pkgs.vimPlugins.vim-rooter
     pkgs.vimPlugins.vim-wakatime
     pkgs.vimPlugins.vim-surround
