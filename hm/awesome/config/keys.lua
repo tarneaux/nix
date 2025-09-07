@@ -47,7 +47,7 @@ local globalkeys = gears.table.join(
 	awful.key({ ModKey }, "Return", function()
 		awful.spawn.with_shell(Terminal)
 	end),
-	awful.key({ ModKey, "Shift" }, "Return", function()
+	awful.key({ ModKey, "Ctrl" }, "Return", function()
 		awful.spawn.with_shell(TerminalCmd .. "tmw")
 	end),
 	awful.key({ ModKey }, "g", function()
