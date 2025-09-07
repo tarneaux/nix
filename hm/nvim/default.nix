@@ -143,10 +143,8 @@
                 { "<leader>lt", "<cmd>lua vim.lsp.buf.type_definition()<cr>", desc = "Go to type definition" },
                 { "<leader>lx", "<cmd>lua vim.diagnostic.open_float()<cr>", desc = "Show line diagnostics"},
                 { "<leader>lf", "<cmd>lua vim.lsp.buf.format()<cr>", desc = "Format buffer" },
-            })
-            require('which-key').add({
-                { ",n", "<cmd>lua vim.diagnostic.goto_next()<cr>", desc = "Go to next diagnostic" },
-                { ",N", "<cmd>lua vim.diagnostic.goto_prev()<cr>", desc = "Go to previous diagnostic" },
+                { "<leader>ln", "<cmd>lua vim.diagnostic.goto_next()<cr>", desc = "Next diagnostic" },
+                { "<leader>lN", "<cmd>lua vim.diagnostic.goto_prev()<cr>", desc = "Previous diagnostic" },
             })
           '';
       }
