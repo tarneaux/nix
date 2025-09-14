@@ -25,7 +25,7 @@ local function termquake(name, command)
 end
 
 local music_quake = termquake("MusicQuake", "rmpc")
-local space_quake = termquake("SpaceQuake", "zsh -c 'tmw space'")
+local space_quake = termquake("SpaceQuake", "zsh -c 'tmw ~/space'")
 
 local globalkeys = gears.table.join(
 	-- Reload awesome
