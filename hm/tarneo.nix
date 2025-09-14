@@ -67,7 +67,7 @@
     gnome-calendar
     evolution-data-server # gnome-calendar dep
 
-    # Full-blown X programs
+    # Full-blown applications
     audacity
     digikam
     inkscape
