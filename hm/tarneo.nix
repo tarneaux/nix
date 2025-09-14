@@ -77,7 +77,6 @@
     librewolf
     firefox
     nsxiv
-    obsidian
     rawtherapee
     darktable
     signal-desktop
