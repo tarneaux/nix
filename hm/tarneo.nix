@@ -70,7 +70,6 @@
     # Full-blown X programs
     audacity
     digikam
-    gnucash
     inkscape
     kdePackages.kdenlive
     kicad
