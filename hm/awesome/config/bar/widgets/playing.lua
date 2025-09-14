@@ -6,9 +6,8 @@ local icon = wibox.widget.textbox("󰝚 ")
 local title = wibox.widget.textbox()
 
 local function daemon()
-	awful.spawn.easy_async_with_shell("rmpc song | jq -r '.metadata | .artist + \" -  \" + .title'", function(stdout)
-		-- Remove all lines after the first one
-		stdout = stdout:gsub("\n.*", "")
+	awful.spawn.easy_async_with_shell("mpc current --format '%artist% - %title%'", function(stdout)
+		stdout = stdout:gsub("\n", "")
 		if stdout ~= "" and stdout ~= " - " then
 			title:set_text(stdout)
 		else
@@ -17,12 +16,6 @@ local function daemon()
 	end)
 end
 
-title:connect_signal("button::press", function(_, _, _, button)
-	if button == 1 then
-		awful.spawn.with_shell("mpc toggle")
-	end
-end)
-
 gears.timer({
 	timeout = 1,
 	call_now = true,
@@ -30,8 +23,7 @@ gears.timer({
 	callback = daemon,
 })
 
--- Put the title in a container to allow for scrolling when the text is too
--- long (like this comment :-)).
+-- Put the title in a scrolling container.
 local scrolling_title = wibox.widget({
 	layout = wibox.container.scroll.horizontal,
 	max_size = 300,
@@ -47,5 +39,11 @@ local main = wibox.widget({
 	scrolling_title,
 	layout = wibox.layout.fixed.horizontal,
 })
+
+main:connect_signal("button::press", function(_, _, _, button)
+	if button == 1 then
+		awful.spawn.with_shell("mpc toggle")
+	end
+end)
 
 return main
