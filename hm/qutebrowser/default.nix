@@ -5,7 +5,7 @@
     keyBindings = {
       normal = {
         "yo" = "yank inline [[{url}][{title}]]"; # Copy link in org-mode format
-        ",o" = "spawn toread [[{url}][{title}]]"; # Send link to ~/org/toread.org
+        ",d" = "cmd-set-text -s :spawn dump \"[{title}]({url})\": "; # Bookmark to wiki
         ",i" = "open https://iv.renn.es/watch?{url:query}"; # Youtube -> Invidious
         # arrows -> HJKL actions because I use a non-qwerty keyboard (colemak)
         "<Shift+Left>" = "back";
@@ -78,9 +78,13 @@
   };
   home.packages = [
     (pkgs.writeShellApplication {
-      name = "toread";
-      # Send some text to ~/org/toread.org
-      text = ''echo "* $*" >> ~/org/toread.org'';
+      name = "dump";
+      text = ''
+        {
+          echo "$*"
+          printf "\n"
+        } >> ~/space/linkdump.md
+      '';
     })
     (pkgs.writeShellApplication {
       name = "qprofile";
