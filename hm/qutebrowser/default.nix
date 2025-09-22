@@ -12,6 +12,10 @@
         "<Shift+Right>" = "forward";
         "<Shift+Up>" = "tab-prev";
         "<Shift+Down>" = "tab-next";
+        "<Shift+h>" = "back";
+        "<Shift+l>" = "forward";
+        "<Shift+j>" = "tab-prev";
+        "<Shift+k>" = "tab-next";
         "tn" = "back -t";
         "to" = "forward -t";
         "a" = "tab-focus last";
