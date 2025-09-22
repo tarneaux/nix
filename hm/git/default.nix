@@ -1,7 +1,13 @@
-{ is_server, lib, ... }:
+{
+  is_server,
+  lib,
+  pkgs,
+  ...
+}:
 {
   programs.git = {
     enable = true;
+    package = pkgs.gitFull;
     userName = "tarneo";
     userEmail = "tarneo@tarneo.fr";
     signing = {
