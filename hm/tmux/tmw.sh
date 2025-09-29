@@ -12,8 +12,8 @@ current working directory.
 EOF
 }
 
-if [ $# -gt 1 ]; then
-    echo "Only one argument is allowed."
+if [ $# -gt 2 ]; then
+    echo "No more than two arguments are allowed."
     usage
     exit 1
 fi
@@ -72,7 +72,7 @@ case "$1" in
         # session name
         dirname=$(basename "$directory")
 
-        tmux new-session -c "$directory" -s "$dirname" -d
+        tmux new-session -c "$directory" -s "$dirname" -d "${2:-$SHELL}"
 
         # (needed if there are special characters in the name, which are mapped
         # by tmux)
