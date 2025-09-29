@@ -71,6 +71,7 @@
 
   programs.i3lock.enable = true; # Needed to set SUID
   programs.dconf.enable = true; # For GNOME calendar
+  programs.nix-ld.enable = true;
 
   security.rtkit.enable = true;
 
