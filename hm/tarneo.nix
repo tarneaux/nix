@@ -82,5 +82,6 @@
     signal-desktop
     xournalpp
     gimp
+    discord
   ];
 }
