@@ -53,6 +53,7 @@
     numbat
     ugd.packages.x86_64-linux.default
     typst
+    gdb
 
     # X utilities
     bitwarden
