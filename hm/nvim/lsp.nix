@@ -23,8 +23,6 @@
       type = "lua";
       config = # lua
         ''
-          local lspconfig = require('lspconfig')
-
           vim.lsp.enable({
             "ansiblels",
             "arduino_language_server",
