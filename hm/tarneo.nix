@@ -17,6 +17,7 @@
     ./unison
     ./ssh
     ./space
+    ./irssi
   ];
 
   home.packages = with pkgs; [
