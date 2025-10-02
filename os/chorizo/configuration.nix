@@ -27,16 +27,8 @@
       privateKeyFile = "/etc/wireguard/intra.key";
       peers = [
         {
-          publicKey = "BGLOiF9ttMjPM4Icy8qaQT/aNptnBzNnY6/b6d2/H00=";
-          allowedIPs = [ "10.8.0.2/32" ];
-        }
-        {
           publicKey = "Evh0vuKx61wJHVyeAQU+3cpKHIhqheIVRTj2Gua3OnA=";
           allowedIPs = [ "10.8.0.3/32" ];
-        }
-        {
-          publicKey = "lBg2zbI/G3A40bf/c/n7lU1PJX7s64c4gVSfZD4a+T4=";
-          allowedIPs = [ "10.8.0.4/32" ];
         }
       ];
     };
@@ -48,10 +40,6 @@
         {
           publicKey = "GTspZHM25+iyevjXLZk36IrxD66+WTkoTRMJyKopdTM=";
           allowedIPs = [ "10.9.0.2/32" ];
-        }
-        {
-          publicKey = "kSxL4ZAGoeNRHWjLen0pk2pPEvCzv2nuOXDHDZj/K2I=";
-          allowedIPs = [ "10.9.0.3/32" ];
         }
       ];
     };
