@@ -85,14 +85,6 @@
           end
       })
 
-      vim.api.nvim_create_user_command("NewJournalEntry", function ()
-        local dir = vim.fn.expand("~/space/journal/" .. vim.fn.strftime("%Y-%m-%d %a"))
-        local file = dir .. "/" .. vim.fn.strftime("%H-%M-%S.md")
-        vim.fn.mkdir(dir, 'p')
-        vim.cmd.edit(file)
-      end, {})
-
-
       vim.lsp.config('arduino_language_server', {
           cmd = { "arduino-language-server", "--fqbn", "esp32:esp32:XIAO_ESP32C3" },
       })
@@ -246,6 +238,25 @@
              open_cmd = "surf -m %s",
           }
           vim.keymap.set("n", "<leader>p", ":TypstPreview<cr>", {desc = "Open typst preview"})
+        '';
+    }
+
+    #                            ==============
+    #                             zettelkasten
+    #                            ==============
+    {
+      plugin = pkgs.vimPlugins.zk-nvim;
+      type = "lua";
+      config = # lua
+        ''
+          require("zk").setup {
+            picker = "telescope",
+          }
+
+          require('which-key').add({
+            { "<leader>z", group = "Zk"},
+            { "<leader>ze", "<cmd>ZkNotes { excludeHrefs = { 'journal' } }<cr>", desc = "Go to note" },
+          })
         '';
     }
   ];

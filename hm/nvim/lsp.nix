@@ -39,6 +39,7 @@
             "texlab",
             "tinymist",
             "yamlls",
+            "zk",
           })
 
           cap = require('cmp_nvim_lsp').default_capabilities()

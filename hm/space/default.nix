@@ -20,13 +20,22 @@
       '';
     })
     (pkgs.writeShellApplication {
-      # Create a new journal entry.
-      name = "nje";
-      text = "nvim +:NewJournalEntry";
-    })
-    (pkgs.writeShellApplication {
       name = "journal-build";
       text = builtins.readFile ./journal-build.sh;
     })
   ];
+  programs.zk = {
+    enable = true;
+    settings = {
+      notebook.dir = "~/space";
+      note = {
+        filename = "{{slug title}}";
+        extension = "md";
+      };
+      group.journal = {
+        paths = [ "journal" ];
+        note.filename = "journal/{{format-date now '%Y-%m-%d %a'}}/{{format-date now '%H-%M-%S'}}";
+      };
+    };
+  };
 }
