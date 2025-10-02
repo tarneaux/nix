@@ -4,7 +4,7 @@ if [[ -n $TMUX ]]; then
     echo "Please exit tmux first."
 fi
 
-hosts_arr=(issou issou-lan chorizo)
+hosts_arr=(issou chorizo)
 
 hosts="$(printf '%s\n' "${hosts_arr[@]}")"
 
@@ -23,7 +23,8 @@ case $? in
     # Get the last line, which is either the selected item or the unmet
     # query. Also remove a leading plus sign, used to prevent matches.
     host=$(sed -n '$p' <<<"$fzf_output" | sed -s 's/^\+//g')
-    ssh -t "$host" 'tmw || $SHELL'
+    # shellcheck disable=SC2016
+    wgx ssh -t "$host" 'tmw || $SHELL'
     ;;
 130)
     # The user escaped the fzf window
