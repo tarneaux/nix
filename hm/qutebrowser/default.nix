@@ -42,7 +42,6 @@
       url.default_page = "https://searx.renn.es";
       url.start_pages = "https://searx.renn.es";
       hints.chars = "arstneoi"; # Use colemak-friendly hints (home row)
-      content.pdfjs = true;
       tabs.position = "left";
       tabs.show = "multiple";
       content.autoplay = false;
