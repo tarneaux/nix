@@ -33,6 +33,7 @@ if [[ $PROFILE == "tmp" ]] || [[ $CREATE == "YES" ]]; then
 fi
 
 ln -sf ~/.config/qutebrowser/config.py "$BDIR"/config/config.py
+ln -sf ~/.config/qutebrowser/autoconfig.yml "$BDIR"/config/autoconfig.yml
 ln -sf ~/.config/qutebrowser/greasemonkey "$BDIR"/config/
 ln -sf ~/.local/share/qutebrowser/blocked-hosts "$BDIR"/data/blocked-hosts
 ln -sf ~/.local/share/qutebrowser/adblock-cache.dat "$BDIR"/data/adblock-cache.dat

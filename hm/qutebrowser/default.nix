@@ -19,7 +19,9 @@
         "tn" = "back -t";
         "to" = "forward -t";
         "a" = "tab-focus last";
-        "ts" = "config-cycle tabs.show multiple never";
+        "tt" = "config-cycle tabs.show multiple never";
+        "tj" = "config-cycle -p -u *://{url:host}/* content.javascript.enabled ;; reload";
+        "tJ" = "config-cycle -p -t -u *://{url:host}/* content.javascript.enabled ;; reload";
       };
     };
     searchEngines = {
@@ -44,6 +46,7 @@
       tabs.show = "multiple";
       content.autoplay = false;
       downloads.location.directory = "~/Downloads/";
+      content.javascript.enabled = false;
     };
     extraConfig = ''
       ${builtins.readFile ./qutebrowser-gruvbox.py}
