@@ -18,6 +18,13 @@
     ];
   };
 
+  security.wrappers.wgx = {
+    setuid = true;
+    owner = "root";
+    group = "root";
+    source = "${pkgs.wgx}/bin/wgx";
+  };
+
   # Use the systemd-boot EFI boot loader.
   boot = {
     loader.systemd-boot.enable = true;

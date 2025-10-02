@@ -76,9 +76,6 @@ local globalkeys = gears.table.join(
 		awful.spawn.with_shell("maim -su | xclip -selection clipboard -t image/png")
 	end),
 
-	-- Toggle VPN
-	awful.key({ ModKey }, "v", ToggleVpn),
-
 	-- Type in server user password
 	awful.key({ ModKey }, "y", function()
 		awful.spawn.with_shell("passmenu type")

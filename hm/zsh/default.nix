@@ -246,6 +246,10 @@ in
       text = builtins.readFile ./archive.sh;
     })
     (pkgs.writeShellApplication {
+      name = "tunnel";
+      text = builtins.readFile ./tunnel.sh;
+    })
+    (pkgs.writeShellApplication {
       name = "sticketmerge";
       text = builtins.readFile ./sticketmerge.sh;
       runtimeInputs = with pkgs; [
