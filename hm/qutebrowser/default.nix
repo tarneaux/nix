@@ -6,7 +6,8 @@
       normal = {
         "yo" = "yank inline [[{url}][{title}]]"; # Copy link in org-mode format
         ",d" = "cmd-set-text -s :spawn dump \"[{title}]({url})\": "; # Bookmark to wiki
-        ",i" = "open https://iv.renn.es/watch?{url:query}"; # Youtube -> Invidious
+        ",m" = ''spawn sh -c "yt-dlp {url} -o - | mpv - -force-seekable=yes"'';
+        ",M" = ''hint links spawn sh -c "yt-dlp {url} -o - | mpv - -force-seekable=yes"'';
         # arrows -> HJKL actions because I use a non-qwerty keyboard (colemak)
         "<Shift+Left>" = "back";
         "<Shift+Right>" = "forward";
