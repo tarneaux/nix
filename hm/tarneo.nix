@@ -48,7 +48,7 @@
         ;
     })
     unzip
-    yt-dlp
+    unstable.yt-dlp
     ruff
     pastel
     numbat
