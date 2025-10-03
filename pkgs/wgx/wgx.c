@@ -19,46 +19,34 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-int
-die_f (int line_number)
-{
-  printf("Error on line %d\n", line_number);
-  exit(3);
-  return -1;
+void
+die(int status, char *message) {
+	printf("%s\n", message);
+	exit(status);
 }
 
-
-#define die (die_f(__LINE__))
-
-
 int
-main (int argc, char **argv)
-{
-  getuid() == 0 && die; // must not be real root
-  getgid() == 0 && die; // must not be real root group
-  geteuid() == 0 || die; // must be effective root
+main(int argc, char **argv) {
+	if(!(geteuid() == 0))
+		die(3,
+		    "This program needs to be run as effective root."
+		    "Is the binary owned by root and is the setuid bit set ?");
 
-  int fd = open(PATH_TO_NAMESPACE, O_RDONLY);
-  if (fd == -1) {
-    printf("Namespace " NAME_OF_NETWORK_NAMESPACE " does not exist. Exiting.\n");
-    exit(2);
-  };
-  setns(fd, CLONE_NEWNET) == 0 || die;
-  close(fd) == 0 || die;
+	int fd = open(PATH_TO_NAMESPACE, O_RDONLY);
+	if(fd == -1)
+		die(2,
+		    "Namespace " NAME_OF_NETWORK_NAMESPACE
+		    " does not exist.");
+	if(!(setns(fd, CLONE_NEWNET) == 0))
+		die(-1, "Couldn't set namespace.");
+	if(!(close(fd) == 0))
+		die(-1, "Couldn't close ns fd");
 
-  setgid(getgid ()) == 0 || die; // drop effective root group           
-  setuid(getuid ()) == 0 || die; // grop effecitve root                 
+	if(!(setgid(getgid()) == 0 && setuid(getuid()) == 0))
+		die(-1, "Couldn't drop effective root or root group");
 
-  getuid() == 0 && die; // must not be real root                          
-  getgid() == 0 && die; // must not be real root group                    
-  geteuid() == 0 && die; // must not be effective root                     
-  getegid() == 0 && die; // must not be effecitve root group               
+	if(argc > 1)
+		execvpe(argv[1], argv + 1, environ);
 
-  if (argc > 1)
-    {
-      execvpe(argv[1], argv + 1, environ);
-    }
-
-  printf("A command is needed.");
-  return 1;
+    die(1, "A command is required.");
 }

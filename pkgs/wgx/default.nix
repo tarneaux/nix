@@ -10,11 +10,10 @@
 pkgs.stdenv.mkDerivation {
   name = "wgx";
 
-  # src = pkgs.lib.fileset.toSource {
-  #   root = ./.;
-  #   fileset = ./wgx.c;
-  # };
-  src = ./.;
+  src = pkgs.lib.fileset.toSource {
+    root = ./.;
+    fileset = ./wgx.c;
+  };
 
   buildPhase = ''
     gcc wgx.c -s -o wgx
