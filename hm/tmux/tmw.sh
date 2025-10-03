@@ -46,7 +46,7 @@ case "$1" in
     fzf_output=$(fzf \
         ${1+-1} -0 -e --print-query \
         --border-label=" Tmux sessions " \
-        --tmux 40%,70% --border sharp --reverse \
+        --tmux 50,70% --border sharp --reverse \
         -q "$1" <<<"$windows")
 
     case $? in
