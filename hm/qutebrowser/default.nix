@@ -10,6 +10,8 @@
         ",m" = ''spawn sh -c "yt-dlp {url} -o - | mpv - -force-seekable=yes"'';
         ",M" = ''hint links spawn sh -c "yt-dlp {url} -o - | mpv - -force-seekable=yes"'';
         ",i" = "view-source --edit";
+        ",ro" = "open https://old.reddit.com/{url:path}";
+        ",rn" = "open https://www.reddit.com/{url:path}";
         # arrows -> HJKL actions because I use a non-qwerty keyboard (colemak)
         "<Shift+Left>" = "back";
         "<Shift+Right>" = "forward";
