@@ -9,6 +9,7 @@
         ",d" = "cmd-set-text -s :spawn dump \"[{title}]({url})\": "; # Bookmark to wiki
         ",m" = ''spawn sh -c "yt-dlp {url} -o - | mpv - -force-seekable=yes"'';
         ",M" = ''hint links spawn sh -c "yt-dlp {url} -o - | mpv - -force-seekable=yes"'';
+        ",i" = "view-source --edit";
         # arrows -> HJKL actions because I use a non-qwerty keyboard (colemak)
         "<Shift+Left>" = "back";
         "<Shift+Right>" = "forward";
@@ -50,6 +51,12 @@
       content.javascript.enabled = false;
       confirm_quit = [ "always" ];
       downloads.location.suggestion = "both";
+      editor.command = [
+        "alacritty"
+        "-e"
+        "nvim"
+        "{file}"
+      ];
     };
     extraConfig = ''
       ${builtins.readFile ./qutebrowser-gruvbox.py}
