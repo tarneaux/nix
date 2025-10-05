@@ -140,7 +140,7 @@
     vscode-langservers-extracted
     vscode-extensions.sumneko.lua
     lua-language-server
-    libclang
+    clang-tools
     haskell-language-server
     ansible-language-server
     yaml-language-server
