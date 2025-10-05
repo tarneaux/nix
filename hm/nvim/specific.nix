@@ -256,6 +256,11 @@
           require('which-key').add({
             { "<leader>z", group = "Zk"},
             { "<leader>ze", "<cmd>ZkNotes { excludeHrefs = { 'journal' } }<cr>", desc = "Go to note" },
+            { "<leader>zi", "<cmd>ZkInsertLink { excludeHrefs = { 'journal' } }<cr>", desc = "Insert link" },
+            { "<leader>zb", "<cmd>ZkBacklinks<cr>", desc = "Backlinks" },
+            { "<leader>zt", "<cmd>ZkTags<cr>", desc = "Tags" },
+            { "<leader>zn", ":ZkNewFromTitleSelection<cr>", desc = "New with title", mode = "v" },
+            { "<leader>zN", ":ZkNewFromContentSelection<cr>", desc = "New with content", mode = "v" },
           })
         '';
     }
