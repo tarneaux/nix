@@ -26,6 +26,7 @@ end
 
 local music_quake = termquake("MusicQuake", "rmpc")
 local space_quake = termquake("SpaceQuake", "zsh -c 'tmw ~/space \"nvim todo.md\"'")
+local irc_quake = termquake("IrcQuake", "zsh -c 'tmux new-session -A -s irc wgx weechat'")
 
 local globalkeys = gears.table.join(
 	-- Reload awesome
@@ -52,6 +53,9 @@ local globalkeys = gears.table.join(
 	end),
 	awful.key({ ModKey }, "g", function()
 		space_quake:toggle()
+	end),
+	awful.key({ ModKey }, "v", function()
+		irc_quake:toggle()
 	end),
 	-- Super + / (triboard) or Super + Shift + : (french keyboard)
 	awful.key({ ModKey, "Shift" }, "#60", function()
