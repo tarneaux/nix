@@ -70,6 +70,22 @@
           "keypress", "search_match", "url", "scroll", "history", "tabs", "progress",
           f"text:<{profile}>"
       ]
+
+      def add_quickmarks(marks):
+          # Has no effect without restarting qutebrowser
+          quickmarks_path = os.path.join(os.path.dirname(__file__), "quickmarks")
+          try:
+              quickmarks = open(quickmarks_path).read().splitlines()
+          except FileNotFoundError:
+              quickmarks = []
+          quickmarks = set(quickmarks)
+          for mark in marks:
+            quickmarks.add(mark)
+          open(quickmarks_path, "w").write("\n".join(quickmarks))
+
+      add_quickmarks([
+          f"nixpkgs file://{os.path.expanduser("~/")}docs/Nixpkgs%20Reference%20Manual.mhtml"
+      ])
     '';
     greasemonkey = [
       (pkgs.writeText "youtube-ads.js" ''
