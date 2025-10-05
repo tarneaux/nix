@@ -47,6 +47,7 @@
       content.autoplay = false;
       downloads.location.directory = "~/Downloads/";
       content.javascript.enabled = false;
+      confirm_quit = [ "always" ];
     };
     extraConfig = ''
       ${builtins.readFile ./qutebrowser-gruvbox.py}
