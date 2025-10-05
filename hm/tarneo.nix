@@ -17,7 +17,6 @@
     ./unison
     ./ssh
     ./space
-    ./irssi
   ];
 
   home.packages = with pkgs; [
@@ -55,6 +54,7 @@
     ugd.packages.x86_64-linux.default
     typst
     gdb
+    weechat
 
     # X utilities
     bitwarden
