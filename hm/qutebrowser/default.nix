@@ -59,6 +59,12 @@
       else:
           c.zoom.default = '120%'
           c.fonts.default_size = '15pt'
+
+      import os
+
+      # Add profile name to statusbar
+      profile = os.path.basename(os.path.dirname(os.path.dirname(__file__)))
+      c.statusbar.widgets = ["keypress", "search_match", "url", "scroll", "history", "tabs", "progress", f"text:<{profile}>"]
     '';
     greasemonkey = [
       (pkgs.writeText "youtube-ads.js" ''
