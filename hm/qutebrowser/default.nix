@@ -2,6 +2,7 @@
 {
   programs.qutebrowser = {
     enable = true;
+    loadAutoconfig = true;
     keyBindings = {
       normal = {
         "yo" = "yank inline [[{url}][{title}]]"; # Copy link in org-mode format
