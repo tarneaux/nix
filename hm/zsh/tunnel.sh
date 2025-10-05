@@ -7,6 +7,14 @@
 
 set -e
 
+if [ "$1" = "check" ]; then
+    ip netns show wg0 | grep -q wg0 || {
+        echo "starting tunnel"
+        exec doas "$0" up
+    }
+    exit 0
+fi
+
 if [ $EUID -ne 0 ]; then
     echo "Please run this script as root. Exiting."
     exit 1
