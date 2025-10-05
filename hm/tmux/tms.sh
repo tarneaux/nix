@@ -4,7 +4,7 @@ if [[ -n $TMUX ]]; then
     echo "Please exit tmux first."
 fi
 
-hosts_arr=(issou issou-lan chorizo)
+hosts_arr=(issou chorizo)
 
 hosts="$(printf '%s\n' "${hosts_arr[@]}")"
 
