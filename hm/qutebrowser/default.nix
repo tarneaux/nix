@@ -52,7 +52,9 @@
       ${builtins.readFile ./qutebrowser-gruvbox.py}
 
       import subprocess
-      res = subprocess.check_output(['sh', '-c', 'xrandr | grep primary | grep -oE "[0-9]+x[0-9]+"']).strip()
+      res = subprocess.check_output(
+        ['sh', '-c', 'xrandr | grep primary | grep -oE "[0-9]+x[0-9]+"']
+      ).strip()
       if res == b'2560x1080':
           c.zoom.default = '70%'
           c.fonts.default_size = '8pt'
@@ -64,7 +66,10 @@
 
       # Add profile name to statusbar
       profile = os.path.basename(os.path.dirname(os.path.dirname(__file__)))
-      c.statusbar.widgets = ["keypress", "search_match", "url", "scroll", "history", "tabs", "progress", f"text:<{profile}>"]
+      c.statusbar.widgets = [
+          "keypress", "search_match", "url", "scroll", "history", "tabs", "progress",
+          f"text:<{profile}>"
+      ]
     '';
     greasemonkey = [
       (pkgs.writeText "youtube-ads.js" ''
