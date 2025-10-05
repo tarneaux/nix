@@ -147,6 +147,7 @@
       ];
       mimeType = [
         "text/html"
+        "text/x-mimearchive" # mhtml
         "text/xml"
         "x-scheme-handler/http"
         "x-scheme-handler/https"
