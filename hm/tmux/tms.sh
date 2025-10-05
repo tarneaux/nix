@@ -24,7 +24,7 @@ case $? in
     # query. Also remove a leading plus sign, used to prevent matches.
     host=$(sed -n '$p' <<<"$fzf_output" | sed -s 's/^\+//g')
     # shellcheck disable=SC2016
-    ssh -t "$host" 'tmw || $SHELL'
+    ssh -t "$host" 'tmw '"$2"' || $SHELL'
     ;;
 130)
     # The user escaped the fzf window
