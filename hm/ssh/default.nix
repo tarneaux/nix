@@ -24,6 +24,9 @@
           }
         ];
       };
+      "chorizo issou chankla gaspacho" = {
+        proxyCommand = "sh -c 'tunnel check && wgx nc %h %p'";
+      };
       "chorizo" = {
         hostname = "10.8.0.1";
         port = 52865;

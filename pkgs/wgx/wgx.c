@@ -6,6 +6,9 @@
 
 // example usage: wgx ip netns identify
 
+// For a cleaner SSH setup, ProxyCommand can be set as follows :
+// ProxyCommand = "sh -c 'tunnel check && wgx nc %h %p'";
+
 #define NAME_OF_NETWORK_NAMESPACE  "wg0"
 #define PATH_TO_NAMESPACE  "/run/netns/"  NAME_OF_NETWORK_NAMESPACE
 
