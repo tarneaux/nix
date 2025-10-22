@@ -262,7 +262,7 @@ in
       ];
     })
     pkgs.trash-cli
-    pkgs.tldr
+    pkgs.tealdeer # tldr
   ]
   ++ lib.lists.optionals (!is_server) [
     # Exit all SSH control sockets.
