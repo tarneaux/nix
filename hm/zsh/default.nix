@@ -110,6 +110,7 @@ in
           mnt = "doas mount -o uid=1000,gid=100";
           nje = "zk new -g journal";
           zn = "zk new --title";
+          znc = "wgx surf http://10.8.0.3:58108";
 
           # docker / podman
           d = docker;
