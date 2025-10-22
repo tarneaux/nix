@@ -34,6 +34,7 @@ find "$JOURNAL_PATH" -mindepth 1 -type f \( -iname '*.jpeg' -or -iname '*.jpg' -
 
 echo "If you get a cryptic error about a missing file, see:"
 echo "https://tex.stackexchange.com/questions/416183/setmainfont-error-on-path-2-levels-deep"
+echo "tl;dr : remove .texlive2024/texmf-var/luatex-cache"
 
 cd "$BUILD_DIR" || exit 1
 pandoc tmp.md -o ~/journal.pdf --pdf-engine=lualatex -f markdown-implicit_figures
