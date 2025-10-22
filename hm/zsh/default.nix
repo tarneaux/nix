@@ -109,6 +109,7 @@ in
           black = "ruff";
           mnt = "doas mount -o uid=1000,gid=100";
           nje = "zk new -g journal";
+          zn = "zk new --title";
 
           # docker / podman
           d = docker;
