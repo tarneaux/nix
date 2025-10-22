@@ -55,6 +55,7 @@
     typst
     gdb
     weechat
+    otree
 
     # X utilities
     bitwarden
