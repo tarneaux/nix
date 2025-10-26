@@ -8,7 +8,7 @@ Add the host with the server public key (from `/etc/ssh/ssh_host_ed25519_key.pub
 
 After generating Backblaze app credentials, run:
 ```sh
-agenix -e restic/<HOST>/env.age
+doas agenix -i /etc/ssh/ssh_host_ed25519_key -e restic/<HOST>/env.age
 ```
 Put in:
 ```sh
