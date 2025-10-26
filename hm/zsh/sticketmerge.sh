@@ -33,7 +33,12 @@ fn() {
 }
 
 # Get dimensions
-read -r p w h <<<"$(pdfinfo "$1" | awk '/^Pages:/{print $2}/^Page size/{print $3, $5}' | tr "\n" " ")"
+read -r p w h <<<"$(pdfinfo "$1" |
+    awk '/^Pages:/{print $2}/^Page size/{print $3, $5}' |
+    tr " " "\n" |
+    cut -f1 -d. |
+    tr "\n" " " |
+    cut -f3)"
 # pixel dimensions
 ((pix_w = w * 10))
 ((pix_h = h * 10))
