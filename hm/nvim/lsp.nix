@@ -24,7 +24,6 @@
       config = # lua
         ''
           vim.lsp.enable({
-            "ansiblels",
             "arduino_language_server",
             "bashls",
             "clangd",
@@ -142,7 +141,6 @@
     lua-language-server
     clang-tools
     haskell-language-server
-    ansible-language-server
     yaml-language-server
     gopls
     texlab
