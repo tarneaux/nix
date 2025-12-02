@@ -8,10 +8,6 @@ hosts_arr=(issou chorizo)
 
 hosts="$(printf '%s\n' "${hosts_arr[@]}")"
 
-if [ $# -gt 1 ]; then
-    echo "Only one argument is allowed."
-fi
-
 fzf_output=$(fzf \
     ${1+-1} -0 -e --print-query \
     --border-label=" SSH hosts " \
