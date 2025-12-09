@@ -85,6 +85,6 @@
     xournalpp
     gimp
     discord
-    whatsapp-for-linux
+    zapzap
   ];
 }

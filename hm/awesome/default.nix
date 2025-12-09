@@ -50,6 +50,7 @@
           unisond dotsync &
           pidof -qx nextcloud-sync || nextcloud-sync &
           pidof -qx space-autocommit || space-autocommit &
+          pidof -qx .zapzap-wrapped || zapzap &
         '';
     })
   ];
