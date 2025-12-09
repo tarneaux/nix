@@ -8,16 +8,15 @@
   programs.git = {
     enable = true;
     package = pkgs.gitFull;
-    userName = "tarneo";
-    userEmail = "tarneo@tarneo.fr";
+    settings.user = {
+      name = "tarneo";
+      email = "tarneo@tarneo.fr";
+    };
     signing = {
       key = null; # Overriden in includes below
       signByDefault = true;
     };
-    delta = {
-      enable = true;
-    };
-    extraConfig = {
+    settings = {
       credential.helper = "store";
       init.defaultBranch = "main";
       pull.rebase = true; # Rebase by default when pulling
@@ -56,6 +55,7 @@
         }
       ];
   };
+  programs.delta.enable = true;
   home.file.".config/git/ignore".text = ''
     .envrc
     .direnv

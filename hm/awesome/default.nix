@@ -24,7 +24,7 @@
     brightnessctl
     libnotify
     maim
-    mpc-cli
+    mpc
     playerctl
     xss-lock
     yubikey-touch-detector

@@ -15,7 +15,7 @@ in
 {
   programs.zsh = {
     enable = true;
-    dotDir = ".config/zsh";
+    dotDir = config.xdg.configHome;
 
     history = {
       size = 1000000;
@@ -233,6 +233,7 @@ in
             ''
               # Add the authentication key to ssh-agent for remote auth with a
               # FIDO key
+              export SSH_AUTH_SOCK=/run/user/1000/ssh-agent
               ssh-add -q ~/.ssh/id_ed25519_sk_auth
             ''
           ]

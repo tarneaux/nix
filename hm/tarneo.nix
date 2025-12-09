@@ -58,7 +58,7 @@
     otree
 
     # X utilities
-    bitwarden
+    bitwarden-desktop
     blueberry
     gpick
     hplip

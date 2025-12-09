@@ -62,7 +62,7 @@
       enable = true;
       drivers = [ pkgs.hplip ];
     };
-    logind = {
+    logind.settings.Login = {
       powerKey = "hibernate";
       lidSwitch = "suspend";
     };

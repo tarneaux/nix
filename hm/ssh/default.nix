@@ -2,13 +2,16 @@
 {
   programs.ssh = {
     enable = true;
-    controlMaster = "auto";
-    controlPath = "~/.ssh/S.%r@%h:%p";
-    controlPersist = "no";
-    extraOptionOverrides = {
-      ConnectTimeout = "5";
-    };
+    enableDefaultConfig = false;
     matchBlocks = {
+      "*" = {
+        controlMaster = "auto";
+        controlPath = "~/.ssh/S.%r@%h:%p";
+        controlPersist = "no";
+        extraOptions = {
+          ConnectTimeout = "5";
+        };
+      };
       "ssh.renn.es".extraOptions = {
         "ControlMaster" = "no";
         "ServerAliveInterval" = "60";
