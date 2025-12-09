@@ -235,7 +235,7 @@
       config = # lua
         ''
           require("typst-preview").setup {
-             open_cmd = "surf -m %s",
+             open_cmd = "qprofile tmp -l critical %s",
           }
           vim.keymap.set("n", "<leader>p", ":TypstPreview<cr>", {desc = "Open typst preview"})
         '';
@@ -264,8 +264,5 @@
           })
         '';
     }
-  ];
-  home.packages = with pkgs; [
-    surf # For typst preview
   ];
 }
