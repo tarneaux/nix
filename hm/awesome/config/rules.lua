@@ -53,6 +53,10 @@ awful.rules.rules = {
 		},
 		properties = { floating = true },
 	},
+	{
+		rule = { class = "Bitwarden" },
+		properties = { floating = true, sticky = true, minimized = true },
+	},
 
 	-- place conky in background on primary screen
 	{
