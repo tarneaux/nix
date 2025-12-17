@@ -50,6 +50,7 @@
 
       server_hostnames = [
         "issou"
+        "chankla"
         "gaspacho"
         "chorizo"
       ];
