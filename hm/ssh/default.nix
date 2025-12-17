@@ -17,7 +17,7 @@
         "ServerAliveInterval" = "60";
         "ServerAliveCountMax" = "10";
       };
-      "chorizo issou issou-lan chankla gaspacho" = {
+      "chorizo issou issou-lan chankla chankla-lan gaspacho" = {
         user = "risitas";
         forwardAgent = true;
         remoteForwards = [
@@ -37,6 +37,7 @@
       "issou".hostname = "10.8.0.3";
       "issou-lan".hostname = "192.168.1.150";
       "chankla".hostname = "10.8.0.2";
+      "chankla-lan".hostname = "192.168.1.151";
       "gaspacho".hostname = "192.168.1.153";
       "aur".hostname = "aur.archlinux.org";
       "aur".user = "aur";
