@@ -237,43 +237,45 @@ ClientKeys = gears.table.join(
 	end)
 )
 
+local workspaces = require("workspaces")
+
 -- Bind all key numbers to tags.
 -- Colemak's "arstd" = qwerty's "asdfg"
 local tagkeys = { "a", "r", "s", "t", "d", "h" }
 for i = 1, 6 do
 	globalkeys = gears.table.join(
 		globalkeys,
-		-- View tag only.
+		-- View tag.
 		awful.key({ ModKey }, tagkeys[i], function()
 			local screen = awful.screen.focused()
-			local tag = screen.tags[i]
+			local tag = workspaces.get_workspace_tags(screen)[tostring(i)]
 			if tag then
 				tag:view_only()
-			end
-		end),
-		-- Toggle tag display.
-		awful.key({ ModKey, "Control" }, tagkeys[i], function()
-			local screen = awful.screen.focused()
-			local tag = screen.tags[i]
-			if tag then
-				awful.tag.viewtoggle(tag)
 			end
 		end),
 		-- Move client to tag.
 		awful.key({ ModKey, "Shift" }, tagkeys[i], function()
 			if client.focus then
-				local tag = client.focus.screen.tags[i]
+				local tag = workspaces.get_workspace_tags(client.focus.screen)[tostring(i)]
 				if tag then
 					client.focus:move_to_tag(tag)
 				end
 			end
 		end),
-		-- Toggle tag on focused client.
+		-- View workspace.
+		awful.key({ ModKey, "Control" }, tagkeys[i], function()
+			local screen = awful.screen.focused()
+			local tag = workspaces.get_last_tag_of_ws(screen, tagkeys[i])
+			if tag then
+				tag:view_only()
+			end
+		end),
+		-- Move client to workspace.
 		awful.key({ ModKey, "Control", "Shift" }, tagkeys[i], function()
 			if client.focus then
-				local tag = client.focus.screen.tags[i]
+				local tag = workspaces.get_last_tag_of_ws(client.focus.screen, tagkeys[i])
 				if tag then
-					client.focus:toggle_tag(tag)
+					client.focus:move_to_tag(tag)
 				end
 			end
 		end)
