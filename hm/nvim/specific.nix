@@ -74,6 +74,9 @@
               vim.keymap.set("n", ",u", function ()
                 vim.cmd [[ :r ~/.config/aerc/signature_univ.txt ]]
               end, { buffer = true })
+              vim.keymap.set("n", ",h", function ()
+                vim.cmd [[ :r ~/.config/aerc/signature_h.txt ]]
+              end, { buffer = true })
           end
       })
 
