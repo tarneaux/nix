@@ -33,8 +33,8 @@ awful.screen.connect_for_each_screen(function(s)
 	bar(s)
 
 	local tag_list = {}
-	for _, i in ipairs({ "a", "r", "s", "t", "d", "h" }) do
-		for _, j in ipairs({ "1", "2", "3", "4", "5", "6" }) do
+	for _, i in ipairs({ "a", "r", "s", "t", "d" }) do
+		for _, j in ipairs({ "1", "2", "3", "4", "5" }) do
 			table.insert(tag_list, i .. j)
 		end
 	end

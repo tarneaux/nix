@@ -241,7 +241,7 @@ local workspaces = require("workspaces")
 
 -- Bind all key numbers to tags.
 -- Colemak's "arstd" = qwerty's "asdfg"
-local tagkeys = { "a", "r", "s", "t", "d", "h" }
+local tagkeys = { "a", "r", "s", "t", "d" }
 for i = 1, 6 do
 	globalkeys = gears.table.join(
 		globalkeys,
