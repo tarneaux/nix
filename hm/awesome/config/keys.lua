@@ -1,6 +1,7 @@
 local awful = require("awful")
 local gears = require("gears")
 local lain = require("lain")
+local revelation = require("revelation")
 require("awful.hotkeys_popup.keys")
 
 ModKey = "Mod4"
@@ -183,6 +184,11 @@ local globalkeys = gears.table.join(
 	end),
 	awful.key({ ModKey }, "m", function()
 		awful.tag.history.restore()
+	end),
+
+	awful.key({ ModKey }, "h", revelation),
+	awful.key({ ModKey, "Control" }, "h", function()
+		revelation({ rule = { class = "qutebrowser" } })
 	end),
 
 	-- Toggle maximized layout

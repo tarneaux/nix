@@ -19,6 +19,17 @@
         ${pkgs.procps}/bin/pgrep awesome | xargs kill -HUP
       '';
     };
+    ".config/lua/revelation" = {
+      source = pkgs.fetchFromGitHub {
+        owner = "guotsuan";
+        repo = "awesome-revelation";
+        rev = "d8b58e3776ec0ace45b5bc1160e322b69fa16d6f";
+        hash = "sha256-YwIQxjKJFgJdCwPs1Vq7JrmmdN3PVxLKofVOiWQZu7Y=";
+      };
+      onChange = ''
+        ${pkgs.procps}/bin/pgrep awesome | xargs kill -HUP
+      '';
+    };
   };
   home.packages = with pkgs; [
     brightnessctl

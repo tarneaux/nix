@@ -26,6 +26,9 @@ dofile(awesome_conf_dir .. "error_handling.lua")
 -- Themes define colours, font and wallpapers.
 beautiful.init(awesome_conf_dir .. "theme/theme.lua")
 
+local revelation = require("revelation")
+revelation.init({ charorder = "arstneiodhgmc,x.plfuwyq;bjvk1234567890" })
+
 -- Screens, layouts, tags
 dofile(awesome_conf_dir .. "screens.lua")
 
