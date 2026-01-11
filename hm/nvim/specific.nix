@@ -1,6 +1,14 @@
 # Settings specific to a language
 
 { pkgs, user_at_host, ... }:
+let
+  awesome-code-doc = pkgs.fetchFromGitHub {
+    owner = "kosorin";
+    repo = "awesome-code-doc";
+    rev = "362f15f795c9df1ae11a35f5ccf72ed00a353cef";
+    hash = "sha256-FYofpQOVrGKrHqjgvTR48Kw1Fbn0E0fBbjr54iTPNT8=";
+  };
+in
 {
   programs.neovim.extraLuaConfig = # lua
     ''
@@ -110,6 +118,17 @@
               },
               home_manager = {
                 expr = '(builtins.getFlake ("git+file://" + toString ./.)).homeConfigurations."${user_at_host}".options',
+              },
+            },
+          },
+        },
+      })
+      vim.lsp.config('lua_ls', {
+        settings = {
+          Lua = {
+            workspace = {
+              library = {
+                ["${awesome-code-doc}"] = true -- awesomewm config code annotation
               },
             },
           },
