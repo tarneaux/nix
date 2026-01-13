@@ -28,3 +28,9 @@ client.connect_signal("property::maximized", function(c)
 		c.maximized = false
 	end
 end)
+
+
+-- Work around clients being moved to different tags when screens are changed.
+-- See https://github.com/awesomeWM/awesome/issues/1382
+screen.connect_signal("added", awesome.restart)
+screen.connect_signal("removed", awesome.restart)
