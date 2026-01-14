@@ -30,6 +30,17 @@
         ${pkgs.procps}/bin/pgrep awesome | xargs kill -HUP
       '';
     };
+    ".config/lua/awesome-wm-hydra" = {
+      source = pkgs.fetchFromGitHub {
+        owner = "TommyX12";
+        repo = "awesome-wm-hydra";
+        rev = "ff13e265c7d48b8ce95294de76ef0932786f5040";
+        hash = "sha256-ai2p6imv5nfdt9ZUbAugy4dFryBAItwNmBArpem1yQ4=";
+      };
+      onChange = ''
+        ${pkgs.procps}/bin/pgrep awesome | xargs kill -HUP
+      '';
+    };
   };
   home.packages = with pkgs; [
     brightnessctl

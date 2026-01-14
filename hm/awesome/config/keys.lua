@@ -2,6 +2,7 @@ local awful = require("awful")
 local gears = require("gears")
 local lain = require("lain")
 local revelation = require("revelation")
+local hydra = require("awesome-wm-hydra")
 require("awful.hotkeys_popup.keys")
 
 ModKey = "Mod4"
@@ -29,6 +30,12 @@ local music_quake = termquake("MusicQuake", "rmpc")
 local space_quake = termquake("SpaceQuake", "zsh -c 'tmw ~/space \"nvim todo.md\"'")
 local irc_quake = termquake("IrcQuake", "zsh -c 'tmux new-session -A -s irc wgx weechat'")
 
+local function spawn(cmd)
+	return function()
+		awful.spawn.with_shell(cmd)
+	end
+end
+
 local globalkeys = gears.table.join(
 	-- Reload awesome
 	awful.key({ ModKey }, "q", awesome.restart),
@@ -37,8 +44,53 @@ local globalkeys = gears.table.join(
 	-- Start other processes --
 	---------------------------
 
-	-- Menu
+	-- Tree menu
 	awful.key({ ModKey }, "p", function()
+		hydra.start({
+			activation_key = "Super_L",
+			ignored_mod = "Mod4",
+			key_bg = "#3c3836",
+			config = {
+				["b"] = {
+					"Bitwarden",
+					spawn("bitwarden"),
+				},
+				["c"] = {
+					"Config apps",
+					{
+						["p"] = {
+							"PavuControl",
+							spawn("pavucontrol"),
+						},
+						["b"] = {
+							"Blueberry",
+							spawn("blueberry"),
+						},
+					},
+				},
+				["d"] = {
+					"Communication apps",
+					{
+						["s"] = {
+							"Signal",
+							spawn("signal-desktop"),
+						},
+						["d"] = {
+							"Discord",
+							spawn("discord"),
+						},
+						["w"] = {
+							"Whatsapp",
+							spawn("zapzap"),
+						},
+					},
+				},
+			},
+		})
+	end),
+
+	-- Dmenu-like runner
+	awful.key({ ModKey, "Shift" }, "p", function()
 		awful.spawn.with_shell("rofi -show drun")
 	end),
 
