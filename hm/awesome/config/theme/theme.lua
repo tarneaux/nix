@@ -3,7 +3,6 @@
 ---------------------------
 
 local gears = require("gears")
-local naughty = require("naughty")
 
 local theme = {}
 

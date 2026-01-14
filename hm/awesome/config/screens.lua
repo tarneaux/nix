@@ -1,6 +1,5 @@
 local awful = require("awful")
 local beautiful = require("beautiful")
-local gears = require("gears")
 local bar = require("bar.bar")
 
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
