@@ -29,6 +29,14 @@ client.connect_signal("property::maximized", function(c)
 	end
 end)
 
+-- Handle clients requesting focus correctly
+client.connect_signal("request::activate", function(c)
+	local tags = c:tags()
+	if #tags == 1 then
+		tags[1]:view_only()
+	end
+	c.minimized = false
+end)
 
 -- Work around clients being moved to different tags when screens are changed.
 -- See https://github.com/awesomeWM/awesome/issues/1382
