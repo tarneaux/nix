@@ -85,10 +85,28 @@ awful.rules.rules = {
 		end,
 	},
 
-	-- Set Firefox to always map on the tag named "2" on screen 1.
-	-- This is just an example.
-	-- { rule = { class = "Firefox" },
-	--   properties = { screen = 1, tag = "2" } },
+	-- Put communication apps on workspace d.
+	{
+		rule_any = {
+			class = {
+				"Signal",
+				"ZapZap",
+			},
+		},
+		properties = {
+			tag = "d1",
+		},
+	},
+	{
+		rule_any = {
+			class = {
+				"discord",
+			},
+		},
+		properties = {
+			tag = "d2",
+		},
+	},
 }
 
 -- Set notification location
