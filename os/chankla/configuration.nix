@@ -1,6 +1,6 @@
 # This is your system's configuration file.
 # Use this to configure your system environment (it replaces /etc/nixos/configuration.nix)
-{ ... }:
+{ pkgs, ... }:
 {
   imports = [ ./hardware-configuration.nix ];
 
@@ -22,6 +22,24 @@
     networking.ipv4 = {
       lan = "192.168.1.151";
       intra = "10.8.0.2/32";
+    };
+  };
+  systemd.services = {
+    nextcloud-cron = {
+      path = [ pkgs.docker ];
+      script = "docker exec -u 33 nextcloud php cron.php";
+      serviceConfig = {
+        User = "root";
+      };
+      startAt = "*:0/5";
+    };
+    nextcloud-previews = {
+      path = [ pkgs.docker ];
+      script = "docker exec -u 33 nextcloud php occ preview:pre-generate";
+      serviceConfig = {
+        User = "root";
+      };
+      startAt = "*:0/5";
     };
   };
 
