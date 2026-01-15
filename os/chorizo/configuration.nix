@@ -30,6 +30,10 @@
           publicKey = "Evh0vuKx61wJHVyeAQU+3cpKHIhqheIVRTj2Gua3OnA=";
           allowedIPs = [ "10.8.0.3/32" ];
         }
+        {
+          publicKey = "bH/kYoNjB/Gxl40CbGv58fiOyvspSJXg1MPuttIUmnI=";
+          allowedIPs = [ "10.8.0.2/32" ];
+        }
       ];
     };
     wg-quick.interfaces.extra = {
