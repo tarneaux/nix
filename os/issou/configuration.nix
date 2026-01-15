@@ -46,6 +46,15 @@
       };
       startAt = "*:0/5";
     };
+    # Invidious requires being restarted as per doc.
+    invidious-restart = {
+      path = [ pkgs.docker ];
+      script = "docker restart invidious invidious-companion";
+      serviceConfig = {
+        User = "root";
+      };
+      startAt = "daily";
+    };
   };
 
   boot.kernel.sysctl = {
