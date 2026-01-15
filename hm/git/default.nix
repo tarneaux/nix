@@ -15,6 +15,7 @@
     signing = {
       key = null; # Overriden in includes below
       signByDefault = true;
+      format = "openpgp";
     };
     settings = {
       credential.helper = "store";
