@@ -81,6 +81,7 @@
     firefox
     nsxiv
     darktable
+    rawtherapee
     signal-desktop
     xournalpp
     gimp
