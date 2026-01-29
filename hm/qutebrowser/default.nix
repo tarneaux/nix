@@ -35,6 +35,8 @@
       "!aw" = "https://wiki.archlinux.org/?search={}";
       "!no" = "https://search.nixos.org/options?channel=unstable&query={}";
       "!np" = "https://nixos.org/nixos/packages.html?channel=unstable&query={}";
+      "!nw" = "https://nixos.wiki/index.php?search={}";
+      "!nd" = "https://nix.dev/search.html?q={}";
       "!yt" = "https://iv.renn.es/results?search_query={}";
       "!w" = "https://en.wikipedia.org/wiki/Special:Search?search={}";
       "!wf" = "https://fr.wikipedia.org/wiki/Special:Search?search={}";
