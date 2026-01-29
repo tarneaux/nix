@@ -57,6 +57,11 @@
       ];
   };
   programs.delta.enable = true;
+  home.packages = with pkgs; [
+    tea
+    hut
+    gh
+  ];
   home.file.".config/git/ignore".text = ''
     .envrc
     .direnv
