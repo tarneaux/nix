@@ -85,6 +85,7 @@
           "keypress", "search_match", "url", "scroll", "history", "tabs", "progress",
           f"text:<{profile}>"
       ]
+      c.window.title_format = f"qutebrowser <{profile}>"
 
       def add_quickmarks(marks):
           # Has no effect without restarting qutebrowser
