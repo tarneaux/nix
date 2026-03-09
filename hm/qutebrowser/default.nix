@@ -63,66 +63,80 @@
         "{file}"
       ];
     };
-    extraConfig = ''
-      ${builtins.readFile ./qutebrowser-gruvbox.py}
+    extraConfig = # python
+      ''
+        ${builtins.readFile ./qutebrowser-gruvbox.py}
 
-      import subprocess
-      res = subprocess.check_output(
-        ['sh', '-c', 'xrandr | grep primary | grep -oE "[0-9]+x[0-9]+"']
-      ).strip()
-      if res == b'2560x1080':
-          c.zoom.default = '70%'
-          c.fonts.default_size = '8pt'
-      else:
-          c.zoom.default = '120%'
-          c.fonts.default_size = '15pt'
+        import subprocess
+        res = subprocess.check_output(
+          ['sh', '-c', 'xrandr | grep primary | grep -oE "[0-9]+x[0-9]+"']
+        ).strip()
+        if res == b'2560x1080':
+            c.zoom.default = '70%'
+            c.fonts.default_size = '8pt'
+        else:
+            c.zoom.default = '120%'
+            c.fonts.default_size = '15pt'
 
-      import os
+        import os
 
-      # Add profile name to statusbar
-      profile = os.path.basename(os.path.dirname(os.path.dirname(__file__)))
-      c.statusbar.widgets = [
-          "keypress", "search_match", "url", "scroll", "history", "tabs", "progress",
-          f"text:<{profile}>"
-      ]
-      c.window.title_format = f"qutebrowser <{profile}>"
+        # Add profile name to statusbar
+        profile = os.path.basename(os.path.dirname(os.path.dirname(__file__)))
+        c.statusbar.widgets = [
+            "keypress", "search_match", "url", "scroll", "history", "tabs", "progress",
+            f"text:<{profile}>"
+        ]
+        c.window.title_format = f"qutebrowser <{profile}>"
 
-      def add_quickmarks(marks):
-          # Has no effect without restarting qutebrowser
-          quickmarks_path = os.path.join(os.path.dirname(__file__), "quickmarks")
-          try:
-              quickmarks = open(quickmarks_path).read().splitlines()
-          except FileNotFoundError:
-              quickmarks = []
-          quickmarks = set(quickmarks)
-          for mark in marks:
-            quickmarks.add(mark)
-          open(quickmarks_path, "w").write("\n".join(quickmarks))
+        def add_quickmarks(marks):
+            # Has no effect without restarting qutebrowser
+            quickmarks_path = os.path.join(os.path.dirname(__file__), "quickmarks")
+            try:
+                quickmarks = open(quickmarks_path).read().splitlines()
+            except FileNotFoundError:
+                quickmarks = []
+            quickmarks = set(quickmarks)
+            for mark in marks:
+              quickmarks.add(mark)
+            open(quickmarks_path, "w").write("\n".join(quickmarks))
 
-      add_quickmarks([
-          f"nixpkgs file://{os.path.expanduser("~/")}docs/Nixpkgs%20Reference%20Manual.mhtml"
-      ])
-    '';
+        add_quickmarks([
+            f"nixpkgs file://{os.path.expanduser("~/")}docs/Nixpkgs%20Reference%20Manual.mhtml"
+        ])
+      '';
     greasemonkey = [
-      (pkgs.writeText "youtube-ads.js" ''
-        // ==UserScript==
-        // @name Skip YouTube ads
-        // @description Skips the ads in YouTube videos
-        // @run-at document-start
-        // @include *.youtube.com/*
-        // ==/UserScript==
+      (pkgs.writeText "youtube-ads.js" # javascript
+        ''
+          // ==UserScript==
+          // @name         Auto Skip YouTube Ads
+          // @version      1.1.0
+          // @description  Speed up and skip YouTube ads automatically
+          // @author       jso8910
+          // @match        *://*.youtube.com/*
+          // @exclude      *://*.youtube.com/subscribe_embed?*
+          // ==/UserScript==
+          setInterval(() => {
+              const btn = document.querySelector('.videoAdUiSkipButton,.ytp-ad-skip-button')
+              if (btn) {
+                  btn.click()
+              }
+              const ad = [...document.querySelectorAll('.ad-showing')][0];
+              if (ad) {
+                  const video = document.querySelector('video')
+                  video.muted = true;
+                  video.hidden = true;
 
-        document.addEventListener('load', () => {
-            const btn = document.querySelector('.videoAdUiSkipButton,.ytp-ad-skip-button-modern')
-            if (btn) {
-                btn.click()
-            }
-            const ad = [...document.querySelectorAll('.ad-showing')][0];
-            if (ad) {
-                document.querySelector('video').currentTime = 9999999999;
-            }
-        }, true);
-      '')
+                  // This is not necessarily available right at the start
+                  if(video.duration != NaN) {
+                      video.currentTime = video.duration;
+                  }
+
+                  // 16 seems to be the highest rate that works, mostly this isn't needed
+                  video.playbackRate = 16;
+              }
+          }, 50)
+        ''
+      )
     ];
   };
   home.packages = [
