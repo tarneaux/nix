@@ -1,6 +1,7 @@
 local awful = require("awful")
 local beautiful = require("beautiful")
 local naughty = require("naughty")
+local workspaces = require("workspaces")
 
 -- Rules to apply to new clients (through the "manage" signal).
 awful.rules.rules = {
@@ -85,26 +86,44 @@ awful.rules.rules = {
 		end,
 	},
 
-	-- Put communication apps on workspace d.
+	-- clients that should be put on specific workspaces
 	{
+		callback = workspaces.rule_callback("d"),
 		rule_any = {
 			class = {
 				"Signal",
 				"ZapZap",
+				"discord",
 			},
-		},
-		properties = {
-			tag = "d1",
+			name = {
+				"qutebrowser <qobuz>",
+				"qutebrowser <perso>",
+				"qutebrowser <sn>",
+			},
 		},
 	},
 	{
+		callback = workspaces.rule_callback("a"),
 		rule_any = {
-			class = {
-				"discord",
+			name = {
+				"qutebrowser <dev>",
 			},
 		},
-		properties = {
-			tag = "d2",
+	},
+	{
+		callback = workspaces.rule_callback("r"),
+		rule_any = {
+			name = {
+				"qutebrowser <fac>",
+			},
+		},
+	},
+	{
+		callback = workspaces.rule_callback("s"),
+		rule_any = {
+			name = {
+				"qutebrowser <renn.es>",
+			},
 		},
 	},
 }

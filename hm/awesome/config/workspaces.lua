@@ -60,8 +60,25 @@ workspaces.current_tag_clean = function(screen)
 	return string.match(screen.selected_tag.name, "^.([0-9])$")
 end
 
+workspaces.tag_workspace = function(t)
+	return string.match(t.name, "^(.)[0-9]$")
+end
+
+workspaces.tag_clean = function(t)
+	return string.match(t.name, "^.([0-9])$")
+end
+
 function workspaces.taglist_filter(t)
 	return string.match(t.name, "^" .. workspaces.current(awful.screen.focused()) .. "([0-9])$") ~= nil
+end
+
+function workspaces.rule_callback(w)
+	return function(c)
+		if workspaces.tag_workspace(c.first_tag) ~= w then
+			local tag = workspaces.get_last_tag_of_ws(c.screen, w)
+			c:move_to_tag(tag)
+		end
+	end
 end
 
 return workspaces
