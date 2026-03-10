@@ -206,6 +206,11 @@ in
           }
           add-zsh-hook preexec __set_title
           add-zsh-hook precmd __set_title
+
+          function __update_journal_dirhash() {
+            hash -d j="$HOME/space/journal/$(date +'%Y-%m-%d %a')"
+          }
+          add-zsh-hook preexec __update_journal_dirhash
         ''
       ]
       ++ (
