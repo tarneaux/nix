@@ -8,8 +8,9 @@ rg --multiline '.\n\!\[' "$JOURNAL_PATH" && {
 
 tee "$BUILD_DIR"/tmp.md >/dev/null <<EOF
 ---
-mainfont: DejaVuSans
 geometry: margin=2cm
+mainfontfallback:
+    - "NotoColorEmoji:mode=harf"
 ---
 EOF
 
