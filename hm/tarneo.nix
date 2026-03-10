@@ -69,6 +69,7 @@
     arandr
     gnome-calendar
     evolution-data-server # gnome-calendar dep
+    snapshot
 
     # Full-blown applications
     audacity
