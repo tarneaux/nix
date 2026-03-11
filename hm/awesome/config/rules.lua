@@ -94,7 +94,6 @@ awful.rules.rules = {
 				"Signal",
 				"ZapZap",
 				"discord",
-				"Element",
 			},
 			name = {
 				"qutebrowser <qobuz>",

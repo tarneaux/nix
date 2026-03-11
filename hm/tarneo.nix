@@ -84,7 +84,6 @@
     darktable
     rawtherapee
     signal-desktop
-    element-desktop
     xournalpp
     gimp
     discord
