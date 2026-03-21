@@ -88,5 +88,6 @@
     gimp
     discord
     zapzap
+    lmms
   ];
 }
