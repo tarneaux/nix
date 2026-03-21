@@ -55,6 +55,36 @@ local globalkeys = gears.table.join(
 					"Bitwarden",
 					spawn("bitwarden"),
 				},
+				["m"] = {
+					"Music apps",
+					{
+						["a"] = {
+							"Audacity",
+							spawn("audacity"),
+						},
+						["l"] = {
+							"LMMS",
+							spawn("lmms"),
+						},
+					},
+				},
+				["i"] = {
+					"Image apps",
+					{
+						["i"] = {
+							"Inkscape",
+							spawn("inkscape"),
+						},
+						["g"] = {
+							"GIMP",
+							spawn("gimp"),
+						},
+						["d"] = {
+							"DigiKam",
+							spawn("digikam"),
+						},
+					},
+				},
 				["c"] = {
 					"Config apps",
 					{

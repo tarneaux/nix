@@ -126,6 +126,18 @@ awful.rules.rules = {
 			},
 		},
 	},
+	{
+		callback = workspaces.rule_callback("t"),
+		rule_any = {
+			class = {
+				"lmms",
+				"Audacity",
+				"Inkscape",
+				"Gimp",
+				"digikam",
+			},
+		},
+	},
 }
 
 -- Set notification location
