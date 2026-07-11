@@ -1,6 +1,6 @@
 { ... }:
 {
-  programs.neovim.extraLuaConfig = # lua
+  programs.neovim.initLua = # lua
     ''
       require('which-key').add ({
         { "<leader>t", group = "Tabs"},

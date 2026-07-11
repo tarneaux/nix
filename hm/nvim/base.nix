@@ -2,7 +2,7 @@
 
 { pkgs, lib, ... }:
 {
-  programs.neovim.extraLuaConfig =
+  programs.neovim.initLua =
     lib.mkBefore # lua
       ''
         vim.g.mapleader = "<space>"
@@ -107,6 +107,7 @@
     }
     {
       plugin = pkgs.vimPlugins.vim-commentary;
+      type = "viml";
       config = # vim
         ''
           autocmd FileType nix setlocal commentstring=#\ %s

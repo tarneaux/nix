@@ -5,18 +5,6 @@
   programs.neovim.plugins = [
     {
       plugin = pkgs.vimPlugins.nvim-treesitter.withAllGrammars;
-      type = "lua";
-      config = # lua
-        ''
-          require('nvim-treesitter.configs').setup {
-            highlight = {
-              enable = true,
-              autotag = {
-                enable = true, -- for HTML tags
-              },
-            },
-          }
-        '';
     }
     {
       plugin = pkgs.vimPlugins.nvim-lspconfig;
@@ -134,7 +122,7 @@
     arduino-language-server
     texlab
     pyright
-    nodePackages.bash-language-server
+    bash-language-server
     shellcheck
     vscode-langservers-extracted
     vscode-extensions.sumneko.lua
@@ -146,7 +134,7 @@
     texlab
     tree-sitter
     nixd
-    nixfmt-rfc-style
+    nixfmt
     tinymist # Typst LSP
   ];
 }

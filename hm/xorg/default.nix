@@ -61,7 +61,7 @@
       name = "autorandr-watcher";
       runtimeInputs = [
         inotify-tools
-        xorg.xinput
+        xinput
       ];
       text = # bash
         ''

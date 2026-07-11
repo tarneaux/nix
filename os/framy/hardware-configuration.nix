@@ -25,7 +25,7 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" = {
-    device = "/dev/Data/root";
+    device = "/dev/mapper/Data-root";
     fsType = "btrfs";
     options = [
       "subvol=@root"
@@ -35,7 +35,7 @@
   };
 
   fileSystems."/home" = {
-    device = "/dev/Data/root";
+    device = "/dev/mapper/Data-root";
     fsType = "btrfs";
     options = [
       "subvol=@home"
@@ -45,7 +45,7 @@
   };
 
   fileSystems."/nix" = {
-    device = "/dev/Data/root";
+    device = "/dev/mapper/Data-root";
     fsType = "btrfs";
     options = [
       "subvol=@nix"
@@ -55,7 +55,7 @@
   };
 
   fileSystems."/persist" = {
-    device = "/dev/Data/root";
+    device = "/dev/mapper/Data-root";
     fsType = "btrfs";
     options = [
       "subvol=@persist"
@@ -65,7 +65,7 @@
   };
 
   fileSystems."/var/log" = {
-    device = "/dev/Data/root";
+    device = "/dev/mapper/Data-root";
     fsType = "btrfs";
     options = [
       "subvol=@log"
@@ -85,9 +85,9 @@
     ];
   };
 
-  swapDevices = [ { device = "/dev/Data/swap"; } ];
+  swapDevices = [ { device = "/dev/mapper/Data-swap"; } ];
 
-  boot.resumeDevice = "/dev/Data/swap";
+  boot.resumeDevice = "/dev/mapper/Data-swap";
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

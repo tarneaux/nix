@@ -63,7 +63,7 @@
 
           # Daemons & autostart apps
           pgrep -f signal-desktop > /dev/null || signal-desktop --start-in-tray &
-          pidof -q blueberry-tray || blueberry-tray &
+          pidof -q blueman-tray || blueman-tray &
           pidof -q yubikey-touch-detector || yubikey-touch-detector --libnotify -v &
 
           # Custom daemons

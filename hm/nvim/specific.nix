@@ -10,7 +10,7 @@ let
   };
 in
 {
-  programs.neovim.extraLuaConfig = # lua
+  programs.neovim.initLua = # lua
     ''
       -- indentation
       function set_tw(w)

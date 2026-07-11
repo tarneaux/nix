@@ -19,6 +19,10 @@
     ./space
   ];
 
+  nixpkgs.config.permittedInsecurePackages = [
+    "electron-39.8.10" # tmp for bitwarden desktop
+  ];
+
   home.packages = with pkgs; [
     # Command line utilities
     devenv
@@ -31,7 +35,7 @@
     license-cli
     moreutils
     nmap
-    nodePackages.prettier
+    prettier
     openssl
     pamixer
     pandoc
@@ -51,7 +55,7 @@
     ruff
     pastel
     numbat
-    ugd.packages.x86_64-linux.default
+    # ugd.packages.x86_64-linux.default
     typst
     gdb
     weechat
@@ -59,13 +63,13 @@
 
     # X utilities
     bitwarden-desktop
-    blueberry
+    blueman
     gpick
     hplip
     pavucontrol
     pcmanfm
     qpwgraph
-    xorg.xkill
+    xkill
     arandr
     gnome-calendar
     evolution-data-server # gnome-calendar dep
@@ -78,7 +82,6 @@
     kdePackages.kdenlive
     kicad
     libreoffice
-    librewolf
     firefox
     nsxiv
     darktable

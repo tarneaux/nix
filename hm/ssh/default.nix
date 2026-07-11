@@ -3,16 +3,14 @@
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
-    matchBlocks = {
+    settings = {
       "*" = {
         controlMaster = "auto";
         controlPath = "~/.ssh/S.%r@%h:%p";
         controlPersist = "no";
-        extraOptions = {
-          ConnectTimeout = "5";
-        };
+        connectTimeout = "5";
       };
-      "ssh.renn.es".extraOptions = {
+      "ssh.renn.es" = {
         "ControlMaster" = "no";
         "ServerAliveInterval" = "60";
         "ServerAliveCountMax" = "10";
@@ -20,12 +18,10 @@
       "chorizo issou issou-lan chankla chankla-lan gaspacho" = {
         user = "risitas";
         forwardAgent = true;
-        remoteForwards = [
-          {
-            bind.address = "/run/user/1000/gnupg/S.gpg-agent";
-            host.address = "/run/user/1000/gnupg/S.gpg-agent.extra";
-          }
-        ];
+        RemoteForward = {
+          bind.address = "/run/user/1000/gnupg/S.gpg-agent";
+          host.address = "/run/user/1000/gnupg/S.gpg-agent.extra";
+        };
       };
       "chorizo issou chankla gaspacho" = {
         proxyCommand = "sh -c 'tunnel check && wgx nc %h %p'";
@@ -39,9 +35,11 @@
       "chankla".hostname = "10.8.0.2";
       "chankla-lan".hostname = "192.168.1.151";
       "gaspacho".hostname = "192.168.1.153";
-      "aur".hostname = "aur.archlinux.org";
-      "aur".user = "aur";
-      "github.com renn.es git.sr.ht".extraOptions = {
+      "aur" = {
+        hostname = "aur.archlinux.org";
+        user = "aur";
+      };
+      "github.com renn.es git.sr.ht" = {
         "ControlPersist" = "1h";
       };
     };

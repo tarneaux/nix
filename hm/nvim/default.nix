@@ -17,6 +17,7 @@
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
-    package = pkgs.unstable.neovim-unwrapped;
+    withRuby = false;
+    withPython3 = false;
   };
 }

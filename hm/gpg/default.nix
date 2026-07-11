@@ -1,6 +1,11 @@
 { pkgs, ... }:
 {
-  programs.gpg.enable = true;
+  programs.gpg = {
+    enable = true;
+    settings = {
+      default-key = "0xA106AD72EA62ADDF";
+    };
+  };
   services.gpg-agent = {
     enable = true;
     enableZshIntegration = true;
