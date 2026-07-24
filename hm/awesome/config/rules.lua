@@ -98,6 +98,12 @@ awful.rules.rules = {
 			},
 		},
 	},
+
+	-- chromium PWA's
+	{
+		rule = { class = "Chromium-browser" },
+		properties = { floating = false },
+	},
 }
 
 -- Set notification location

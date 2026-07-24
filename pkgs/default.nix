@@ -4,4 +4,5 @@ pkgs: {
   unisond = import ./unisond pkgs;
   rmpc-git = import ./rmpc-git.nix pkgs;
   wgx = import ./wgx pkgs;
+  pwa = import ./pwa.nix pkgs;
 }

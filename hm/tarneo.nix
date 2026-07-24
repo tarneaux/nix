@@ -92,5 +92,11 @@
     discord
     zapzap
     lmms
+    (pwa {
+      url = "https://tarneo.sb.renn.es";
+      name = "silverbullet";
+      desktopName = "Silverbullet";
+      icon = "silverbullet";
+    })
   ];
 }
