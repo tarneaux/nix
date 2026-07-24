@@ -53,7 +53,7 @@ local globalkeys = gears.table.join(
 			config = {
 				["b"] = {
 					"Bitwarden",
-					spawnthen("bitwarden"),
+					spawnthen("rofi-rbw"),
 				},
 				["m"] = {
 					"Music apps",
