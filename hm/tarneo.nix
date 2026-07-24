@@ -17,6 +17,7 @@
     ./unison
     ./ssh
     ./space
+    ./bitwarden
   ];
 
   nixpkgs.config.permittedInsecurePackages = [
