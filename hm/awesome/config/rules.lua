@@ -98,42 +98,6 @@ awful.rules.rules = {
 			},
 		},
 	},
-	{
-		callback = workspaces.rule_callback("a"),
-		rule_any = {
-			name = {
-				"qutebrowser <dev>",
-			},
-		},
-	},
-	{
-		callback = workspaces.rule_callback("r"),
-		rule_any = {
-			name = {
-				"qutebrowser <fac>",
-			},
-		},
-	},
-	{
-		callback = workspaces.rule_callback("s"),
-		rule_any = {
-			name = {
-				"qutebrowser <renn.es>",
-			},
-		},
-	},
-	{
-		callback = workspaces.rule_callback("t"),
-		rule_any = {
-			class = {
-				"lmms",
-				"Audacity",
-				"Inkscape",
-				"Gimp",
-				"digikam",
-			},
-		},
-	},
 }
 
 -- Set notification location
