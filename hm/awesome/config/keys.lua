@@ -30,7 +30,7 @@ local music_quake = termquake("MusicQuake", "rmpc")
 local space_quake = termquake("SpaceQuake", "zsh -c 'tmw ~/space \"nvim todo.md\"'")
 local irc_quake = termquake("IrcQuake", "zsh -c 'tmux new-session -A -s irc wgx weechat'")
 
-local function spawn(cmd)
+local function spawnthen(cmd)
 	return function()
 		awful.spawn.with_shell(cmd)
 	end
@@ -53,18 +53,18 @@ local globalkeys = gears.table.join(
 			config = {
 				["b"] = {
 					"Bitwarden",
-					spawn("bitwarden"),
+					spawnthen("bitwarden"),
 				},
 				["m"] = {
 					"Music apps",
 					{
 						["a"] = {
 							"Audacity",
-							spawn("audacity"),
+							spawnthen("audacity"),
 						},
 						["l"] = {
 							"LMMS",
-							spawn("lmms"),
+							spawnthen("lmms"),
 						},
 					},
 				},
@@ -73,15 +73,15 @@ local globalkeys = gears.table.join(
 					{
 						["i"] = {
 							"Inkscape",
-							spawn("inkscape"),
+							spawnthen("inkscape"),
 						},
 						["g"] = {
 							"GIMP",
-							spawn("gimp"),
+							spawnthen("gimp"),
 						},
 						["d"] = {
 							"DigiKam",
-							spawn("digikam"),
+							spawnthen("digikam"),
 						},
 					},
 				},
@@ -90,11 +90,11 @@ local globalkeys = gears.table.join(
 					{
 						["p"] = {
 							"PavuControl",
-							spawn("pavucontrol"),
+							spawnthen("pavucontrol"),
 						},
 						["b"] = {
-							"Blueberry",
-							spawn("blueberry"),
+							"Blueman",
+							spawnthen("blueman"),
 						},
 					},
 				},
@@ -103,15 +103,15 @@ local globalkeys = gears.table.join(
 					{
 						["s"] = {
 							"Signal",
-							spawn("signal-desktop"),
+							spawnthen("signal-desktop"),
 						},
 						["d"] = {
 							"Discord",
-							spawn("discord"),
+							spawnthen("discord"),
 						},
 						["w"] = {
 							"Whatsapp",
-							spawn("zapzap"),
+							spawnthen("zapzap"),
 						},
 					},
 				},
