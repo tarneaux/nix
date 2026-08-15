@@ -350,6 +350,15 @@ for i = 1, 6 do
 				end
 			end
 		end),
+		-- Toggle tag on focused client.
+		awful.key({ ModKey, "Mod1" }, tagkeys[i], function()
+			if client.focus then
+				local tag = workspaces.get_workspace_tags(client.focus.screen)[tostring(i)]
+				if tag then
+					client.focus:toggle_tag(tag)
+				end
+			end
+		end),
 		-- View workspace.
 		awful.key({ ModKey, "Control" }, tagkeys[i], function()
 			local screen = awful.screen.focused()
@@ -364,6 +373,15 @@ for i = 1, 6 do
 				local tag = workspaces.get_last_tag_of_ws(client.focus.screen, tagkeys[i])
 				if tag then
 					client.focus:move_to_tag(tag)
+				end
+			end
+		end),
+		-- Toggle workspace on focused client.
+		awful.key({ ModKey, "Control", "Mod1" }, tagkeys[i], function()
+			if client.focus then
+				local tag = workspaces.get_last_tag_of_ws(client.focus.screen, tagkeys[i])
+				if tag then
+					client.focus:toggle_tag(tag)
 				end
 			end
 		end)
