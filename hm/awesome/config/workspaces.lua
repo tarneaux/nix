@@ -38,9 +38,13 @@ local function initialize_tpw_table(screen)
 	end
 end
 
-workspaces.get_last_tag_of_ws = function(screen, ws)
+function workspaces.save_tpw(screen)
 	if screen.last_tag_per_workspace == nil then
 		initialize_tpw_table(screen)
+	end
+
+	if workspaces.current(screen) == nil then
+		return
 	end
 
 	if #screen.selected_tag:clients() > 0 then
@@ -48,6 +52,10 @@ workspaces.get_last_tag_of_ws = function(screen, ws)
 	else
 		initialize_tpw_table_for_ws(screen, workspaces.current(screen))
 	end
+end
+
+workspaces.get_last_tag_of_ws = function(screen, ws)
+	workspaces.save_tpw(screen)
 
 	return workspaces.get_tag_table(screen)[ws][screen.last_tag_per_workspace[ws]]
 end
@@ -68,8 +76,13 @@ workspaces.tag_clean = function(t)
 	return string.match(t.name, "^.([0-9])$")
 end
 
-function workspaces.taglist_filter(t)
+function workspaces.taglist_filter_current(t)
 	return string.match(t.name, "^" .. workspaces.current(awful.screen.focused()) .. "([0-9])$") ~= nil
+end
+
+function workspaces.taglist_filter_all(t)
+	-- Removes any tags that aren't in the workspace format
+	return string.match(t.name, "^" .. "(.*)" .. "([0-9])$") ~= nil
 end
 
 function workspaces.rule_callback(w)
