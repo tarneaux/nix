@@ -26,9 +26,10 @@ theme.color14 = "#8ec07c"
 theme.color15 = "#fbf1c7"
 theme.cursor = "#bdae93"
 
-theme.bg_accent = theme.color0
-theme.fg_accent = theme.color11
-theme.fg_inactive = theme.color14
+theme.bg_accent = theme.color11
+theme.fg_accent = theme.color0
+theme.bg_inactive = theme.background
+theme.fg_inactive = theme.color0
 
 -- Set variables depending on primary screen (because I use a huge but low-DPI
 -- external monitor and have a small high-DPI laptop screen).
@@ -75,10 +76,10 @@ theme.notification_max_width = 500
 theme.notification_max_height = 100
 theme.notification_icon_size = 100
 
-theme.taglist_fg_focus = theme.foreground
+theme.taglist_fg_focus = theme.fg_accent
+theme.taglist_bg_focus = theme.bg_accent
 theme.taglist_fg_occupied = theme.foreground
 theme.taglist_fg_empty = theme.fg_inactive
-theme.taglist_bg_focus = theme.bg_accent
 
 theme.tasklist_fg_focus = theme.color15
 theme.tasklist_fg_normal = theme.color14
