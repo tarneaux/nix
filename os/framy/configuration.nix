@@ -102,9 +102,9 @@
   };
 
   virtualisation = {
-    podman = {
+    docker = {
       enable = true;
-      defaultNetwork.settings.dns_enabled = true;
+      rootless.enable = true;
     };
     containers.registries.search = [ "docker.io" ];
   };

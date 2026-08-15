@@ -10,7 +10,7 @@ let
   privesc_wrong = "sudo";
   privesc_right = "doas";
   nix_job_limit_arg = if (hostname == "chorizo") then " -j 1" else "";
-  docker = if is_server then "doas docker" else "podman";
+  docker = if is_server then "doas docker" else "docker";
 in
 {
   programs.zsh = {
@@ -145,6 +145,10 @@ in
         PAGER = pager;
 
         ARCHIVE_DIR = "$HOME/.sync/archive";
+      }
+      // lib.attrsets.optionalAttrs (!is_server) {
+        # Docker in rootless mode. Service needs to be started on user level.
+        DOCKER_HOST = "unix://$XDG_RUNTIME_DIR/docker.sock";
       };
 
     # Without the option below, compinit takes 3+ secs to load.

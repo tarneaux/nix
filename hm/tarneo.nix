@@ -19,6 +19,13 @@
     ./space
   ];
 
+  programs.docker-cli = {
+    enable = true;
+    settings = {
+      credsStore = "pass";
+    };
+  };
+
   nixpkgs.config.permittedInsecurePackages = [
     "electron-39.8.10" # tmp for bitwarden desktop
   ];
@@ -60,6 +67,7 @@
     gdb
     weechat
     otree
+    docker-credential-helpers
 
     # X utilities
     bitwarden-desktop
