@@ -30,6 +30,8 @@
     "electron-39.8.10" # tmp for bitwarden desktop
   ];
 
+  services.blueman-applet.enable = true;
+
   home.packages = with pkgs; [
     # Command line utilities
     devenv
@@ -71,7 +73,6 @@
 
     # X utilities
     bitwarden-desktop
-    blueman
     gpick
     hplip
     pavucontrol

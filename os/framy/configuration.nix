@@ -74,6 +74,7 @@
       configDir = "/home/tarneo/.config/syncthing";
     };
     gnome.gnome-keyring.enable = true;
+    blueman.enable = true;
   };
 
   programs.i3lock.enable = true; # Needed to set SUID
