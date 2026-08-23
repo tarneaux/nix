@@ -53,9 +53,9 @@
           privateKeyFile = "/etc/wireguard/intra.key";
           peers = [
             {
-              publicKey = "5SFZ1w5fWJHJTkiL6LEeBUH6cPh1CFvRVIOuAFxf6k0=";
+              publicKey = "+9J/cqV6+bGojUdc8huEAUs+jLyknqRTiEbTF0nVRww=";
               allowedIPs = [ "0.0.0.0/0" ];
-              endpoint = "51.210.180.14:64468";
+              endpoint = "51.210.247.8:64468";
               persistentKeepalive = 25;
             }
           ];

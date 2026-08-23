@@ -21,7 +21,7 @@
     };
     networking.ipv4 = {
       lan = "192.168.1.151";
-      intra = "10.8.0.2/32";
+      intra = "10.10.0.2/32";
     };
   };
   systemd.services = {
