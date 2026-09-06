@@ -94,7 +94,7 @@ local globalkeys = gears.table.join(
 						},
 						["b"] = {
 							"Blueman",
-							spawnthen("blueman"),
+							spawnthen("blueman-manager"),
 						},
 					},
 				},
