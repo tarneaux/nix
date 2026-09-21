@@ -36,12 +36,12 @@ in
 
       -- spellcheck locations
       vim.api.nvim_create_autocmd("FileType", {
-          pattern = "gitcommit,markdown,org",
+          pattern = "gitcommit,markdown,org,typst",
           callback = function () vim.opt_local.spell = true end
       })
       -- where to allow french in spellcheck
       vim.api.nvim_create_autocmd("FileType", {
-          pattern = "markdown,org",
+          pattern = "markdown,org,typst",
           callback = function () vim.opt_local.spelllang:append("fr") end
       })
 
