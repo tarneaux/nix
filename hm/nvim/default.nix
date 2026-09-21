@@ -10,6 +10,7 @@
     ./telescope.nix
     ./tmux.nix
     ./specific.nix
+    ./dap.nix
   ];
   programs.neovim = {
     enable = true;
