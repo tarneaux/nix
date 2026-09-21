@@ -36,7 +36,12 @@ set_counter 0
 
 wait_for_signal() {
     trap 'return' SIGUSR1
-    { while :; do sleep infinity; done; } &
+    {
+        OLD="$(ip link)"
+        while [ "$OLD" = "$(ip link)" ]; do
+            sleep 30
+        done
+    } &
     echo "$!" >"$pdir/waiter.pid"
     wait
 }
@@ -58,7 +63,7 @@ while true; do
 
     rm "$pdir/unison.pid"
 
-    echo -e "\e[33mUnison exited; waiting for SIGUSR1...\e[0m"
+    echo -e "\e[33mUnison exited; waiting for SIGUSR1 or network change...\e[0m"
 
     wait_for_signal
 
