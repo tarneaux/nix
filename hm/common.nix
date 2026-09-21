@@ -29,6 +29,7 @@
     eva
     lnav
     toilet
+    watchexec
   ];
 
   nix.gc = {
