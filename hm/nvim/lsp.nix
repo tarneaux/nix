@@ -113,6 +113,7 @@
       config = # lua
         ''
           require('trouble').setup {}
+          vim.keymap.set("n", "<leader>d", "<cmd>Trouble diagnostics<cr>", { desc = "Trouble" })
         '';
     }
   ];
