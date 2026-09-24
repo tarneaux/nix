@@ -107,5 +107,12 @@
       runtimeInputs = [ xdotool ];
       text = builtins.readFile ./passmenu.sh;
     })
+
+    (writeShellApplication {
+      name = "xcustomkeys";
+      bashOptions = [ ];
+      runtimeInputs = [ xkbcomp ];
+      text = builtins.readFile ./xcustomkeys.sh;
+    })
   ];
 }

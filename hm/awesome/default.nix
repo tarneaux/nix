@@ -60,6 +60,7 @@
           setxkbmap fr
           xset s 600
           xss-lock --transfer-sleep-lock lock &
+          xcustomkeys
 
           # Daemons & autostart apps
           pgrep -f signal-desktop > /dev/null || signal-desktop --start-in-tray &
